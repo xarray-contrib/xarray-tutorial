@@ -19,7 +19,8 @@ jobs:
            environment-file: .binder/environment.yml
            python-version: 3.8
            auto-activate-base: false
-      - name: Update conda environment	
+      - name: Update conda environment
+        shell: bash -l {0}
         run: conda install -n xarray -c conda-forge pathlib nbconvert nbformat jupyter_client ipykernel
       - name: Install graphviz
         run: |
