@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install graphviz
+        run: |
+          sudo apt-get update
+          sudo apt-get install graphviz
       - name: Set up Python 3.8
         uses: goanpeca/setup-miniconda@v1
         with:
@@ -21,10 +25,11 @@ jobs:
            auto-activate-base: false
       - name: Update conda environment
         shell: bash -l {0}
-        run: conda install -n xarray -c conda-forge pathlib nbconvert nbformat jupyter_client ipykernel
-      - name: Install graphviz
         run: |
-          sudo apt-get update
-          sudo apt-get install graphviz
+          conda install -c conda-forge pathlib nbconvert nbformat jupyter_client ipykernel
       - name: Build and test notebooks
-        run: python .tests/nbrun.py
+        shell: bash -l {0}
+        run: |
+          conda info
+          conda list
+          python .tests/nbrun.py
