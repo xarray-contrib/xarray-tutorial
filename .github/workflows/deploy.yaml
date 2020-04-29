@@ -1,17 +1,17 @@
-name: CI
+name: Documentation
 
 on:
   push:
-    branches: "*"
-  pull_request:
-    branches: master
+    branches:
+      - master
 
 jobs:
-  test:
-    name: Tutorial Testing
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
       - name: Install graphviz
         run: |
           sudo apt-get update
@@ -27,9 +27,9 @@ jobs:
         shell: bash -l {0}
         run: |
           conda update --file ./ci/environment.yml
-      - name: Build and test notebooks
+      - name: Deploy docs
         shell: bash -l {0}
         run: |
-          conda info
-          conda list
-          python .tests/nbrun.py
+          set -e
+          sphinx-build -M html . _build -v
+          doctr deploy --built-docs _build/html .
