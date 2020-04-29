@@ -20,12 +20,10 @@ jobs:
            python-version: 3.8
            auto-activate-base: false
       - name: Update conda environment	
-        run: |
-          conda install pathlib nbconvert nbformat jupyter_client ipykernel
-     - name: Install graphviz
+        run: conda install pathlib nbconvert nbformat jupyter_client ipykernel
+      - name: Install graphviz
         run: |
           sudo apt-get update
           sudo apt-get install graphviz
-     - name: Build and test notebooks
-       run: |
-         python .tests/nbrun.py
+      - name: Build and test notebooks
+        run: python .tests/nbrun.py
