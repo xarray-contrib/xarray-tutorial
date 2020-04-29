@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: "*"
+  pull_request:
+    branches: master
+
+jobs:
+  test:
+    name: Tutorial Testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: goanpeca/setup-miniconda@v1
+        with:
+           activate-environment: xarray
+           environment-file: .binder/environment.yml
+           python-version: 3.8
+           auto-activate-base: false
+      - name: Update conda environment	
+        run: |
+          conda install pathlib nbconvert nbformat jupyter_client ipykernel
+     - name: Install graphviz
+        run: |
+          sudo apt-get update
+          sudo apt-get install graphviz
+     - name: Build and test notebooks
+       run: |
+         python .tests/nbrun.py
