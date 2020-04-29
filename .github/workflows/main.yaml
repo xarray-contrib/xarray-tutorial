@@ -20,7 +20,7 @@ jobs:
            python-version: 3.8
            auto-activate-base: false
       - name: Update conda environment	
-        run: conda install pathlib nbconvert nbformat jupyter_client ipykernel
+        run: conda install -n xarray -c conda-forge pathlib nbconvert nbformat jupyter_client ipykernel
       - name: Install graphviz
         run: |
           sudo apt-get update
