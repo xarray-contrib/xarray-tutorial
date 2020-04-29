@@ -26,7 +26,7 @@ jobs:
       - name: Update conda environment
         shell: bash -l {0}
         run: |
-          conda update --file ./ci/environment.yml
+          conda env update --file ./ci/environment.yml
       - name: Build and test notebooks
         shell: bash -l {0}
         run: |
