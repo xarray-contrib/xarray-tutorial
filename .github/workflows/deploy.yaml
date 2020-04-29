@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
       - name: Install graphviz
         run: |
           sudo apt-get update
@@ -25,8 +25,7 @@ jobs:
            auto-activate-base: false
       - name: Update conda environment
         shell: bash -l {0}
-        run: |
-          conda env update --file ./ci/environment.yml
+        run: conda env update --file ./ci/environment.yml
       - name: Deploy docs
         shell: bash -l {0}
         run: |
