@@ -1,0 +1,38 @@
+language: python
+
+python:
+    - "3.6"
+
+    env:
+      global:
+        # Doctr deploy key for xarray-contrib/xarray-tutorial
+        - secure: "LhMSPwCWybgGWTKQwMlTNjuMgR1xhCR8bgTnOeNh1hJIWGC7RTa2af0SzZ7cytEliVfIa9RufvEM5mAKMc6ti6AEOrix4puwrosn/kSIdAQqrR4QqjUV8ta5uukm417f8S/9W9EjBeu3E/paT88iZ7ZoS25H+Dyng+wemovNHfU1yiCLjD6nJml48PFYRHaKhhmRKtMSNCSVXeeANALfv3OWkiF4GUHdBVXLoC9VL6pRAn3wAiTiNALfSEdcZCo9E5LstRN8qzeZ+jipyaf3YCktqCG0EGgX8rEFVf+Jt1F0r3MJVrTPKxiLB7PU0HSW9+8MYhf+jV1T480p9EaIbYDma0kX8HjKKth8EWWAul7hawp5uj2SRpvJ055xZFkeHkWT+namRpsTcpGnVWoh4y03fddpkJdjdpYQ6w8OFuOC9xA27x4DwpdFJ38oS1COWQGlrPW/gRfGDbJsLTXyjHIBB0s/pP4Tp1NDdydT6gVs6M3wKxBHGwKvGjLy8L4D3uSkxBK7IYPhYbXl8VmzexWxC88EqfuCJhAKvj3ZDqT7MNzwyITaPn6Ar7L6uItnJEsW0s8WIyLbnwo1c3lOY77sM7ofN+FQFMsz/lrDRR1U6zESC9ol1R+zOBGU4RGpdFAKMT8Mjl41xoMbRWKiHqXSTSb79waFq3r75A6xp8s="
+
+before_install:
+    - sudo apt-get update
+    - sudo apt-get install graphviz
+
+install:
+    # Install conda
+    - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    - bash miniconda.sh -b -p $HOME/miniconda
+    - export PATH="$HOME/miniconda/bin:$PATH"
+    - conda config --set always_yes yes --set changeps1 no
+    - conda update conda
+
+    # Install dependencies
+    - conda env create -n xarray -f binder/environment.yml
+    - source activate xarray
+
+    # Install testing and documentation dependencies
+    - conda env update --file ./ci/environment.yml
+
+script:
+    - set -e
+    - source activate xarray
+    - sphinx-build -M html . _build -v
+    - pip install doctr
+    - doctr deploy --built-docs _build/html .
+
+notifications:
+  email: false
