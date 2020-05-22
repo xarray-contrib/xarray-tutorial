@@ -8,7 +8,7 @@ They should be easy to run locally if you download this repository.
 They are also available on the cloud by clicking on the link below:
 
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master)
-[![CI](https://github.com/xarray-contrib/xarray-tutorial/workflows/CI/badge.svg?branch=master)](https://github.com/xarray-contrib/xarray-tutorial/actions)
+[![CI](https://github.com/xarray-contrib/xarray-tutorial/workflows/CI/badge.svg?branch=master)](https://github.com/xarray-contrib/xarray-tutorial/actions?query=branch%3Amaster)
 
 Contributing
 ------------
