@@ -28,4 +28,4 @@ guidelines:
 6.  Be of general relevance to Xarray users, and so not too specific on a
     particular problem or use case.
 
-*Note: Some of this information came from a similar repository: https://github.com/dask/dask-examples*
+*Note: Some of the content in this repository came from a similar projects: https://github.com/dask/dask-tutorial*
