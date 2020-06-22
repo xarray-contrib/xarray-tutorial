@@ -15,7 +15,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Introduction\n",
+    "# Data structures for multi-dimensional data\n",
     "\n",
     "Multi-dimensional (a.k.a. N-dimensional, ND) arrays (sometimes called “tensors”) are an essential part of computational science. They are encountered in a wide range of fields, including physics, astronomy, geoscience, bioinformatics, engineering, finance, and deep learning. In Python, NumPy provides the fundamental data structure and API for working with raw ND arrays. However, real-world datasets are usually more than just raw numbers; they have labels which encode information about how the array values map to locations in space, time, etc.\n",
     "\n",
@@ -42,7 +42,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Data structures\n",
+    "## Data structures\n",
     "\n",
     "xarray mainly provides two types: `DataArray` and `Dataset`. The `DataArray` class attaches dimension names, coordinates and attributes to multi-dimensional arrays while `Dataset` combines multiple arrays.\n",
     "\n",
@@ -53,7 +53,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## DataArray\n",
+    "### DataArray\n",
     "\n",
     "The `DataArray` class is used to attach a name, dimension names, labels, and attributes to an array."
    ]
@@ -102,7 +102,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### string representations\n",
+    "#### String representations\n",
     "\n",
     "Now that we have the `DataArray` we can look at its string representation.\n",
     "\n",
@@ -207,7 +207,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### coordinates\n",
+    "#### coordinates\n",
     "\n",
     "As mentioned above, `coords` is a dict-like mapping names to values. These values can be either\n",
     "\n",
@@ -249,7 +249,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Dataset\n",
+    "### Dataset\n",
     "\n",
     "`Dataset` objects collect multiple data variables, each with possibly different dimensions.\n",
     "\n",
@@ -283,7 +283,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### string representations\n",
+    "#### String representations\n",
     "\n",
     "Let's again first look at the text representation:"
    ]
@@ -325,7 +325,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### coordinates"
+    "#### coordinates"
    ]
   },
   {
@@ -387,7 +387,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Roundtripping and I/O\n",
+    "## Roundtripping and I/O\n",
     "\n",
     "Typically, `DataArray` and `Dataset` objects are not created programmatically but instead by converting from / to other libraries such as `pandas` or by reading from data storage formats such as `netcdf` or `zarr`.\n",
     "\n",
@@ -502,7 +502,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## I/O\n",
+    "### I/O\n",
     "\n",
     "- netcdf / pseudonetcdf (open_dataset / open_mfdataset, to_netcdf / save_mfdataset)\n",
     "- zarr (open_zarr, to_zarr)\n",
@@ -510,7 +510,7 @@
     "\n",
     "Scientific data usually is \n",
     "\n",
-    "### netcdf\n",
+    "#### netcdf\n",
     "\n",
     "To read / write to `netcdf` files, use the `open_dataset` / `open_dataarray` functions and the `to_netcdf` method.\n",
     "\n",
@@ -581,7 +581,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## zarr\n",
+    "#### zarr\n",
     "\n",
     "`zarr` files can be written with:"
    ]
@@ -635,7 +635,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.8.3"
+   "version": "3.8.2"
   }
  },
  "nbformat": 4,
