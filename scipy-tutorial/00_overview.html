@@ -95,9 +95,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="01_datastructures_and_io.html">Data structures for multi-dimensional data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_working_with_labeled_data.html">Working with labeled data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_working_with_labeled_data.html#Broadcasting-and-automatic-alignment">Broadcasting and automatic alignment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_computation_with_xarray.html">Computation with Xarray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_plotting_and_visualization.html">Plotting and Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_intro_to_dask.html">Introduction to Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_xarray_and_dask.html">Xarray and Dask</a></li>
 </ul>
 
             
@@ -419,13 +420,13 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <p>You can run this notebook in a <a class="reference external" href="https://mybinder.org/v2/gh/pydata/xarray-tutorial/master?urlpath=lab/tree/scipy-tutorial/00_overview.ipynb">live session</a> <a class="reference external" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> or view it <a class="reference external" href="https://github.com/pydata/xarray-tutorial/blob/master/scipy-tutorial/00_overview.ipynb">on Github</a>.</p>
-<p><img alt="14298328297e49b491fae106be68e23b" class="no-scaled-link" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></p>
+<p><img alt="55909aa387c54a19ac1c4a907b3b2404" class="no-scaled-link" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></p>
 <div class="section" id="Introduction">
 <h1>Introduction<a class="headerlink" href="#Introduction" title="Permalink to this headline">¶</a></h1>
 <p>Welcome to the Xarray Tutorial.</p>
 <p>Xarray is an open source project and Python package that makes working with labelled multi-dimensional arrays simple, efficient, and fun!</p>
 <p>Xarray introduces labels in the form of dimensions, coordinates and attributes on top of raw <a class="reference external" href="https://numpy.org/">NumPy</a>-like arrays, which allows for a more intuitive, more concise, and less error-prone developer experience. The package includes a large and growing library of domain-agnostic functions for advanced analytics and visualization with these data structures.</p>
-<p>Xarray is inspired by and borrows heavily from <a class="reference external" href="https://pandas.pydata.org/">pandas</a>, the popular data analysis package focused on labelled tabular data. It is particularly tailored to working with <a class="reference external" href="http://www.unidata.ucar.edu/software/netcdf">netCDF files</a>, which were the source of xarray’s data model, and integrates tightly with <a class="reference external" href="http://dask.org/">Dask</a> for parallel computing.</p>
+<p>Xarray is inspired by and borrows heavily from <a class="reference external" href="https://pandas.pydata.org/">pandas</a>, the popular data analysis package focused on labelled tabular data. It is particularly tailored to working with <a class="reference external" href="http://www.unidata.ucar.edu/software/netcdf">netCDF files</a>, which were the source of Xarray’s data model, and integrates tightly with <a class="reference external" href="http://dask.org/">Dask</a> for parallel computing.</p>
 <div class="section" id="Tutorial-Setup">
 <h2>Tutorial Setup<a class="headerlink" href="#Tutorial-Setup" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial is designed to run on <a class="reference external" href="https://mybinder.org/">Binder</a>. This will allow you to run the turoial in the cloud without any additional setup. To get started, simply click <a class="reference external" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master?urlpath=lab">here</a>: <a class="reference external" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
@@ -483,8 +484,8 @@ div.rendered_html tbody tr:hover {
 <li><p><a class="reference internal" href="02_working_with_labeled_data.html"><span class="doc">Working with labeled data</span></a></p></li>
 <li><p><a class="reference internal" href="03_computation_with_xarray.html"><span class="doc">Computation with Xarray</span></a></p></li>
 <li><p><a class="reference internal" href="04_plotting_and_visualization.html"><span class="doc">Plotting and Visualization</span></a></p></li>
-<li><p><a class="reference internal" href="04_plotting_and_visualization.html"><span class="doc">Introduction to Dask</span></a></p></li>
-<li><p><a class="reference external" href="05_dask_and_xarray.ipynb">Dask and Xarray</a></p></li>
+<li><p><a class="reference internal" href="05_intro_to_dask.html"><span class="doc">Introduction to Dask</span></a></p></li>
+<li><p><a class="reference external" href="06_dask_and_xarray.ipynb">Dask and Xarray</a></p></li>
 <li><p><a href="#id1"><span class="problematic" id="id2">`Self-guided exercises &lt;&gt;`__</span></a></p></li>
 </ol>
 </div>

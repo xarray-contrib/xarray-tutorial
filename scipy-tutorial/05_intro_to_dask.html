@@ -38,7 +38,9 @@
 
     
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Xarray and Dask" href="06_xarray_and_dask.html" />
+    <link rel="prev" title="Plotting and Visualization" href="04_plotting_and_visualization.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -83,13 +85,45 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="00_overview.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_datastructures_and_io.html">Data structures for multi-dimensional data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_working_with_labeled_data.html">Working with labeled data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_working_with_labeled_data.html#Broadcasting-and-automatic-alignment">Broadcasting and automatic alignment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_computation_with_xarray.html">Computation with Xarray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_plotting_and_visualization.html">Plotting and Visualization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to Dask</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Table-of-contents">Table of contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#What-is-Dask?">What is Dask?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Quick-setup">Quick setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Dask-Collections">Dask Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Dask-Arrays">Dask Arrays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#A-Bigger-Calculation">A Bigger Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Reduction">Reduction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Parallelism-using-the-dask.distributed-scheduler">Parallelism using the dask.distributed scheduler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Dask-Schedulers">Dask Schedulers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Distributed-Clusters-(http://distributed.dask.org/)">Distributed Clusters (http://distributed.dask.org/)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Profiling-&amp;-Diagnostics-using-the-Dask-Dashboard">Profiling &amp; Diagnostics using the Dask Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Distributed-Dask-clusters-for-HPC-and-Cloud-environments">Distributed Dask clusters for HPC and Cloud environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#HPC">HPC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Dask-Jobqueue-(https://jobqueue.dask.org/)">Dask Jobqueue (https://jobqueue.dask.org/)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Dask-MPI-(https://mpi.dask.org/)">Dask MPI (https://mpi.dask.org/)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Cloud">Cloud</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Dask-Kubernetes-(https://kubernetes.dask.org/)">Dask Kubernetes (https://kubernetes.dask.org/)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Dask-Cloud-Provider-(https://cloudprovider.dask.org)">Dask Cloud Provider (https://cloudprovider.dask.org)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Dask-Gateway-(https://gateway.dask.org/)">Dask Gateway (https://gateway.dask.org/)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="06_xarray_and_dask.html">Xarray and Dask</a></li>
 </ul>
 
             
@@ -411,21 +445,9 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <p>You can run this notebook in a <a class="reference external" href="https://mybinder.org/v2/gh/pydata/xarray-tutorial/master?urlpath=lab/tree/scipy-tutorial/05_intro_to_dask.ipynb">live session</a> <a class="reference external" href="https://mybinder.org/v2/gh/pydata/xarray-tutorial/master?urlpath=lab/tree/scipy-tutorial/05_intro_to_dask.ipynb"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a> or view it <a class="reference external" href="https://github.com/pydata/xarray-tutorial/blob/master/scipy-tutorial/05_intro_to_dask.ipynb">on Github</a>.</p>
-<p><img alt="Dask logo" class="no-scaled-link" src="http://dask.readthedocs.io/en/latest/_images/dask_horizontal.svg" width="30%" /></p>
+<p><img alt="126bae2f0c8646f291affe641035bb35" class="no-scaled-link" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></p>
 <div class="section" id="Introduction-to-Dask">
 <h1>Introduction to Dask<a class="headerlink" href="#Introduction-to-Dask" title="Permalink to this headline">¶</a></h1>
-<div class="alert-info"><div class="section" id="Overview">
-<h2>Overview<a class="headerlink" href="#Overview" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><strong>teaching:</strong> 20 minutes</p></li>
-<li><p><strong>exercises:</strong> 0</p></li>
-<li><p><strong>questions:</strong></p>
-<ul>
-<li><p>How does Dask parallelize computations in Python?</p></li>
-</ul>
-</li>
-</ul>
-</div></div>
 <div class="section" id="Table-of-contents">
 <h2>Table of contents<a class="headerlink" href="#Table-of-contents" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
@@ -435,11 +457,12 @@ div.rendered_html tbody tr:hover {
 <li><p><a class="reference external" href="#Profiling-&amp;-Diagnostics-using-the-Dask-Dashboard">Profiling &amp; Diagnostics using the Dask Dashboard</a></p></li>
 <li><p><a class="reference external" href="#Distributed-Dask-clusters-for-HPC-and-Cloud-environments">Distributed Dask clusters for HPC and Cloud environments</a></p></li>
 </ol>
+<p><img alt="Dask logo" class="no-scaled-link" src="http://dask.readthedocs.io/en/latest/_images/dask_horizontal.svg" width="30%" /></p>
+</div>
 <div class="section" id="What-is-Dask?">
-<h3>What is Dask?<a class="headerlink" href="#What-is-Dask?" title="Permalink to this headline">¶</a></h3>
+<h2>What is Dask?<a class="headerlink" href="#What-is-Dask?" title="Permalink to this headline">¶</a></h2>
 <p>Dask is a flexible parallel computing library for analytic computing. Dask provides dynamic parallel task scheduling and high-level big-data collections like <code class="docutils literal notranslate"><span class="pre">dask.array</span></code> and <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code>, and an extensive suite of deployment options. Dask’s documentation can be found here: <a class="reference external" href="https://docs.dask.org/en/latest/">https://docs.dask.org/en/latest/</a></p>
 <p><img alt="Dask overview" class="no-scaled-link" src="https://docs.dask.org/en/latest/_images/dask-overview.svg" width="75%" /></p>
-</div>
 </div>
 <div class="section" id="Quick-setup">
 <h2>Quick setup<a class="headerlink" href="#Quick-setup" title="Permalink to this headline">¶</a></h2>
@@ -466,7 +489,7 @@ div.rendered_html tbody tr:hover {
 <td style="vertical-align: top; border: 0px solid white">
 <h3 style="text-align: left;">Client</h3>
 <ul style="text-align: left; list-style: none; margin: 0; padding: 0;">
-  <li><b>Scheduler: </b>tcp://127.0.0.1:46653</li>
+  <li><b>Scheduler: </b>tcp://127.0.0.1:46407</li>
   <li><b>Dashboard: </b><a href='http://127.0.0.1:8787/status' target='_blank'>http://127.0.0.1:8787/status</a></li>
 </ul>
 </td>
@@ -483,8 +506,9 @@ div.rendered_html tbody tr:hover {
 </div>
 <p><p>&amp;#128070</p>
 </p><p>Click the Dashboard link above.</p>
+</div>
 <div class="section" id="Dask-Collections">
-<h3>Dask Collections<a class="headerlink" href="#Dask-Collections" title="Permalink to this headline">¶</a></h3>
+<h2>Dask Collections<a class="headerlink" href="#Dask-Collections" title="Permalink to this headline">¶</a></h2>
 <p>Dask includes 3 main collections:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.dask.org/en/latest/array.html">Dask Array</a>: Parallel NumPy arrays</p></li>
@@ -494,7 +518,7 @@ div.rendered_html tbody tr:hover {
 <p>Xarray primarily interfaces with the Dask Array collection so we’ll skip the others for now. You can find out more about Dask’s user interfaces <a class="reference external" href="https://docs.dask.org/en/latest/user-interfaces.html">here</a>.</p>
 </div>
 <div class="section" id="Dask-Arrays">
-<h3>Dask Arrays<a class="headerlink" href="#Dask-Arrays" title="Permalink to this headline">¶</a></h3>
+<h2>Dask Arrays<a class="headerlink" href="#Dask-Arrays" title="Permalink to this headline">¶</a></h2>
 <p>Dask Array implements a subset of the NumPy ndarray interface using blocked algorithms, cutting up the large array into many small arrays. This lets us compute on arrays larger than memory using multiple cores. We coordinate these blocked algorithms using Dask graphs. Dask Array’s are also <em>lazy</em>, meaning that they do not evaluate until you explicitly ask for a result using the <code class="docutils literal notranslate"><span class="pre">compute</span></code> method.</p>
 <p>If we want to create a NumPy array of all ones, we do it like this:</p>
 <div class="nbinput docutils container">
@@ -531,7 +555,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%.1f</span><span class="s1"> MB&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ones_np</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">))</span>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2"> MB&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ones_np</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -698,7 +722,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/scipy-tutorial_05_intro_to_dask_18_0.png" src="../_images/scipy-tutorial_05_intro_to_dask_18_0.png" />
+<img alt="../_images/scipy-tutorial_05_intro_to_dask_15_0.png" src="../_images/scipy-tutorial_05_intro_to_dask_15_0.png" />
 </div>
 </div>
 <p>Our array has four chunks. To generate it, Dask calls <code class="docutils literal notranslate"><span class="pre">np.ones</span></code> four times and then concatenates this together into one array.</p>
@@ -718,7 +742,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/scipy-tutorial_05_intro_to_dask_20_0.png" src="../_images/scipy-tutorial_05_intro_to_dask_20_0.png" />
+<img alt="../_images/scipy-tutorial_05_intro_to_dask_17_0.png" src="../_images/scipy-tutorial_05_intro_to_dask_17_0.png" />
 </div>
 </div>
 <p>Here we see Dask’s strategy for finding the sum. This simple example illustrates the beauty of Dask: it automatically designs an algorithm appropriate for custom operations with big data.</p>
@@ -738,13 +762,11 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/scipy-tutorial_05_intro_to_dask_22_0.png" src="../_images/scipy-tutorial_05_intro_to_dask_22_0.png" />
-</div>
-</div>
+<img alt="../_images/scipy-tutorial_05_intro_to_dask_19_0.png" src="../_images/scipy-tutorial_05_intro_to_dask_19_0.png" />
 </div>
 </div>
 <div class="section" id="A-Bigger-Calculation">
-<h2>A Bigger Calculation<a class="headerlink" href="#A-Bigger-Calculation" title="Permalink to this headline">¶</a></h2>
+<h3>A Bigger Calculation<a class="headerlink" href="#A-Bigger-Calculation" title="Permalink to this headline">¶</a></h3>
 <p>The examples above were toy examples; the data (32 MB) is probably not big enough to warrant the use of Dask.</p>
 <p>We can make it a lot bigger!</p>
 <div class="nbinput docutils container">
@@ -1007,7 +1029,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%.1f</span><span class="s1"> MB&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">big_ones</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">))</span>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2"> MB&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">big_ones</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1045,14 +1067,14 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </div>
 </div>
 <div class="section" id="Reduction">
-<h2>Reduction<a class="headerlink" href="#Reduction" title="Permalink to this headline">¶</a></h2>
+<h3>Reduction<a class="headerlink" href="#Reduction" title="Permalink to this headline">¶</a></h3>
 <p>All the usual numpy methods work on dask arrays. You can also apply numpy function directly to a dask array, and it will stay lazy.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">big_ones_reduce</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">big_ones</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span></span><span class="n">big_ones_reduce</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">big_ones</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">big_ones_reduce</span>
 </pre></div>
 </div>
@@ -1306,7 +1328,6 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-
 </pre></div>
 </div>
 </div>
@@ -1325,23 +1346,23 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7f2382528cd0&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7fd1238a7610&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/scipy-tutorial_05_intro_to_dask_32_1.png" src="../_images/scipy-tutorial_05_intro_to_dask_32_1.png" />
+<img alt="../_images/scipy-tutorial_05_intro_to_dask_29_1.png" src="../_images/scipy-tutorial_05_intro_to_dask_29_1.png" />
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="Parallelism-using-the-dask.distributed-scheduler">
-<h3>Parallelism using the dask.distributed scheduler<a class="headerlink" href="#Parallelism-using-the-dask.distributed-scheduler" title="Permalink to this headline">¶</a></h3>
+<h2>Parallelism using the dask.distributed scheduler<a class="headerlink" href="#Parallelism-using-the-dask.distributed-scheduler" title="Permalink to this headline">¶</a></h2>
 <p>In the <a class="reference external" href="#Quick-setup">first cell</a> of this notebook, we started a local Dask Cluster and Client. We skipped past some important details there that we’ll unpack now.</p>
-</div>
-</div>
 <div class="section" id="Dask-Schedulers">
-<h2>Dask Schedulers<a class="headerlink" href="#Dask-Schedulers" title="Permalink to this headline">¶</a></h2>
+<h3>Dask Schedulers<a class="headerlink" href="#Dask-Schedulers" title="Permalink to this headline">¶</a></h3>
 <p>The Dask <em>Schedulers</em> orchestrate the tasks in the Task Graphs so that they can be run in parallel. <em>How</em> they run in parallel, though, is determined by which <em>Scheduler</em> you choose.</p>
 <p>There are 3 <em>local</em> schedulers:</p>
 <ul class="simple">
@@ -1355,13 +1376,15 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </ul>
 </div>
 <div class="section" id="Distributed-Clusters-(http://distributed.dask.org/)">
-<h2>Distributed Clusters (<a class="reference external" href="http://distributed.dask.org/">http://distributed.dask.org/</a>)<a class="headerlink" href="#Distributed-Clusters-(http://distributed.dask.org/)" title="Permalink to this headline">¶</a></h2>
+<h3>Distributed Clusters (<a class="reference external" href="http://distributed.dask.org/">http://distributed.dask.org/</a>)<a class="headerlink" href="#Distributed-Clusters-(http://distributed.dask.org/)" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">LocalCluster</span></code> - Creates a <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> that can be executed locally. Each <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> includes a <code class="docutils literal notranslate"><span class="pre">Scheduler</span></code> and <code class="docutils literal notranslate"><span class="pre">Worker</span></code>s.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Client</span></code> - Connects to and drives computation on a distributed <code class="docutils literal notranslate"><span class="pre">Cluster</span></code></p></li>
 </ul>
+</div>
+</div>
 <div class="section" id="Profiling-&amp;-Diagnostics-using-the-Dask-Dashboard">
-<h3>Profiling &amp; Diagnostics using the Dask Dashboard<a class="headerlink" href="#Profiling-&-Diagnostics-using-the-Dask-Dashboard" title="Permalink to this headline">¶</a></h3>
+<h2>Profiling &amp; Diagnostics using the Dask Dashboard<a class="headerlink" href="#Profiling-&-Diagnostics-using-the-Dask-Dashboard" title="Permalink to this headline">¶</a></h2>
 <p>You’ll recall from above, that we opened a url to the Dask Dashboard:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
@@ -1382,7 +1405,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 <td style="vertical-align: top; border: 0px solid white">
 <h3 style="text-align: left;">Client</h3>
 <ul style="text-align: left; list-style: none; margin: 0; padding: 0;">
-  <li><b>Scheduler: </b>tcp://127.0.0.1:46653</li>
+  <li><b>Scheduler: </b>tcp://127.0.0.1:46407</li>
   <li><b>Dashboard: </b><a href='http://127.0.0.1:8787/status' target='_blank'>http://127.0.0.1:8787/status</a></li>
 </ul>
 </td>
@@ -1420,32 +1443,44 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </div>
 </div>
 <div class="section" id="Distributed-Dask-clusters-for-HPC-and-Cloud-environments">
-<h3>Distributed Dask clusters for HPC and Cloud environments<a class="headerlink" href="#Distributed-Dask-clusters-for-HPC-and-Cloud-environments" title="Permalink to this headline">¶</a></h3>
+<h2>Distributed Dask clusters for HPC and Cloud environments<a class="headerlink" href="#Distributed-Dask-clusters-for-HPC-and-Cloud-environments" title="Permalink to this headline">¶</a></h2>
 <p>Dask can be deployed on distributed infrastructure, such as a an HPC system or a cloud computing system. There is a growing ecosystem of Dask deployment projects that faciliate easy deployment and scaling of Dask clusters on a wide variety of computing systems.</p>
-</div>
-</div>
 <div class="section" id="HPC">
-<h2>HPC<a class="headerlink" href="#HPC" title="Permalink to this headline">¶</a></h2>
+<h3>HPC<a class="headerlink" href="#HPC" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Dask-Jobqueue-(https://jobqueue.dask.org/)">
+<h4>Dask Jobqueue (<a class="reference external" href="https://jobqueue.dask.org/">https://jobqueue.dask.org/</a>)<a class="headerlink" href="#Dask-Jobqueue-(https://jobqueue.dask.org/)" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_jobqueue.PBSCluster</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_jobqueue.SlurmCluster</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_jobqueue.LSFCluster</span></code></p></li>
 <li><p>etc.</p></li>
 </ul>
+</div>
+<div class="section" id="Dask-MPI-(https://mpi.dask.org/)">
+<h4>Dask MPI (<a class="reference external" href="https://mpi.dask.org/">https://mpi.dask.org/</a>)<a class="headerlink" href="#Dask-MPI-(https://mpi.dask.org/)" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_mpi.initialize</span></code></p></li>
 </ul>
 </div>
+</div>
 <div class="section" id="Cloud">
-<h2>Cloud<a class="headerlink" href="#Cloud" title="Permalink to this headline">¶</a></h2>
+<h3>Cloud<a class="headerlink" href="#Cloud" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Dask-Kubernetes-(https://kubernetes.dask.org/)">
+<h4>Dask Kubernetes (<a class="reference external" href="https://kubernetes.dask.org/">https://kubernetes.dask.org/</a>)<a class="headerlink" href="#Dask-Kubernetes-(https://kubernetes.dask.org/)" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_kubernetes.KubeCluster</span></code></p></li>
 </ul>
+</div>
+<div class="section" id="Dask-Cloud-Provider-(https://cloudprovider.dask.org)">
+<h4>Dask Cloud Provider (<a class="reference external" href="https://cloudprovider.dask.org">https://cloudprovider.dask.org</a>)<a class="headerlink" href="#Dask-Cloud-Provider-(https://cloudprovider.dask.org)" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_cloudprovider.FargateCluster</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_cloudprovider.ECSCluster</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_cloudprovider.ECSCluster</span></code></p></li>
 </ul>
+</div>
+<div class="section" id="Dask-Gateway-(https://gateway.dask.org/)">
+<h4>Dask Gateway (<a class="reference external" href="https://gateway.dask.org/">https://gateway.dask.org/</a>)<a class="headerlink" href="#Dask-Gateway-(https://gateway.dask.org/)" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_gateway.GatewayCluster</span></code></p></li>
 </ul>
@@ -1457,12 +1492,23 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </ul>
 </div>
 </div>
+</div>
+</div>
 
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="06_xarray_and_dask.html" class="btn btn-neutral float-right" title="Xarray and Dask" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="04_plotting_and_visualization.html" class="btn btn-neutral float-left" title="Plotting and Visualization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
