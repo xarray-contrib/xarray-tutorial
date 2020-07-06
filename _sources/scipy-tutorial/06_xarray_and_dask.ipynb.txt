@@ -10,9 +10,27 @@
     "\n",
     "## Table of contents\n",
     "\n",
-    "2. Parallel/streaming/lazy computation using dask.array with Xarray\n",
-    "3. Reading and writing data with Dask and Xarray\n",
-    "4. Automatic parallelization with apply_ufunc and map_blocks\n"
+    "1. [Reading data with Dask and Xarray](#readwrite)\n",
+    "2. [Parallel/streaming/lazy computation using dask.array with Xarray](#compute)\n",
+    "3. [Automatic parallelization with apply_ufunc and map_blocks](#applymap)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import expectexception\n",
+    "import numpy as np\n",
+    "import xarray as xr"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Lets set up a `LocalCluster` using `dask.distributed`\n"
    ]
   },
   {
@@ -31,23 +49,471 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "<p>&#128070</p> Click the Dashboard link above.\n",
+    "<p>&#128070</p> Click the Dashboard link above. Or click the \"Search\" button in the dashboard.\n",
     "\n",
-    "## Parallel/streaming/lazy computation using dask.array with Xarray\n"
+    "Let's test that the dashboard is working..\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import dask.array\n",
+    "\n",
+    "dask.array.ones(\n",
+    "    (1000, 4), chunks=(2, 1)\n",
+    ").compute()  # should see activity in dashboard"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Reading and writing data with Dask and Xarray\n"
+    "<a id='readwrite'></a>\n",
+    "\n",
+    "## Reading data with Dask and Xarray\n",
+    "\n",
+    "The `chunks` argument to both `open_dataset` and `open_mfdataset` allow you to\n",
+    "read datasets as dask arrays. SEe\n",
+    "https://xarray.pydata.org/en/stable/dask.html#reading-and-writing-data for more\n",
+    "details\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "ds = xr.tutorial.open_dataset(\n",
+    "    \"air_temperature\",\n",
+    "    chunks={\n",
+    "        \"lat\": 25,\n",
+    "        \"lon\": 25,\n",
+    "        \"time\": -1,\n",
+    "    },  # this tells xarray to open the dataset as a dask array\n",
+    ")\n",
+    "ds"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Automatic parallelization with apply_ufunc and map_blocks\n"
+    "The repr for the `air` DataArray shows the dask repr.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "ds.air"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<a id='compute'></a>\n",
+    "\n",
+    "## Parallel/streaming/lazy computation using dask.array with Xarray\n",
+    "\n",
+    "Xarray seamlessly wraps dask so all computation is deferred until explicitly\n",
+    "needed\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "mean = ds.air.mean(\"time\")  # no activity on dashboard\n",
+    "mean  # contains a dask array"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "This is true for all xarray operations including slicing\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "timeseries = (\n",
+    "    ds.air.rolling(time=5).mean().isel(lon=1, lat=20)\n",
+    ")  # no activity on dashboard\n",
+    "timeseries  # contains dask array"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Getting concrete values from dask arrays\n",
+    "\n",
+    "At some point, you will want to actually get concrete values from dask.\n",
+    "\n",
+    "There are two ways to compute values on dask arrays. These concrete values are\n",
+    "usually numpy arrays but could be a `pydata/sparse` array for example.\n",
+    "\n",
+    "1. `.compute()` returns an xarray object\n",
+    "2. `.load()` replaces the dask array in the xarray object with a numpy array.\n",
+    "   This is equivalent to `ds = ds.compute()`\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "computed = mean.compute()  # activity on dashboard\n",
+    "computed  # has real numpy values"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Note that `mean` still contains a dask array\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "mean"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "But if we call `.load()`, `mean` will now contain a numpy array\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "mean.load()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "mean"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Tip:** `.persist()` loads the values into distributed RAM. This is useful if\n",
+    "you will be repeatedly using a dataset for computation. You'll see a persistent\n",
+    "task on the dashboard\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `.values` vs `.data`\n",
+    "\n",
+    "There are two ways to pull out the underlying data in an xarray object.\n",
+    "\n",
+    "1. `.values` will always return a NumPy array. For dask-backed xarray objects,\n",
+    "   this means that compute will always be called\n",
+    "2. `.data` will return a Dask array\n",
+    "\n",
+    "#### Exercise\n",
+    "\n",
+    "Try extracting a dask array from `ds.air`\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Xarray data structures are first-class dask collections.\n",
+    "\n",
+    "This means you can do things like `dask.compute(xarray_object)`,\n",
+    "`dask.visualize(xarray_object)`, `dask.persist(xarray_object)`.\n",
+    "\n",
+    "#### Exercise\n",
+    "\n",
+    "Visualize the task graph for `mean`\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<a id='applymap'></a>\n",
+    "\n",
+    "## Automatic parallelization with apply_ufunc and map_blocks\n",
+    "\n",
+    "Almost all of xarray’s built-in operations work on Dask arrays. If you want to\n",
+    "use a function that isn’t wrapped by xarray, and have it applied in parallel on\n",
+    "each block of your xarray object, you have three options:\n",
+    "\n",
+    "1. Extract Dask arrays from xarray objects (`.data`) and use Dask directly.\n",
+    "\n",
+    "2. Use `apply_ufunc()` to apply functions that consume and return NumPy arrays.\n",
+    "\n",
+    "3. Use `map_blocks()`, `Dataset.map_blocks()` or `DataArray.map_blocks()` to\n",
+    "   apply functions that consume and return xarray objects.\n",
+    "\n",
+    "Which method you use ultimately depends on what the function you're wrapping\n",
+    "expects and the level of convenience you desire.\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `map_blocks`\n",
+    "\n",
+    "`map_blocks` is inspired by the `dask.array` function of the same name and lets\n",
+    "you map a function on blocks of the xarray object (including Datasets!).\n",
+    "\n",
+    "At _compute_ time, your function will receive an xarray object with concrete\n",
+    "(computed) values along with all metadata and should return an xarray object.\n",
+    "\n",
+    "Here is an example\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def time_mean(obj):\n",
+    "    return obj.mean(\"lat\")  # use xarray's convenient API here\n",
+    "\n",
+    "\n",
+    "ds.map_blocks(time_mean)  # this is lazy!"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "ds.map_blocks(time_mean).identical(\n",
+    "    ds.mean(\"lat\")\n",
+    ")  # this will calculate values and will return True if the computation works as expected"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Exercise\n",
+    "\n",
+    "Try applying the following function with `map_blocks`. Specify `scale` as an\n",
+    "argument and `offset` as a kwarg.\n",
+    "\n",
+    "The docstring should help:\n",
+    "https://xarray.pydata.org/en/stable/generated/xarray.map_blocks.html\n",
+    "\n",
+    "```\n",
+    "def time_mean_scaled(obj, scale, offset):\n",
+    "    return obj.mean(\"lat\") * scale + offset\n",
+    "```\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### More advanced functions\n",
+    "\n",
+    "`map_blocks` needs to know what the returned object looks like _exactly_. This\n",
+    "means that more complicated functions can be challenging. For these advanced use\n",
+    "cases, `map_blocks` allows a `template` kwarg. See\n",
+    "https://xarray.pydata.org/en/latest/dask.html#map-blocks for more details\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# apply_ufunc\n",
+    "\n",
+    "`apply_ufunc` is a more advanced wrapper that is designed to apply functions\n",
+    "that expect and return NumPy (or other arrays). For example, this would include\n",
+    "all of SciPy's API. Since `apply_ufunc` operates on lower-level NumPy or Dask\n",
+    "objects, it skips the overhead of using Xarray objects making it a good choice\n",
+    "for performance-critical functions.\n",
+    "\n",
+    "`apply_ufunc` can be a little tricky to get right since it operates at a lower\n",
+    "level than `map_blocks`. On the other hand, Xarray uses `apply_ufunc` internally\n",
+    "to implement much of its API, meaning that it is quite powerful!\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### A simple example\n",
+    "\n",
+    "Simple functions that act independently on each value should work without any\n",
+    "additional arguments. However `dask` handling needs to be explictly enabled\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "tags": [
+     "raises-exception"
+    ]
+   },
+   "outputs": [],
+   "source": [
+    "%%expect_exception\n",
+    "\n",
+    "squared_error = lambda x, y: (x - y) ** 2\n",
+    "\n",
+    "xr.apply_ufunc(squared_error, ds.air, 1)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Since `squared_error` can handle dask arrays without computing them, we specify\n",
+    "`dask=\"allowed\"`.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sqer = xr.apply_ufunc(squared_error, ds.air, 1, dask=\"allowed\",)\n",
+    "sqer  # dask array!"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### A more complicated example with a dask-aware function\n",
+    "\n",
+    "For using more complex operations that consider some array values collectively,\n",
+    "it’s important to understand the idea of “core dimensions” from NumPy’s\n",
+    "generalized ufuncs. Core dimensions are defined as dimensions that should not be\n",
+    "broadcast over. Usually, they correspond to the fundamental dimensions over\n",
+    "which an operation is defined, e.g., the summed axis in `np.sum`. A good clue\n",
+    "that core dimensions are needed is the presence of an `axis` argument on the\n",
+    "corresponding NumPy function.\n",
+    "\n",
+    "With apply_ufunc, core dimensions are recognized by name, and then moved to the\n",
+    "last dimension of any input arguments before applying the given function. This\n",
+    "means that for functions that accept an `axis` argument, you usually need to set\n",
+    "`axis=-1`\n",
+    "\n",
+    "Let's use `dask.array.mean` as an example of a function that can handle dask\n",
+    "arrays and uses an `axis` kwarg\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def time_mean(da):\n",
+    "    return xr.apply_ufunc(\n",
+    "        dask.array.mean,\n",
+    "        da,\n",
+    "        input_core_dims=[[\"time\"]],\n",
+    "        dask=\"allowed\",\n",
+    "        kwargs={\"axis\": -1},  # core dimensions are moved to the end\n",
+    "    )\n",
+    "\n",
+    "\n",
+    "time_mean(ds.air)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "ds.air.mean(\"time\").identical(time_mean(ds.air))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Automatically parallelizing dask-unaware functions\n",
+    "\n",
+    "A very useful `apply_ufunc` feature is the ability to apply arbitrary functions\n",
+    "in parallel to each block. This ability can be activated using\n",
+    "`dask=\"parallelized\"`. Again xarray needs a lot of extra metadata, so depending\n",
+    "on the function, extra arguments such as `output_dtypes` and `output_sizes` may\n",
+    "be necessary.\n",
+    "\n",
+    "We will use `scipy.integrate.trapz` as an example of a function that cannot\n",
+    "handle dask arrays and requires a core dimension.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import scipy.integrate\n",
+    "import scipy as sp\n",
+    "\n",
+    "sp.integrate.trapz(ds.air.data)  # does NOT return a dask array"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Exercise\n",
+    "\n",
+    "Use `apply_ufunc` to apply `sp.integrate.trapz` along the `time` axis so that\n",
+    "you get a dask array returned. You will need to specify `dask=\"parallelized\"`\n",
+    "and `output_dtypes` (a list of `dtypes` per returned variable).\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## More\n",
+    "\n",
+    "1. https://xarray.pydata.org/en/stable/examples/apply_ufunc_vectorize_1d.html#\n",
+    "2. https://docs.dask.org/en/latest/array-best-practices.html\n"
    ]
   }
  ],
@@ -67,7 +533,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.8.2"
+   "version": "3.7.6"
   }
  },
  "nbformat": 4,
