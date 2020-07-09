@@ -10,8 +10,21 @@
     "\n",
     "# Plotting and Visualization\n",
     "\n",
-    "<h2>Table of Contents<span class=\"tocSkip\"></span></h2>\n",
-    "<div class=\"toc\"><ul class=\"toc-item\"><li><span><a href=\"#Load-data\" data-toc-modified-id=\"Load-data-1\"><span class=\"toc-item-num\">1&nbsp;&nbsp;</span>Load data</a></span></li><li><span><a href=\"#Basic-plotting\" data-toc-modified-id=\"Basic-plotting-2\"><span class=\"toc-item-num\">2&nbsp;&nbsp;</span>Basic plotting</a></span><ul class=\"toc-item\"><li><ul class=\"toc-item\"><li><span><a href=\"#Exercise\" data-toc-modified-id=\"Exercise-2.0.1\"><span class=\"toc-item-num\">2.0.1&nbsp;&nbsp;</span>Exercise</a></span></li></ul></li></ul></li><li><span><a href=\"#2D-plots\" data-toc-modified-id=\"2D-plots-3\"><span class=\"toc-item-num\">3&nbsp;&nbsp;</span>2D plots</a></span><ul class=\"toc-item\"><li><ul class=\"toc-item\"><li><span><a href=\"#Exercise\" data-toc-modified-id=\"Exercise-3.0.1\"><span class=\"toc-item-num\">3.0.1&nbsp;&nbsp;</span>Exercise</a></span></li></ul></li></ul></li><li><span><a href=\"#1D-line-plots\" data-toc-modified-id=\"1D-line-plots-4\"><span class=\"toc-item-num\">4&nbsp;&nbsp;</span>1D line plots</a></span></li><li><span><a href=\"#Customization\" data-toc-modified-id=\"Customization-5\"><span class=\"toc-item-num\">5&nbsp;&nbsp;</span>Customization</a></span></li><li><span><a href=\"#Faceting\" data-toc-modified-id=\"Faceting-6\"><span class=\"toc-item-num\">6&nbsp;&nbsp;</span>Faceting</a></span><ul class=\"toc-item\"><li><ul class=\"toc-item\"><li><span><a href=\"#Exercise\" data-toc-modified-id=\"Exercise-6.0.1\"><span class=\"toc-item-num\">6.0.1&nbsp;&nbsp;</span>Exercise</a></span></li></ul></li><li><span><a href=\"#Faceting-tip-1:-Use-faceting-to-plot-multiple-DataArrays\" data-toc-modified-id=\"Faceting-tip-1:-Use-faceting-to-plot-multiple-DataArrays-6.1\"><span class=\"toc-item-num\">6.1&nbsp;&nbsp;</span>Faceting tip 1: Use faceting to plot multiple DataArrays</a></span></li><li><span><a href=\"#Faceting-tip-2:-Modifying-all-facets-of-a-plot\" data-toc-modified-id=\"Faceting-tip-2:-Modifying-all-facets-of-a-plot-6.2\"><span class=\"toc-item-num\">6.2&nbsp;&nbsp;</span>Faceting tip 2: Modifying all facets of a plot</a></span></li></ul></li><li><span><a href=\"#Interactive-bokeh-plots-using-hvplot\" data-toc-modified-id=\"Interactive-bokeh-plots-using-hvplot-7\"><span class=\"toc-item-num\">7&nbsp;&nbsp;</span>Interactive bokeh plots using hvplot</a></span><ul class=\"toc-item\"><li><span><a href=\"#hvplot-makes-the-same-default-choices-as-xarray\" data-toc-modified-id=\"hvplot-makes-the-same-default-choices-as-xarray-7.1\"><span class=\"toc-item-num\">7.1&nbsp;&nbsp;</span><code>hvplot</code> makes the same default choices as xarray</a></span></li><li><span><a href=\"#Interactivity\" data-toc-modified-id=\"Interactivity-7.2\"><span class=\"toc-item-num\">7.2&nbsp;&nbsp;</span>Interactivity</a></span></li></ul></li><li><span><a href=\"#Geography\" data-toc-modified-id=\"Geography-8\"><span class=\"toc-item-num\">8&nbsp;&nbsp;</span>Geography</a></span><ul class=\"toc-item\"><li><span><a href=\"#matplotlib-and-cartopy\" data-toc-modified-id=\"matplotlib-and-cartopy-8.1\"><span class=\"toc-item-num\">8.1&nbsp;&nbsp;</span>matplotlib and cartopy</a></span><ul class=\"toc-item\"><li><span><a href=\"#Faceting-maps\" data-toc-modified-id=\"Faceting-maps-8.1.1\"><span class=\"toc-item-num\">8.1.1&nbsp;&nbsp;</span>Faceting maps</a></span></li></ul></li><li><span><a href=\"#hvplot\" data-toc-modified-id=\"hvplot-8.2\"><span class=\"toc-item-num\">8.2&nbsp;&nbsp;</span>hvplot</a></span></li></ul></li><li><span><a href=\"#More-resources\" data-toc-modified-id=\"More-resources-9\"><span class=\"toc-item-num\">9&nbsp;&nbsp;</span>More resources</a></span></li></ul></div>\n"
+    "At the end of this lesson you will learn:\n",
+    "\n",
+    "1. how to use xarray's convenient matplotlib-backed plotting interface to\n",
+    "   visualize your datasets.\n",
+    "2. that `hvplot` provides an equally convenient interface for bokeh-backed plots\n",
+    "\n",
+    "## Table of contents\n",
+    "\n",
+    "1. [Basic plotting](#basic)\n",
+    "1. [Histograms](#hist)\n",
+    "1. [2D plots](#2d)\n",
+    "1. [1D line plots](#1d)\n",
+    "1. [Faceting or multiple subplots](#facet)\n",
+    "1. [Geography: matplotlib and cartopy](#geo)\n",
+    "1. [Interactive bokeh plots using hvplot](#bokeh)\n"
    ]
   },
   {
@@ -89,16 +102,31 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Basic plotting\n",
+    "<a id='basic'></a>\n",
     "\n",
-    "DataArray objects have a `plot` method that wraps `matplotlib`. So all of your\n",
-    "existing matplotlib knowledge carries over!\n",
+    "## Basic plotting: .plot()\n",
+    "\n",
+    "DataArray objects have a `plot` method. This method creates plots using\n",
+    "`matplotlib` so all of your existing matplotlib knowledge carries over!\n",
     "\n",
     "By default `.plot()` makes\n",
     "\n",
     "1. a line plot for 1-D arrays using `plt.plot()`\n",
     "2. a `pcolormesh` plot for 2-D arrays using `plt.pcolormesh()`\n",
     "3. a histogram for everything else using `plt.hist()`\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<a id='hist'></a>\n",
+    "\n",
+    "## Histograms\n",
+    "\n",
+    "`Tair` is three-dimensional, so we got a histogram of temperature values. Notice\n",
+    "the label on the x-axis. One of xarray's convenient plotting features is that it\n",
+    "uses the `attrs` of `Tair` to nicely label axes and colorbars.\n"
    ]
   },
   {
@@ -119,15 +147,13 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "`Tair` is three-dimensional, so we got a histogram of temperature values. Notice\n",
-    "the label on the x-axis. One of xarray's convenient plotting features is that it\n",
-    "uses the `attrs` of `Tair` to nicely label axes and colorbars.\n",
-    "\n",
     "You can pass extra arguments to the underlying `hist()` call. See the matplotlib\n",
     "docs (https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.hist.html) for\n",
     "all possible keyword arguments.\n",
     "\n",
-    "### Exercise\n",
+    "**Tip:** Note that the returned values are exactly what matplotlib would return\n",
+    "\n",
+    "#### Exercise\n",
     "\n",
     "Update the above plot to show 50 bins with unfilled steps instead of filled\n",
     "bars.\n"
@@ -137,6 +163,8 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "<a id='2d'></a>\n",
+    "\n",
     "## 2D plots\n",
     "\n",
     "Now we will explore 2D plots. Let's select a single timestep of `Tair` to\n",
@@ -168,13 +196,13 @@
     "us the timestamp of the data presented.\n",
     "\n",
     "`plot` takes many keyword arguments and is quite sophisticated (see\n",
-    "https://xarray-keewis.readthedocs.io/en/accessor-documentation/generated/xarray.DataArray.plot.pcolormesh.html).\n",
+    "https://xarray.pydata.org/en/stable/generated/xarray.plot.pcolormesh.html).\n",
     "\n",
     "Here is a more complicated figure that explicitly sets `time` as the x-axis,\n",
     "customizes the colorbar, and overlays two contours at specific levels.\n",
     "\n",
-    "_Note: Other options for 2D plots include `.plot.contour`, `.plot.contourf`,\n",
-    "`.plot.imshow`_\n"
+    "**Tip:** Other options for 2D plots include `.plot.contour`, `.plot.contourf`,\n",
+    "`.plot.imshow`\n"
    ]
   },
   {
@@ -196,15 +224,6 @@
     "        \"label\": \"custom label\",\n",
     "        \"pad\": 0.2,\n",
     "    },  # passed to plt.colorbar\n",
-    ")\n",
-    "\n",
-    "# now we can overlay a contour plot\n",
-    "ds.Tair.isel(lon=1).plot.contour(\n",
-    "    x=\"time\",  # coordinate to plot on the x-axis of the plot\n",
-    "    robust=True,  # set colorbar limits to 2nd and 98th percentile of data\n",
-    "    colors=\"k\",\n",
-    "    levels=[260, 290],\n",
-    "    linewidths=0.5,\n",
     ")"
    ]
   },
@@ -221,6 +240,17 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "### Exercise\n",
+    "\n",
+    "Now overlay a contour plot on top of the previous plot\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<a id='1d'></a>\n",
+    "\n",
     "## 1D line plots\n",
     "\n",
     "xarray is also able to plot lines by wrapping `plt.plot()`. As in the earlier\n",
@@ -290,13 +320,16 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "<a id='facet'></a>\n",
+    "\n",
     "## Faceting\n",
     "\n",
     "Faceting is the art of presenting \"small multiples\" of the data. It is an\n",
     "effective way of visualizing variations of 3D data where 2D slices are\n",
-    "visualized in a panel and the third dimensions is varied between panels.\n",
+    "visualized in a panel (subplot) and the third dimensions is varied between\n",
+    "panels (subplots).\n",
     "\n",
-    "Here is where xarray really augments matplotlibs functionaity. We will use\n",
+    "Here is where xarray really augments matplotlib's functionality. We will use\n",
     "monthly means to illustrate\n"
    ]
   },
@@ -311,31 +344,17 @@
    },
    "outputs": [],
    "source": [
-    "# This is a bad estimate that does not take into account the fact that months have different number of days.\n",
     "monthly_means = ds.groupby(\"time.month\").mean()\n",
-    "monthly_means"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "ExecuteTime": {
-     "end_time": "2020-06-11T03:01:46.967960Z",
-     "start_time": "2020-06-11T03:01:46.940669Z"
-    }
-   },
-   "outputs": [],
-   "source": [
     "# xarray's groupby reductions drop attributes. Let's assign them back so we get nice labels.\n",
-    "monthly_means.Tair.attrs = ds.Tair.attrs"
+    "monthly_means.Tair.attrs = ds.Tair.attrs\n",
+    "monthly_means"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Note that the dimensions are now `month, lat, lon`.\n",
+    "Note that the dimensions are now `lat, lon, month`.\n",
     "\n",
     "We want to visualize how the monthly mean air temperature varies with month of\n",
     "the year.\n",
@@ -359,7 +378,7 @@
    "outputs": [],
    "source": [
     "fg = monthly_means.Tair.plot(\n",
-    "    col=\"month\", col_wrap=4,  # TODO: try commenting this line out\n",
+    "    col=\"month\", col_wrap=4,  # each row has a maximum of 4 columns\n",
     ")"
    ]
   },
@@ -384,9 +403,15 @@
     "fg = monthly_means.Tair.plot(\n",
     "    col=\"month\",\n",
     "    col_wrap=4,\n",
+    "    # The remaining kwargs customize the plot just as for not-faceted plots\n",
     "    robust=True,\n",
     "    cmap=mpl.cm.RdYlBu_r,\n",
-    "    cbar_kwargs={\"orientation\": \"horizontal\", \"shrink\": 0.8, \"aspect\": 40},\n",
+    "    cbar_kwargs={\n",
+    "        \"orientation\": \"horizontal\",\n",
+    "        \"shrink\": 0.8,\n",
+    "        \"aspect\": 40,\n",
+    "        \"pad\": 0.1,\n",
+    "    },\n",
     ")"
    ]
   },
@@ -394,8 +419,6 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### Exercise\n",
-    "\n",
     "The returned FacetGrid object `fg` has many useful properties and methods e.g.\n",
     "\n",
     "1. `fg.fig` provides a handle to the figure\n",
@@ -404,15 +427,67 @@
     "\n",
     "See https://xarray.pydata.org/en/stable/api.html#faceting for a full list.\n",
     "\n",
+    "### Exercise\n",
+    "\n",
     "Use these methods to set a title for the figure using `suptitle`, as well as\n",
     "change the x- and y-labels.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fg"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### Faceting tip 1: Use faceting to plot multiple DataArrays\n",
+    "### Modifying all facets of a plot\n",
+    "\n",
+    "The FacetGrid object has some more advanced methods that let you customize the\n",
+    "plot further.\n",
+    "\n",
+    "Here we illustrate the use of `map` and `map_dataarray` that let you map custom\n",
+    "plotting functions to an existing `FacetGrid`. The functions passed to `map` and\n",
+    "`map_dataarray` must have a particular signature. See the docstring for more\n",
+    "details.\n",
+    "\n",
+    "Alternatively one can loop over `fg.axes` and modify each individual subplot as\n",
+    "needed\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2020-06-11T03:06:40.368314Z",
+     "start_time": "2020-06-11T03:06:38.735106Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "fg = monthly_means.Tair.plot(col=\"month\", col_wrap=4)\n",
+    "\n",
+    "# Use this to plot contours on each panel\n",
+    "# Note that this plotting call uses the original DataArray gradients\n",
+    "fg.map_dataarray(\n",
+    "    xr.plot.contour, x=\"lon\", y=\"lat\", colors=\"k\", levels=13, add_colorbar=False\n",
+    ")\n",
+    "\n",
+    "# Add a point (or anything else!)\n",
+    "fg.map(lambda: plt.plot(250, 40, markersize=20, marker=\".\", color=\"w\"))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Faceting tip: Use faceting to plot multiple DataArrays\n",
     "\n",
     "Faceting can be used to plot multiple DataArrays in a Dataset. The trick is to\n",
     "use `to_array()` to convert a Dataset to a DataArray and thne facet that.\n",
@@ -466,15 +541,18 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### Faceting tip 2: Modifying all facets of a plot\n",
+    "<a id=\"geo\"></a>\n",
     "\n",
-    "The FacetGrid object has some more advanced methods that let you customize the\n",
-    "plot further.\n",
+    "## Geography: Matplotlib and Cartopy\n",
     "\n",
-    "Here we illustrate the use of `map` and `map_dataarray` that let you map custom\n",
-    "plotting functions to an existing `FacetGrid`. The functions passed to `map` and\n",
-    "`map_dataarray` must have a particular signature. See the docstring for more\n",
-    "details.\n"
+    "Since xarray's default plotting functionality builds on matplotlib, we can\n",
+    "seamlessly use cartopy to make nice maps:\n",
+    "\n",
+    "1. Specify a `projection` for the plot when creating a new figure `fig` with\n",
+    "   axis `axis`.\n",
+    "2. Explicitly ask xarray to plot to axis `axis` by passing the kwarg `ax=axis`.\n",
+    "3. Specify the projection of the data using `transform` (`PlateCarree` here) in\n",
+    "   `.plot()`.\n"
    ]
   },
   {
@@ -482,45 +560,84 @@
    "execution_count": null,
    "metadata": {
     "ExecuteTime": {
-     "end_time": "2020-06-11T03:06:40.368314Z",
-     "start_time": "2020-06-11T03:06:38.735106Z"
+     "end_time": "2020-06-11T03:17:25.685880Z",
+     "start_time": "2020-06-11T03:17:25.512169Z"
     }
    },
    "outputs": [],
    "source": [
-    "fg = gradients.isel(month=slice(None, None, 3)).plot.contourf(\n",
-    "    levels=13,\n",
-    "    col=\"month\",\n",
-    "    row=\"gradient\",\n",
+    "import cartopy.crs as ccrs\n",
+    "\n",
+    "fig, axis = plt.subplots(\n",
+    "    1, 1, subplot_kw=dict(projection=ccrs.Orthographic(-90, 30))\n",
+    ")\n",
+    "\n",
+    "ds.Tair.isel(time=1).plot(\n",
+    "    ax=axis,\n",
+    "    transform=ccrs.PlateCarree(),  # this is important!\n",
+    "    # usual xarray stuff\n",
+    "    cbar_kwargs={\"orientation\": \"horizontal\", \"shrink\": 0.7},\n",
     "    robust=True,\n",
-    "    cmap=mpl.cm.coolwarm,\n",
-    "    cbar_kwargs={\n",
-    "        \"orientation\": \"horizontal\",\n",
-    "        \"shrink\": 0.8,\n",
-    "        \"aspect\": 40,\n",
-    "        \"label\": \"Air temperature gradient [°C/m]\",\n",
-    "    },\n",
     ")\n",
-    "\n",
-    "\n",
-    "# Use this to plot contours on each panel\n",
-    "fg.map_dataarray(\n",
-    "    xr.plot.contour, x=\"lon\", y=\"lat\", colors=\"k\", levels=13, add_colorbar=False\n",
-    ")\n",
-    "\n",
-    "# Add a point (or anything else!)\n",
-    "fg.map(lambda: plt.plot(250, 40, markersize=20, marker=\".\", color=\"k\"))"
+    "axis.coastlines()  # cartopy function"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "### Faceting maps\n",
+    "\n",
+    "We can make faceted maps. Since `FacetGrid` creates the axes it plots to, we\n",
+    "need to pass the `projection` kwarg in `subplot_kws`. This makes sure that the\n",
+    "subplots are set up properly for cartopy.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2020-06-11T03:22:50.356379Z",
+     "start_time": "2020-06-11T03:22:50.044591Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "fg = monthly_means.Tair.isel(month=[1, 2, 3]).plot(\n",
+    "    col=\"month\",\n",
+    "    transform=ccrs.PlateCarree(),  # remember to provide this!\n",
+    "    subplot_kws={\n",
+    "        \"projection\": ccrs.LambertConformal(\n",
+    "            central_longitude=-95, central_latitude=45\n",
+    "        )\n",
+    "    },\n",
+    "    cbar_kwargs={\"orientation\": \"horizontal\", \"shrink\": 0.8, \"aspect\": 40},\n",
+    "    robust=True,\n",
+    ")\n",
+    "\n",
+    "# lets add a coastline to each axis\n",
+    "# great reason to use FacetGrid.map\n",
+    "fg.map(lambda: plt.gca().coastlines())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<a id=\"bokeh\"></a>\n",
+    "\n",
     "## Interactive bokeh plots using hvplot\n",
     "\n",
-    "Xarray's builtin plotting functionality wraps matplotlib. The `holoviews`\n",
-    "plotting ecosystem provides the `hvplot` package to allow easy visualization of\n",
-    "xarray (and other) objects (https://hvplot.holoviz.org/)\n"
+    "Xarray's builtin plotting functionality wraps matplotlib.\n",
+    "\n",
+    "The `holoviews` plotting ecosystem provides the `hvplot` package to allow easy\n",
+    "visualization of xarray (and other) objects (https://hvplot.holoviz.org/). These\n",
+    "plots build on [Bokeh](https://bokeh.org/).\n",
+    "\n",
+    "`hvplot` makes uses of xarray's accessor interface. This means that all xarray\n",
+    "objects gain a `.hvplot` attribute that lets you access `hvplot` functionality\n",
+    "as easily as you would use `.plot`\n"
    ]
   },
   {
@@ -569,7 +686,8 @@
    },
    "outputs": [],
    "source": [
-    "ds.Tair.isel(time=1).hvplot()"
+    "# 2D array yields a quadmesh plot\n",
+    "ds.Tair.isel(time=1).hvplot(cmap=\"fire\")"
    ]
   },
   {
@@ -583,6 +701,7 @@
    },
    "outputs": [],
    "source": [
+    "# 1D array yields a line plot\n",
     "ds.Tair.isel(time=1, lon=1).hvplot()"
    ]
   },
@@ -608,7 +727,10 @@
    },
    "outputs": [],
    "source": [
-    "ds.Tair.hvplot(groupby=\"time\")"
+    "ds.Tair.hvplot(\n",
+    "    groupby=\"time\",\n",
+    "    clim=(250, 295),  # adds a widget for time  # sets colorbar limits\n",
+    ")"
    ]
   },
   {
@@ -629,96 +751,20 @@
    },
    "outputs": [],
    "source": [
-    "ds.Tair.hvplot(groupby=\"time\", widget_type=\"scrubber\", widget_location=\"bottom\")"
+    "# set constant colorbar limits\n",
+    "ds.Tair.hvplot(\n",
+    "    groupby=\"time\",  # adds a widget for time\n",
+    "    clim=(250, 295),  # sets colormap limits\n",
+    "    widget_type=\"scrubber\",\n",
+    "    widget_location=\"bottom\",\n",
+    ")"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Geography\n",
-    "\n",
-    "### Matplotlib and Cartopy\n",
-    "\n",
-    "Since xarray's default plotting functionality builds on matplotlib, we can\n",
-    "seamlessly use cartopy to make nice maps:\n",
-    "\n",
-    "1. Specify a `projection` for the plot when creating a new figure `fig` with\n",
-    "   axis `axis`.\n",
-    "2. Explicitly ask xarray to plot to axis `axis` by passing the kwarg `ax=axis`.\n",
-    "3. Specify the projection of the data using `transform` (`PlateCarree` here) in\n",
-    "   `.plot()`.\n"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "ExecuteTime": {
-     "end_time": "2020-06-11T03:17:25.685880Z",
-     "start_time": "2020-06-11T03:17:25.512169Z"
-    }
-   },
-   "outputs": [],
-   "source": [
-    "import cartopy.crs as ccrs\n",
-    "\n",
-    "fig, axis = plt.subplots(\n",
-    "    1, 1, subplot_kw=dict(projection=ccrs.Orthographic(-90, 30))\n",
-    ")\n",
-    "\n",
-    "ds.Tair.isel(time=1).plot(\n",
-    "    ax=axis,\n",
-    "    robust=True,\n",
-    "    transform=ccrs.PlateCarree(),\n",
-    "    cbar_kwargs={\"orientation\": \"horizontal\", \"shrink\": 0.7},\n",
-    ")\n",
-    "axis.coastlines()"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "### Faceting maps\n",
-    "\n",
-    "We can make faceted maps. Since `FacetGrid` creates the axes it plots to, we\n",
-    "need to pass the `projection` kwarg in `subplot_kws`. This makes sure that the\n",
-    "subplots are set up properly for cartopy.\n"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "ExecuteTime": {
-     "end_time": "2020-06-11T03:22:50.356379Z",
-     "start_time": "2020-06-11T03:22:50.044591Z"
-    }
-   },
-   "outputs": [],
-   "source": [
-    "fg = monthly_means.Tair.isel(month=[1, 2, 3]).plot(\n",
-    "    col=\"month\",\n",
-    "    robust=True,\n",
-    "    transform=ccrs.PlateCarree(),\n",
-    "    subplot_kws={\n",
-    "        \"projection\": ccrs.LambertConformal(\n",
-    "            central_longitude=-95, central_latitude=45\n",
-    "        )\n",
-    "    },\n",
-    "    cbar_kwargs={\"orientation\": \"horizontal\", \"shrink\": 0.8, \"aspect\": 40},\n",
-    ")\n",
-    "\n",
-    "# lets add a coastline to each axis\n",
-    "fg.map(lambda: plt.gca().coastlines())"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "### hvplot\n"
+    "### Geography\n"
    ]
   },
   {
@@ -732,12 +778,8 @@
    },
    "outputs": [],
    "source": [
-    "ds.Tair.hvplot(\n",
-    "    groupby=\"time\",\n",
-    "    widget_type=\"scrubber\",\n",
-    "    widget_location=\"bottom\",\n",
-    "    projection=ccrs.Orthographic(-90, 30),\n",
-    "    coastline=True,\n",
+    "ds.Tair.isel(time=1).hvplot(\n",
+    "    projection=ccrs.Orthographic(-90, 30), coastline=True,\n",
     ")"
    ]
   },
@@ -772,7 +814,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.8.2"
+   "version": "3.7.6"
   },
   "toc": {
    "base_numbering": 1,
