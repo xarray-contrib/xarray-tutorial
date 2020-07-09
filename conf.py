@@ -50,14 +50,11 @@ nbsphinx_allow_errors = True
 nbsphinx_prolog = """
 {% set docname = env.doc2path(env.docname, base=None) %}
 
-You can run this notebook in a `live session <https://mybinder.org/v2/gh/pydata/xarray-tutorial/master?urlpath=lab/tree/{{
-docname }}>`_ |Binder| or view it `on Github <https://github.com/pydata/xarray-tutorial/blob/master/{{ docname }}>`_.
+You can run this notebook in a `live session <https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master?urlpath=lab/tree/{{
+docname }}>`_ |Binder| or view it `on Github <https://github.com/xarray-contrib/xarray-tutorial/blob/master/{{ docname }}>`_.
 
 .. |Binder| image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/pydata/xarray-tutorial/master?urlpath=lab/tree/{{ docname }}
-
-
-
+   :target: https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master?urlpath=lab/tree/{{ docname }}
 """
 
 
