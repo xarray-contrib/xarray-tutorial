@@ -77,7 +77,7 @@
    "source": [
     "import gcsfs\n",
     "\n",
-    "fs = gcsfs.GCSFileSystem()\n",
+    "fs = gcsfs.GCSFileSystem(token=\"anon\")\n",
     "ds = xr.open_zarr(\n",
     "    fs.get_mapper(\"gs://pangeo-noaa-ncei/noaa.ersst.v5.zarr\"), consolidated=True\n",
     ").load()\n",
