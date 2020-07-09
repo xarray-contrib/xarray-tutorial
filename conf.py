@@ -53,8 +53,11 @@ nbsphinx_prolog = """
 You can run this notebook in a `live session <https://mybinder.org/v2/gh/pydata/xarray-tutorial/master?urlpath=lab/tree/{{
 docname }}>`_ |Binder| or view it `on Github <https://github.com/pydata/xarray-tutorial/blob/master/{{ docname }}>`_.
 
-.. |Binder| image:: https://mybinder.org/badge.svg
+.. |Binder| image:: https://mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/pydata/xarray-tutorial/master?urlpath=lab/tree/{{ docname }}
+
+
+
 """
 
 
