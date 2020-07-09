@@ -97,6 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#Quick-setup">Quick setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Dask-Collections">Dask Collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Dask-Arrays">Dask Arrays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Exercise">Exercise</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#A-Bigger-Calculation">A Bigger Calculation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Reduction">Reduction</a></li>
 </ul>
@@ -106,7 +107,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#Distributed-Clusters-(http://distributed.dask.org/)">Distributed Clusters (http://distributed.dask.org/)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Profiling-&amp;-Diagnostics-using-the-Dask-Dashboard">Profiling &amp; Diagnostics using the Dask Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Profiling-&amp;-Diagnostics-using-the-Dask-Dashboard">Profiling &amp; Diagnostics using the Dask Dashboard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Exercise</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#Distributed-Dask-clusters-for-HPC-and-Cloud-environments">Distributed Dask clusters for HPC and Cloud environments</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#HPC">HPC</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Dask-Jobqueue-(https://jobqueue.dask.org/)">Dask Jobqueue (https://jobqueue.dask.org/)</a></li>
@@ -444,10 +448,17 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<p>You can run this notebook in a <a class="reference external" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master?urlpath=lab/tree/scipy-tutorial/05_intro_to_dask.ipynb">live session</a> <a class="reference external" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master?urlpath=lab/tree/scipy-tutorial/05_intro_to_dask.ipynb"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a> or view it <a class="reference external" href="https://github.com/xarray-contrib/xarray-tutorial/blob/master/scipy-tutorial/05_intro_to_dask.ipynb">on Github</a>.</p>
-<p><img alt="763d0bb49b7a41f99debab24425e4f08" class="no-scaled-link" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></p>
+<p>You can run this notebook in a <a class="reference external" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master?urlpath=lab/tree/scipy-tutorial/05_intro_to_dask.ipynb">live session</a> <a class="reference external" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master?urlpath=lab/tree/scipy-tutorial/05_intro_to_dask.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> or view it <a class="reference external" href="https://github.com/xarray-contrib/xarray-tutorial/blob/master/scipy-tutorial/05_intro_to_dask.ipynb">on Github</a>.</p>
+<p><img alt="e15fd6858c514d658b569a695e27ec4e" class="no-scaled-link" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></p>
 <div class="section" id="Introduction-to-Dask">
 <h1>Introduction to Dask<a class="headerlink" href="#Introduction-to-Dask" title="Permalink to this headline">¶</a></h1>
+<p>In this lesson, we discuss cover the basics of Dask. Our learning goals are as follows. By the end of the lesson, we will be able to:</p>
+<ul class="simple">
+<li><p>Identify and describe Dask Collections (Array, DataFrame) and Schedulers</p></li>
+<li><p>Work with Dask Array’s in much the same way you would work with a NumPy array</p></li>
+<li><p>Understand some of the tradeoffs surounding chunk size, chunk shape, and computational overhead</p></li>
+<li><p>Deploy a local Dask Distributed Cluster and access the diagnostics dashboard</p></li>
+</ul>
 <div class="section" id="Table-of-contents">
 <h2>Table of contents<a class="headerlink" href="#Table-of-contents" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
@@ -489,7 +500,7 @@ div.rendered_html tbody tr:hover {
 <td style="vertical-align: top; border: 0px solid white">
 <h3 style="text-align: left;">Client</h3>
 <ul style="text-align: left; list-style: none; margin: 0; padding: 0;">
-  <li><b>Scheduler: </b>tcp://127.0.0.1:34163</li>
+  <li><b>Scheduler: </b>tcp://127.0.0.1:41827</li>
   <li><b>Dashboard: </b><a href='http://127.0.0.1:8787/status' target='_blank'>http://127.0.0.1:8787/status</a></li>
 </ul>
 </td>
@@ -745,10 +756,22 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 <img alt="../_images/scipy-tutorial_05_intro_to_dask_17_0.png" src="../_images/scipy-tutorial_05_intro_to_dask_17_0.png" />
 </div>
 </div>
+<div class="section" id="Exercise">
+<h3>Exercise<a class="headerlink" href="#Exercise" title="Permalink to this headline">¶</a></h3>
+<p>Modify the chunk size (or shape) in the <code class="docutils literal notranslate"><span class="pre">ones</span></code> array and visualize how the task graph changes.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
 <p>Here we see Dask’s strategy for finding the sum. This simple example illustrates the beauty of Dask: it automatically designs an algorithm appropriate for custom operations with big data.</p>
 <p>If we make our operation more complex, the graph gets more complex.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -758,11 +781,12 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/scipy-tutorial_05_intro_to_dask_19_0.png" src="../_images/scipy-tutorial_05_intro_to_dask_19_0.png" />
+<img alt="../_images/scipy-tutorial_05_intro_to_dask_21_0.png" src="../_images/scipy-tutorial_05_intro_to_dask_21_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="A-Bigger-Calculation">
@@ -770,7 +794,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 <p>The examples above were toy examples; the data (32 MB) is probably not big enough to warrant the use of Dask.</p>
 <p>We can make it a lot bigger!</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -781,7 +805,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1025,7 +1049,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </table></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1045,7 +1069,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 <p><em>Do not try to ``.visualize()`` this array!</em></p>
 <p>When doing a big calculation, dask also has some tools to help us understand what is happening under the hood. Let’s watch the dashboard again as we do a bigger computation.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1057,7 +1081,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1070,7 +1094,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 <h3>Reduction<a class="headerlink" href="#Reduction" title="Permalink to this headline">¶</a></h3>
 <p>All the usual numpy methods work on dask arrays. You can also apply numpy function directly to a dask array, and it will stay lazy.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1080,7 +1104,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1322,7 +1346,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </div>
 <p>Plotting also triggers computation, since we need the actual values</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1332,7 +1356,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1341,19 +1365,19 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7fc043be6820&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7f4b0ac74490&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/scipy-tutorial_05_intro_to_dask_29_1.png" src="../_images/scipy-tutorial_05_intro_to_dask_29_1.png" />
+<img alt="../_images/scipy-tutorial_05_intro_to_dask_31_1.png" src="../_images/scipy-tutorial_05_intro_to_dask_31_1.png" />
 </div>
 </div>
 </div>
@@ -1387,7 +1411,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 <h2>Profiling &amp; Diagnostics using the Dask Dashboard<a class="headerlink" href="#Profiling-&-Diagnostics-using-the-Dask-Dashboard" title="Permalink to this headline">¶</a></h2>
 <p>You’ll recall from above, that we opened a url to the Dask Dashboard:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1396,7 +1420,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1405,7 +1429,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 <td style="vertical-align: top; border: 0px solid white">
 <h3 style="text-align: left;">Client</h3>
 <ul style="text-align: left; list-style: none; margin: 0; padding: 0;">
-  <li><b>Scheduler: </b>tcp://127.0.0.1:34163</li>
+  <li><b>Scheduler: </b>tcp://127.0.0.1:41827</li>
   <li><b>Dashboard: </b><a href='http://127.0.0.1:8787/status' target='_blank'>http://127.0.0.1:8787/status</a></li>
 </ul>
 </td>
@@ -1430,7 +1454,7 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </ul>
 <p>Another useful diagnostic tool is Dask’s static performance report. This allows you to save a report, including the task stream, worker profiles, etc. for all or a specific part of a workflow. Below is an example of how you would create such a report:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1439,6 +1463,22 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 <span class="k">with</span> <span class="n">performance_report</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;dask-report.html&quot;</span><span class="p">):</span>
     <span class="n">big_calc</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Again, let’s modify the chunk size in <code class="docutils literal notranslate"><span class="pre">big_ones</span></code> (aim for ~100mb). How does the <em>Performance Report</em> change with a larger chunk size?</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># your code here</span>
+
+<span class="k">with</span> <span class="n">performance_report</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;dask-report-large-chunk.html&quot;</span><span class="p">):</span>
+    <span class="n">big_calc</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1484,7 +1524,8 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_gateway.GatewayCluster</span></code></p></li>
 </ul>
-<hr><p><em>Note: Pieces of this notebook comes from the following sources:</em></p>
+<hr class="docutils" />
+<p><em>Note: Pieces of this notebook comes from the following sources:</em></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/pangeo-data/pangeo-tutorial">https://github.com/pangeo-data/pangeo-tutorial</a></p></li>
 <li><p><a class="reference external" href="https://github.com/rabernat/research_computing">https://github.com/rabernat/research_computing</a></p></li>

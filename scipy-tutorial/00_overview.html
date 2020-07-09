@@ -91,6 +91,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#Useful-links">Useful links</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Tutorial-Structure">Tutorial Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Exercise:-Print-Hello,-world!">Exercise: Print Hello, world!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Going-Deeper">Going Deeper</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Xarray-and-Weather/Climate-Model-Data">Xarray and Weather/Climate Model Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Xarray-and-Satellite-Data">Xarray and Satellite Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Xarray-and-Baysian-Statistical-Modeling">Xarray and Baysian Statistical Modeling</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="01_datastructures_and_io.html">Data structures for multi-dimensional data</a></li>
@@ -420,7 +426,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <p>You can run this notebook in a <a class="reference external" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master?urlpath=lab/tree/scipy-tutorial/00_overview.ipynb">live session</a> <a class="reference external" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> or view it <a class="reference external" href="https://github.com/xarray-contrib/xarray-tutorial/blob/master/scipy-tutorial/00_overview.ipynb">on Github</a>.</p>
-<p><img alt="2415caa8a788460090ee42f8aa0d2d00" class="no-scaled-link" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></p>
+<p><img alt="0553b35b428c420f890834b48098c252" class="no-scaled-link" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></p>
 <div class="section" id="Introduction">
 <h1>Introduction<a class="headerlink" href="#Introduction" title="Permalink to this headline">¶</a></h1>
 <p>Welcome to the Xarray Tutorial.</p>
@@ -470,7 +476,7 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Tutorial-Structure">
 <h2>Tutorial Structure<a class="headerlink" href="#Tutorial-Structure" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial is made up of multiple Jupyter Notebooks. These notebooks mix code, text, visualization, and exercises.</p>
-<p>If you haven’t used Jupyterlab, it’s similar to the Jupyter Notebook. If you haven’t used the Notebook, the quick intro is</p>
+<p>If you haven’t used JupyterLab before, it’s similar to the Jupyter Notebook. If you haven’t used the Notebook, the quick intro is</p>
 <ol class="arabic simple">
 <li><p>There are two modes: command and edit</p></li>
 <li><p>From command mode, press Enter to edit a cell (like this markdown cell)</p></li>
@@ -486,7 +492,6 @@ div.rendered_html tbody tr:hover {
 <li><p><a class="reference internal" href="04_plotting_and_visualization.html"><span class="doc">Plotting and Visualization</span></a></p></li>
 <li><p><a class="reference internal" href="05_intro_to_dask.html"><span class="doc">Introduction to Dask</span></a></p></li>
 <li><p><a class="reference internal" href="06_xarray_and_dask.html"><span class="doc">Dask and Xarray</span></a></p></li>
-<li><p><a href="#id1"><span class="problematic" id="id2">`Self-guided exercises &lt;&gt;`__</span></a></p></li>
 </ol>
 </div>
 <div class="section" id="Exercise:-Print-Hello,-world!">
@@ -502,7 +507,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<p>The next cell has the solution. Click the ellipses to expand the solution, and always make sure to run the solution cell, in case later sections of the notebook depend on the output from the solution.</p>
+<p>In some cases, the next cell will have the solution. Click the ellipses to expand the solution, and always make sure to run the solution cell, in case later sections of the notebook depend on the output from the solution.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -519,6 +524,29 @@ div.rendered_html tbody tr:hover {
 <div class="highlight"><pre>
 Hello, world!
 </pre></div></div>
+</div>
+</div>
+<div class="section" id="Going-Deeper">
+<h2>Going Deeper<a class="headerlink" href="#Going-Deeper" title="Permalink to this headline">¶</a></h2>
+<p>We’ve designed the notebooks above to cover the basics of Xarray from beginning to end. To help you go deeper, we’ve also create a list of notebooks that demonstrate real-world applications of Xarray in a variety of use cases. These need not be explored in any particular sequence, instead they are meant to provide a sampling of what Xarray can be used for.</p>
+<div class="section" id="Xarray-and-Weather/Climate-Model-Data">
+<h3>Xarray and Weather/Climate Model Data<a class="headerlink" href="#Xarray-and-Weather/Climate-Model-Data" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://binder.pangeo.io/v2/gh/pangeo-gallery/cmip6/binder?urlpath=git-pull?repo=https://github.com/pangeo-gallery/cmip6%26amp%3Burlpath=lab/tree/cmip6">Global Mean Surface Temperature from CMIP6</a>: Start with <code class="docutils literal notranslate"><span class="pre">global_mean_surface_temp.ipynb</span></code> then feel free to explore the rest of the notebooks.</p></li>
+<li><p><a class="reference external" href="https://aws-uswest2-binder.pangeo.io/v2/gh/rsignell-usgs/esip-gallery/binder?urlpath=git-pull?repo=https://github.com/rsignell-usgs/esip-gallery%26amp%3Burlpath=lab/tree/esip-gallery">National Water Model Streamflow Analysis</a>: Start with <code class="docutils literal notranslate"><span class="pre">02_National_Water_Model.ipynb</span></code> then feel free to explore the rest of the notebooks.</p></li>
+</ol>
+</div>
+<div class="section" id="Xarray-and-Satellite-Data">
+<h3>Xarray and Satellite Data<a class="headerlink" href="#Xarray-and-Satellite-Data" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://aws-uswest2-binder.pangeo.io/v2/gh/pangeo-data/landsat-8-tutorial-gallery/master/?urlpath=git-pull?repo=https://github.com/pangeo-data/landsat-8-tutorial-gallery%26amp%3Burlpath=lab/tree/landsat-8-tutorial-gallery/landsat8.ipynb%3Fautodecode">Landsat-8 on AWS</a></p></li>
+</ol>
+</div>
+<div class="section" id="Xarray-and-Baysian-Statistical-Modeling">
+<h3>Xarray and Baysian Statistical Modeling<a class="headerlink" href="#Xarray-and-Baysian-Statistical-Modeling" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://mybinder.org/v2/gh/pymc-devs/pymc3/master?filepath=%2Fdocs%2Fsource%2Fnotebooks">Xarray and PyMC3</a>: Start with <code class="docutils literal notranslate"><span class="pre">multilevel_modeling.ipynb</span></code> then feel free to explore the rest of the notebooks. Also checkout <a class="reference external" href="https://arviz-devs.github.io/arviz/">Arviz</a> which uses Xarray as its data model.</p></li>
+</ol>
 </div>
 </div>
 </div>

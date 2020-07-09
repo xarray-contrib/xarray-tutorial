@@ -8,6 +8,15 @@
     "\n",
     "# Introduction to Dask\n",
     "\n",
+    "In this lesson, we discuss cover the basics of Dask. Our learning goals are as\n",
+    "follows. By the end of the lesson, we will be able to:\n",
+    "\n",
+    "- Identify and describe Dask Collections (Array, DataFrame) and Schedulers\n",
+    "- Work with Dask Array's in much the same way you would work with a NumPy array\n",
+    "- Understand some of the tradeoffs surounding chunk size, chunk shape, and\n",
+    "  computational overhead\n",
+    "- Deploy a local Dask Distributed Cluster and access the diagnostics dashboard\n",
+    "\n",
     "## Table of contents\n",
     "\n",
     "1. [**What-is-Dask?**](#What-is-Dask?)\n",
@@ -234,6 +243,25 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "### Exercise\n",
+    "\n",
+    "Modify the chunk size (or shape) in the `ones` array and visualize how the task\n",
+    "graph changes.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# your code here"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
     "Here we see Dask's strategy for finding the sum. This simple example illustrates\n",
     "the beauty of Dask: it automatically designs an algorithm appropriate for custom\n",
     "operations with big data.\n",
@@ -450,6 +478,28 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "### Exercise\n",
+    "\n",
+    "Again, let's modify the chunk size in `big_ones` (aim for ~100mb). How does the\n",
+    "_Performance Report_ change with a larger chunk size?\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# your code here\n",
+    "\n",
+    "with performance_report(filename=\"dask-report-large-chunk.html\"):\n",
+    "    big_calc.compute()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
     "## Distributed Dask clusters for HPC and Cloud environments\n",
     "\n",
     "Dask can be deployed on distributed infrastructure, such as a an HPC system or a\n",
@@ -491,7 +541,8 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "<hr>\n",
+    "---\n",
+    "\n",
     "_Note: Pieces of this notebook comes from the following sources:_\n",
     "\n",
     "- https://github.com/pangeo-data/pangeo-tutorial\n",
