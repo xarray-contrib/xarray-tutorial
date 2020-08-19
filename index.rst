@@ -8,19 +8,16 @@ You can run this tutorial in a live session here: |Binder|
    :target: https://mybinder.org/v2/gh/pydata/xarray-tutorial/master?urlpath=lab
 
 
-OceanHackWeek 2020
-------------------
-
 .. toctree::
    :maxdepth: 1
+   :caption: OceanHackWeek 2020
 
    oceanhackweek-2020/xarray-oceanhackweek20.ipynb
 
-SciPy 2020
-----------
 
 .. toctree::
    :maxdepth: 1
+   :caption: SciPy 2020
 
    scipy-tutorial/00_overview.ipynb
    scipy-tutorial/01_datastructures_and_io.ipynb
