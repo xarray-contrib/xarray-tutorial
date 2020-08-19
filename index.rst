@@ -3,14 +3,21 @@ Xarray Tutorial
 
 You can run this tutorial in a live session here: |Binder|
 
-This tutorial is being prepared for SciPy 2020.
-
 ..
 .. |Binder| image:: https://mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/pydata/xarray-tutorial/master?urlpath=lab
 
-Contents
---------
+
+OceanHackWeek 2020
+------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   oceanhackweek-2020/xarray-oceanhackweek20.ipynb
+
+SciPy 2020
+----------
 
 .. toctree::
    :maxdepth: 1
