@@ -33,6 +33,7 @@ jobs:
       - name: Update conda environment
         shell: bash -l {0}
         run: |
+          mamba env update --file .binder/environment.yml
           mamba env update --file ./ci/environment.yml
       - name: Build and test notebooks
         shell: bash -l {0}
