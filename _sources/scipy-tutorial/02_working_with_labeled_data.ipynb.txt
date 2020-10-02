@@ -420,9 +420,15 @@
    "outputs": [],
    "source": [
     "arr1 = xr.DataArray(\n",
-    "    np.random.randn(3), dims=\"x\", coords={\"x\": [\"a\", \"b\", \"c\"]},\n",
+    "    np.random.randn(3),\n",
+    "    dims=\"x\",\n",
+    "    coords={\"x\": [\"a\", \"b\", \"c\"]},\n",
     ")\n",
-    "arr2 = xr.DataArray(np.random.randn(4), dims=\"y\", coords={\"y\": np.arange(4)},)\n",
+    "arr2 = xr.DataArray(\n",
+    "    np.random.randn(4),\n",
+    "    dims=\"y\",\n",
+    "    coords={\"y\": np.arange(4)},\n",
+    ")\n",
     "\n",
     "arr1 + arr2"
    ]

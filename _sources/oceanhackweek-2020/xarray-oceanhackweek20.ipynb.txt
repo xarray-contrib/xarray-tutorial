@@ -1022,7 +1022,8 @@
    "source": [
     "# demonstrate dask dataset\n",
     "dasky = xr.tutorial.open_dataset(\n",
-    "    \"air_temperature\", chunks={\"time\": 10},  # 10 time steps in each block\n",
+    "    \"air_temperature\",\n",
+    "    chunks={\"time\": 10},  # 10 time steps in each block\n",
     ")\n",
     "\n",
     "dasky.air"

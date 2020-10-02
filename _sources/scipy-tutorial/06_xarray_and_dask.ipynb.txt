@@ -532,7 +532,12 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "sqer = xr.apply_ufunc(squared_error, ds.air, 1, dask=\"allowed\",)\n",
+    "sqer = xr.apply_ufunc(\n",
+    "    squared_error,\n",
+    "    ds.air,\n",
+    "    1,\n",
+    "    dask=\"allowed\",\n",
+    ")\n",
     "sqer  # dask-backed DataArray! with nice metadata!"
    ]
   },
