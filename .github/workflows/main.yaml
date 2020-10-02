@@ -25,14 +25,16 @@ jobs:
       - name: Set up Python 3.8
         uses: goanpeca/setup-miniconda@v1
         with:
+           channels: conda-forge
+           mamba-version: "*"
            activate-environment: xarray
-           environment-file: .binder/environment.yml
            python-version: 3.8
            auto-activate-base: false
       - name: Update conda environment
         shell: bash -l {0}
         run: |
-          conda env update --file ./ci/environment.yml
+          mamba env update --file .binder/environment.yml
+          mamba env update --file ./ci/environment.yml
       - name: Build and test notebooks
         shell: bash -l {0}
         run: |

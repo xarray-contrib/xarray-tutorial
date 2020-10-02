@@ -14,6 +14,13 @@ You can run this tutorial in a live session here: |Binder|
 
    oceanhackweek-2020/xarray-oceanhackweek20.ipynb
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Online Tutorial Series
+
+   online-tutorial-series/01_xarray_fundamentals.ipynb
+   online-tutorial-series/02_indexing.ipynb
+   online-tutorial-series/03_computation.ipynb
 
 .. toctree::
    :maxdepth: 1
