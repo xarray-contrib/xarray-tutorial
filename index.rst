@@ -33,3 +33,10 @@ You can run this tutorial in a live session here: |Binder|
    scipy-tutorial/04_plotting_and_visualization.ipynb
    scipy-tutorial/05_intro_to_dask.ipynb
    scipy-tutorial/06_xarray_and_dask.ipynb
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Thinking like Xarray
+
+   thinking-like-xarray/01-high-level-computation-patterns.ipynb
