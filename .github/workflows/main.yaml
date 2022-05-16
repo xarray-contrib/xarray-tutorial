@@ -2,51 +2,49 @@ name: CI
 
 on:
   push:
-    branches: "*"
+    branches: main
   pull_request:
-    branches: master
+    branches: main
 
 jobs:
-  test:
-    name: Tutorial Testing
-    runs-on: ubuntu-latest
+  build-and-deploy:
+    runs-on: ubuntu-20.04
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Install graphviz
-        run: |
-          sudo apt-get update
-          sudo apt-get install graphviz
-      - name: Set up Python 3.8
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-           channels: conda-forge
-           mamba-version: "*"
-           activate-environment: xarray
-           python-version: 3.8
-           auto-activate-base: false
-      - name: Update conda environment
-        shell: bash -l {0}
-        run: |
-          mamba env update --file .binder/environment.yml
-          mamba env update --file ./ci/environment.yml
-      - name: Build and test notebooks
-        shell: bash -l {0}
-        run: |
-          conda info
-          conda list
-          python .tests/nbrun.py
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.8
-      - name: Install repo2docker
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install jupyter-repo2docker
-      - name: Build xarray-tutorial Docker image
-        run: jupyter-repo2docker --no-run --debug .
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup JupyterBook Cache
+      if: inputs.jb-cache == 'true'
+      uses: actions/cache@v2
+      with:
+        path: _build
+        # NOTE: change key to "jupyterbook-N+1" to force rebuilding cache
+        key: jupyterbook-0
+
+    - uses: ./.github/actions/setupconda
+
+    - name: Build JupyterBook
+      shell: bash -l {0}
+      run: |
+        jupyter-book build .
+
+    - name: Dump Build Logs
+      if: always()
+      shell: bash -l {0}
+      run: |
+        if (test -a _build/html/reports/*log); then cat _build/html/reports/*log ; fi
+
+    - name: Publish to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        publish_dir: _build/html
+        publish_branch: gh-pages
+
+    - name: Save Build
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: _build/

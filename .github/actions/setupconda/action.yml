@@ -1,0 +1,43 @@
+name: 'Setup Conda'
+description: 'Create conda environment for GitHub Action Job'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Cache Conda Packages
+      id: cache-packages
+      uses: actions/cache@v2
+      env:
+        # Increase this value to reset cache if conda/conda-lock.yml has not changed
+        CACHE_NUMBER: 0
+      with:
+        path: ~/conda_pkgs_dir
+        key:
+          conda-packages-${{ env.CACHE_NUMBER }}-${{ hashFiles('conda/conda-lock.yml') }}
+
+    - name: Setup Mambaforge
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        miniforge-version: 4.12.0-0
+        miniforge-variant: Mambaforge
+        use-mamba: true
+        auto-update-conda: false
+        activate-environment: xarray-tutorial
+        use-only-tar-bz2: true # IMPORTANT: This needs to be set for conda package cache to work properly!
+
+    - name: Cache Entire Conda Environment
+      id: cache-env
+      uses: actions/cache@v2
+      env:
+        CACHE_NUMBER: 0
+      with:
+        path: ${{ env.CONDA }}/envs
+        key:
+          conda-environment-${{ env.CACHE_NUMBER }}-${{ hashFiles('conda/conda-lock.yml') }}
+
+    - name: Update Conda Environment
+      if: steps.cache-env.outputs.cache-hit != 'true'
+      env:
+        ENVFILE: conda/environment.yml
+      shell: bash -l {0}
+      run: mamba env update -n hackweek -f $ENVFILE
