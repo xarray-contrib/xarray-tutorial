@@ -6,7 +6,7 @@ runs:
   steps:
     - name: Cache Conda Packages
       id: cache-packages
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       env:
         # Increase this value to reset cache if conda/conda-lock.yml has not changed
         CACHE_NUMBER: 0
@@ -27,7 +27,7 @@ runs:
 
     - name: Cache Entire Conda Environment
       id: cache-env
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       env:
         CACHE_NUMBER: 0
       with:
