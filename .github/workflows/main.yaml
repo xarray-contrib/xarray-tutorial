@@ -6,16 +6,23 @@ on:
   pull_request:
     branches: main
 
+# Required to publish to gh-pages branch
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash -l {0}
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup JupyterBook Cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: _build
         # NOTE: change key to "jupyterbook-N+1" to force rebuilding cache
@@ -24,13 +31,11 @@ jobs:
     - uses: ./.github/actions/setupconda
 
     - name: Build JupyterBook
-      shell: bash -l {0}
       run: |
         jupyter-book build .
 
     - name: Dump Build Logs
       if: always()
-      shell: bash -l {0}
       run: |
         if (test -a _build/html/reports/*log); then cat _build/html/reports/*log ; fi
 
@@ -44,7 +49,7 @@ jobs:
 
     - name: Save Build
       if: always()
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: build
         path: _build/
