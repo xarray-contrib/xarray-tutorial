@@ -2,8 +2,7 @@
 
 ![banner](images/logo.png)
 
-
-📖 On this JupyterBook website you'll find easy-to-run example notebooks for Xarray. They are intended to be educational and give users a start on common workflows. 
+📖 On this JupyterBook website you'll find easy-to-run example notebooks for Xarray. They are intended to be educational and give users a start on common workflows.
 
 🎬 You can find recordings of live walk-throughs of these notebooks on Xarray's [YouTube Channel](https://www.youtube.com/channel/UCBlxVSA6xQXeb-i4GgTlO7g)
 

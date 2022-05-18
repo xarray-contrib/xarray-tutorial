@@ -18,38 +18,38 @@ jobs:
         shell: bash -l {0}
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Setup JupyterBook Cache
-      uses: actions/cache@v3
-      with:
-        path: _build
-        # NOTE: change key to "jupyterbook-N+1" to force rebuilding cache
-        key: jupyterbook-0
+      - name: Setup JupyterBook Cache
+        uses: actions/cache@v3
+        with:
+          path: _build
+          # NOTE: change key to "jupyterbook-N+1" to force rebuilding cache
+          key: jupyterbook-0
 
-    - uses: ./.github/actions/setupconda
+      - uses: ./.github/actions/setupconda
 
-    - name: Build JupyterBook
-      run: |
-        jupyter-book build .
+      - name: Build JupyterBook
+        run: |
+          jupyter-book build .
 
-    - name: Dump Build Logs
-      if: always()
-      run: |
-        if (test -a _build/html/reports/*log); then cat _build/html/reports/*log ; fi
+      - name: Dump Build Logs
+        if: always()
+        run: |
+          if (test -a _build/html/reports/*log); then cat _build/html/reports/*log ; fi
 
-    - name: Publish to GitHub Pages
-      if: github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: _build/html
-        publish_branch: gh-pages
+      - name: Publish to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _build/html
+          publish_branch: gh-pages
 
-    - name: Save Build
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: build
-        path: _build/
+      - name: Save Build
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: _build/

@@ -4,5 +4,5 @@ Presented March 2022 for the [NCAR Python Seminar Series](https://ncar.github.io
 
 This 60-minute, intermediate-level lesson covers common high-level computing patterns
 
-Video Recording: 
+Video Recording:
 https://www.youtube.com/watch?v=TSw3GF_d2y8&list=PLNemzZpJM7lUu_iGP_lA2m7SeSUwKSIvR

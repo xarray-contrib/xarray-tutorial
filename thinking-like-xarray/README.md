@@ -2,7 +2,7 @@
 
 Presented August 2020 at [OceanHackWeek](https://oceanhackweek.github.io) by Deepak Cheerian
 
-This 45-minute tutorial covers the basics of Xarray data structures. 
+This 45-minute tutorial covers the basics of Xarray data structures.
 
 Video Recording:
 https://www.youtube.com/watch?v=q020HHnGAWo
