@@ -1,554 +1,882 @@
 
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Introduction to Dask &mdash; Xarray Tutorial  documentation</title>
-  
 
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-
-  
-  
-  
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to Dask &#8212; Xarray tutorial</title>
     
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Xarray and Dask" href="06_xarray_and_dask.html" />
-    <link rel="prev" title="Plotting and Visualization" href="04_plotting_and_visualization.html" /> 
-</head>
-
-<body class="wy-body-for-nav">
-
-   
-  <div class="wy-grid-for-nav">
+    <link rel="prev" title="Plotting and Visualization" href="04_plotting_and_visualization.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
 
-          
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Xarray Tutorial
-          
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-          
-          </a>
+    
 
+    <div class="container-xl">
+      <div class="row">
           
-            
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">OceanHackWeek 2020</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../oceanhackweek-2020/xarray-oceanhackweek20.html">Xarray in 45 minutes</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Online Tutorial Series</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../online-tutorial-series/01_xarray_fundamentals.html">Xarray Fundamentals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../online-tutorial-series/02_indexing.html">Indexing and Selecting Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../online-tutorial-series/03_computation.html">Computation</a></li>
-</ul>
-<p class="caption"><span class="caption-text">SciPy 2020</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="00_overview.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_datastructures_and_io.html">Data structures for multi-dimensional data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_working_with_labeled_data.html">Working with labeled data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_computation_with_xarray.html">Computation with Xarray</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_plotting_and_visualization.html">Plotting and Visualization</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to Dask</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#Table-of-contents">Table of contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#What-is-Dask?">What is Dask?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Quick-setup">Quick setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Dask-Collections">Dask Collections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Dask-Arrays">Dask Arrays</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Exercise">Exercise</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#A-Bigger-Calculation">A Bigger Calculation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Reduction">Reduction</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#Parallelism-using-the-dask.distributed-scheduler">Parallelism using the dask.distributed scheduler</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Dask-Schedulers">Dask Schedulers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Distributed-Clusters-(http://distributed.dask.org/)">Distributed Clusters (http://distributed.dask.org/)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#Profiling-&amp;-Diagnostics-using-the-Dask-Dashboard">Profiling &amp; Diagnostics using the Dask Dashboard</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Exercise</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#Distributed-Dask-clusters-for-HPC-and-Cloud-environments">Distributed Dask clusters for HPC and Cloud environments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#HPC">HPC</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Dask-Jobqueue-(https://jobqueue.dask.org/)">Dask Jobqueue (https://jobqueue.dask.org/)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Dask-MPI-(https://mpi.dask.org/)">Dask MPI (https://mpi.dask.org/)</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#Cloud">Cloud</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Dask-Kubernetes-(https://kubernetes.dask.org/)">Dask Kubernetes (https://kubernetes.dask.org/)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Dask-Cloud-Provider-(https://cloudprovider.dask.org)">Dask Cloud Provider (https://cloudprovider.dask.org)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Dask-Gateway-(https://gateway.dask.org/)">Dask Gateway (https://gateway.dask.org/)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="06_xarray_and_dask.html">Xarray and Dask</a></li>
-</ul>
-
-            
-          
-        </div>
-        
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Xarray Tutorial</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>Introduction to Dask</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../_sources/scipy-tutorial/05_intro_to_dask.ipynb.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Xarray tutorial</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to the Xarray Tutorial!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fundamentals
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_overview.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_datastructures_and_io.html">
+   Data structures for multi-dimensional data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_working_with_labeled_data.html">
+   Working with labeled data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_computation_with_xarray.html">
+   Computation with Xarray
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_plotting_and_visualization.html">
+   Plotting and Visualization
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction to Dask
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_xarray_and_dask.html">
+   Xarray and Dask
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Workshops
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../oceanhackweek-2020/README.html">
+   High-level computational patterns
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../oceanhackweek-2020/xarray-oceanhackweek20.html">
+     Xarray in 45 minutes
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../thinking-like-xarray/README.html">
+   Oceanhackweek 2020
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../thinking-like-xarray/01-high-level-computation-patterns.html">
+     Thinking like Xarray : High-level computational patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../online-tutorial-series/README.html">
+   Xarray Online Tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../online-tutorial-series/01_xarray_fundamentals.html">
+     Xarray Fundamentals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../online-tutorial-series/02_indexing.html">
+     Indexing and Selecting Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../online-tutorial-series/03_computation.html">
+     Computation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
 
-  
-  <hr/>
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
             
-  
-<style>
-/* CSS for nbsphinx extension */
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-/* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
-    border: none;
-    padding: 0 0;
-    margin: 0;
-    box-shadow: none;
-}
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/scipy-tutorial/05_intro_to_dask.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
 
-/* avoid gaps between output lines */
-div.nboutput.container div[class*=highlight] pre {
-    line-height: normal;
-}
+            <!-- Source interaction buttons -->
 
-/* input/output containers */
-div.nbinput.container,
-div.nboutput.container {
-    display: -webkit-flex;
-    display: flex;
-    align-items: flex-start;
-    margin: 0;
-    width: 100%;
-}
-@media (max-width: 540px) {
-    div.nbinput.container,
-    div.nboutput.container {
-        flex-direction: column;
-    }
-}
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/xarray-contrib/xarray-tutorial"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Fscipy-tutorial/05_intro_to_dask.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/scipy-tutorial/05_intro_to_dask.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
 
-/* input container */
-div.nbinput.container {
-    padding-top: 5px;
-}
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-/* last container */
-div.nblast.container {
-    padding-bottom: 5px;
-}
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-/* input prompt */
-div.nbinput.container div.prompt pre {
-    color: #307FC1;
-}
+            <!-- Launch buttons -->
 
-/* output prompt */
-div.nboutput.container div.prompt pre {
-    color: #BF5B3D;
-}
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/main?urlpath=lab/tree/scipy-tutorial/05_intro_to_dask.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
 
-/* all prompts */
-div.nbinput.container div.prompt,
-div.nboutput.container div.prompt {
-    width: 4.5ex;
-    padding-top: 5px;
-    position: relative;
-    user-select: none;
-}
+        </div>
 
-div.nbinput.container div.prompt > div,
-div.nboutput.container div.prompt > div {
-    position: absolute;
-    right: 0;
-    margin-right: 0.3ex;
-}
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#table-of-contents">
+   Table of contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-dask">
+   What is Dask?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-setup">
+   Quick setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dask-collections">
+   Dask Collections
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dask-arrays">
+   Dask Arrays
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-bigger-calculation">
+     A Bigger Calculation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reduction">
+     Reduction
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parallelism-using-the-dask-distributed-scheduler">
+   Parallelism using the dask.distributed scheduler
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dask-schedulers">
+     Dask Schedulers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distributed-clusters-http-distributed-dask-org">
+     Distributed Clusters (http://distributed.dask.org/)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#profiling-diagnostics-using-the-dask-dashboard">
+   Profiling &amp; Diagnostics using the Dask Dashboard
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-dask-clusters-for-hpc-and-cloud-environments">
+   Distributed Dask clusters for HPC and Cloud environments
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hpc">
+     HPC
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dask-jobqueue-https-jobqueue-dask-org">
+       Dask Jobqueue (https://jobqueue.dask.org/)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dask-mpi-https-mpi-dask-org">
+       Dask MPI (https://mpi.dask.org/)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cloud">
+     Cloud
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dask-kubernetes-https-kubernetes-dask-org">
+       Dask Kubernetes (https://kubernetes.dask.org/)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dask-cloud-provider-https-cloudprovider-dask-org">
+       Dask Cloud Provider (https://cloudprovider.dask.org)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dask-gateway-https-gateway-dask-org">
+       Dask Gateway (https://gateway.dask.org/)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
 
-@media (max-width: 540px) {
-    div.nbinput.container div.prompt,
-    div.nboutput.container div.prompt {
-        width: unset;
-        text-align: left;
-        padding: 0.4em;
-    }
-    div.nboutput.container div.prompt.empty {
-        padding: 0;
-    }
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introduction to Dask</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#table-of-contents">
+   Table of contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-dask">
+   What is Dask?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-setup">
+   Quick setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dask-collections">
+   Dask Collections
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dask-arrays">
+   Dask Arrays
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-bigger-calculation">
+     A Bigger Calculation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reduction">
+     Reduction
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parallelism-using-the-dask-distributed-scheduler">
+   Parallelism using the dask.distributed scheduler
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dask-schedulers">
+     Dask Schedulers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distributed-clusters-http-distributed-dask-org">
+     Distributed Clusters (http://distributed.dask.org/)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#profiling-diagnostics-using-the-dask-dashboard">
+   Profiling &amp; Diagnostics using the Dask Dashboard
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-dask-clusters-for-hpc-and-cloud-environments">
+   Distributed Dask clusters for HPC and Cloud environments
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hpc">
+     HPC
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dask-jobqueue-https-jobqueue-dask-org">
+       Dask Jobqueue (https://jobqueue.dask.org/)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dask-mpi-https-mpi-dask-org">
+       Dask MPI (https://mpi.dask.org/)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cloud">
+     Cloud
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dask-kubernetes-https-kubernetes-dask-org">
+       Dask Kubernetes (https://kubernetes.dask.org/)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dask-cloud-provider-https-cloudprovider-dask-org">
+       Dask Cloud Provider (https://cloudprovider.dask.org)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dask-gateway-https-gateway-dask-org">
+       Dask Gateway (https://gateway.dask.org/)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
 
-    div.nbinput.container div.prompt > div,
-    div.nboutput.container div.prompt > div {
-        position: unset;
-    }
-}
-
-/* disable scrollbars on prompts */
-div.nbinput.container div.prompt pre,
-div.nboutput.container div.prompt pre {
-    overflow: hidden;
-}
-
-/* input/output area */
-div.nbinput.container div.input_area,
-div.nboutput.container div.output_area {
-    -webkit-flex: 1;
-    flex: 1;
-    overflow: auto;
-}
-@media (max-width: 540px) {
-    div.nbinput.container div.input_area,
-    div.nboutput.container div.output_area {
-        width: 100%;
-    }
-}
-
-/* input area */
-div.nbinput.container div.input_area {
-    border: 1px solid #e0e0e0;
-    border-radius: 2px;
-    background: #f5f5f5;
-}
-
-/* override MathJax center alignment in output cells */
-div.nboutput.container div[class*=MathJax] {
-    text-align: left !important;
-}
-
-/* override sphinx.ext.imgmath center alignment in output cells */
-div.nboutput.container div.math p {
-    text-align: left;
-}
-
-/* standard error */
-div.nboutput.container div.output_area.stderr {
-    background: #fdd;
-}
-
-/* ANSI colors */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-default-inverse-fg { color: #FFFFFF; }
-.ansi-default-inverse-bg { background-color: #000000; }
-
-.ansi-bold { font-weight: bold; }
-.ansi-underline { text-decoration: underline; }
-
-
-div.nbinput.container div.input_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight].math,
-div.nboutput.container div.output_area.rendered_html,
-div.nboutput.container div.output_area > div.output_javascript,
-div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 5px;
-}
-
-/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
-div.nbinput.container div.input_area > div[class^='highlight'],
-div.nboutput.container div.output_area > div[class^='highlight']{
-    overflow-y: hidden;
-}
-
-/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
-    display: none;
-}
-
-/* Some additional styling taken form the Jupyter notebook CSS */
-div.rendered_html table {
-  border: none;
-  border-collapse: collapse;
-  border-spacing: 0;
-  color: black;
-  font-size: 12px;
-  table-layout: fixed;
-}
-div.rendered_html thead {
-  border-bottom: 1px solid black;
-  vertical-align: bottom;
-}
-div.rendered_html tr,
-div.rendered_html th,
-div.rendered_html td {
-  text-align: right;
-  vertical-align: middle;
-  padding: 0.5em 0.5em;
-  line-height: normal;
-  white-space: normal;
-  max-width: none;
-  border: none;
-}
-div.rendered_html th {
-  font-weight: bold;
-}
-div.rendered_html tbody tr:nth-child(odd) {
-  background: #f5f5f5;
-}
-div.rendered_html tbody tr:hover {
-  background: rgba(66, 165, 245, 0.2);
-}
-
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<p>You can run this notebook in a <a class="reference external" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master?urlpath=lab/tree/scipy-tutorial/05_intro_to_dask.ipynb">live session</a> <a class="reference external" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master?urlpath=lab/tree/scipy-tutorial/05_intro_to_dask.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> or view it <a class="reference external" href="https://github.com/xarray-contrib/xarray-tutorial/blob/master/scipy-tutorial/05_intro_to_dask.ipynb">on Github</a>.</p>
-<p><img alt="5cdfee6e31514c8a88f33152e6c6119c" class="no-scaled-link" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></p>
-<div class="section" id="Introduction-to-Dask">
-<h1>Introduction to Dask<a class="headerlink" href="#Introduction-to-Dask" title="Permalink to this headline">¶</a></h1>
-<p>In this lesson, we discuss cover the basics of Dask. Our learning goals are as follows. By the end of the lesson, we will be able to:</p>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <a class="reference internal image-reference" href="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png"><img alt="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
+<div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-dask">
+<h1>Introduction to Dask<a class="headerlink" href="#introduction-to-dask" title="Permalink to this headline">¶</a></h1>
+<p>In this lesson, we discuss cover the basics of Dask. Our learning goals are as
+follows. By the end of the lesson, we will be able to:</p>
 <ul class="simple">
 <li><p>Identify and describe Dask Collections (Array, DataFrame) and Schedulers</p></li>
 <li><p>Work with Dask Array’s in much the same way you would work with a NumPy array</p></li>
-<li><p>Understand some of the tradeoffs surounding chunk size, chunk shape, and computational overhead</p></li>
+<li><p>Understand some of the tradeoffs surounding chunk size, chunk shape, and
+computational overhead</p></li>
 <li><p>Deploy a local Dask Distributed Cluster and access the diagnostics dashboard</p></li>
 </ul>
-<div class="section" id="Table-of-contents">
-<h2>Table of contents<a class="headerlink" href="#Table-of-contents" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li><p><a class="reference external" href="#What-is-Dask?">What-is-Dask?</a></p></li>
-<li><p><a class="reference external" href="#Dask-Collections">Dask Collections</a></p></li>
-<li><p><a class="reference external" href="#Parallelism-using-the-dask.distributed-scheduler">Parallelism using the dask.distributed scheduler</a></p></li>
-<li><p><a class="reference external" href="#Profiling-&amp;-Diagnostics-using-the-Dask-Dashboard">Profiling &amp; Diagnostics using the Dask Dashboard</a></p></li>
-<li><p><a class="reference external" href="#Distributed-Dask-clusters-for-HPC-and-Cloud-environments">Distributed Dask clusters for HPC and Cloud environments</a></p></li>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="#What-is-Dask?"><strong>What-is-Dask?</strong></a></p></li>
+<li><p><a class="reference external" href="#Dask-Collections"><strong>Dask Collections</strong></a></p></li>
+<li><p><a class="reference external" href="#Parallelism-using-the-dask.distributed-scheduler"><strong>Parallelism using the dask.distributed scheduler</strong></a></p></li>
+<li><p><a class="reference external" href="#Profiling-&amp;-Diagnostics-using-the-Dask-Dashboard"><strong>Profiling &amp; Diagnostics using the Dask Dashboard</strong></a></p></li>
+<li><p><a class="reference external" href="#Distributed-Dask-clusters-for-HPC-and-Cloud-environments"><strong>Distributed Dask clusters for HPC and Cloud environments</strong></a></p></li>
 </ol>
-<p><img alt="Dask logo" class="no-scaled-link" src="http://dask.readthedocs.io/en/latest/_images/dask_horizontal.svg" width="30%" /></p>
+<p><a class="reference internal" href="http://dask.readthedocs.io/en/latest/_images/dask_horizontal.svg"><img alt="Dask logo" class="align-right" src="http://dask.readthedocs.io/en/latest/_images/dask_horizontal.svg" width="30%" /></a></p>
 </div>
-<div class="section" id="What-is-Dask?">
-<h2>What is Dask?<a class="headerlink" href="#What-is-Dask?" title="Permalink to this headline">¶</a></h2>
-<p>Dask is a flexible parallel computing library for analytic computing. Dask provides dynamic parallel task scheduling and high-level big-data collections like <code class="docutils literal notranslate"><span class="pre">dask.array</span></code> and <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code>, and an extensive suite of deployment options. Dask’s documentation can be found here: <a class="reference external" href="https://docs.dask.org/en/latest/">https://docs.dask.org/en/latest/</a></p>
-<p><img alt="Dask overview" class="no-scaled-link" src="https://docs.dask.org/en/latest/_images/dask-overview.svg" width="75%" /></p>
+<div class="section" id="what-is-dask">
+<h2>What is Dask?<a class="headerlink" href="#what-is-dask" title="Permalink to this headline">¶</a></h2>
+<p>Dask is a flexible parallel computing library for analytic computing. Dask
+provides dynamic parallel task scheduling and high-level big-data collections
+like <code class="docutils literal notranslate"><span class="pre">dask.array</span></code> and <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code>, and an extensive suite of deployment
+options. Dask’s documentation can be found here:
+<a class="reference external" href="https://docs.dask.org/en/latest/">https://docs.dask.org/en/latest/</a></p>
+<p><a class="reference internal" href="https://docs.dask.org/en/latest/_images/dask-overview.svg"><img alt="Dask overview" class="align-center" src="https://docs.dask.org/en/latest/_images/dask-overview.svg" width="75%" /></a></p>
 </div>
-<div class="section" id="Quick-setup">
-<h2>Quick setup<a class="headerlink" href="#Quick-setup" title="Permalink to this headline">¶</a></h2>
-<p>For the purposes of this notebook, we’ll use a Dask Cluster to manage computations. The next cell sets up a simple LocalCluster. We’ll cover Dask schedulers and clusters later on in this notebook.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+<div class="section" id="quick-setup">
+<h2>Quick setup<a class="headerlink" href="#quick-setup" title="Permalink to this headline">¶</a></h2>
+<p>For the purposes of this notebook, we’ll use a Dask Cluster to manage
+computations. The next cell sets up a simple LocalCluster. We’ll cover Dask
+schedulers and clusters later on in this notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
 <span class="n">client</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<table style="border: 2px solid white;">
-<tr>
-<td style="vertical-align: top; border: 0px solid white">
-<h3 style="text-align: left;">Client</h3>
-<ul style="text-align: left; list-style: none; margin: 0; padding: 0;">
-  <li><b>Scheduler: </b>tcp://127.0.0.1:42185</li>
-  <li><b>Dashboard: </b><a href='http://127.0.0.1:8787/status' target='_blank'>http://127.0.0.1:8787/status</a></li>
-</ul>
-</td>
-<td style="vertical-align: top; border: 0px solid white">
-<h3 style="text-align: left;">Cluster</h3>
-<ul style="text-align: left; list-style:none; margin: 0; padding: 0;">
-  <li><b>Workers: </b>2</li>
-  <li><b>Cores: </b>2</li>
-  <li><b>Memory: </b>8.36 GB</li>
-</ul>
-</td>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+    <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
+    <div style="margin-left: 48px;">
+        <h3 style="margin-bottom: 0px;">Client</h3>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-a14d7f62-d648-11ec-8bdb-6045bd777d99</p>
+        <table style="width: 100%; text-align: left;">
+
+        <tr>
+
+            <td style="text-align: left;"><strong>Connection method:</strong> Cluster object</td>
+            <td style="text-align: left;"><strong>Cluster type:</strong> distributed.LocalCluster</td>
+
+        </tr>
+
+
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Dashboard: </strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
+                </td>
+                <td style="text-align: left;"></td>
+            </tr>
+
+
+        </table>
+
+
+            <details>
+            <summary style="margin-bottom: 20px;"><h3 style="display: inline;">Cluster Info</h3></summary>
+            <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-mod-trusted jp-OutputArea-output">
+    <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;">
+    </div>
+    <div style="margin-left: 48px;">
+        <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCluster</h3>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">bb75af0e</p>
+        <table style="width: 100%; text-align: left;">
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Dashboard:</strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
+                </td>
+                <td style="text-align: left;">
+                    <strong>Workers:</strong> 2
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Total threads:</strong> 2
+                </td>
+                <td style="text-align: left;">
+                    <strong>Total memory:</strong> 6.78 GiB
+                </td>
+            </tr>
+
+            <tr>
+    <td style="text-align: left;"><strong>Status:</strong> running</td>
+    <td style="text-align: left;"><strong>Using processes:</strong> True</td>
 </tr>
-</table></div>
+
+
+        </table>
+
+        <details>
+            <summary style="margin-bottom: 20px;">
+                <h3 style="display: inline;">Scheduler Info</h3>
+            </summary>
+
+            <div style="">
+    <div>
+        <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
+        <div style="margin-left: 48px;">
+            <h3 style="margin-bottom: 0px;">Scheduler</h3>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-6b88a3ed-fcda-4f29-975d-1916ce50ab00</p>
+            <table style="width: 100%; text-align: left;">
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Comm:</strong> tcp://127.0.0.1:39597
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Workers:</strong> 2
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Dashboard:</strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Total threads:</strong> 2
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Started:</strong> Just now
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Total memory:</strong> 6.78 GiB
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <details style="margin-left: 48px;">
+        <summary style="margin-bottom: 20px;">
+            <h3 style="display: inline;">Workers</h3>
+        </summary>
+
+
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 0</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://127.0.0.1:37483
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:41023/status" target="_blank">http://127.0.0.1:41023/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 3.39 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:38135
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /home/runner/work/xarray-tutorial/xarray-tutorial/scipy-tutorial/dask-worker-space/worker-rjmldvwo
+                        </td>
+                    </tr>
+
+
+
+
+
+                </table>
+            </details>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 1</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://127.0.0.1:43497
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:39045/status" target="_blank">http://127.0.0.1:39045/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 3.39 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:40397
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /home/runner/work/xarray-tutorial/xarray-tutorial/scipy-tutorial/dask-worker-space/worker-1889bc5d
+                        </td>
+                    </tr>
+
+
+
+
+
+                </table>
+            </details>
+            </div>
+        </div>
+
+
+    </details>
 </div>
-<p><p>&amp;#128070</p>
-</p><p>Click the Dashboard link above.</p>
+
+        </details>
+    </div>
 </div>
-<div class="section" id="Dask-Collections">
-<h2>Dask Collections<a class="headerlink" href="#Dask-Collections" title="Permalink to this headline">¶</a></h2>
+            </details>
+
+
+    </div>
+</div></div></div>
+</div>
+<p>&#128070</p> Click the Dashboard link above.
+</div>
+<div class="section" id="dask-collections">
+<h2>Dask Collections<a class="headerlink" href="#dask-collections" title="Permalink to this headline">¶</a></h2>
 <p>Dask includes 3 main collections:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.dask.org/en/latest/array.html">Dask Array</a>: Parallel NumPy arrays</p></li>
-<li><p><a class="reference external" href="https://docs.dask.org/en/latest/dataframe.html">Dask DataFrame</a>: Parallel Pandas DataFrames</p></li>
+<li><p><a class="reference external" href="https://docs.dask.org/en/latest/array.html">Dask Array</a>: Parallel NumPy
+arrays</p></li>
+<li><p><a class="reference external" href="https://docs.dask.org/en/latest/dataframe.html">Dask DataFrame</a>: Parallel
+Pandas DataFrames</p></li>
 <li><p><a class="reference external" href="https://docs.dask.org/en/latest/bag.html">Dask Bag</a>: Parallel Python Lists</p></li>
 </ul>
-<p>Xarray primarily interfaces with the Dask Array collection so we’ll skip the others for now. You can find out more about Dask’s user interfaces <a class="reference external" href="https://docs.dask.org/en/latest/user-interfaces.html">here</a>.</p>
+<p>Xarray primarily interfaces with the Dask Array collection so we’ll skip the
+others for now. You can find out more about Dask’s user interfaces
+<a class="reference external" href="https://docs.dask.org/en/latest/user-interfaces.html">here</a>.</p>
 </div>
-<div class="section" id="Dask-Arrays">
-<h2>Dask Arrays<a class="headerlink" href="#Dask-Arrays" title="Permalink to this headline">¶</a></h2>
-<p>Dask Array implements a subset of the NumPy ndarray interface using blocked algorithms, cutting up the large array into many small arrays. This lets us compute on arrays larger than memory using multiple cores. We coordinate these blocked algorithms using Dask graphs. Dask Array’s are also <em>lazy</em>, meaning that they do not evaluate until you explicitly ask for a result using the <code class="docutils literal notranslate"><span class="pre">compute</span></code> method.</p>
+<div class="section" id="dask-arrays">
+<h2>Dask Arrays<a class="headerlink" href="#dask-arrays" title="Permalink to this headline">¶</a></h2>
+<p>Dask Array implements a subset of the NumPy ndarray interface using blocked
+algorithms, cutting up the large array into many small arrays. This lets us
+compute on arrays larger than memory using multiple cores. We coordinate these
+blocked algorithms using Dask graphs. Dask Array’s are also <em>lazy</em>, meaning that
+they do not evaluate until you explicitly ask for a result using the <code class="docutils literal notranslate"><span class="pre">compute</span></code>
+method.</p>
 <p>If we want to create a NumPy array of all ones, we do it like this:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">4000</span><span class="p">)</span>
 <span class="n">ones_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
@@ -556,74 +884,81 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-array([[1., 1., 1., ..., 1., 1., 1.],
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1., 1., 1., ..., 1., 1., 1.],
        [1., 1., 1., ..., 1., 1., 1.],
        [1., 1., 1., ..., 1., 1., 1.],
        ...,
        [1., 1., 1., ..., 1., 1., 1.],
        [1., 1., 1., ..., 1., 1., 1.],
        [1., 1., 1., ..., 1., 1., 1.]])
-</pre></div></div>
+</pre></div>
+</div>
+</div>
 </div>
 <p>This array contains exactly 32 MB of data:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2"> MB&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ones_np</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">))</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2"> MB&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ones_np</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32.0 MB
+</pre></div>
 </div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-32.0 MB
-</pre></div></div>
+</div>
 </div>
 <p>Now let’s create the same array using Dask’s array interface.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">dask.array</span> <span class="k">as</span> <span class="nn">da</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask.array</span> <span class="k">as</span> <span class="nn">da</span>
 
 <span class="n">ones</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">ones</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<table>
-<tr>
-<td>
-<table>
-  <thead>
-    <tr><td> </td><th> Array </th><th> Chunk </th></tr>
-  </thead>
-  <tbody>
-    <tr><th> Bytes </th><td> 32.00 MB </td> <td> 32.00 MB </td></tr>
-    <tr><th> Shape </th><td> (1000, 4000) </td> <td> (1000, 4000) </td></tr>
-    <tr><th> Count </th><td> 1 Tasks </td><td> 1 Chunks </td></tr>
-    <tr><th> Type </th><td> float64 </td><td> numpy.ndarray </td></tr>
-  </tbody>
-</table>
-</td>
-<td>
-<svg width="170" height="92" style="stroke:rgb(0,0,0);stroke-width:1" >
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 30.52 MiB </td>
+                        <td> 30.52 MiB </td>
+                    </tr>
+
+                    <tr>
+                        <th> Shape </th>
+                        <td> (1000, 4000) </td>
+                        <td> (1000, 4000) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 1 Tasks </td>
+                        <td> 1 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float64 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="92" style="stroke:rgb(0,0,0);stroke-width:1" >
 
   <!-- Horizontal lines -->
   <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
@@ -634,53 +969,74 @@ array([[1., 1., 1., ..., 1., 1., 1.],
   <line x1="120" y1="0" x2="120" y2="42" style="stroke-width:2" />
 
   <!-- Colored Rectangle -->
-  <polygon points="0.000000,0.000000 120.000000,0.000000 120.000000,42.898796 0.000000,42.898796" style="fill:#ECB172A0;stroke-width:0"/>
+  <polygon points="0.0,0.0 120.0,0.0 120.0,42.89879552186203 0.0,42.89879552186203" style="fill:#ECB172A0;stroke-width:0"/>
 
   <!-- Text -->
   <text x="60.000000" y="62.898796" font-size="1.0rem" font-weight="100" text-anchor="middle" >4000</text>
   <text x="140.000000" y="21.449398" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,21.449398)">1000</text>
 </svg>
-</td>
-</tr>
-</table></div>
+        </td>
+    </tr>
+</table></div></div>
 </div>
-<p>This works, but we didn’t tell Dask how to split up (or chunk) the array, so it is not optimized for parallel computation.</p>
-<p>A crucal difference with Dask is that we must specify the <code class="docutils literal notranslate"><span class="pre">chunks</span></code> argument. “Chunks” describes how the array is split up over many sub-arrays.</p>
-<p><img alt="Dask Arrays" src="http://dask.pydata.org/en/latest/_images/dask-array-black-text.svg" /> <em>source:</em><a class="reference external" href="http://dask.pydata.org/en/latest/array-overview.html">Dask Array Documentation</a></p>
-<p>There are <a class="reference external" href="http://dask.pydata.org/en/latest/array-creation.html#chunks">several ways to specify chunks</a>. In this lecture, we will use a block shape.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">chunk_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<p>This works, but we didn’t tell Dask how to split up (or chunk) the array, so it
+is not optimized for parallel computation.</p>
+<p>A crucal difference with Dask is that we must specify the <code class="docutils literal notranslate"><span class="pre">chunks</span></code> argument.
+“Chunks” describes how the array is split up over many sub-arrays.</p>
+<p><img alt="Dask Arrays" src="http://dask.pydata.org/en/latest/_images/dask-array-black-text.svg" />
+<em>source:
+<a class="reference external" href="http://dask.pydata.org/en/latest/array-overview.html">Dask Array Documentation</a></em></p>
+<p>There are
+<a class="reference external" href="http://dask.pydata.org/en/latest/array-creation.html#chunks">several ways to specify chunks</a>.
+In this lecture, we will use a block shape.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chunk_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">ones</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="n">chunk_shape</span><span class="p">)</span>
 <span class="n">ones</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<table>
-<tr>
-<td>
-<table>
-  <thead>
-    <tr><td> </td><th> Array </th><th> Chunk </th></tr>
-  </thead>
-  <tbody>
-    <tr><th> Bytes </th><td> 32.00 MB </td> <td> 8.00 MB </td></tr>
-    <tr><th> Shape </th><td> (1000, 4000) </td> <td> (1000, 1000) </td></tr>
-    <tr><th> Count </th><td> 4 Tasks </td><td> 4 Chunks </td></tr>
-    <tr><th> Type </th><td> float64 </td><td> numpy.ndarray </td></tr>
-  </tbody>
-</table>
-</td>
-<td>
-<svg width="170" height="92" style="stroke:rgb(0,0,0);stroke-width:1" >
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 30.52 MiB </td>
+                        <td> 7.63 MiB </td>
+                    </tr>
+
+                    <tr>
+                        <th> Shape </th>
+                        <td> (1000, 4000) </td>
+                        <td> (1000, 1000) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 4 Tasks </td>
+                        <td> 4 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float64 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="92" style="stroke:rgb(0,0,0);stroke-width:1" >
 
   <!-- Horizontal lines -->
   <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
@@ -694,351 +1050,166 @@ array([[1., 1., 1., ..., 1., 1., 1.],
   <line x1="120" y1="0" x2="120" y2="42" style="stroke-width:2" />
 
   <!-- Colored Rectangle -->
-  <polygon points="0.000000,0.000000 120.000000,0.000000 120.000000,42.898796 0.000000,42.898796" style="fill:#ECB172A0;stroke-width:0"/>
+  <polygon points="0.0,0.0 120.0,0.0 120.0,42.89879552186203 0.0,42.89879552186203" style="fill:#ECB172A0;stroke-width:0"/>
 
   <!-- Text -->
   <text x="60.000000" y="62.898796" font-size="1.0rem" font-weight="100" text-anchor="middle" >4000</text>
   <text x="140.000000" y="21.449398" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,21.449398)">1000</text>
 </svg>
-</td>
-</tr>
-</table></div>
+        </td>
+    </tr>
+</table></div></div>
 </div>
-<p>Notice that we just see a symbolic represetnation of the array, including its shape, dtype, and chunksize. No data has been generated yet. When we call <code class="docutils literal notranslate"><span class="pre">.compute()</span></code> on a Dask array, the computation is trigger and the dask array becomes a numpy array.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<p>Notice that we just see a symbolic represetnation of the array, including its
+shape, dtype, and chunksize. No data has been generated yet. When we call
+<code class="docutils literal notranslate"><span class="pre">.compute()</span></code> on a Dask array, the computation is trigger and the dask array
+becomes a numpy array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ones</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ones</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-</pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-array([[1., 1., 1., ..., 1., 1., 1.],
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1., 1., 1., ..., 1., 1., 1.],
        [1., 1., 1., ..., 1., 1., 1.],
        [1., 1., 1., ..., 1., 1., 1.],
        ...,
        [1., 1., 1., ..., 1., 1., 1.],
        [1., 1., 1., ..., 1., 1., 1.],
        [1., 1., 1., ..., 1., 1., 1.]])
-</pre></div></div>
-</div>
-<p>In order to understand what happened when we called <code class="docutils literal notranslate"><span class="pre">.compute()</span></code>, we can visualize the Dask <em>graph</em>, the symbolic operations that make up the array</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ones</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</div>
+<p>In order to understand what happened when we called <code class="docutils literal notranslate"><span class="pre">.compute()</span></code>, we can
+visualize the Dask <em>graph</em>, the symbolic operations that make up the array</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ones</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="output_area docutils container">
-<img alt="../_images/scipy-tutorial_05_intro_to_dask_15_0.png" src="../_images/scipy-tutorial_05_intro_to_dask_15_0.png" />
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05_intro_to_dask_15_0.png" src="../_images/05_intro_to_dask_15_0.png" />
 </div>
 </div>
-<p>Our array has four chunks. To generate it, Dask calls <code class="docutils literal notranslate"><span class="pre">np.ones</span></code> four times and then concatenates this together into one array.</p>
-<p>Rather than immediately loading a Dask array (which puts all the data into RAM), it is more common to reduce the data somehow. For example:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sum_of_ones</span> <span class="o">=</span> <span class="n">ones</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<p>Our array has four chunks. To generate it, Dask calls <code class="docutils literal notranslate"><span class="pre">np.ones</span></code> four times and
+then concatenates this together into one array.</p>
+<p>Rather than immediately loading a Dask array (which puts all the data into RAM),
+it is more common to reduce the data somehow. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_of_ones</span> <span class="o">=</span> <span class="n">ones</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="n">sum_of_ones</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/scipy-tutorial_05_intro_to_dask_17_0.png" src="../_images/scipy-tutorial_05_intro_to_dask_17_0.png" />
+<div class="cell_output docutils container">
+<img alt="../_images/05_intro_to_dask_17_0.png" src="../_images/05_intro_to_dask_17_0.png" />
 </div>
 </div>
-<div class="section" id="Exercise">
-<h3>Exercise<a class="headerlink" href="#Exercise" title="Permalink to this headline">¶</a></h3>
-<p>Modify the chunk size (or shape) in the <code class="docutils literal notranslate"><span class="pre">ones</span></code> array and visualize how the task graph changes.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># your code here</span>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<p>Modify the chunk size (or shape) in the <code class="docutils literal notranslate"><span class="pre">ones</span></code> array and visualize how the task
+graph changes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
 </pre></div>
 </div>
 </div>
-<p>Here we see Dask’s strategy for finding the sum. This simple example illustrates the beauty of Dask: it automatically designs an algorithm appropriate for custom operations with big data.</p>
+</div>
+<p>Here we see Dask’s strategy for finding the sum. This simple example illustrates
+the beauty of Dask: it automatically designs an algorithm appropriate for custom
+operations with big data.</p>
 <p>If we make our operation more complex, the graph gets more complex.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fancy_calculation</span> <span class="o">=</span> <span class="p">(</span><span class="n">ones</span> <span class="o">*</span> <span class="n">ones</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fancy_calculation</span> <span class="o">=</span> <span class="p">(</span><span class="n">ones</span> <span class="o">*</span> <span class="n">ones</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">fancy_calculation</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/scipy-tutorial_05_intro_to_dask_21_0.png" src="../_images/scipy-tutorial_05_intro_to_dask_21_0.png" />
+<div class="cell_output docutils container">
+<img alt="../_images/05_intro_to_dask_21_0.png" src="../_images/05_intro_to_dask_21_0.png" />
 </div>
 </div>
 </div>
-<div class="section" id="A-Bigger-Calculation">
-<h3>A Bigger Calculation<a class="headerlink" href="#A-Bigger-Calculation" title="Permalink to this headline">¶</a></h3>
-<p>The examples above were toy examples; the data (32 MB) is probably not big enough to warrant the use of Dask.</p>
+<div class="section" id="a-bigger-calculation">
+<h3>A Bigger Calculation<a class="headerlink" href="#a-bigger-calculation" title="Permalink to this headline">¶</a></h3>
+<p>The examples above were toy examples; the data (32 MB) is probably not big
+enough to warrant the use of Dask.</p>
 <p>We can make it a lot bigger!</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bigshape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">200000</span><span class="p">,</span> <span class="mi">4000</span><span class="p">)</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bigshape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">200000</span><span class="p">,</span> <span class="mi">4000</span><span class="p">)</span>
 <span class="n">big_ones</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">bigshape</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="n">chunk_shape</span><span class="p">)</span>
 <span class="n">big_ones</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<table>
-<tr>
-<td>
-<table>
-  <thead>
-    <tr><td> </td><th> Array </th><th> Chunk </th></tr>
-  </thead>
-  <tbody>
-    <tr><th> Bytes </th><td> 6.40 GB </td> <td> 8.00 MB </td></tr>
-    <tr><th> Shape </th><td> (200000, 4000) </td> <td> (1000, 1000) </td></tr>
-    <tr><th> Count </th><td> 800 Tasks </td><td> 800 Chunks </td></tr>
-    <tr><th> Type </th><td> float64 </td><td> numpy.ndarray </td></tr>
-  </tbody>
-</table>
-</td>
-<td>
-<svg width="79" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 5.96 GiB </td>
+                        <td> 7.63 MiB </td>
+                    </tr>
+
+                    <tr>
+                        <th> Shape </th>
+                        <td> (200000, 4000) </td>
+                        <td> (1000, 1000) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 800 Tasks </td>
+                        <td> 800 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float64 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="79" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
 
   <!-- Horizontal lines -->
   <line x1="0" y1="0" x2="29" y2="0" style="stroke-width:2" />
-  <line x1="0" y1="0" x2="29" y2="0" />
-  <line x1="0" y1="1" x2="29" y2="1" />
-  <line x1="0" y1="1" x2="29" y2="1" />
-  <line x1="0" y1="2" x2="29" y2="2" />
-  <line x1="0" y1="3" x2="29" y2="3" />
-  <line x1="0" y1="3" x2="29" y2="3" />
-  <line x1="0" y1="4" x2="29" y2="4" />
-  <line x1="0" y1="4" x2="29" y2="4" />
-  <line x1="0" y1="5" x2="29" y2="5" />
   <line x1="0" y1="6" x2="29" y2="6" />
-  <line x1="0" y1="6" x2="29" y2="6" />
-  <line x1="0" y1="7" x2="29" y2="7" />
-  <line x1="0" y1="7" x2="29" y2="7" />
-  <line x1="0" y1="8" x2="29" y2="8" />
-  <line x1="0" y1="9" x2="29" y2="9" />
-  <line x1="0" y1="9" x2="29" y2="9" />
-  <line x1="0" y1="10" x2="29" y2="10" />
-  <line x1="0" y1="10" x2="29" y2="10" />
-  <line x1="0" y1="11" x2="29" y2="11" />
   <line x1="0" y1="12" x2="29" y2="12" />
-  <line x1="0" y1="12" x2="29" y2="12" />
-  <line x1="0" y1="13" x2="29" y2="13" />
-  <line x1="0" y1="13" x2="29" y2="13" />
-  <line x1="0" y1="14" x2="29" y2="14" />
-  <line x1="0" y1="15" x2="29" y2="15" />
-  <line x1="0" y1="15" x2="29" y2="15" />
-  <line x1="0" y1="16" x2="29" y2="16" />
-  <line x1="0" y1="16" x2="29" y2="16" />
-  <line x1="0" y1="17" x2="29" y2="17" />
   <line x1="0" y1="18" x2="29" y2="18" />
-  <line x1="0" y1="18" x2="29" y2="18" />
-  <line x1="0" y1="19" x2="29" y2="19" />
-  <line x1="0" y1="19" x2="29" y2="19" />
-  <line x1="0" y1="20" x2="29" y2="20" />
-  <line x1="0" y1="21" x2="29" y2="21" />
-  <line x1="0" y1="21" x2="29" y2="21" />
-  <line x1="0" y1="22" x2="29" y2="22" />
-  <line x1="0" y1="22" x2="29" y2="22" />
-  <line x1="0" y1="23" x2="29" y2="23" />
-  <line x1="0" y1="24" x2="29" y2="24" />
-  <line x1="0" y1="24" x2="29" y2="24" />
   <line x1="0" y1="25" x2="29" y2="25" />
-  <line x1="0" y1="25" x2="29" y2="25" />
-  <line x1="0" y1="26" x2="29" y2="26" />
-  <line x1="0" y1="27" x2="29" y2="27" />
-  <line x1="0" y1="27" x2="29" y2="27" />
-  <line x1="0" y1="28" x2="29" y2="28" />
-  <line x1="0" y1="28" x2="29" y2="28" />
-  <line x1="0" y1="29" x2="29" y2="29" />
-  <line x1="0" y1="30" x2="29" y2="30" />
-  <line x1="0" y1="30" x2="29" y2="30" />
   <line x1="0" y1="31" x2="29" y2="31" />
-  <line x1="0" y1="31" x2="29" y2="31" />
-  <line x1="0" y1="32" x2="29" y2="32" />
-  <line x1="0" y1="33" x2="29" y2="33" />
-  <line x1="0" y1="33" x2="29" y2="33" />
-  <line x1="0" y1="34" x2="29" y2="34" />
-  <line x1="0" y1="34" x2="29" y2="34" />
-  <line x1="0" y1="35" x2="29" y2="35" />
-  <line x1="0" y1="36" x2="29" y2="36" />
-  <line x1="0" y1="36" x2="29" y2="36" />
   <line x1="0" y1="37" x2="29" y2="37" />
-  <line x1="0" y1="37" x2="29" y2="37" />
-  <line x1="0" y1="38" x2="29" y2="38" />
-  <line x1="0" y1="39" x2="29" y2="39" />
-  <line x1="0" y1="39" x2="29" y2="39" />
-  <line x1="0" y1="40" x2="29" y2="40" />
-  <line x1="0" y1="40" x2="29" y2="40" />
-  <line x1="0" y1="41" x2="29" y2="41" />
-  <line x1="0" y1="42" x2="29" y2="42" />
-  <line x1="0" y1="42" x2="29" y2="42" />
   <line x1="0" y1="43" x2="29" y2="43" />
-  <line x1="0" y1="43" x2="29" y2="43" />
-  <line x1="0" y1="44" x2="29" y2="44" />
-  <line x1="0" y1="45" x2="29" y2="45" />
-  <line x1="0" y1="45" x2="29" y2="45" />
-  <line x1="0" y1="46" x2="29" y2="46" />
-  <line x1="0" y1="46" x2="29" y2="46" />
-  <line x1="0" y1="47" x2="29" y2="47" />
-  <line x1="0" y1="48" x2="29" y2="48" />
-  <line x1="0" y1="48" x2="29" y2="48" />
-  <line x1="0" y1="49" x2="29" y2="49" />
-  <line x1="0" y1="49" x2="29" y2="49" />
   <line x1="0" y1="50" x2="29" y2="50" />
-  <line x1="0" y1="51" x2="29" y2="51" />
-  <line x1="0" y1="51" x2="29" y2="51" />
-  <line x1="0" y1="52" x2="29" y2="52" />
-  <line x1="0" y1="52" x2="29" y2="52" />
-  <line x1="0" y1="53" x2="29" y2="53" />
-  <line x1="0" y1="54" x2="29" y2="54" />
-  <line x1="0" y1="54" x2="29" y2="54" />
-  <line x1="0" y1="55" x2="29" y2="55" />
-  <line x1="0" y1="55" x2="29" y2="55" />
   <line x1="0" y1="56" x2="29" y2="56" />
-  <line x1="0" y1="57" x2="29" y2="57" />
-  <line x1="0" y1="57" x2="29" y2="57" />
-  <line x1="0" y1="58" x2="29" y2="58" />
-  <line x1="0" y1="58" x2="29" y2="58" />
-  <line x1="0" y1="59" x2="29" y2="59" />
-  <line x1="0" y1="60" x2="29" y2="60" />
-  <line x1="0" y1="60" x2="29" y2="60" />
-  <line x1="0" y1="61" x2="29" y2="61" />
-  <line x1="0" y1="61" x2="29" y2="61" />
-  <line x1="0" y1="62" x2="29" y2="62" />
   <line x1="0" y1="63" x2="29" y2="63" />
-  <line x1="0" y1="63" x2="29" y2="63" />
-  <line x1="0" y1="64" x2="29" y2="64" />
-  <line x1="0" y1="64" x2="29" y2="64" />
-  <line x1="0" y1="65" x2="29" y2="65" />
-  <line x1="0" y1="66" x2="29" y2="66" />
-  <line x1="0" y1="66" x2="29" y2="66" />
-  <line x1="0" y1="67" x2="29" y2="67" />
-  <line x1="0" y1="67" x2="29" y2="67" />
-  <line x1="0" y1="68" x2="29" y2="68" />
   <line x1="0" y1="69" x2="29" y2="69" />
-  <line x1="0" y1="69" x2="29" y2="69" />
-  <line x1="0" y1="70" x2="29" y2="70" />
-  <line x1="0" y1="70" x2="29" y2="70" />
-  <line x1="0" y1="71" x2="29" y2="71" />
-  <line x1="0" y1="72" x2="29" y2="72" />
-  <line x1="0" y1="72" x2="29" y2="72" />
-  <line x1="0" y1="73" x2="29" y2="73" />
-  <line x1="0" y1="73" x2="29" y2="73" />
-  <line x1="0" y1="74" x2="29" y2="74" />
   <line x1="0" y1="75" x2="29" y2="75" />
-  <line x1="0" y1="75" x2="29" y2="75" />
-  <line x1="0" y1="76" x2="29" y2="76" />
-  <line x1="0" y1="76" x2="29" y2="76" />
-  <line x1="0" y1="77" x2="29" y2="77" />
-  <line x1="0" y1="78" x2="29" y2="78" />
-  <line x1="0" y1="78" x2="29" y2="78" />
-  <line x1="0" y1="79" x2="29" y2="79" />
-  <line x1="0" y1="79" x2="29" y2="79" />
-  <line x1="0" y1="80" x2="29" y2="80" />
   <line x1="0" y1="81" x2="29" y2="81" />
-  <line x1="0" y1="81" x2="29" y2="81" />
-  <line x1="0" y1="82" x2="29" y2="82" />
-  <line x1="0" y1="82" x2="29" y2="82" />
-  <line x1="0" y1="83" x2="29" y2="83" />
-  <line x1="0" y1="84" x2="29" y2="84" />
-  <line x1="0" y1="84" x2="29" y2="84" />
-  <line x1="0" y1="85" x2="29" y2="85" />
-  <line x1="0" y1="85" x2="29" y2="85" />
-  <line x1="0" y1="86" x2="29" y2="86" />
-  <line x1="0" y1="87" x2="29" y2="87" />
-  <line x1="0" y1="87" x2="29" y2="87" />
   <line x1="0" y1="88" x2="29" y2="88" />
-  <line x1="0" y1="88" x2="29" y2="88" />
-  <line x1="0" y1="89" x2="29" y2="89" />
-  <line x1="0" y1="90" x2="29" y2="90" />
-  <line x1="0" y1="90" x2="29" y2="90" />
-  <line x1="0" y1="91" x2="29" y2="91" />
-  <line x1="0" y1="91" x2="29" y2="91" />
-  <line x1="0" y1="92" x2="29" y2="92" />
-  <line x1="0" y1="93" x2="29" y2="93" />
-  <line x1="0" y1="93" x2="29" y2="93" />
   <line x1="0" y1="94" x2="29" y2="94" />
-  <line x1="0" y1="94" x2="29" y2="94" />
-  <line x1="0" y1="95" x2="29" y2="95" />
-  <line x1="0" y1="96" x2="29" y2="96" />
-  <line x1="0" y1="96" x2="29" y2="96" />
-  <line x1="0" y1="97" x2="29" y2="97" />
-  <line x1="0" y1="97" x2="29" y2="97" />
-  <line x1="0" y1="98" x2="29" y2="98" />
-  <line x1="0" y1="99" x2="29" y2="99" />
-  <line x1="0" y1="99" x2="29" y2="99" />
   <line x1="0" y1="100" x2="29" y2="100" />
-  <line x1="0" y1="100" x2="29" y2="100" />
-  <line x1="0" y1="101" x2="29" y2="101" />
-  <line x1="0" y1="102" x2="29" y2="102" />
-  <line x1="0" y1="102" x2="29" y2="102" />
-  <line x1="0" y1="103" x2="29" y2="103" />
-  <line x1="0" y1="103" x2="29" y2="103" />
-  <line x1="0" y1="104" x2="29" y2="104" />
-  <line x1="0" y1="105" x2="29" y2="105" />
-  <line x1="0" y1="105" x2="29" y2="105" />
   <line x1="0" y1="106" x2="29" y2="106" />
-  <line x1="0" y1="106" x2="29" y2="106" />
-  <line x1="0" y1="107" x2="29" y2="107" />
-  <line x1="0" y1="108" x2="29" y2="108" />
-  <line x1="0" y1="108" x2="29" y2="108" />
-  <line x1="0" y1="109" x2="29" y2="109" />
-  <line x1="0" y1="109" x2="29" y2="109" />
-  <line x1="0" y1="110" x2="29" y2="110" />
-  <line x1="0" y1="111" x2="29" y2="111" />
-  <line x1="0" y1="111" x2="29" y2="111" />
-  <line x1="0" y1="112" x2="29" y2="112" />
-  <line x1="0" y1="112" x2="29" y2="112" />
   <line x1="0" y1="113" x2="29" y2="113" />
-  <line x1="0" y1="114" x2="29" y2="114" />
-  <line x1="0" y1="114" x2="29" y2="114" />
-  <line x1="0" y1="115" x2="29" y2="115" />
-  <line x1="0" y1="115" x2="29" y2="115" />
-  <line x1="0" y1="116" x2="29" y2="116" />
-  <line x1="0" y1="117" x2="29" y2="117" />
-  <line x1="0" y1="117" x2="29" y2="117" />
-  <line x1="0" y1="118" x2="29" y2="118" />
-  <line x1="0" y1="118" x2="29" y2="118" />
-  <line x1="0" y1="119" x2="29" y2="119" />
   <line x1="0" y1="120" x2="29" y2="120" style="stroke-width:2" />
 
   <!-- Vertical lines -->
@@ -1049,93 +1220,102 @@ array([[1., 1., 1., ..., 1., 1., 1.],
   <line x1="29" y1="0" x2="29" y2="120" style="stroke-width:2" />
 
   <!-- Colored Rectangle -->
-  <polygon points="0.000000,0.000000 29.030629,0.000000 29.030629,120.000000 0.000000,120.000000" style="fill:#ECB172A0;stroke-width:0"/>
+  <polygon points="0.0,0.0 29.030629010473877,0.0 29.030629010473877,120.0 0.0,120.0" style="fill:#8B4903A0;stroke-width:0"/>
 
   <!-- Text -->
   <text x="14.515315" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >4000</text>
   <text x="49.030629" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,49.030629,60.000000)">200000</text>
 </svg>
-</td>
-</tr>
-</table></div>
+        </td>
+    </tr>
+</table></div></div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2"> MB&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">big_ones</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">))</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2"> MB&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">big_ones</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-6400.0 MB
-</pre></div></div>
-</div>
-<p>This dataset is 6.4 GB, rather than 32 MB! This is probably close to or greater than the amount of available RAM than you have in your computer. Nevertheless, Dask has no problem working on it.</p>
-<p><em>Do not try to ``.visualize()`` this array!</em></p>
-<p>When doing a big calculation, dask also has some tools to help us understand what is happening under the hood. Let’s watch the dashboard again as we do a bigger computation.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6400.0 MB
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">big_calc</span> <span class="o">=</span> <span class="p">(</span><span class="n">big_ones</span> <span class="o">*</span> <span class="n">big_ones</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</div>
+</div>
+<p>This dataset is 6.4 GB, rather than 32 MB! This is probably close to or greater
+than the amount of available RAM than you have in your computer. Nevertheless,
+Dask has no problem working on it.</p>
+<p><em>Do not try to <code class="docutils literal notranslate"><span class="pre">.visualize()</span></code> this array!</em></p>
+<p>When doing a big calculation, dask also has some tools to help us understand
+what is happening under the hood. Let’s watch the dashboard again as we do a
+bigger computation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">big_calc</span> <span class="o">=</span> <span class="p">(</span><span class="n">big_ones</span> <span class="o">*</span> <span class="n">big_ones</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="n">big_calc</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
 <span class="n">result</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
 </pre></div>
 </div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-1.0
-</pre></div></div>
 </div>
 </div>
-<div class="section" id="Reduction">
-<h3>Reduction<a class="headerlink" href="#Reduction" title="Permalink to this headline">¶</a></h3>
-<p>All the usual numpy methods work on dask arrays. You can also apply numpy function directly to a dask array, and it will stay lazy.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">big_ones_reduce</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">big_ones</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="section" id="reduction">
+<h3>Reduction<a class="headerlink" href="#reduction" title="Permalink to this headline">¶</a></h3>
+<p>All the usual numpy methods work on dask arrays. You can also apply numpy
+function directly to a dask array, and it will stay lazy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">big_ones_reduce</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">big_ones</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">big_ones_reduce</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<table>
-<tr>
-<td>
-<table>
-  <thead>
-    <tr><td> </td><th> Array </th><th> Chunk </th></tr>
-  </thead>
-  <tbody>
-    <tr><th> Bytes </th><td> 1.60 MB </td> <td> 8.00 kB </td></tr>
-    <tr><th> Shape </th><td> (200000,) </td> <td> (1000,) </td></tr>
-    <tr><th> Count </th><td> 3400 Tasks </td><td> 200 Chunks </td></tr>
-    <tr><th> Type </th><td> float64 </td><td> numpy.ndarray </td></tr>
-  </tbody>
-</table>
-</td>
-<td>
-<svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 1.53 MiB </td>
+                        <td> 7.81 kiB </td>
+                    </tr>
+
+                    <tr>
+                        <th> Shape </th>
+                        <td> (200000,) </td>
+                        <td> (1000,) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 3400 Tasks </td>
+                        <td> 200 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float64 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
 
   <!-- Horizontal lines -->
   <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
@@ -1143,348 +1323,348 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 
   <!-- Vertical lines -->
   <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
-  <line x1="0" y1="0" x2="0" y2="25" />
-  <line x1="1" y1="0" x2="1" y2="25" />
-  <line x1="1" y1="0" x2="1" y2="25" />
-  <line x1="2" y1="0" x2="2" y2="25" />
-  <line x1="3" y1="0" x2="3" y2="25" />
-  <line x1="3" y1="0" x2="3" y2="25" />
-  <line x1="4" y1="0" x2="4" y2="25" />
-  <line x1="4" y1="0" x2="4" y2="25" />
-  <line x1="5" y1="0" x2="5" y2="25" />
   <line x1="6" y1="0" x2="6" y2="25" />
-  <line x1="6" y1="0" x2="6" y2="25" />
-  <line x1="7" y1="0" x2="7" y2="25" />
-  <line x1="7" y1="0" x2="7" y2="25" />
-  <line x1="8" y1="0" x2="8" y2="25" />
-  <line x1="9" y1="0" x2="9" y2="25" />
-  <line x1="9" y1="0" x2="9" y2="25" />
-  <line x1="10" y1="0" x2="10" y2="25" />
-  <line x1="10" y1="0" x2="10" y2="25" />
-  <line x1="11" y1="0" x2="11" y2="25" />
   <line x1="12" y1="0" x2="12" y2="25" />
-  <line x1="12" y1="0" x2="12" y2="25" />
-  <line x1="13" y1="0" x2="13" y2="25" />
-  <line x1="13" y1="0" x2="13" y2="25" />
-  <line x1="14" y1="0" x2="14" y2="25" />
-  <line x1="15" y1="0" x2="15" y2="25" />
-  <line x1="15" y1="0" x2="15" y2="25" />
-  <line x1="16" y1="0" x2="16" y2="25" />
-  <line x1="16" y1="0" x2="16" y2="25" />
-  <line x1="17" y1="0" x2="17" y2="25" />
   <line x1="18" y1="0" x2="18" y2="25" />
-  <line x1="18" y1="0" x2="18" y2="25" />
-  <line x1="19" y1="0" x2="19" y2="25" />
-  <line x1="19" y1="0" x2="19" y2="25" />
-  <line x1="20" y1="0" x2="20" y2="25" />
-  <line x1="21" y1="0" x2="21" y2="25" />
-  <line x1="21" y1="0" x2="21" y2="25" />
-  <line x1="22" y1="0" x2="22" y2="25" />
-  <line x1="22" y1="0" x2="22" y2="25" />
-  <line x1="23" y1="0" x2="23" y2="25" />
-  <line x1="24" y1="0" x2="24" y2="25" />
-  <line x1="24" y1="0" x2="24" y2="25" />
   <line x1="25" y1="0" x2="25" y2="25" />
-  <line x1="25" y1="0" x2="25" y2="25" />
-  <line x1="26" y1="0" x2="26" y2="25" />
-  <line x1="27" y1="0" x2="27" y2="25" />
-  <line x1="27" y1="0" x2="27" y2="25" />
-  <line x1="28" y1="0" x2="28" y2="25" />
-  <line x1="28" y1="0" x2="28" y2="25" />
-  <line x1="29" y1="0" x2="29" y2="25" />
-  <line x1="30" y1="0" x2="30" y2="25" />
-  <line x1="30" y1="0" x2="30" y2="25" />
   <line x1="31" y1="0" x2="31" y2="25" />
-  <line x1="31" y1="0" x2="31" y2="25" />
-  <line x1="32" y1="0" x2="32" y2="25" />
-  <line x1="33" y1="0" x2="33" y2="25" />
-  <line x1="33" y1="0" x2="33" y2="25" />
-  <line x1="34" y1="0" x2="34" y2="25" />
-  <line x1="34" y1="0" x2="34" y2="25" />
-  <line x1="35" y1="0" x2="35" y2="25" />
-  <line x1="36" y1="0" x2="36" y2="25" />
-  <line x1="36" y1="0" x2="36" y2="25" />
   <line x1="37" y1="0" x2="37" y2="25" />
-  <line x1="37" y1="0" x2="37" y2="25" />
-  <line x1="38" y1="0" x2="38" y2="25" />
-  <line x1="39" y1="0" x2="39" y2="25" />
-  <line x1="39" y1="0" x2="39" y2="25" />
-  <line x1="40" y1="0" x2="40" y2="25" />
-  <line x1="40" y1="0" x2="40" y2="25" />
-  <line x1="41" y1="0" x2="41" y2="25" />
-  <line x1="42" y1="0" x2="42" y2="25" />
-  <line x1="42" y1="0" x2="42" y2="25" />
   <line x1="43" y1="0" x2="43" y2="25" />
-  <line x1="43" y1="0" x2="43" y2="25" />
-  <line x1="44" y1="0" x2="44" y2="25" />
-  <line x1="45" y1="0" x2="45" y2="25" />
-  <line x1="45" y1="0" x2="45" y2="25" />
-  <line x1="46" y1="0" x2="46" y2="25" />
-  <line x1="46" y1="0" x2="46" y2="25" />
-  <line x1="47" y1="0" x2="47" y2="25" />
-  <line x1="48" y1="0" x2="48" y2="25" />
-  <line x1="48" y1="0" x2="48" y2="25" />
-  <line x1="49" y1="0" x2="49" y2="25" />
-  <line x1="49" y1="0" x2="49" y2="25" />
   <line x1="50" y1="0" x2="50" y2="25" />
-  <line x1="51" y1="0" x2="51" y2="25" />
-  <line x1="51" y1="0" x2="51" y2="25" />
-  <line x1="52" y1="0" x2="52" y2="25" />
-  <line x1="52" y1="0" x2="52" y2="25" />
-  <line x1="53" y1="0" x2="53" y2="25" />
-  <line x1="54" y1="0" x2="54" y2="25" />
-  <line x1="54" y1="0" x2="54" y2="25" />
-  <line x1="55" y1="0" x2="55" y2="25" />
-  <line x1="55" y1="0" x2="55" y2="25" />
   <line x1="56" y1="0" x2="56" y2="25" />
-  <line x1="57" y1="0" x2="57" y2="25" />
-  <line x1="57" y1="0" x2="57" y2="25" />
-  <line x1="58" y1="0" x2="58" y2="25" />
-  <line x1="58" y1="0" x2="58" y2="25" />
-  <line x1="59" y1="0" x2="59" y2="25" />
-  <line x1="60" y1="0" x2="60" y2="25" />
-  <line x1="60" y1="0" x2="60" y2="25" />
-  <line x1="61" y1="0" x2="61" y2="25" />
-  <line x1="61" y1="0" x2="61" y2="25" />
-  <line x1="62" y1="0" x2="62" y2="25" />
   <line x1="63" y1="0" x2="63" y2="25" />
-  <line x1="63" y1="0" x2="63" y2="25" />
-  <line x1="64" y1="0" x2="64" y2="25" />
-  <line x1="64" y1="0" x2="64" y2="25" />
-  <line x1="65" y1="0" x2="65" y2="25" />
-  <line x1="66" y1="0" x2="66" y2="25" />
-  <line x1="66" y1="0" x2="66" y2="25" />
-  <line x1="67" y1="0" x2="67" y2="25" />
-  <line x1="67" y1="0" x2="67" y2="25" />
-  <line x1="68" y1="0" x2="68" y2="25" />
   <line x1="69" y1="0" x2="69" y2="25" />
-  <line x1="69" y1="0" x2="69" y2="25" />
-  <line x1="70" y1="0" x2="70" y2="25" />
-  <line x1="70" y1="0" x2="70" y2="25" />
-  <line x1="71" y1="0" x2="71" y2="25" />
-  <line x1="72" y1="0" x2="72" y2="25" />
-  <line x1="72" y1="0" x2="72" y2="25" />
-  <line x1="73" y1="0" x2="73" y2="25" />
-  <line x1="73" y1="0" x2="73" y2="25" />
-  <line x1="74" y1="0" x2="74" y2="25" />
   <line x1="75" y1="0" x2="75" y2="25" />
-  <line x1="75" y1="0" x2="75" y2="25" />
-  <line x1="76" y1="0" x2="76" y2="25" />
-  <line x1="76" y1="0" x2="76" y2="25" />
-  <line x1="77" y1="0" x2="77" y2="25" />
-  <line x1="78" y1="0" x2="78" y2="25" />
-  <line x1="78" y1="0" x2="78" y2="25" />
-  <line x1="79" y1="0" x2="79" y2="25" />
-  <line x1="79" y1="0" x2="79" y2="25" />
-  <line x1="80" y1="0" x2="80" y2="25" />
   <line x1="81" y1="0" x2="81" y2="25" />
-  <line x1="81" y1="0" x2="81" y2="25" />
-  <line x1="82" y1="0" x2="82" y2="25" />
-  <line x1="82" y1="0" x2="82" y2="25" />
-  <line x1="83" y1="0" x2="83" y2="25" />
-  <line x1="84" y1="0" x2="84" y2="25" />
-  <line x1="84" y1="0" x2="84" y2="25" />
-  <line x1="85" y1="0" x2="85" y2="25" />
-  <line x1="85" y1="0" x2="85" y2="25" />
-  <line x1="86" y1="0" x2="86" y2="25" />
-  <line x1="87" y1="0" x2="87" y2="25" />
-  <line x1="87" y1="0" x2="87" y2="25" />
   <line x1="88" y1="0" x2="88" y2="25" />
-  <line x1="88" y1="0" x2="88" y2="25" />
-  <line x1="89" y1="0" x2="89" y2="25" />
-  <line x1="90" y1="0" x2="90" y2="25" />
-  <line x1="90" y1="0" x2="90" y2="25" />
-  <line x1="91" y1="0" x2="91" y2="25" />
-  <line x1="91" y1="0" x2="91" y2="25" />
-  <line x1="92" y1="0" x2="92" y2="25" />
-  <line x1="93" y1="0" x2="93" y2="25" />
-  <line x1="93" y1="0" x2="93" y2="25" />
   <line x1="94" y1="0" x2="94" y2="25" />
-  <line x1="94" y1="0" x2="94" y2="25" />
-  <line x1="95" y1="0" x2="95" y2="25" />
-  <line x1="96" y1="0" x2="96" y2="25" />
-  <line x1="96" y1="0" x2="96" y2="25" />
-  <line x1="97" y1="0" x2="97" y2="25" />
-  <line x1="97" y1="0" x2="97" y2="25" />
-  <line x1="98" y1="0" x2="98" y2="25" />
-  <line x1="99" y1="0" x2="99" y2="25" />
-  <line x1="99" y1="0" x2="99" y2="25" />
   <line x1="100" y1="0" x2="100" y2="25" />
-  <line x1="100" y1="0" x2="100" y2="25" />
-  <line x1="101" y1="0" x2="101" y2="25" />
-  <line x1="102" y1="0" x2="102" y2="25" />
-  <line x1="102" y1="0" x2="102" y2="25" />
-  <line x1="103" y1="0" x2="103" y2="25" />
-  <line x1="103" y1="0" x2="103" y2="25" />
-  <line x1="104" y1="0" x2="104" y2="25" />
-  <line x1="105" y1="0" x2="105" y2="25" />
-  <line x1="105" y1="0" x2="105" y2="25" />
   <line x1="106" y1="0" x2="106" y2="25" />
-  <line x1="106" y1="0" x2="106" y2="25" />
-  <line x1="107" y1="0" x2="107" y2="25" />
-  <line x1="108" y1="0" x2="108" y2="25" />
-  <line x1="108" y1="0" x2="108" y2="25" />
-  <line x1="109" y1="0" x2="109" y2="25" />
-  <line x1="109" y1="0" x2="109" y2="25" />
-  <line x1="110" y1="0" x2="110" y2="25" />
-  <line x1="111" y1="0" x2="111" y2="25" />
-  <line x1="111" y1="0" x2="111" y2="25" />
-  <line x1="112" y1="0" x2="112" y2="25" />
-  <line x1="112" y1="0" x2="112" y2="25" />
   <line x1="113" y1="0" x2="113" y2="25" />
-  <line x1="114" y1="0" x2="114" y2="25" />
-  <line x1="114" y1="0" x2="114" y2="25" />
-  <line x1="115" y1="0" x2="115" y2="25" />
-  <line x1="115" y1="0" x2="115" y2="25" />
-  <line x1="116" y1="0" x2="116" y2="25" />
-  <line x1="117" y1="0" x2="117" y2="25" />
-  <line x1="117" y1="0" x2="117" y2="25" />
-  <line x1="118" y1="0" x2="118" y2="25" />
-  <line x1="118" y1="0" x2="118" y2="25" />
-  <line x1="119" y1="0" x2="119" y2="25" />
   <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
 
   <!-- Colored Rectangle -->
-  <polygon points="0.000000,0.000000 120.000000,0.000000 120.000000,25.412617 0.000000,25.412617" style="fill:#ECB172A0;stroke-width:0"/>
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#8B4903A0;stroke-width:0"/>
 
   <!-- Text -->
   <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >200000</text>
   <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
 </svg>
-</td>
-</tr>
-</table></div>
+        </td>
+    </tr>
+</table></div></div>
 </div>
 <p>Plotting also triggers computation, since we need the actual values</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">big_ones_reduce</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">big_ones_reduce</span><span class="p">)</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f146c9a3b20&gt;]
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7fa8e5934d60&gt;]
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/scipy-tutorial_05_intro_to_dask_31_1.png" src="../_images/scipy-tutorial_05_intro_to_dask_31_1.png" />
+<img alt="../_images/05_intro_to_dask_31_1.png" src="../_images/05_intro_to_dask_31_1.png" />
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="Parallelism-using-the-dask.distributed-scheduler">
-<h2>Parallelism using the dask.distributed scheduler<a class="headerlink" href="#Parallelism-using-the-dask.distributed-scheduler" title="Permalink to this headline">¶</a></h2>
-<p>In the <a class="reference external" href="#Quick-setup">first cell</a> of this notebook, we started a local Dask Cluster and Client. We skipped past some important details there that we’ll unpack now.</p>
-<div class="section" id="Dask-Schedulers">
-<h3>Dask Schedulers<a class="headerlink" href="#Dask-Schedulers" title="Permalink to this headline">¶</a></h3>
-<p>The Dask <em>Schedulers</em> orchestrate the tasks in the Task Graphs so that they can be run in parallel. <em>How</em> they run in parallel, though, is determined by which <em>Scheduler</em> you choose.</p>
+<div class="section" id="parallelism-using-the-dask-distributed-scheduler">
+<h2>Parallelism using the dask.distributed scheduler<a class="headerlink" href="#parallelism-using-the-dask-distributed-scheduler" title="Permalink to this headline">¶</a></h2>
+<p>In the <a class="reference external" href="#Quick-setup">first cell</a> of this notebook, we started a local Dask
+Cluster and Client. We skipped past some important details there that we’ll
+unpack now.</p>
+<div class="section" id="dask-schedulers">
+<h3>Dask Schedulers<a class="headerlink" href="#dask-schedulers" title="Permalink to this headline">¶</a></h3>
+<p>The Dask <em>Schedulers</em> orchestrate the tasks in the Task Graphs so that they can
+be run in parallel. <em>How</em> they run in parallel, though, is determined by which
+<em>Scheduler</em> you choose.</p>
 <p>There are 3 <em>local</em> schedulers:</p>
 <ul class="simple">
 <li><p><strong>Single-Thread Local:</strong> For debugging, profiling, and diagnosing issues</p></li>
-<li><p><strong>Multi-threaded:</strong> Using the Python built-in <code class="docutils literal notranslate"><span class="pre">threading</span></code> package (the default for all Dask operations except <code class="docutils literal notranslate"><span class="pre">Bags</span></code>)</p></li>
-<li><p><strong>Multi-process:</strong> Using the Python built-in <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> package (the default for Dask <code class="docutils literal notranslate"><span class="pre">Bags</span></code>)</p></li>
+<li><p><strong>Multi-threaded:</strong> Using the Python built-in <code class="docutils literal notranslate"><span class="pre">threading</span></code> package (the default
+for all Dask operations except <code class="docutils literal notranslate"><span class="pre">Bags</span></code>)</p></li>
+<li><p><strong>Multi-process:</strong> Using the Python built-in <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> package (the
+default for Dask <code class="docutils literal notranslate"><span class="pre">Bags</span></code>)</p></li>
 </ul>
 <p>and 1 <em>distributed</em> scheduler, which we will talk about later:</p>
 <ul class="simple">
-<li><p><strong>Distributed:</strong> Using the <code class="docutils literal notranslate"><span class="pre">dask.distributed</span></code> module (which uses <code class="docutils literal notranslate"><span class="pre">tornado</span></code> for communication over TCP). The distributed scheduler uses a <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> to manage communication between the scheduler and the “workers”. This is described in the next section.</p></li>
+<li><p><strong>Distributed:</strong> Using the <code class="docutils literal notranslate"><span class="pre">dask.distributed</span></code> module (which uses <code class="docutils literal notranslate"><span class="pre">tornado</span></code> for
+communication over TCP). The distributed scheduler uses a <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> to manage
+communication between the scheduler and the “workers”. This is described in
+the next section.</p></li>
 </ul>
 </div>
-<div class="section" id="Distributed-Clusters-(http://distributed.dask.org/)">
-<h3>Distributed Clusters (<a class="reference external" href="http://distributed.dask.org/">http://distributed.dask.org/</a>)<a class="headerlink" href="#Distributed-Clusters-(http://distributed.dask.org/)" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="distributed-clusters-http-distributed-dask-org">
+<h3>Distributed Clusters (<a class="reference external" href="http://distributed.dask.org/">http://distributed.dask.org/</a>)<a class="headerlink" href="#distributed-clusters-http-distributed-dask-org" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">LocalCluster</span></code> - Creates a <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> that can be executed locally. Each <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> includes a <code class="docutils literal notranslate"><span class="pre">Scheduler</span></code> and <code class="docutils literal notranslate"><span class="pre">Worker</span></code>s.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LocalCluster</span></code> - Creates a <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> that can be executed locally. Each
+<code class="docutils literal notranslate"><span class="pre">Cluster</span></code> includes a <code class="docutils literal notranslate"><span class="pre">Scheduler</span></code> and <code class="docutils literal notranslate"><span class="pre">Worker</span></code>s.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Client</span></code> - Connects to and drives computation on a distributed <code class="docutils literal notranslate"><span class="pre">Cluster</span></code></p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="Profiling-&amp;-Diagnostics-using-the-Dask-Dashboard">
-<h2>Profiling &amp; Diagnostics using the Dask Dashboard<a class="headerlink" href="#Profiling-&-Diagnostics-using-the-Dask-Dashboard" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="profiling-diagnostics-using-the-dask-dashboard">
+<h2>Profiling &amp; Diagnostics using the Dask Dashboard<a class="headerlink" href="#profiling-diagnostics-using-the-dask-dashboard" title="Permalink to this headline">¶</a></h2>
 <p>You’ll recall from above, that we opened a url to the Dask Dashboard:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">client</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<table style="border: 2px solid white;">
-<tr>
-<td style="vertical-align: top; border: 0px solid white">
-<h3 style="text-align: left;">Client</h3>
-<ul style="text-align: left; list-style: none; margin: 0; padding: 0;">
-  <li><b>Scheduler: </b>tcp://127.0.0.1:42185</li>
-  <li><b>Dashboard: </b><a href='http://127.0.0.1:8787/status' target='_blank'>http://127.0.0.1:8787/status</a></li>
-</ul>
-</td>
-<td style="vertical-align: top; border: 0px solid white">
-<h3 style="text-align: left;">Cluster</h3>
-<ul style="text-align: left; list-style:none; margin: 0; padding: 0;">
-  <li><b>Workers: </b>2</li>
-  <li><b>Cores: </b>2</li>
-  <li><b>Memory: </b>8.36 GB</li>
-</ul>
-</td>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+    <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
+    <div style="margin-left: 48px;">
+        <h3 style="margin-bottom: 0px;">Client</h3>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-a14d7f62-d648-11ec-8bdb-6045bd777d99</p>
+        <table style="width: 100%; text-align: left;">
+
+        <tr>
+
+            <td style="text-align: left;"><strong>Connection method:</strong> Cluster object</td>
+            <td style="text-align: left;"><strong>Cluster type:</strong> distributed.LocalCluster</td>
+
+        </tr>
+
+
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Dashboard: </strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
+                </td>
+                <td style="text-align: left;"></td>
+            </tr>
+
+
+        </table>
+
+
+            <details>
+            <summary style="margin-bottom: 20px;"><h3 style="display: inline;">Cluster Info</h3></summary>
+            <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-mod-trusted jp-OutputArea-output">
+    <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;">
+    </div>
+    <div style="margin-left: 48px;">
+        <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCluster</h3>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">bb75af0e</p>
+        <table style="width: 100%; text-align: left;">
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Dashboard:</strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
+                </td>
+                <td style="text-align: left;">
+                    <strong>Workers:</strong> 2
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Total threads:</strong> 2
+                </td>
+                <td style="text-align: left;">
+                    <strong>Total memory:</strong> 6.78 GiB
+                </td>
+            </tr>
+
+            <tr>
+    <td style="text-align: left;"><strong>Status:</strong> running</td>
+    <td style="text-align: left;"><strong>Using processes:</strong> True</td>
 </tr>
-</table></div>
+
+
+        </table>
+
+        <details>
+            <summary style="margin-bottom: 20px;">
+                <h3 style="display: inline;">Scheduler Info</h3>
+            </summary>
+
+            <div style="">
+    <div>
+        <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
+        <div style="margin-left: 48px;">
+            <h3 style="margin-bottom: 0px;">Scheduler</h3>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-6b88a3ed-fcda-4f29-975d-1916ce50ab00</p>
+            <table style="width: 100%; text-align: left;">
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Comm:</strong> tcp://127.0.0.1:39597
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Workers:</strong> 2
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Dashboard:</strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Total threads:</strong> 2
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Started:</strong> Just now
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Total memory:</strong> 6.78 GiB
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <details style="margin-left: 48px;">
+        <summary style="margin-bottom: 20px;">
+            <h3 style="display: inline;">Workers</h3>
+        </summary>
+
+
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 0</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://127.0.0.1:37483
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:41023/status" target="_blank">http://127.0.0.1:41023/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 3.39 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:38135
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /home/runner/work/xarray-tutorial/xarray-tutorial/scipy-tutorial/dask-worker-space/worker-rjmldvwo
+                        </td>
+                    </tr>
+
+
+
+
+
+                </table>
+            </details>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 1</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://127.0.0.1:43497
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:39045/status" target="_blank">http://127.0.0.1:39045/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 3.39 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:40397
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /home/runner/work/xarray-tutorial/xarray-tutorial/scipy-tutorial/dask-worker-space/worker-1889bc5d
+                        </td>
+                    </tr>
+
+
+
+
+
+                </table>
+            </details>
+            </div>
+        </div>
+
+
+    </details>
 </div>
-<p>The dashboard the Dask distributed scheduler provides a an incredibly valuable tool for gaining insights into the performance of your computation and the cluster as a whole. In the dashboard, you’ll see a number of tags:</p>
+
+        </details>
+    </div>
+</div>
+            </details>
+
+
+    </div>
+</div></div></div>
+</div>
+<p>The dashboard the Dask distributed scheduler provides a an incredibly valuable
+tool for gaining insights into the performance of your computation and the
+cluster as a whole. In the dashboard, you’ll see a number of tags:</p>
 <ul class="simple">
-<li><p><em>Status</em>: Overview of the current state of the scheduler, including the active task stream, progress, memory per worker, and the number of tasks per worker.</p></li>
+<li><p><em>Status</em>: Overview of the current state of the scheduler, including the active
+task stream, progress, memory per worker, and the number of tasks per worker.</p></li>
 <li><p><em>Workers</em>: The workers tab allows you to track cpu and memory use per worker.</p></li>
-<li><p><em>System</em>: Live tracking of system resources like cpu, memory, bandwidth, and open file descriptors</p></li>
+<li><p><em>System</em>: Live tracking of system resources like cpu, memory, bandwidth, and
+open file descriptors</p></li>
 <li><p><em>Profile</em>: Fine-grained statistical profiling</p></li>
 <li><p><em>Info</em>: Worker status and logs.</p></li>
 </ul>
-<p>Another useful diagnostic tool is Dask’s static performance report. This allows you to save a report, including the task stream, worker profiles, etc. for all or a specific part of a workflow. Below is an example of how you would create such a report:</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">performance_report</span>
+<p>Another useful diagnostic tool is Dask’s static performance report. This allows
+you to save a report, including the task stream, worker profiles, etc. for all
+or a specific part of a workflow. Below is an example of how you would create
+such a report:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">performance_report</span>
 
 <span class="k">with</span> <span class="n">performance_report</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;dask-report.html&quot;</span><span class="p">):</span>
     <span class="n">big_calc</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+</div>
 <div class="section" id="id1">
 <h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>Again, let’s modify the chunk size in <code class="docutils literal notranslate"><span class="pre">big_ones</span></code> (aim for ~100mb). How does the <em>Performance Report</em> change with a larger chunk size?</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># your code here</span>
+<p>Again, let’s modify the chunk size in <code class="docutils literal notranslate"><span class="pre">big_ones</span></code> (aim for ~100mb). How does the
+<em>Performance Report</em> change with a larger chunk size?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
 
 <span class="k">with</span> <span class="n">performance_report</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;dask-report-large-chunk.html&quot;</span><span class="p">):</span>
     <span class="n">big_calc</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
@@ -1493,13 +1673,17 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </div>
 </div>
 </div>
-<div class="section" id="Distributed-Dask-clusters-for-HPC-and-Cloud-environments">
-<h2>Distributed Dask clusters for HPC and Cloud environments<a class="headerlink" href="#Distributed-Dask-clusters-for-HPC-and-Cloud-environments" title="Permalink to this headline">¶</a></h2>
-<p>Dask can be deployed on distributed infrastructure, such as a an HPC system or a cloud computing system. There is a growing ecosystem of Dask deployment projects that faciliate easy deployment and scaling of Dask clusters on a wide variety of computing systems.</p>
-<div class="section" id="HPC">
-<h3>HPC<a class="headerlink" href="#HPC" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="Dask-Jobqueue-(https://jobqueue.dask.org/)">
-<h4>Dask Jobqueue (<a class="reference external" href="https://jobqueue.dask.org/">https://jobqueue.dask.org/</a>)<a class="headerlink" href="#Dask-Jobqueue-(https://jobqueue.dask.org/)" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="distributed-dask-clusters-for-hpc-and-cloud-environments">
+<h2>Distributed Dask clusters for HPC and Cloud environments<a class="headerlink" href="#distributed-dask-clusters-for-hpc-and-cloud-environments" title="Permalink to this headline">¶</a></h2>
+<p>Dask can be deployed on distributed infrastructure, such as a an HPC system or a
+cloud computing system. There is a growing ecosystem of Dask deployment projects
+that faciliate easy deployment and scaling of Dask clusters on a wide variety of
+computing systems.</p>
+<div class="section" id="hpc">
+<h3>HPC<a class="headerlink" href="#hpc" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="dask-jobqueue-https-jobqueue-dask-org">
+<h4>Dask Jobqueue (<a class="reference external" href="https://jobqueue.dask.org/">https://jobqueue.dask.org/</a>)<a class="headerlink" href="#dask-jobqueue-https-jobqueue-dask-org" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_jobqueue.PBSCluster</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_jobqueue.SlurmCluster</span></code></p></li>
@@ -1507,31 +1691,31 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 <li><p>etc.</p></li>
 </ul>
 </div>
-<div class="section" id="Dask-MPI-(https://mpi.dask.org/)">
-<h4>Dask MPI (<a class="reference external" href="https://mpi.dask.org/">https://mpi.dask.org/</a>)<a class="headerlink" href="#Dask-MPI-(https://mpi.dask.org/)" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="dask-mpi-https-mpi-dask-org">
+<h4>Dask MPI (<a class="reference external" href="https://mpi.dask.org/">https://mpi.dask.org/</a>)<a class="headerlink" href="#dask-mpi-https-mpi-dask-org" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_mpi.initialize</span></code></p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="Cloud">
-<h3>Cloud<a class="headerlink" href="#Cloud" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="Dask-Kubernetes-(https://kubernetes.dask.org/)">
-<h4>Dask Kubernetes (<a class="reference external" href="https://kubernetes.dask.org/">https://kubernetes.dask.org/</a>)<a class="headerlink" href="#Dask-Kubernetes-(https://kubernetes.dask.org/)" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="cloud">
+<h3>Cloud<a class="headerlink" href="#cloud" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="dask-kubernetes-https-kubernetes-dask-org">
+<h4>Dask Kubernetes (<a class="reference external" href="https://kubernetes.dask.org/">https://kubernetes.dask.org/</a>)<a class="headerlink" href="#dask-kubernetes-https-kubernetes-dask-org" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_kubernetes.KubeCluster</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="Dask-Cloud-Provider-(https://cloudprovider.dask.org)">
-<h4>Dask Cloud Provider (<a class="reference external" href="https://cloudprovider.dask.org">https://cloudprovider.dask.org</a>)<a class="headerlink" href="#Dask-Cloud-Provider-(https://cloudprovider.dask.org)" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="dask-cloud-provider-https-cloudprovider-dask-org">
+<h4>Dask Cloud Provider (<a class="reference external" href="https://cloudprovider.dask.org">https://cloudprovider.dask.org</a>)<a class="headerlink" href="#dask-cloud-provider-https-cloudprovider-dask-org" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_cloudprovider.FargateCluster</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_cloudprovider.ECSCluster</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_cloudprovider.ECSCluster</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="Dask-Gateway-(https://gateway.dask.org/)">
-<h4>Dask Gateway (<a class="reference external" href="https://gateway.dask.org/">https://gateway.dask.org/</a>)<a class="headerlink" href="#Dask-Gateway-(https://gateway.dask.org/)" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="dask-gateway-https-gateway-dask-org">
+<h4>Dask Gateway (<a class="reference external" href="https://gateway.dask.org/">https://gateway.dask.org/</a>)<a class="headerlink" href="#dask-gateway-https-gateway-dask-org" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dask_gateway.GatewayCluster</span></code></p></li>
 </ul>
@@ -1547,60 +1731,64 @@ array([[1., 1., 1., ..., 1., 1., 1.],
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./scipy-tutorial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
-           </div>
-           
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="06_xarray_and_dask.html" class="btn btn-neutral float-right" title="Xarray and Dask" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="04_plotting_and_visualization.html" class="btn btn-neutral float-left" title="Plotting and Visualization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="04_plotting_and_visualization.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Plotting and Visualization</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="06_xarray_and_dask.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Xarray and Dask</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By the Xarray community<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
     </div>
   
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2020, Xarray Developers
-
-    </p>
-  </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-  
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
-  
-    
-   
-
-</body>
+  </body>
 </html>
