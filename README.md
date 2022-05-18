@@ -1,5 +1,5 @@
-Xarray Example Notebooks
-========================
+# Xarray Example Notebooks
+
 [![CI](https://github.com/xarray-contrib/xarray-tutorial/workflows/CI/badge.svg?branch=main)](https://github.com/xarray-contrib/xarray-tutorial/actions?query=branch%3Amain)
 
 This repository includes easy-to-run example notebooks for Xarray.
@@ -10,8 +10,7 @@ They are also available on the cloud by clicking on the link below:
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/HEAD?urlpath=lab)
 
-Contributing
-------------
+## Contributing
 
 This repository is a great opportunity to start contributing to Xarray.
 Please note that examples submitted to this repository should follow these
@@ -24,4 +23,4 @@ guidelines:
 5. Be concise and limited to one or two topics, such that a reader can get through the example within a few minutes of reading
 6. Be of general relevance to Xarray users, and so not too specific on a particular problem or use case.
 
-*Note: Some of the content in this repository came from a similar projects: https://github.com/dask/dask-tutorial*
+_Note: Some of the content in this repository came from a similar projects: https://github.com/dask/dask-tutorial_
