@@ -1,5 +1,6 @@
 Xarray Example Notebooks
 ========================
+[![CI](https://github.com/xarray-contrib/xarray-tutorial/workflows/CI/badge.svg?branch=main)](https://github.com/xarray-contrib/xarray-tutorial/actions?query=branch%3Amain)
 
 This repository includes easy-to-run example notebooks for Xarray.
 They are intended to be educational and give users a start on common workflows.
@@ -7,11 +8,7 @@ They are intended to be educational and give users a start on common workflows.
 They should be easy to run locally if you download this repository.
 They are also available on the cloud by clicking on the link below:
 
-<!-- [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/master?urlpath=lab) -->
-
-[![Binder](https://mybinder.org/badge_logo.svg)](https://binder.pangeo.io/v2/gh/xarray-contrib/xarray-tutorial/binder-config?urlpath=git-pull?repo=https://github.com/xarray-contrib/xarray-tutorial%26amp%3Bbranch=master%26amp%3Burlpath=lab/tree/xarray-tutorial/%3Fautodecode)
-[![CI](https://github.com/xarray-contrib/xarray-tutorial/workflows/CI/badge.svg?branch=master)](https://github.com/xarray-contrib/xarray-tutorial/actions?query=branch%3Amaster)
-[![Build Status](https://travis-ci.org/xarray-contrib/xarray-tutorial.svg?branch=master)](https://travis-ci.org/xarray-contrib/xarray-tutorial)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/HEAD?urlpath=lab)
 
 Contributing
 ------------
