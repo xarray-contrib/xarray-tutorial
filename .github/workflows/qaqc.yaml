@@ -33,7 +33,7 @@ jobs:
         shell: python
         run: |
           import yaml
-          with open('./book/_config.yml') as f:
+          with open('./_config.yml') as f:
             data = yaml.safe_load(f)
             data['execute']['execute_notebooks'] = 'off'
           with open('./_config.yml', 'w') as f:
