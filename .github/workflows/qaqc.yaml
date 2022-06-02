@@ -1,0 +1,46 @@
+name: QualityContol
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  quality-control:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: ./.github/actions/setupconda
+
+    # NOTE: this isn't a comprehensive spellcheck, just common typos
+    - name: Spellcheck
+      if: always()
+      uses: codespell-project/actions-codespell@master
+      with:
+        check_filenames: true
+        check_hidden: true
+        skip: '*.js,qaqc.yml'
+        ignore_words_list: hist
+
+    # borrowed from https://github.com/ProjectPythia/pythia-foundations/blob/main/.github/workflows/link-checker.yaml
+    - name: Disable Notebook Execution Before Linkcheck
+      if: always()
+      shell: python
+      run: |
+        import yaml
+        with open('./book/_config.yml') as f:
+          data = yaml.safe_load(f)
+          data['execute']['execute_notebooks'] = 'off'
+        with open('./book/_config.yml', 'w') as f:
+          yaml.dump(data, f)
+
+    - name: Check External Links
+      continue-on-error: true
+      if: always()
+      run: |
+        jb build ./ --builder linkcheck
