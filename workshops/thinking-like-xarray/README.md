@@ -1,15 +1,8 @@
-# Oceanhackweek 2020
+# High-level computational patterns
 
-Presented August 2020 at [OceanHackWeek](https://oceanhackweek.github.io) by Deepak Cheerian
+Presented March 2022 for the [NCAR Python Seminar Series](https://ncar.github.io/esds/posts/2022/Thinking-with-Xarray/) by Deepak Cheerian
 
-This 45-minute tutorial covers the basics of Xarray data structures.
+This 60-minute, intermediate-level lesson covers common high-level computing patterns
 
 Video Recording:
-https://www.youtube.com/watch?v=q020HHnGAWo
-
-By the end of the lesson, we will be able to:
-
-- Understand the basic data structures in Xarray
-- Inspect `DataArray` and `Dataset` objects.
-- Read and write netCDF files using Xarray.
-- Understand that there are many packages that build on top of xarray
+https://www.youtube.com/watch?v=TSw3GF_d2y8&list=PLNemzZpJM7lUu_iGP_lA2m7SeSUwKSIvR
