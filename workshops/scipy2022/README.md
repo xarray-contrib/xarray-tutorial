@@ -9,7 +9,7 @@ To be presented 11 July 2022 by:
 - Tom Nicholas (Lamont-Doherty)
 - Emma Marshall (Univ. Utah)
 
-This four hour workshop covers fundamental Xarray concepts with increasingly complex real-world data analysis tasks. 
+This four hour workshop covers fundamental Xarray concepts with increasingly complex real-world data analysis tasks.
 
 Video Recoding:
 Will be available after the event
