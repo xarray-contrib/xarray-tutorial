@@ -13,7 +13,7 @@ For Xarray data structure terminology see https://docs.xarray.dev/en/stable/user
   (Geospatial Data Abstraction Library) a translator library for raster and vector geospatial data formats
 
 [HDF](https://www.hdfgroup.org/solutions/hdf5/)
-  (Hierachical Data Format) binary file format for heterogeneous N-dimensional datasets
+  (Hierarchical Data Format) binary file format for heterogeneous N-dimensional datasets
 
 [netCDF](https://www.unidata.ucar.edu/software/netcdf/)
   (Network Common Data Form) binary file format for N-dimensional self-described datasets that originated in the geosciences
