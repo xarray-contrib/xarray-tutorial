@@ -7,10 +7,12 @@ parts:
       - file: scipy-tutorial/00_overview
       - file: scipy-tutorial/01_datastructures_and_io
       - file: scipy-tutorial/02.1_working_with_labeled_data
-      - file: scipy-tutorial/02.2_manipulating_dimensions
-      - file: scipy-tutorial/02.3_aligning_data_objects
+        sections:
+        - file: scipy-tutorial/02.2_manipulating_dimensions
+        - file: scipy-tutorial/02.3_aligning_data_objects
       - file: scipy-tutorial/03.1_computation_with_xarray
-      - file: scipy-tutorial/03.2_groupby_with_xarray
+        sections:
+        - file: scipy-tutorial/03.2_groupby_with_xarray
       - file: scipy-tutorial/04_plotting_and_visualization
       - file: scipy-tutorial/05_intro_to_dask
       - file: scipy-tutorial/06_xarray_and_dask
@@ -31,16 +33,25 @@ parts:
       - file: workshops/scipy2022/README
         sections:
           - url: https://tutorial.xarray.dev/scipy-tutorial/00_overview
+            title: Introduction
           - url: https://tutorial.xarray.dev/scipy-tutorial/01_datastructures_and_io
+            title: Data Structures
           - file: workshops/scipy2022/cleaning_real_data
           - url: https://tutorial.xarray.dev/scipy-tutorial/02.1_working_with_labeled_data
+            title: Labeled Data
           - url: https://tutorial.xarray.dev/scipy-tutorial/02.2_manipulating_dimensions
+            title: Manipulating Dimensions
           - url: https://tutorial.xarray.dev/scipy-tutorial/02.3_aligning_data_objects
+            title: Data Alignment
           - url: https://tutorial.xarray.dev/scipy-tutorial/03.1_computation_with_xarray
+            title: Computation
           - url: https://tutorial.xarray.dev/scipy-tutorial/03.2_groupby_with_xarray
+            title: Groupby
           - url: https://tutorial.xarray.dev/scipy-tutorial/04_plotting_and_visualization.html
+            title: Plotting and Visualization
           - file: workshops/scipy2022/xarray_ecosystem
           - url: https://tutorial.xarray.dev/scipy-tutorial/06_xarray_and_dask
+            title: Xarray and Dask
 
   - caption: Reference
     chapters:
