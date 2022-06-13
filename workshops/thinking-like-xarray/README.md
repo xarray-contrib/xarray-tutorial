@@ -1,4 +1,4 @@
-# High-level computational patterns
+# Thinking like Xarray
 
 Presented March 2022 for the [NCAR Python Seminar Series](https://ncar.github.io/esds/posts/2022/Thinking-with-Xarray/) by Deepak Cheerian
 
