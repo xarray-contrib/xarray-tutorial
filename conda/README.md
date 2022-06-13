@@ -18,7 +18,7 @@ conda-lock install
 ## Create/update multiplatform lockfile:
 
 ```
-conda-lock lock --mamba -f environment-unpinned.yml -p osx-64 -p linux-64 -p win-64
+conda-lock lock --mamba -f environment-unpinned.yml -p osx-64 -p linux-64 -p win-64 -p osx-arm64
 ```
 
 ## Render a mybinder.org compatible locked file
