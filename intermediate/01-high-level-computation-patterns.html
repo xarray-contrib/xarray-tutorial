@@ -5,56 +5,56 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thinking like Xarray : High-level computational patterns &#8212; Xarray tutorial</title>
+    <title>High-level computational patterns &#8212; Xarray tutorial</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Xarray Online Tutorial" href="../online-tutorial-series/README.html" />
-    <link rel="prev" title="High-level computational patterns" href="README.html" />
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Xarray and Dask" href="../advanced/xarray_and_dask.html" />
+    <link rel="prev" title="Plotting and Visualization" href="../fundamentals/04_plotting_and_visualization.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -74,27 +74,39 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
       
       
-      <img src="../../_static/logo.png" class="logo" alt="logo">
+      <img src="../_static/logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Xarray tutorial</h1>
       
     </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../intro.html">
+  <a class="reference internal" href="../intro.html">
    Welcome to the Xarray Tutorial!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Overview
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview/xarray-in-45-min.html">
+   Xarray in 45 minutes
   </a>
  </li>
 </ul>
@@ -105,37 +117,80 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/00_overview.html">
+  <a class="reference internal" href="../fundamentals/00_overview.html">
    Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/01_datastructures_and_io.html">
+  <a class="reference internal" href="../fundamentals/01_datastructures_and_io.html">
    Data structures for multi-dimensional data
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/02_working_with_labeled_data.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../fundamentals/02.1_working_with_labeled_data.html">
    Working with labeled data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../fundamentals/02.2_manipulating_dimensions.html">
+     Manipulating Dimensions (Data Resolution)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../fundamentals/02.3_aligning_data_objects.html">
+     Working with Multiple Datasets
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/03_computation_with_xarray.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../fundamentals/03.1_computation_with_xarray.html">
    Computation with Xarray
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../fundamentals/03.2_groupby_with_xarray.html">
+     Grouped Computations with Xarray
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/04_plotting_and_visualization.html">
+  <a class="reference internal" href="../fundamentals/04_plotting_and_visualization.html">
    Plotting and Visualization
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/05_intro_to_dask.html">
-   Introduction to Dask
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Intermediate
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   High-level computational patterns
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Advanced
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/06_xarray_and_dask.html">
+  <a class="reference internal" href="../advanced/xarray_and_dask.html">
    Xarray and Dask
   </a>
  </li>
@@ -145,55 +200,134 @@ const thebe_selector_output = ".output, .cell_output"
   Workshops
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="README.html">
-   High-level computational patterns
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Thinking like Xarray : High-level computational patterns
-    </a>
-   </li>
-  </ul>
- </li>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../online-tutorial-series/README.html">
-   Xarray Online Tutorial
+  <a class="reference internal" href="../workshops/oceanhackweek2020/README.html">
+   Oceanhackweek 2020
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../online-tutorial-series/01_xarray_fundamentals.html">
+    <a class="reference external" href="https://tutorial.xarray.dev/overview/xarray-in-45-min">
+     Xarray in 45 minutes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../workshops/thinking-like-xarray/README.html">
+   Thinking like Xarray
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/intermediate/01-high-level-computation-patterns">
+     High-level computation patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../workshops/online-tutorial-series/README.html">
+   Xarray Online Tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../workshops/online-tutorial-series/01_xarray_fundamentals.html">
      Xarray Fundamentals
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../online-tutorial-series/02_indexing.html">
+    <a class="reference internal" href="../workshops/online-tutorial-series/02_indexing.html">
      Indexing and Selecting Data
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../online-tutorial-series/03_computation.html">
+    <a class="reference internal" href="../workshops/online-tutorial-series/03_computation.html">
      Computation
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../scipy2022/README.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../workshops/scipy2022/README.html">
    SciPy 2022 Xarray Tutorial
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/00_overview">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/01_datastructures_and_io">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../workshops/scipy2022/cleaning_real_data.html">
+     Cleaning Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/02.1_working_with_labeled_data">
+     Labeled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/02.2_manipulating_dimensions">
+     Manipulating Dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/02.3_aligning_data_objects">
+     Data Alignment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/03.1_computation_with_xarray">
+     Computation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/03.2_groupby_with_xarray">
+     Groupby
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/04_plotting_and_visualization.html">
+     Plotting and Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../workshops/scipy2022/xarray_ecosystem.html">
+     Xarray Ecosystem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/06_xarray_and_dask">
+     Xarray and Dask
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -203,12 +337,12 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../reference/glossary.html">
+  <a class="reference internal" href="../reference/glossary.html">
    Glossary
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../reference/bibliography.html">
+  <a class="reference internal" href="../reference/bibliography.html">
    Bibliography
   </a>
  </li>
@@ -253,7 +387,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/workshops/thinking-like-xarray/01-high-level-computation-patterns.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/intermediate/01-high-level-computation-patterns.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -273,10 +407,10 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Fworkshops/thinking-like-xarray/01-high-level-computation-patterns.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Fintermediate/01-high-level-computation-patterns.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/workshops/thinking-like-xarray/01-high-level-computation-patterns.ipynb"><button
+        <a class="edit-button" href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/intermediate/01-high-level-computation-patterns.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -296,10 +430,10 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/main?urlpath=lab/tree/workshops/thinking-like-xarray/01-high-level-computation-patterns.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/main?urlpath=lab/tree/intermediate/01-high-level-computation-patterns.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
+                    src="../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
@@ -546,7 +680,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Thinking like Xarray : High-level computational patterns</h1>
+                <h1>High-level computational patterns</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -783,12 +917,8 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="thinking-like-xarray-high-level-computational-patterns">
-<h1>Thinking like Xarray : High-level computational patterns<a class="headerlink" href="#thinking-like-xarray-high-level-computational-patterns" title="Permalink to this headline">¶</a></h1>
-<p><strong>Deepak Cherian, CGD</strong></p>
-<p>March 9, 2022</p>
-<hr class="docutils" />
-<p>This version includes additional material inserted during the live lecture.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="high-level-computational-patterns">
+<h1>High-level computational patterns<a class="headerlink" href="#high-level-computational-patterns" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="motivation-learning-goals">
 <h2>Motivation / Learning goals<a class="headerlink" href="#motivation-learning-goals" title="Permalink to this headline">¶</a></h2>
 <p>From <a class="reference external" href="https://toolz.readthedocs.io/en/latest/control.html">https://toolz.readthedocs.io/en/latest/control.html</a></p>
@@ -850,7 +980,7 @@ analysis tasks.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f2ea5e5b610&gt;
 </pre></div>
 </div>
-<img alt="../../_images/01-high-level-computation-patterns_4_1.png" src="../../_images/01-high-level-computation-patterns_4_1.png" />
+<img alt="../_images/01-high-level-computation-patterns_4_1.png" src="../_images/01-high-level-computation-patterns_4_1.png" />
 </div>
 </div>
 </div>
@@ -2874,7 +3004,7 @@ Attributes:
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f2e9dd00160&gt;
 </pre></div>
 </div>
-<img alt="../../_images/01-high-level-computation-patterns_13_1.png" src="../../_images/01-high-level-computation-patterns_13_1.png" />
+<img alt="../_images/01-high-level-computation-patterns_13_1.png" src="../_images/01-high-level-computation-patterns_13_1.png" />
 </div>
 </div>
 <p>And now smoothed 5 point running mean in lat and lon</p>
@@ -2888,7 +3018,7 @@ Attributes:
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f2e9dc3f9a0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/01-high-level-computation-patterns_15_1.png" src="../../_images/01-high-level-computation-patterns_15_1.png" />
+<img alt="../_images/01-high-level-computation-patterns_15_1.png" src="../_images/01-high-level-computation-patterns_15_1.png" />
 </div>
 </div>
 <div class="section" id="apply-an-existing-numpy-only-function-with-reduce">
@@ -2912,7 +3042,7 @@ longitude using
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f2e9db7bdc0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/01-high-level-computation-patterns_19_1.png" src="../../_images/01-high-level-computation-patterns_19_1.png" />
+<img alt="../_images/01-high-level-computation-patterns_19_1.png" src="../_images/01-high-level-computation-patterns_19_1.png" />
 </div>
 </div>
 </div>
@@ -4875,7 +5005,7 @@ Attributes:
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f2e9da4e520&gt;
 </pre></div>
 </div>
-<img alt="../../_images/01-high-level-computation-patterns_31_1.png" src="../../_images/01-high-level-computation-patterns_31_1.png" />
+<img alt="../_images/01-high-level-computation-patterns_31_1.png" src="../_images/01-high-level-computation-patterns_31_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -5276,7 +5406,7 @@ Attributes:
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f2e9d98cee0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/01-high-level-computation-patterns_33_1.png" src="../../_images/01-high-level-computation-patterns_33_1.png" />
+<img alt="../_images/01-high-level-computation-patterns_33_1.png" src="../_images/01-high-level-computation-patterns_33_1.png" />
 </div>
 </div>
 <div class="section" id="coarsen-supports-reduce-for-custom-reductions">
@@ -5294,7 +5424,7 @@ blocks of <code class="docutils literal notranslate"><span class="pre">data</spa
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f2e9d8cc550&gt;
 </pre></div>
 </div>
-<img alt="../../_images/01-high-level-computation-patterns_36_1.png" src="../../_images/01-high-level-computation-patterns_36_1.png" />
+<img alt="../_images/01-high-level-computation-patterns_36_1.png" src="../_images/01-high-level-computation-patterns_36_1.png" />
 </div>
 </div>
 </div>
@@ -6824,7 +6954,7 @@ month and visualize the seasonal cycle for two years at 250°E</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f2e9da46280&gt;
 </pre></div>
 </div>
-<img alt="../../_images/01-high-level-computation-patterns_46_1.png" src="../../_images/01-high-level-computation-patterns_46_1.png" />
+<img alt="../_images/01-high-level-computation-patterns_46_1.png" src="../_images/01-high-level-computation-patterns_46_1.png" />
 </div>
 </div>
 <p>This exercise came up during the live lecture.</p>
@@ -7687,7 +7817,7 @@ Attributes:
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f2e9d693eb0&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/01-high-level-computation-patterns_54_1.png" src="../../_images/01-high-level-computation-patterns_54_1.png" />
+<img alt="../_images/01-high-level-computation-patterns_54_1.png" src="../_images/01-high-level-computation-patterns_54_1.png" />
 </div>
 </div>
 <p>Similarly for binning,</p>
@@ -9634,7 +9764,7 @@ Attributes:
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f2e9d65b670&gt;
 </pre></div>
 </div>
-<img alt="../../_images/01-high-level-computation-patterns_71_1.png" src="../../_images/01-high-level-computation-patterns_71_1.png" />
+<img alt="../_images/01-high-level-computation-patterns_71_1.png" src="../_images/01-high-level-computation-patterns_71_1.png" />
 </div>
 </div>
 </div>
@@ -10771,7 +10901,7 @@ Coordinates:
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f2e9d721bb0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/01-high-level-computation-patterns_78_1.png" src="../../_images/01-high-level-computation-patterns_78_1.png" />
+<img alt="../_images/01-high-level-computation-patterns_78_1.png" src="../_images/01-high-level-computation-patterns_78_1.png" />
 </div>
 </div>
 <p><strong>tip</strong> <code class="docutils literal notranslate"><span class="pre">map</span></code> is for functions that expect and return xarray objects (see also
@@ -11254,7 +11384,7 @@ Attributes:
  &lt;BarContainer object of 10 artists&gt;)
 </pre></div>
 </div>
-<img alt="../../_images/01-high-level-computation-patterns_85_1.png" src="../../_images/01-high-level-computation-patterns_85_1.png" />
+<img alt="../_images/01-high-level-computation-patterns_85_1.png" src="../_images/01-high-level-computation-patterns_85_1.png" />
 </div>
 </div>
 </div>
@@ -11734,7 +11864,7 @@ Attributes:
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./workshops/thinking-like-xarray"
+            path: "./intermediate"
         },
         predefinedOutput: true
     }
@@ -11746,17 +11876,17 @@ Attributes:
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="README.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../fundamentals/04_plotting_and_visualization.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">High-level computational patterns</p>
+            <p class="prev-next-title">Plotting and Visualization</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../online-tutorial-series/README.html" title="next page">
+    <a class='right-next' id="next-link" href="../advanced/xarray_and_dask.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Xarray Online Tutorial</p>
+        <p class="prev-next-title">Xarray and Dask</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -11778,7 +11908,7 @@ Attributes:
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

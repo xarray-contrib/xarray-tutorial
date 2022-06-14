@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>High-level computational patterns &#8212; Xarray tutorial</title>
+    <title>Thinking like Xarray &#8212; Xarray tutorial</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Thinking like Xarray : High-level computational patterns" href="01-high-level-computation-patterns.html" />
-    <link rel="prev" title="Xarray and Dask" href="../../scipy-tutorial/06_xarray_and_dask.html" />
+    <link rel="next" title="Xarray Online Tutorial" href="../online-tutorial-series/README.html" />
+    <link rel="prev" title="Oceanhackweek 2020" href="../oceanhackweek2020/README.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -100,42 +100,97 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Overview
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../overview/xarray-in-45-min.html">
+   Xarray in 45 minutes
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Fundamentals
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/00_overview.html">
+  <a class="reference internal" href="../../fundamentals/00_overview.html">
    Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/01_datastructures_and_io.html">
+  <a class="reference internal" href="../../fundamentals/01_datastructures_and_io.html">
    Data structures for multi-dimensional data
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/02_working_with_labeled_data.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../fundamentals/02.1_working_with_labeled_data.html">
    Working with labeled data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../fundamentals/02.2_manipulating_dimensions.html">
+     Manipulating Dimensions (Data Resolution)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../fundamentals/02.3_aligning_data_objects.html">
+     Working with Multiple Datasets
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/03_computation_with_xarray.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../fundamentals/03.1_computation_with_xarray.html">
    Computation with Xarray
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../fundamentals/03.2_groupby_with_xarray.html">
+     Grouped Computations with Xarray
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/04_plotting_and_visualization.html">
+  <a class="reference internal" href="../../fundamentals/04_plotting_and_visualization.html">
    Plotting and Visualization
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Intermediate
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/05_intro_to_dask.html">
-   Introduction to Dask
+  <a class="reference internal" href="../../intermediate/01-high-level-computation-patterns.html">
+   High-level computational patterns
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Advanced
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scipy-tutorial/06_xarray_and_dask.html">
+  <a class="reference internal" href="../../advanced/xarray_and_dask.html">
    Xarray and Dask
   </a>
  </li>
@@ -146,19 +201,36 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
-   High-level computational patterns
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../oceanhackweek2020/README.html">
+   Oceanhackweek 2020
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="01-high-level-computation-patterns.html">
-     Thinking like Xarray : High-level computational patterns
+    <a class="reference external" href="https://tutorial.xarray.dev/overview/xarray-in-45-min">
+     Xarray in 45 minutes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Thinking like Xarray
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/intermediate/01-high-level-computation-patterns">
+     High-level computation patterns
     </a>
    </li>
   </ul>
@@ -167,8 +239,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../online-tutorial-series/README.html">
    Xarray Online Tutorial
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -190,10 +262,72 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../scipy2022/README.html">
    SciPy 2022 Xarray Tutorial
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/00_overview">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/01_datastructures_and_io">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../scipy2022/cleaning_real_data.html">
+     Cleaning Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/02.1_working_with_labeled_data">
+     Labeled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/02.2_manipulating_dimensions">
+     Manipulating Dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/02.3_aligning_data_objects">
+     Data Alignment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/03.1_computation_with_xarray">
+     Computation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/03.2_groupby_with_xarray">
+     Groupby
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/04_plotting_and_visualization.html">
+     Plotting and Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../scipy2022/xarray_ecosystem.html">
+     Xarray Ecosystem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/06_xarray_and_dask">
+     Xarray and Dask
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -303,7 +437,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>High-level computational patterns</h1>
+                <h1>Thinking like Xarray</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -314,10 +448,10 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="high-level-computational-patterns">
-<h1>High-level computational patterns<a class="headerlink" href="#high-level-computational-patterns" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="thinking-like-xarray">
+<h1>Thinking like Xarray<a class="headerlink" href="#thinking-like-xarray" title="Permalink to this headline">¶</a></h1>
 <p>Presented March 2022 for the <a class="reference external" href="https://ncar.github.io/esds/posts/2022/Thinking-with-Xarray/">NCAR Python Seminar Series</a> by Deepak Cheerian</p>
-<p>This 60-minute, intermediate-level lesson covers common high-level computing patterns</p>
+<p>This 60-minute, intermediate-level lesson covers common high-level computing patterns. The version of the notebook here includes material inserted during the presentation.</p>
 <p>Video Recording:
 <a class="reference external" href="https://www.youtube.com/watch?v=TSw3GF_d2y8&amp;list=PLNemzZpJM7lUu_iGP_lA2m7SeSUwKSIvR">https://www.youtube.com/watch?v=TSw3GF_d2y8&amp;list=PLNemzZpJM7lUu_iGP_lA2m7SeSUwKSIvR</a></p>
 <div class="toctree-wrapper compound">
@@ -349,17 +483,17 @@ const thebe_selector_output = ".output, .cell_output"
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../../scipy-tutorial/06_xarray_and_dask.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../oceanhackweek2020/README.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Xarray and Dask</p>
+            <p class="prev-next-title">Oceanhackweek 2020</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="01-high-level-computation-patterns.html" title="next page">
+    <a class='right-next' id="next-link" href="../online-tutorial-series/README.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Thinking like Xarray : High-level computational patterns</p>
+        <p class="prev-next-title">Xarray Online Tutorial</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
