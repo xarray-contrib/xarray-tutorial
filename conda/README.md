@@ -1,13 +1,8 @@
-# Install unpinned environment:
-
-```
-mamba env create -f environment-unpinned.yml
-mamba activate xarray-tutorial
-```
+# Instructions for environment management
 
 ## Install locked environment:
 
-https://github.com/conda-incubator/conda-lock
+`conda-lock` can be used to create a multi-platform lockfile, so a reproducible set of package versions is installed across different operating systems. https://conda-incubator.github.io/conda-lock/
 
 ```
 conda-lock install
@@ -21,9 +16,20 @@ conda-lock install
 conda-lock lock --mamba -f environment-unpinned.yml -p osx-64 -p linux-64 -p win-64 -p osx-arm64
 ```
 
-## Render a mybinder.org compatible locked file
+## Render a mybinder.org compatible environment.yml (linux-64)
 
 ```
 conda-lock render -k env
 mv conda-linux-64.lock.yml environment.yml
+```
+
+## Install unpinned environment:
+
+If you want to run tutorials with the latest versions of compatible packages
+
+If you need to install mamba see https://github.com/conda-forge/miniforge#mambaforge
+
+```
+mamba env create -f environment-unpinned.yml
+mamba activate xarray-tutorial
 ```

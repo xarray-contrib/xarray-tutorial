@@ -5,6 +5,15 @@ copyright: '2022'
 logo: images/logo.png
 only_build_toc_files: true
 
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  announcement: 'ℹ️ The 2022 Xarray User Survey is out! Please take ~5 minutes to help improve Xarray! <a href="https://docs.google.com/forms/d/e/1FAIpQLSfnMd8UsC1XP1lPuFczl148VfpmwnFu4a0Z94odt1L6U0R0Pw/viewform">LINK</a>'
+  home_page_in_navbar: false
+  use_edit_page_button: true
+  use_issues_button: true
+  use_repository_button: true
+  # google_analytics_id: G-XXXXXXXXX
+
 parse:
   # https://jupyterbook.org/content/content-blocks.html?highlight=myst%20substitution#define-substitutions-for-your-whole-book
   # https://jupyterbook.org/content/content-blocks.html#using-substitutions-in-links
@@ -50,10 +59,3 @@ bibtex_bibfiles:
 sphinx:
   config:
     bibtex_reference_style: author_year # or label, super, \supercite
-
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
-html:
-  use_edit_page_button: true
-  use_issues_button: true
-  use_repository_button: true
-  # google_analytics_id: G-XXXXXXXXX
