@@ -2,30 +2,67 @@
 root: intro
 format: jb-book
 parts:
+  - caption: Overview
+    chapters:
+      - file: overview/xarray-in-45-min
   - caption: Fundamentals
     chapters:
-      - file: scipy-tutorial/00_overview
-      - file: scipy-tutorial/01_datastructures_and_io
-      - file: scipy-tutorial/02_working_with_labeled_data
-      - file: scipy-tutorial/03_computation_with_xarray
-      - file: scipy-tutorial/04_plotting_and_visualization
-      - file: scipy-tutorial/05_intro_to_dask
-      - file: scipy-tutorial/06_xarray_and_dask
+      - file: fundamentals/00_overview
+      - file: fundamentals/01_datastructures_and_io
+      - file: fundamentals/02.1_working_with_labeled_data
+        sections:
+          - file: fundamentals/02.2_manipulating_dimensions
+          - file: fundamentals/02.3_aligning_data_objects
+      - file: fundamentals/03.1_computation_with_xarray
+        sections:
+          - file: fundamentals/03.2_groupby_with_xarray
+      - file: fundamentals/04_plotting_and_visualization
+
+  - caption: Intermediate
+    chapters:
+      - file: intermediate/01-high-level-computation-patterns
+
+  - caption: Advanced
+    chapters:
+      - file: advanced/xarray_and_dask
 
   - caption: Workshops
     chapters:
-      - file: workshops/oceanhackweek-2020/README
+      - file: workshops/oceanhackweek2020/README
         sections:
-          - file: workshops/oceanhackweek-2020/xarray-oceanhackweek20
+          - url: https://tutorial.xarray.dev/overview/xarray-in-45-min
+            title: Xarray in 45 minutes
       - file: workshops/thinking-like-xarray/README
         sections:
-          - file: workshops/thinking-like-xarray/01-high-level-computation-patterns
+          - url: https://tutorial.xarray.dev/intermediate/01-high-level-computation-patterns
+            title: High-level computation patterns
       - file: workshops/online-tutorial-series/README
         sections:
           - file: workshops/online-tutorial-series/01_xarray_fundamentals
           - file: workshops/online-tutorial-series/02_indexing
           - file: workshops/online-tutorial-series/03_computation
       - file: workshops/scipy2022/README
+        sections:
+          - url: https://tutorial.xarray.dev/fundamentals/00_overview
+            title: Introduction
+          - url: https://tutorial.xarray.dev/fundamentals/01_datastructures_and_io
+            title: Data Structures
+          - file: workshops/scipy2022/cleaning_real_data
+          - url: https://tutorial.xarray.dev/fundamentals/02.1_working_with_labeled_data
+            title: Labeled Data
+          - url: https://tutorial.xarray.dev/fundamentals/02.2_manipulating_dimensions
+            title: Manipulating Dimensions
+          - url: https://tutorial.xarray.dev/fundamentals/02.3_aligning_data_objects
+            title: Data Alignment
+          - url: https://tutorial.xarray.dev/fundamentals/03.1_computation_with_xarray
+            title: Computation
+          - url: https://tutorial.xarray.dev/fundamentals/03.2_groupby_with_xarray
+            title: Groupby
+          - url: https://tutorial.xarray.dev/fundamentals/04_plotting_and_visualization.html
+            title: Plotting and Visualization
+          - file: workshops/scipy2022/xarray_ecosystem
+          - url: https://tutorial.xarray.dev/fundamentals/06_xarray_and_dask
+            title: Xarray and Dask
 
   - caption: Reference
     chapters:
