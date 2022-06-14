@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Xarray and Dask &#8212; Xarray tutorial</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +105,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome to the Xarray Tutorial!
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to the Xarray Tutorial!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Overview
  </span>
@@ -349,109 +364,226 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/advanced/xarray_and_dask.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/xarray-contrib/xarray-tutorial"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Fadvanced/xarray_and_dask.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/advanced/xarray_and_dask.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/main?urlpath=lab/tree/advanced/xarray_and_dask.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/main?urlpath=lab/tree/advanced/xarray_and_dask.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/xarray-contrib/xarray-tutorial"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Fadvanced/xarray_and_dask.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/advanced/xarray_and_dask.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/advanced/xarray_and_dask.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#table-of-contents">
    Table of contents
@@ -571,12 +703,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Xarray and Dask</h1>
@@ -712,12 +843,13 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
   <a class="reference internal image-reference" href="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png"><img alt="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
-<div class="tex2jax_ignore mathjax_ignore section" id="xarray-and-dask">
-<h1>Xarray and Dask<a class="headerlink" href="#xarray-and-dask" title="Permalink to this headline">¶</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="xarray-and-dask">
+<h1>Xarray and Dask<a class="headerlink" href="#xarray-and-dask" title="Permalink to this headline">#</a></h1>
 <p>This notebook demonstrates one of xarray’s most powerful features: the ability
 to wrap dask arrays and allow users to seamlessly execute analysis code in
 parallel.</p>
@@ -729,8 +861,8 @@ top-level dask functions such as <code class="docutils literal notranslate"><spa
 <li><p>Learn that xarray provides tools to easily parallelize custom functions
 across blocks of dask-backed xarray objects.</p></li>
 </ol>
-<div class="section" id="table-of-contents">
-<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<section id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">#</a></h2>
 <ol class="simple">
 <li><p><a class="reference external" href="#readwrite">Reading data with Dask and Xarray</a></p></li>
 <li><p><a class="reference external" href="#compute">Parallel/streaming/lazy computation using dask.array with Xarray</a></p></li>
@@ -990,9 +1122,9 @@ xarray.</p>
 </div>
 </div>
 <p><a id='readwrite'></a></p>
-</div>
-<div class="section" id="reading-data-with-dask-and-xarray">
-<h2>Reading data with Dask and Xarray<a class="headerlink" href="#reading-data-with-dask-and-xarray" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="reading-data-with-dask-and-xarray">
+<h2>Reading data with Dask and Xarray<a class="headerlink" href="#reading-data-with-dask-and-xarray" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">chunks</span></code> argument to both <code class="docutils literal notranslate"><span class="pre">open_dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">open_mfdataset</span></code> allow you to
 read datasets as dask arrays. See
 <a class="reference external" href="https://xarray.pydata.org/en/stable/dask.html#reading-and-writing-data">https://xarray.pydata.org/en/stable/dask.html#reading-and-writing-data</a> for more
@@ -2830,9 +2962,9 @@ Attributes:
 </div>
 <p>and more complicated operations…</p>
 <p><a id='compute'></a></p>
-</div>
-<div class="section" id="parallel-streaming-lazy-computation-using-dask-array-with-xarray">
-<h2>Parallel/streaming/lazy computation using dask.array with Xarray<a class="headerlink" href="#parallel-streaming-lazy-computation-using-dask-array-with-xarray" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="parallel-streaming-lazy-computation-using-dask-array-with-xarray">
+<h2>Parallel/streaming/lazy computation using dask.array with Xarray<a class="headerlink" href="#parallel-streaming-lazy-computation-using-dask-array-with-xarray" title="Permalink to this headline">#</a></h2>
 <p>Xarray seamlessly wraps dask so all computation is deferred until explicitly
 requested</p>
 <div class="cell docutils container">
@@ -4177,8 +4309,8 @@ Attributes:
        &#x27;2014-12-31T12:00:00.000000000&#x27;, &#x27;2014-12-31T18:00:00.000000000&#x27;],
       dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-1e5bf55d-8df7-4555-bc70-2103f75aeae6' class='xr-section-summary-in' type='checkbox'  ><label for='section-1e5bf55d-8df7-4555-bc70-2103f75aeae6' class='xr-section-summary' >Attributes: <span>(11)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>4xDaily Air temperature at sigma level 995</dd><dt><span>units :</span></dt><dd>degK</dd><dt><span>precision :</span></dt><dd>2</dd><dt><span>GRIB_id :</span></dt><dd>11</dd><dt><span>GRIB_name :</span></dt><dd>TMP</dd><dt><span>var_desc :</span></dt><dd>Air temperature</dd><dt><span>dataset :</span></dt><dd>NMC Reanalysis</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Individual Obs</dd><dt><span>parent_stat :</span></dt><dd>Other</dd><dt><span>actual_range :</span></dt><dd>[185.16 322.1 ]</dd></dl></div></li></ul></div></div></div></div>
 </div>
-<div class="section" id="getting-concrete-values-from-dask-arrays">
-<h3>Getting concrete values from dask arrays<a class="headerlink" href="#getting-concrete-values-from-dask-arrays" title="Permalink to this headline">¶</a></h3>
+<section id="getting-concrete-values-from-dask-arrays">
+<h3>Getting concrete values from dask arrays<a class="headerlink" href="#getting-concrete-values-from-dask-arrays" title="Permalink to this headline">#</a></h3>
 <p>At some point, you will want to actually get concrete values from dask.</p>
 <p>There are two ways to compute values on dask arrays. These concrete values are
 usually numpy arrays but could be a <code class="docutils literal notranslate"><span class="pre">pydata/sparse</span></code> array for example.</p>
@@ -5810,37 +5942,37 @@ Coordinates:
 you will be repeatedly using a dataset for computation but it is too large to
 load into local memory. You will see a persistent task on the dashboard.</p>
 <p>See <a class="reference external" href="https://docs.dask.org/en/latest/api.html#dask.persist">https://docs.dask.org/en/latest/api.html#dask.persist</a> for more</p>
-</div>
-<div class="section" id="extracting-underlying-data-values-vs-data">
-<h3>Extracting underlying data: <code class="docutils literal notranslate"><span class="pre">.values</span></code> vs <code class="docutils literal notranslate"><span class="pre">.data</span></code><a class="headerlink" href="#extracting-underlying-data-values-vs-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="extracting-underlying-data-values-vs-data">
+<h3>Extracting underlying data: <code class="docutils literal notranslate"><span class="pre">.values</span></code> vs <code class="docutils literal notranslate"><span class="pre">.data</span></code><a class="headerlink" href="#extracting-underlying-data-values-vs-data" title="Permalink to this headline">#</a></h3>
 <p>There are two ways to pull out the underlying data in an xarray object.</p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">.values</span></code> will always return a NumPy array. For dask-backed xarray objects,
 this means that compute will always be called</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.data</span></code> will return a Dask array</p></li>
 </ol>
-<div class="section" id="exercise">
-<h4>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h4>
+<section id="exercise">
+<h4>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h4>
 <p>Try extracting a dask array from <code class="docutils literal notranslate"><span class="pre">ds.air</span></code></p>
 <p>Now extract a NumPy array from <code class="docutils literal notranslate"><span class="pre">ds.air</span></code>. Do you see compute activity on your
 dashboard?</p>
-</div>
-</div>
-</div>
-<div class="section" id="xarray-data-structures-are-first-class-dask-collections">
-<h2>Xarray data structures are first-class dask collections.<a class="headerlink" href="#xarray-data-structures-are-first-class-dask-collections" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="xarray-data-structures-are-first-class-dask-collections">
+<h2>Xarray data structures are first-class dask collections.<a class="headerlink" href="#xarray-data-structures-are-first-class-dask-collections" title="Permalink to this headline">#</a></h2>
 <p>This means you can do things like <code class="docutils literal notranslate"><span class="pre">dask.compute(xarray_object)</span></code>,
 <code class="docutils literal notranslate"><span class="pre">dask.visualize(xarray_object)</span></code>, <code class="docutils literal notranslate"><span class="pre">dask.persist(xarray_object)</span></code>. This works for
 both DataArrays and Datasets</p>
-<div class="section" id="id1">
-<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<section id="id1">
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>Visualize the task graph for <code class="docutils literal notranslate"><span class="pre">mean</span></code></p>
 <p>Visualize the task graph for <code class="docutils literal notranslate"><span class="pre">mean.data</span></code>. Is that the same as the above graph?</p>
 <p><a id='applymap'></a></p>
-</div>
-</div>
-<div class="section" id="automatic-parallelization-with-apply-ufunc-and-map-blocks">
-<h2>Automatic parallelization with apply_ufunc and map_blocks<a class="headerlink" href="#automatic-parallelization-with-apply-ufunc-and-map-blocks" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="automatic-parallelization-with-apply-ufunc-and-map-blocks">
+<h2>Automatic parallelization with apply_ufunc and map_blocks<a class="headerlink" href="#automatic-parallelization-with-apply-ufunc-and-map-blocks" title="Permalink to this headline">#</a></h2>
 <p>Almost all of xarray’s built-in operations work on Dask arrays.</p>
 <p>Sometimes analysis calls for functions that aren’t in xarray’s API (e.g. scipy).
 There are three ways to apply these functions in parallel on each block of your
@@ -5856,8 +5988,8 @@ to apply functions that consume and return xarray objects.</p></li>
 <p>Which method you use ultimately depends on the type of input objects expected by
 the function you’re wrapping, and the level of performance or convenience you
 desire.</p>
-<div class="section" id="map-blocks">
-<h3><code class="docutils literal notranslate"><span class="pre">map_blocks</span></code><a class="headerlink" href="#map-blocks" title="Permalink to this headline">¶</a></h3>
+<section id="map-blocks">
+<h3><code class="docutils literal notranslate"><span class="pre">map_blocks</span></code><a class="headerlink" href="#map-blocks" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">map_blocks</span></code> is inspired by the <code class="docutils literal notranslate"><span class="pre">dask.array</span></code> function of the same name and lets
 you map a function on blocks of the xarray object (including Datasets!).</p>
 <p>At <em>compute</em> time, your function will receive an xarray object with concrete
@@ -6317,8 +6449,8 @@ Data variables:
 </div>
 </div>
 </div>
-<div class="section" id="id2">
-<h4>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<section id="id2">
+<h4>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
 <p>Try applying the following function with <code class="docutils literal notranslate"><span class="pre">map_blocks</span></code>. Specify <code class="docutils literal notranslate"><span class="pre">scale</span></code> as an
 argument and <code class="docutils literal notranslate"><span class="pre">offset</span></code> as a kwarg.</p>
 <p>The docstring should help:
@@ -6327,18 +6459,18 @@ argument and <code class="docutils literal notranslate"><span class="pre">offset
     <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;lat&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">scale</span> <span class="o">+</span> <span class="n">offset</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="more-advanced-functions">
-<h4>More advanced functions<a class="headerlink" href="#more-advanced-functions" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="more-advanced-functions">
+<h4>More advanced functions<a class="headerlink" href="#more-advanced-functions" title="Permalink to this headline">#</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">map_blocks</span></code> needs to know what the returned object looks like <em>exactly</em>. It
 does so by passing a 0-shaped xarray object to the function and examining the
 result. This approach cannot work in all cases For such advanced use cases,
 <code class="docutils literal notranslate"><span class="pre">map_blocks</span></code> allows a <code class="docutils literal notranslate"><span class="pre">template</span></code> kwarg. See
 <a class="reference external" href="https://xarray.pydata.org/en/latest/dask.html#map-blocks">https://xarray.pydata.org/en/latest/dask.html#map-blocks</a> for more details</p>
-</div>
-</div>
-<div class="section" id="apply-ufunc">
-<h3>apply_ufunc<a class="headerlink" href="#apply-ufunc" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="apply-ufunc">
+<h3>apply_ufunc<a class="headerlink" href="#apply-ufunc" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">apply_ufunc</span></code> is a more advanced wrapper that is designed to apply functions
 that expect and return NumPy (or other arrays). For example, this would include
 all of SciPy’s API. Since <code class="docutils literal notranslate"><span class="pre">apply_ufunc</span></code> operates on lower-level NumPy or Dask
@@ -6347,9 +6479,9 @@ for performance-critical functions.</p>
 <p><code class="docutils literal notranslate"><span class="pre">apply_ufunc</span></code> can be a little tricky to get right since it operates at a lower
 level than <code class="docutils literal notranslate"><span class="pre">map_blocks</span></code>. On the other hand, Xarray uses <code class="docutils literal notranslate"><span class="pre">apply_ufunc</span></code> internally
 to implement much of its API, meaning that it is quite powerful!</p>
-</div>
-<div class="section" id="a-simple-example">
-<h3>A simple example<a class="headerlink" href="#a-simple-example" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="a-simple-example">
+<h3>A simple example<a class="headerlink" href="#a-simple-example" title="Permalink to this headline">#</a></h3>
 <p>Simple functions that act independently on each value should work without any
 additional arguments. However <code class="docutils literal notranslate"><span class="pre">dask</span></code> handling needs to be explicitly enabled</p>
 <div class="cell tag_raises-exception docutils container">
@@ -6890,9 +7022,9 @@ Coordinates:
        &#x27;2014-12-31T12:00:00.000000000&#x27;, &#x27;2014-12-31T18:00:00.000000000&#x27;],
       dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c78314b2-7b39-467d-a3aa-473038285ba8' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-c78314b2-7b39-467d-a3aa-473038285ba8' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
-</div>
-<div class="section" id="a-more-complicated-example-with-a-dask-aware-function">
-<h3>A more complicated example with a dask-aware function<a class="headerlink" href="#a-more-complicated-example-with-a-dask-aware-function" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="a-more-complicated-example-with-a-dask-aware-function">
+<h3>A more complicated example with a dask-aware function<a class="headerlink" href="#a-more-complicated-example-with-a-dask-aware-function" title="Permalink to this headline">#</a></h3>
 <p>For using more complex operations that consider some array values collectively,
 it’s important to understand the idea of <strong>core dimensions</strong> from NumPy’s
 generalized ufuncs. Core dimensions are defined as dimensions that should not be
@@ -7358,9 +7490,9 @@ Coordinates:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="automatically-parallelizing-dask-unaware-functions">
-<h3>Automatically parallelizing dask-unaware functions<a class="headerlink" href="#automatically-parallelizing-dask-unaware-functions" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="automatically-parallelizing-dask-unaware-functions">
+<h3>Automatically parallelizing dask-unaware functions<a class="headerlink" href="#automatically-parallelizing-dask-unaware-functions" title="Permalink to this headline">#</a></h3>
 <p>A very useful <code class="docutils literal notranslate"><span class="pre">apply_ufunc</span></code> feature is the ability to apply arbitrary functions
 in parallel to each block. This ability can be activated using
 <code class="docutils literal notranslate"><span class="pre">dask=&quot;parallelized&quot;</span></code>. Again xarray needs a lot of extra metadata, so depending
@@ -7399,22 +7531,22 @@ handle dask arrays and requires a core dimension.</p>
 </div>
 </div>
 </div>
-<div class="section" id="id3">
-<h4>Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<section id="id3">
+<h4>Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
 <p>Use <code class="docutils literal notranslate"><span class="pre">apply_ufunc</span></code> to apply <code class="docutils literal notranslate"><span class="pre">sp.integrate.trapz</span></code> along the <code class="docutils literal notranslate"><span class="pre">time</span></code> axis so that
 you get a dask array returned. You will need to specify <code class="docutils literal notranslate"><span class="pre">dask=&quot;parallelized&quot;</span></code>
 and <code class="docutils literal notranslate"><span class="pre">output_dtypes</span></code> (a list of <code class="docutils literal notranslate"><span class="pre">dtypes</span></code> per returned variable).</p>
-</div>
-</div>
-</div>
-<div class="section" id="more">
-<h2>More<a class="headerlink" href="#more" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="more">
+<h2>More<a class="headerlink" href="#more" title="Permalink to this headline">#</a></h2>
 <ol class="simple">
 <li><p><a class="reference external" href="https://xarray.pydata.org/en/stable/examples/apply_ufunc_vectorize_1d.html">https://xarray.pydata.org/en/stable/examples/apply_ufunc_vectorize_1d.html</a></p></li>
 <li><p><a class="reference external" href="https://docs.dask.org/en/latest/array-best-practices.html">https://docs.dask.org/en/latest/array-best-practices.html</a></p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -7438,9 +7570,11 @@ and <code class="docutils literal notranslate"><span class="pre">output_dtypes</
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../intermediate/01-high-level-computation-patterns.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -7456,24 +7590,28 @@ and <code class="docutils literal notranslate"><span class="pre">output_dtypes</
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By the Xarray community<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By the Xarray community<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

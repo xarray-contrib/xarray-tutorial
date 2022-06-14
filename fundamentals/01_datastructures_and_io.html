@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Data structures for multi-dimensional data &#8212; Xarray tutorial</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +105,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome to the Xarray Tutorial!
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to the Xarray Tutorial!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Overview
  </span>
@@ -349,109 +364,226 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/fundamentals/01_datastructures_and_io.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/xarray-contrib/xarray-tutorial"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Ffundamentals/01_datastructures_and_io.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/fundamentals/01_datastructures_and_io.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/main?urlpath=lab/tree/fundamentals/01_datastructures_and_io.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/main?urlpath=lab/tree/fundamentals/01_datastructures_and_io.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/xarray-contrib/xarray-tutorial"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Ffundamentals/01_datastructures_and_io.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/fundamentals/01_datastructures_and_io.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/fundamentals/01_datastructures_and_io.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -534,12 +666,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Data structures for multi-dimensional data</h1>
@@ -638,12 +769,13 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
   <a class="reference internal image-reference" href="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png"><img alt="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
-<div class="tex2jax_ignore mathjax_ignore section" id="data-structures-for-multi-dimensional-data">
-<h1>Data structures for multi-dimensional data<a class="headerlink" href="#data-structures-for-multi-dimensional-data" title="Permalink to this headline">¶</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="data-structures-for-multi-dimensional-data">
+<h1>Data structures for multi-dimensional data<a class="headerlink" href="#data-structures-for-multi-dimensional-data" title="Permalink to this headline">#</a></h1>
 <p>In this lesson, we discuss cover the basics of Xarray data structures. Our
 learning goals are as follows. By the end of the lesson, we will be able to:</p>
 <ul class="simple">
@@ -652,8 +784,8 @@ learning goals are as follows. By the end of the lesson, we will be able to:</p>
 <li><p>Read and write various data formats (e.g. NetCDF, Zarr) using Xarray.</p></li>
 </ul>
 <hr class="docutils" />
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Multi-dimensional (a.k.a. N-dimensional, ND) arrays (sometimes called “tensors”)
 are an essential part of computational science. They are encountered in a wide
 range of fields, including physics, astronomy, geoscience, bioinformatics,
@@ -691,16 +823,16 @@ to align arrays (e.g., using np.newaxis).</p>
 <p>The immediate payoff of using xarray is that you’ll write less code. The
 long-term payoff is that you’ll understand what you were thinking when you come
 back to look at it weeks or months later.</p>
-</div>
-<div class="section" id="data-structures">
-<h2>Data structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="data-structures">
+<h2>Data structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">#</a></h2>
 <p>Xarray provides two data structures: the <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> and <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>. The
 <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> class attaches dimension names, coordinates and attributes to
 multi-dimensional arrays while <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> combines multiple arrays.</p>
 <p>Both classes are most commonly created by reading data, but to understand them
 let’s first look at creating them programmatically.</p>
-<div class="section" id="dataarray">
-<h3>DataArray<a class="headerlink" href="#dataarray" title="Permalink to this headline">¶</a></h3>
+<section id="dataarray">
+<h3>DataArray<a class="headerlink" href="#dataarray" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> class is used to attach a name, dimension names, labels, and
 attributes to an array.</p>
 <p>As an example, let’s create a <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> named <code class="docutils literal notranslate"><span class="pre">a</span></code> with three dimensions (named
@@ -747,8 +879,8 @@ arrays of numbers, datetime objects or strings). We will look at its format
 later.</p>
 <p>We can also attach arbitrary metadata (attributes) to the <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> by passing
 a dict-like to the <code class="docutils literal notranslate"><span class="pre">attrs</span></code> parameter.</p>
-<div class="section" id="string-representations">
-<h4>String representations<a class="headerlink" href="#string-representations" title="Permalink to this headline">¶</a></h4>
+<section id="string-representations">
+<h4>String representations<a class="headerlink" href="#string-representations" title="Permalink to this headline">#</a></h4>
 <p>Now that we have the <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> we can look at its string representation.</p>
 <p>xarray has two representation types: <code class="docutils literal notranslate"><span class="pre">&quot;html&quot;</span></code> (which is only available in
 notebooks) and <code class="docutils literal notranslate"><span class="pre">&quot;text&quot;</span></code>. To choose between them, use the <code class="docutils literal notranslate"><span class="pre">display_style</span></code> option.</p>
@@ -1263,9 +1395,9 @@ representation.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="coordinates">
-<h4>coordinates<a class="headerlink" href="#coordinates" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="coordinates">
+<h4>coordinates<a class="headerlink" href="#coordinates" title="Permalink to this headline">#</a></h4>
 <p>As mentioned above, <code class="docutils literal notranslate"><span class="pre">coords</span></code> is a dict-like mapping names to values. These
 values can be either</p>
 <ul class="simple">
@@ -1661,9 +1793,9 @@ sheet icon to look at them).</p>
 coordinates is that for now it only is possible to use indexing operations
 (<code class="docutils literal notranslate"><span class="pre">sel</span></code>, <code class="docutils literal notranslate"><span class="pre">reindex</span></code>, etc) with dimension coordinates. Also, while coordinates can
 have arbitrary dimensions, dimension coordinates have to be one-dimensional.</p>
-</div>
-<div class="section" id="exercises">
-<h4>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="exercises">
+<h4>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h4>
 <p>create a <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> named “height” from random data</p>
 <ol class="simple">
 <li><p>with dimensions named “latitude” and “longitude”</p></li>
@@ -2773,10 +2905,10 @@ dl.xr-attrs {
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray ()&gt;
 array(nan)</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-e03afdec-e112-440b-bdee-4572d4539510' class='xr-array-in' type='checkbox' checked><label for='section-e03afdec-e112-440b-bdee-4572d4539510' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>nan</span></div><div class='xr-array-data'><pre>array(nan)</pre></div></div></li><li class='xr-section-item'><input id='section-3cf07449-0b17-423c-b7d4-dd67d175755b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3cf07449-0b17-423c-b7d4-dd67d175755b' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-f7873895-56a3-4030-9b61-60238c426faa' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-f7873895-56a3-4030-9b61-60238c426faa' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
-</div>
-</div>
-<div class="section" id="dataset">
-<h3>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="dataset">
+<h3>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Dataset</span></code> objects collect multiple data variables, each with possibly different
 dimensions.</p>
 <p>The constructor of <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> takes three parameters:</p>
@@ -2804,8 +2936,8 @@ or the tuple syntax since we have to provide dimensions</p></li>
 </div>
 </div>
 </div>
-<div class="section" id="id1">
-<h4>String representations<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<section id="id1">
+<h4>String representations<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
 <p>Let’s again first look at the text representation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3207,9 +3339,9 @@ Attributes:
        [1., 1., 1., 1.],
        [1., 1., 1., 1.]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>b</span></div><div class='xr-var-dims'>(t)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>3 3 3 3 3 3 3 3</div><input id='attrs-afaba318-ca9c-49a9-8712-4f9a6d2d636b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-afaba318-ca9c-49a9-8712-4f9a6d2d636b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ce69d27d-8ea5-4198-80fa-7d279da8ff8c' class='xr-var-data-in' type='checkbox'><label for='data-ce69d27d-8ea5-4198-80fa-7d279da8ff8c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>attr :</span></dt><dd>value</dd></dl></div><div class='xr-var-data'><pre>array([3, 3, 3, 3, 3, 3, 3, 3])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-37b6591b-bf47-4a0a-8958-392b73528983' class='xr-section-summary-in' type='checkbox'  checked><label for='section-37b6591b-bf47-4a0a-8958-392b73528983' class='xr-section-summary' >Attributes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>attr :</span></dt><dd>value</dd></dl></div></li></ul></div></div></div></div>
 </div>
-</div>
-<div class="section" id="id2">
-<h4>coordinates<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="id2">
+<h4>coordinates<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
 <p>As with <code class="docutils literal notranslate"><span class="pre">DataArray</span></code>, a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> really becomes useful once we assign
 coordinates. Here we also introduce using Pandas datetime objects as coordinate
 values:</p>
@@ -3983,9 +4115,9 @@ Data variables:
 <p>which combines the coordinates and fills in floating-point <code class="docutils literal notranslate"><span class="pre">nan</span></code> values for
 missing data (converting the data type to <code class="docutils literal notranslate"><span class="pre">float</span></code> in the process). For example,
 <code class="docutils literal notranslate"><span class="pre">b</span></code> doesn’t have a value for <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">3</span></code> so <code class="docutils literal notranslate"><span class="pre">nan</span></code> was used.</p>
-</div>
-<div class="section" id="id3">
-<h4>Exercises<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="id3">
+<h4>Exercises<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
 <ol class="simple">
 <li><p>create a Dataset with two variables along <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">longitude</span></code>:
 <code class="docutils literal notranslate"><span class="pre">height</span></code> and <code class="docutils literal notranslate"><span class="pre">gravity_anomaly</span></code></p></li>
@@ -5104,11 +5236,11 @@ Dimensions:  ()
 Data variables:
     *empty*</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-b22f2ba3-0a9e-4bd7-b10a-d925ed09524f' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-b22f2ba3-0a9e-4bd7-b10a-d925ed09524f' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-9e8fd329-2818-4a26-9169-1f0bccb6689e' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-9e8fd329-2818-4a26-9169-1f0bccb6689e' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-3c360ad4-fc42-44eb-8266-401c7513f74f' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3c360ad4-fc42-44eb-8266-401c7513f74f' class='xr-section-summary'  title='Expand/collapse section'>Data variables: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-b86fdbfb-238f-4bd6-8556-a99458503180' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-b86fdbfb-238f-4bd6-8556-a99458503180' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="roundtripping-and-i-o">
-<h2>Roundtripping and I/O<a class="headerlink" href="#roundtripping-and-i-o" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="roundtripping-and-i-o">
+<h2>Roundtripping and I/O<a class="headerlink" href="#roundtripping-and-i-o" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">DataArray</span></code> and <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> objects are frequently created by converting from
 other libraries such as <a class="reference external" href="https://pandas.pydata.org/">pandas</a> or by reading from
 data storage formats such as
@@ -5799,8 +5931,8 @@ broadcasted.</p>
 </table>
 </div></div></div>
 </div>
-<div class="section" id="i-o">
-<h3>I/O<a class="headerlink" href="#i-o" title="Permalink to this headline">¶</a></h3>
+<section id="i-o">
+<h3>I/O<a class="headerlink" href="#i-o" title="Permalink to this headline">#</a></h3>
 <p>One of Xarray’s most widely used features is its ability to read from and write
 to a variety of data formats. For example, Xarray can read the following
 formats:</p>
@@ -5812,8 +5944,8 @@ formats:</p>
 <a class="reference external" href="https://svn.osgeo.org/gdal/tags/gdal_1_2_5/frmts/formats_list.html">GDAL rasters</a>
 (via <code class="docutils literal notranslate"><span class="pre">open_rasterio</span></code>)</p></li>
 </ul>
-<div class="section" id="netcdf">
-<h4>NetCDF<a class="headerlink" href="#netcdf" title="Permalink to this headline">¶</a></h4>
+<section id="netcdf">
+<h4>NetCDF<a class="headerlink" href="#netcdf" title="Permalink to this headline">#</a></h4>
 <p>The recommended way to store xarray data structures is NetCDF, which is a binary
 file format for self-described datasets that originated in the geosciences.
 Xarray is based on the netCDF data model, so netCDF files on disk directly
@@ -6604,9 +6736,9 @@ Coordinates:
        [-1.374419,  1.127237],
        [-0.635558,  1.379079]])</pre></div></div></li><li class='xr-section-item'><input id='section-df23f429-39aa-4a78-84d6-9deb5c43104f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-df23f429-39aa-4a78-84d6-9deb5c43104f' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3</div><input id='attrs-3f5558f5-6b28-422f-8169-a6c0e57cc34a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-3f5558f5-6b28-422f-8169-a6c0e57cc34a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5ceba0ca-a231-4604-9d7f-c7347061fa24' class='xr-var-data-in' type='checkbox'><label for='data-5ceba0ca-a231-4604-9d7f-c7347061fa24' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([0, 1, 2, 3])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>-2 -1</div><input id='attrs-21245949-f190-4557-b803-7e2ca03441f8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-21245949-f190-4557-b803-7e2ca03441f8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-eb08cfdb-ccd9-4077-a0ce-efc9f114d0b7' class='xr-var-data-in' type='checkbox'><label for='data-eb08cfdb-ccd9-4077-a0ce-efc9f114d0b7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-2, -1])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-0fd3f62b-c1ff-4a03-b33b-f6dafc329197' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-0fd3f62b-c1ff-4a03-b33b-f6dafc329197' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
-</div>
-<div class="section" id="zarr">
-<h4>Zarr<a class="headerlink" href="#zarr" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="zarr">
+<h4>Zarr<a class="headerlink" href="#zarr" title="Permalink to this headline">#</a></h4>
 <p><a class="reference external" href="https://zarr.readthedocs.io/en/stable/">Zarr</a> is a Python package and data
 format providing an implementation of chunked, compressed, N-dimensional arrays.
 Zarr has the ability to store arrays in a range of ways, including in memory, in
@@ -7018,10 +7150,10 @@ Data variables:
 </div>
 <p>setting the <code class="docutils literal notranslate"><span class="pre">chunks</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">None</span></code> avoids <code class="docutils literal notranslate"><span class="pre">dask</span></code> (more on that in a later
 session)</p>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -7045,9 +7177,11 @@ session)</p>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="00_overview.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -7063,24 +7197,28 @@ session)</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By the Xarray community<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By the Xarray community<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
