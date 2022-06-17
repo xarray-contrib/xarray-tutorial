@@ -25,8 +25,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: _build
-          # NOTE: change key to "jupyterbook-N+1" to force rebuilding cache
-          key: jupyterbook-0
+          # NOTE: change key to "jupyterbook-DATE" to force rebuilding cache
+          key: jupyterbook-20220617
 
       - uses: ./.github/actions/setupconda
 
