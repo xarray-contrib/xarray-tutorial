@@ -32,7 +32,7 @@ jobs:
 
       - name: Build JupyterBook
         run: |
-          jupyter-book build .
+          jupyter-book build ./ --warningiserror --keep-going 
 
       - name: Dump Build Logs
         if: always()
