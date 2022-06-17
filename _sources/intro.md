@@ -1,11 +1,38 @@
 # Welcome to the Xarray Tutorial!
 
-![banner](images/logo.png)
+**[`Xarray`](https://xarray.dev) is an open source project and Python package that makes working with labelled multi-dimensional arrays simple, efficient, and fun!**
 
-📖 On this JupyterBook website you'll find easy-to-run example notebooks for Xarray. They are intended to be educational and give users a start on common workflows.
+📖 On this Jupyter Book website you'll find easy-to-run tutorial notebooks for Xarray. Whether you're new to Xarray or a seasoned user we hope you'll learn something new and get a head start on your own projects by exploring this material!
 
-🎬 You can find recordings of live walk-throughs of these notebooks on Xarray's [YouTube Channel](https://www.youtube.com/channel/UCBlxVSA6xQXeb-i4GgTlO7g)
+````{grid}
+:class-container: text-center
+:gutter: 3
 
-💡 Learn more about Xarray visiting the {{ '[Official Documentation]({link})'.format(link=xarray_docs) }}, or {{ '[User forum]({link})'.format(link=xarray_forum) }}
+```{grid-item-card}
+:link: overview/get-started
+:link-type: doc
+:class-header: bg-light
+Get started! 🚀
+^^^
+Learn how to navigate the tutorials and run code examples interactively
+```
 
-✏️ You can use the following references to cite this material: {cite:p}`hoyerhamman2017`, {cite:p}`xarray_v202230`.
+```{grid-item-card}
+:link: https://www.youtube.com/channel/UCBlxVSA6xQXeb-i4GgTlO7g
+:class-header: bg-light
+Watch videos 🎬
+^^^
+Live walk-throughs of this material and more on Xarray's YouTube Channel
+```
+
+```{grid-item-card}
+:link: https://github.com/pydata/xarray/discussions
+:class-header: bg-light
+Get involved 🙋
+^^^
+Ask questions on the Xarray Discussion Forum
+```
+
+````
+
+✏️ To cite this material, you can you the recommended [Xarray citation](https://docs.xarray.dev/en/stable/getting-started-guide/faq.html#how-should-i-cite-xarray): {cite:p}`hoyerhamman2017`, {cite:p}`xarray_v202230`.
