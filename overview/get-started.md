@@ -5,36 +5,32 @@
 Most of the tutorial content here is written as Jupyter Notebooks that mix
 code, text, visualization, and exercises. You can either browse rendered versions of these notebooks on this website, or _execute_ the code examples interactively.
 
-```{note}
-We highly recommend interactive exploration so that you can try out exercises and make changes to try new things!
-```
-
 You have two options for executing notebooks:
 
-1. Clicking [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/HEAD?urlpath=lab) will load a pre-configured Jupyter Lab interface with _all_ tutorial notebooks for you to run. _You have minimal computing resources and any changes you make will not be saved._ Any page with executable content also has a `{octicon}rocket` icon that will launch an interactive session.
+**1. On the Cloud:** Clicking [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/HEAD?urlpath=lab) will load a pre-configured Jupyter Lab interface with _all_ tutorial notebooks for you to run. _You have minimal computing resources and any changes you make will not be saved._ Any page with executable content also has a {octicon}`rocket;2em` icon in the upper right that will launch an interactive session for that particular page.
 
-   ```{warning}
-   Be patient, it can take a few minutes for a server to become available on the Cloud (Mybinder.org)!
-   ```
+```{warning}
+Be patient, it can take a few minutes for a server to become available on the Cloud (Mybinder.org)!
+```
 
-1. Running tutorials on your laptop requires some setup:
+**1. On your computer:** Running tutorials on your computer requires some setup:
 
-   We recommend using [`conda-lock`](https://conda-incubator.github.io/conda-lock/) to ensure a fully reproducible Python environment
+We recommend using [`conda-lock`](https://conda-incubator.github.io/conda-lock/) to ensure a fully reproducible Python environment
 
-   ```
-   git clone https://github.com/xarray-contrib/xarray-tutorial.git
-   cd xarray-tutorial
+```
+git clone https://github.com/xarray-contrib/xarray-tutorial.git
+cd xarray-tutorial
 
-   conda-lock install conda/conda-lock.yml --name xarray-tutorial
-   # Or latest package versions: `mamba env create -f conda/environment-unpinned.yml`
+conda-lock install conda/conda-lock.yml --name xarray-tutorial
+# Or latest package versions: `mamba env create -f conda/environment-unpinned.yml`
 
-   conda activate xarray-tutorial
-   jupyter lab
-   ```
+conda activate xarray-tutorial
+jupyter lab
+```
 
 ## Organization
 
-Tutorials are approximately divided into `Fundamentals`, `Intermediate`, `Advanced` sections with general materials that use examples from various scientific disciplines. You'll also find content specific to various workshops hosted over the years, often with accompanying video recordings of instructors going over content and answering questions that come up.
+Tutorials are approximately divided into sections with increasing levels of complexity: `Fundamentals`, `Intermediate`, `Advanced`. You'll also find content specific to various `Workshops` hosted over the years, often with accompanying video recordings of instructors going over content and answering questions that come up.
 
 ## Jupyter Lab
 
