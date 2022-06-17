@@ -4,7 +4,7 @@
 [![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](https://tutorial.xarray.dev)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/HEAD?urlpath=lab)
 
-This is the repository for a JupyterBook website with tutorial material for [Xarray](https://github.com/pydata/xarray), _an open source project and Python package that makes working with labelled multi-dimensional arrays simple, efficient, and fun!_
+This is the repository for a Jupyter Book website with tutorial material for [Xarray](https://github.com/pydata/xarray), _an open source project and Python package that makes working with labelled multi-dimensional arrays simple, efficient, and fun!_
 
 The website is hosted at https://tutorial.xarray.dev
 
@@ -22,7 +22,7 @@ You can also run these notebooks on your own computer! We recommend using [`cond
 git clone https://github.com/xarray-contrib/xarray-tutorial.git
 cd xarray-tutorial
 
-conda-lock install -f conda/conda-lock.yml --name xarray-tutorial
+conda-lock install conda/conda-lock.yml --name xarray-tutorial
 # Or latest package versions: `mamba env create -f conda/environment-unpinned.yml`
 
 conda activate xarray-tutorial
