@@ -57,6 +57,21 @@ repository:
 # Bibliography
 bibtex_bibfiles:
   - reference/references.bib
+
+# Advanced configuration
 sphinx:
+  extra_extensions:
+    # 404 not found page
+    - notfound.extension
+    # maintain old paths and redirect them (so google results dont go to 404)
+    # https://github.com/wpilibsuite/sphinxext-rediraffe
+    - sphinxext.rediraffe
   config:
+    notfound_context:
+      body: "<h1>Whoops! 404 Page Not Found</h1>\n\n<p>Sorry, this page doesn't exist. Many sections of this book have been updated recently.</p><p> Try the search box 🔎 to find what you're looking for!</p>"
+    notfound_urls_prefix: /
+
+    rediraffe_redirects:
+      scipy-tutorial/00_overview.ipynb: overview/get-started.md
+
     bibtex_reference_style: author_year # or label, super, \supercite
