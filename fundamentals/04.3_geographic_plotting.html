@@ -135,13 +135,18 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="01_datastructures_and_io.html">
+  <a class="reference internal" href="01_datastructures.html">
    Data structures
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01.1_io.html">
+   Reading and writing files
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="02.1_working_with_labeled_data.html">
-   Working with labeled data
+  <a class="reference internal" href="02_labeled_data.html">
+   Labeled data
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -149,6 +154,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02.1_working_with_labeled_data.html">
+     Working with labeled data
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="02.2_manipulating_dimensions.html">
      Manipulating Dimensions (Data Resolution)
@@ -162,7 +172,7 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="03.1_computation_with_xarray.html">
+  <a class="reference internal" href="03_computation.html">
    Computation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -171,6 +181,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.1_computation_with_xarray.html">
+     Basic Computation
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="03.2_groupby_with_xarray.html">
      Grouped Computations with Xarray
@@ -691,10 +706,14 @@ axis <code class="docutils literal notranslate"><span class="pre">axis</span></c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x7f9ed4da08b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x7fb2704b0940&gt;
 </pre></div>
 </div>
-<img alt="../_images/04.3_geographic_plotting_4_1.png" src="../_images/04.3_geographic_plotting_4_1.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/xarray-tutorial/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/110m_physical/ne_110m_coastline.zip
+  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
+</pre></div>
+</div>
+<img alt="../_images/04.3_geographic_plotting_4_2.png" src="../_images/04.3_geographic_plotting_4_2.png" />
 </div>
 </div>
 </section>
@@ -720,7 +739,7 @@ subplots are set up properly for cartopy.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f9ead03ce50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7fb2476f0ee0&gt;
 </pre></div>
 </div>
 <img alt="../_images/04.3_geographic_plotting_6_1.png" src="../_images/04.3_geographic_plotting_6_1.png" />
