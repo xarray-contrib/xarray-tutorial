@@ -1,0 +1,1329 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Weighted Reductions</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Plotting and Visualization" href="04.0_plotting.html" />
+    <link rel="prev" title="Windowed Computations" href="03.3_windowed.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JRQHYVFQR7"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-JRQHYVFQR7');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint">ℹ️ The 2022 Xarray User Survey is out! Please take ~5 minutes to help improve Xarray! <a href="https://docs.google.com/forms/d/e/1FAIpQLSfnMd8UsC1XP1lPuFczl148VfpmwnFu4a0Z94odt1L6U0R0Pw/viewform">LINK</a></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Overview
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview/get-started.html">
+   Get Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview/xarray-in-45-min.html">
+   Xarray in 45 minutes
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fundamentals
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_datastructures.html">
+   Data structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01.1_io.html">
+   Reading and writing files
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="02_labeled_data.html">
+   Labeled data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02.1_working_with_labeled_data.html">
+     Working with labeled data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02.2_manipulating_dimensions.html">
+     Manipulating Dimensions (Data Resolution)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="03_computation.html">
+   Computation
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.1_computation_with_xarray.html">
+     Basic Computation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02.3_aligning_data_objects.html">
+     Computing with Multiple Objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.2_groupby_with_xarray.html">
+     Grouped Computations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.3_windowed.html">
+     Windowed Computations
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Weighted Reductions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="04.0_plotting.html">
+   Plotting and Visualization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04.1_basic_plotting.html">
+     Basic Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04.2_faceting.html">
+     Faceting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04.3_geographic_plotting.html">
+     Geography with Cartopy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Intermediate
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intermediate/01-high-level-computation-patterns.html">
+   High-level computational patterns
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intermediate/xarray_and_dask.html">
+   Dask
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intermediate/hvplot.html">
+   Interactive plots using hvplot
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Advanced
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../advanced/parallelize-custom-functions.html">
+   Parallelizing custom functions with apply_ufunc and map_blocks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../advanced/backends/backends.html">
+   Creating new backends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/backends/1.Backend_without_Lazy_Loading.html">
+     Binary data without lazy loading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../advanced/backends/2.Backend_with_Lazy_Loading.html">
+     Binary data with lazy loading
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Workshops
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../workshops/oceanhackweek2020/README.html">
+   Oceanhackweek 2020
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/overview/xarray-in-45-min">
+     Xarray in 45 minutes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../workshops/thinking-like-xarray/README.html">
+   Thinking like Xarray
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/intermediate/01-high-level-computation-patterns">
+     High-level computation patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../workshops/online-tutorial-series/README.html">
+   Xarray Online Tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../workshops/online-tutorial-series/01_xarray_fundamentals.html">
+     Xarray Fundamentals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../workshops/online-tutorial-series/02_indexing.html">
+     Indexing and Selecting Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../workshops/online-tutorial-series/03_computation.html">
+     Computation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../workshops/scipy2022/README.html">
+   SciPy 2022 Xarray Tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/01_datastructures_and_io">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../workshops/scipy2022/cleaning_real_data.html">
+     Cleaning Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/02.1_working_with_labeled_data">
+     Labeled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/02.2_manipulating_dimensions">
+     Manipulating Dimensions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/02.3_aligning_data_objects">
+     Data Alignment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/03.1_computation_with_xarray">
+     Computation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/03.2_groupby_with_xarray">
+     Groupby
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/04.0_plotting.html">
+     Plotting and Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../workshops/scipy2022/xarray_ecosystem.html">
+     Xarray Ecosystem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/06_xarray_and_dask">
+     Xarray and Dask
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/resources.html">
+   Keep Exploring!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/xarray-contrib/xarray-tutorial"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Ffundamentals/03.4_weighted.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/fundamentals/03.4_weighted.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/fundamentals/03.4_weighted.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#manual-weighting">
+   Manual weighting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-weighted-method">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     weighted
+    </span>
+   </code>
+   method
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Weighted Reductions</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#manual-weighting">
+   Manual weighting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-weighted-method">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     weighted
+    </span>
+   </code>
+   method
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <a class="reference internal image-reference" href="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png"><img alt="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
+<section class="tex2jax_ignore mathjax_ignore" id="weighted-reductions">
+<h1>Weighted Reductions<a class="headerlink" href="#weighted-reductions" title="Permalink to this headline">#</a></h1>
+<p>Xarray supports <a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/computation.html#weighted-array-reductions">weighted reductions</a>.</p>
+<p>For demonstration, we will create a “weights” array proportional to cosine of latitude.
+Modulo a normalization, this is the correct area-weighting factor for data on a regular lat-lon grid.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">tutorial</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ersstv5&quot;</span><span class="p">)</span>
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+Dimensions:    (lat: 89, lon: 180, time: 624, nbnds: 2)
+Coordinates:
+  * lat        (lat) float32 88.0 86.0 84.0 82.0 ... -82.0 -84.0 -86.0 -88.0
+  * lon        (lon) float32 0.0 2.0 4.0 6.0 8.0 ... 352.0 354.0 356.0 358.0
+  * time       (time) datetime64[ns] 1970-01-01 1970-02-01 ... 2021-12-01
+Dimensions without coordinates: nbnds
+Data variables:
+    time_bnds  (time, nbnds) float64 9.969e+36 9.969e+36 ... 9.969e+36 9.969e+36
+    sst        (time, lat, lon) float32 -1.8 -1.8 -1.8 -1.8 ... nan nan nan nan
+Attributes: (12/37)
+    climatology:               Climatology is based on 1971-2000 SST, Xue, Y....
+    description:               In situ data: ICOADS2.5 before 2007 and NCEP i...
+    keywords_vocabulary:       NASA Global Change Master Directory (GCMD) Sci...
+    keywords:                  Earth Science &gt; Oceans &gt; Ocean Temperature &gt; S...
+    instrument:                Conventional thermometers
+    source_comment:            SSTs were observed by conventional thermometer...
+    ...                        ...
+    creator_url_original:      https://www.ncei.noaa.gov
+    license:                   No constraints on data access or use
+    comment:                   SSTs were observed by conventional thermometer...
+    summary:                   ERSST.v5 is developed based on v4 after revisi...
+    dataset_title:             NOAA Extended Reconstructed SST V5
+    data_modified:             2022-06-07</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-182cc051-d8d0-4f41-b9cd-84936e7a9a1c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-182cc051-d8d0-4f41-b9cd-84936e7a9a1c' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 89</li><li><span class='xr-has-index'>lon</span>: 180</li><li><span class='xr-has-index'>time</span>: 624</li><li><span>nbnds</span>: 2</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-cea90cbd-0196-448a-b27a-d8c6e8eca6e9' class='xr-section-summary-in' type='checkbox'  checked><label for='section-cea90cbd-0196-448a-b27a-d8c6e8eca6e9' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>88.0 86.0 84.0 ... -86.0 -88.0</div><input id='attrs-9aa32fcf-f6c1-4f6a-92bb-2a3e37e49e28' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9aa32fcf-f6c1-4f6a-92bb-2a3e37e49e28' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-171ca68c-5dc4-4d3c-9105-bc1b317882ff' class='xr-var-data-in' type='checkbox'><label for='data-171ca68c-5dc4-4d3c-9105-bc1b317882ff' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>actual_range :</span></dt><dd>[ 88. -88.]</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>coordinate_defines :</span></dt><dd>center</dd></dl></div><div class='xr-var-data'><pre>array([ 88.,  86.,  84.,  82.,  80.,  78.,  76.,  74.,  72.,  70.,  68.,  66.,
+        64.,  62.,  60.,  58.,  56.,  54.,  52.,  50.,  48.,  46.,  44.,  42.,
+        40.,  38.,  36.,  34.,  32.,  30.,  28.,  26.,  24.,  22.,  20.,  18.,
+        16.,  14.,  12.,  10.,   8.,   6.,   4.,   2.,   0.,  -2.,  -4.,  -6.,
+        -8., -10., -12., -14., -16., -18., -20., -22., -24., -26., -28., -30.,
+       -32., -34., -36., -38., -40., -42., -44., -46., -48., -50., -52., -54.,
+       -56., -58., -60., -62., -64., -66., -68., -70., -72., -74., -76., -78.,
+       -80., -82., -84., -86., -88.], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.0 2.0 4.0 ... 354.0 356.0 358.0</div><input id='attrs-e9151ff2-dfd0-4951-9ca1-60cb56c1ca1f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e9151ff2-dfd0-4951-9ca1-60cb56c1ca1f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1ac7c439-488f-4957-a46b-d94467a669c5' class='xr-var-data-in' type='checkbox'><label for='data-1ac7c439-488f-4957-a46b-d94467a669c5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>actual_range :</span></dt><dd>[  0. 358.]</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>coordinate_defines :</span></dt><dd>center</dd></dl></div><div class='xr-var-data'><pre>array([  0.,   2.,   4.,   6.,   8.,  10.,  12.,  14.,  16.,  18.,  20.,  22.,
+        24.,  26.,  28.,  30.,  32.,  34.,  36.,  38.,  40.,  42.,  44.,  46.,
+        48.,  50.,  52.,  54.,  56.,  58.,  60.,  62.,  64.,  66.,  68.,  70.,
+        72.,  74.,  76.,  78.,  80.,  82.,  84.,  86.,  88.,  90.,  92.,  94.,
+        96.,  98., 100., 102., 104., 106., 108., 110., 112., 114., 116., 118.,
+       120., 122., 124., 126., 128., 130., 132., 134., 136., 138., 140., 142.,
+       144., 146., 148., 150., 152., 154., 156., 158., 160., 162., 164., 166.,
+       168., 170., 172., 174., 176., 178., 180., 182., 184., 186., 188., 190.,
+       192., 194., 196., 198., 200., 202., 204., 206., 208., 210., 212., 214.,
+       216., 218., 220., 222., 224., 226., 228., 230., 232., 234., 236., 238.,
+       240., 242., 244., 246., 248., 250., 252., 254., 256., 258., 260., 262.,
+       264., 266., 268., 270., 272., 274., 276., 278., 280., 282., 284., 286.,
+       288., 290., 292., 294., 296., 298., 300., 302., 304., 306., 308., 310.,
+       312., 314., 316., 318., 320., 322., 324., 326., 328., 330., 332., 334.,
+       336., 338., 340., 342., 344., 346., 348., 350., 352., 354., 356., 358.],
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>1970-01-01 ... 2021-12-01</div><input id='attrs-c1e7fb49-ff4b-48dd-8fa1-704971795648' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c1e7fb49-ff4b-48dd-8fa1-704971795648' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4b63945d-e2fb-4a87-b5e1-eef6fef2acca' class='xr-var-data-in' type='checkbox'><label for='data-4b63945d-e2fb-4a87-b5e1-eef6fef2acca' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Time</dd><dt><span>delta_t :</span></dt><dd>0000-01-00 00:00:00</dd><dt><span>avg_period :</span></dt><dd>0000-01-00 00:00:00</dd><dt><span>prev_avg_period :</span></dt><dd>0000-00-07 00:00:00</dd><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>actual_range :</span></dt><dd>[19723. 81204.]</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;1970-01-01T00:00:00.000000000&#x27;, &#x27;1970-02-01T00:00:00.000000000&#x27;,
+       &#x27;1970-03-01T00:00:00.000000000&#x27;, ..., &#x27;2021-10-01T00:00:00.000000000&#x27;,
+       &#x27;2021-11-01T00:00:00.000000000&#x27;, &#x27;2021-12-01T00:00:00.000000000&#x27;],
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-fd839775-1bfc-4592-a39a-a1174240beda' class='xr-section-summary-in' type='checkbox'  checked><label for='section-fd839775-1bfc-4592-a39a-a1174240beda' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>time_bnds</span></div><div class='xr-var-dims'>(time, nbnds)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>9.969e+36 9.969e+36 ... 9.969e+36</div><input id='attrs-af203ea2-2ada-459c-b1eb-051d7e318823' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-af203ea2-2ada-459c-b1eb-051d7e318823' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-dc99c1a5-ad89-429d-8522-278c1af88e90' class='xr-var-data-in' type='checkbox'><label for='data-dc99c1a5-ad89-429d-8522-278c1af88e90' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Time Boundaries</dd></dl></div><div class='xr-var-data'><pre>array([[9.96920997e+36, 9.96920997e+36],
+       [9.96920997e+36, 9.96920997e+36],
+       [9.96920997e+36, 9.96920997e+36],
+       ...,
+       [9.96920997e+36, 9.96920997e+36],
+       [9.96920997e+36, 9.96920997e+36],
+       [9.96920997e+36, 9.96920997e+36]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sst</span></div><div class='xr-var-dims'>(time, lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-1.8 -1.8 -1.8 -1.8 ... nan nan nan</div><input id='attrs-737a5476-41f9-4eeb-8302-0fb3d0855f5c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-737a5476-41f9-4eeb-8302-0fb3d0855f5c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a4467357-74d5-484e-89de-fc69982f1c8f' class='xr-var-data-in' type='checkbox'><label for='data-a4467357-74d5-484e-89de-fc69982f1c8f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Monthly Means of Sea Surface Temperature</dd><dt><span>units :</span></dt><dd>degC</dd><dt><span>var_desc :</span></dt><dd>Sea Surface Temperature</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Mean</dd><dt><span>dataset :</span></dt><dd>NOAA Extended Reconstructed SST V5</dd><dt><span>parent_stat :</span></dt><dd>Individual Values</dd><dt><span>actual_range :</span></dt><dd>[-1.8     42.32636]</dd><dt><span>valid_range :</span></dt><dd>[-1.8 45. ]</dd></dl></div><div class='xr-var-data'><pre>array([[[-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        [-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        [-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        ...,
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan],
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan],
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan]],
+
+       [[-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        [-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        [-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        ...,
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan],
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan],
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan]],
+
+       [[-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        [-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        [-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        ...,
+...
+        ...,
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan],
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan],
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan]],
+
+       [[-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        [-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        [-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        ...,
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan],
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan],
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan]],
+
+       [[-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        [-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        [-1.8, -1.8, -1.8, ..., -1.8, -1.8, -1.8],
+        ...,
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan],
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan],
+        [ nan,  nan,  nan, ...,  nan,  nan,  nan]]], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-2e728ff1-d202-41c9-aab2-f76f912333f9' class='xr-section-summary-in' type='checkbox'  ><label for='section-2e728ff1-d202-41c9-aab2-f76f912333f9' class='xr-section-summary' >Attributes: <span>(37)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>climatology :</span></dt><dd>Climatology is based on 1971-2000 SST, Xue, Y., T. M. Smith, and R. W. Reynolds, 2003: Interdecadal changes of 30-yr SST normals during 1871.2000. Journal of Climate, 16, 1601-1612.</dd><dt><span>description :</span></dt><dd>In situ data: ICOADS2.5 before 2007 and NCEP in situ data from 2008 to present. Ice data: HadISST ice before 2010 and NCEP ice after 2010.</dd><dt><span>keywords_vocabulary :</span></dt><dd>NASA Global Change Master Directory (GCMD) Science Keywords</dd><dt><span>keywords :</span></dt><dd>Earth Science &gt; Oceans &gt; Ocean Temperature &gt; Sea Surface Temperature &gt;</dd><dt><span>instrument :</span></dt><dd>Conventional thermometers</dd><dt><span>source_comment :</span></dt><dd>SSTs were observed by conventional thermometers in Buckets (insulated or un-insulated canvas and wooded buckets) or Engine Room Intaker</dd><dt><span>geospatial_lon_min :</span></dt><dd>-1.0</dd><dt><span>geospatial_lon_max :</span></dt><dd>359.0</dd><dt><span>geospatial_laty_max :</span></dt><dd>89.0</dd><dt><span>geospatial_laty_min :</span></dt><dd>-89.0</dd><dt><span>geospatial_lat_max :</span></dt><dd>89.0</dd><dt><span>geospatial_lat_min :</span></dt><dd>-89.0</dd><dt><span>geospatial_lat_units :</span></dt><dd>degrees_north</dd><dt><span>geospatial_lon_units :</span></dt><dd>degrees_east</dd><dt><span>cdm_data_type :</span></dt><dd>Grid</dd><dt><span>project :</span></dt><dd>NOAA Extended Reconstructed Sea Surface Temperature (ERSST)</dd><dt><span>original_publisher_url :</span></dt><dd>http://www.ncdc.noaa.gov</dd><dt><span>References :</span></dt><dd>https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v5 at NCEI and http://www.esrl.noaa.gov/psd/data/gridded/data.noaa.ersst.v5.html</dd><dt><span>source :</span></dt><dd>In situ data: ICOADS R3.0 before 2015, NCEP in situ GTS from 2016 to present, and Argo SST from 1999 to present. Ice data: HadISST2 ice before 2015, and NCEP ice after 2015</dd><dt><span>title :</span></dt><dd>NOAA ERSSTv5 (in situ only)</dd><dt><span>history :</span></dt><dd>created 07/2017 by PSD data using NCEI&#x27;s ERSST V5 NetCDF values</dd><dt><span>institution :</span></dt><dd>This version written at NOAA/ESRL PSD: obtained from NOAA/NESDIS/National Centers for Environmental Information and time aggregated. Original Full Source: NOAA/NESDIS/NCEI/CCOG</dd><dt><span>citation :</span></dt><dd>Huang et al, 2017: Extended Reconstructed Sea Surface Temperatures Version 5 (ERSSTv5): Upgrades, Validations, and Intercomparisons. Journal of Climate, https://doi.org/10.1175/JCLI-D-16-0836.1</dd><dt><span>platform :</span></dt><dd>Ship and Buoy SSTs from ICOADS R3.0 and NCEP GTS</dd><dt><span>standard_name_vocabulary :</span></dt><dd>CF Standard Name Table (v40, 25 January 2017)</dd><dt><span>processing_level :</span></dt><dd>NOAA Level 4</dd><dt><span>Conventions :</span></dt><dd>CF-1.6, ACDD-1.3</dd><dt><span>metadata_link :</span></dt><dd>:metadata_link = https://doi.org/10.7289/V5T72FNM (original format)</dd><dt><span>creator_name :</span></dt><dd>Boyin Huang (original)</dd><dt><span>date_created :</span></dt><dd>2017-06-30T12:18:00Z (original)</dd><dt><span>product_version :</span></dt><dd>Version 5</dd><dt><span>creator_url_original :</span></dt><dd>https://www.ncei.noaa.gov</dd><dt><span>license :</span></dt><dd>No constraints on data access or use</dd><dt><span>comment :</span></dt><dd>SSTs were observed by conventional thermometers in Buckets (insulated or un-insulated canvas and wooded buckets), Engine Room Intakers, or floats and drifters</dd><dt><span>summary :</span></dt><dd>ERSST.v5 is developed based on v4 after revisions of 8 parameters using updated data sets and advanced knowledge of ERSST analysis</dd><dt><span>dataset_title :</span></dt><dd>NOAA Extended Reconstructed SST V5</dd><dt><span>data_modified :</span></dt><dd>2022-06-07</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">lat</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+
+<span class="n">weights</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;lat&#39;,)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f3ca2591d50&gt;]
+</pre></div>
+</div>
+<img alt="../_images/03.4_weighted_3_2.png" src="../_images/03.4_weighted_3_2.png" />
+</div>
+</div>
+<section id="manual-weighting">
+<h2>Manual weighting<a class="headerlink" href="#manual-weighting" title="Permalink to this headline">#</a></h2>
+<p>Thanks to the automatic broadcasting and alignment discussed earlier, if we multiply this by SST, it “just works,” and the arrays are broadcasted properly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">sst</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">dims</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;time&#39;, &#39;lat&#39;, &#39;lon&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could imagine computing the weighted spatial mean of SST manually.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sst_mean</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">sst</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lon&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">))</span> <span class="o">/</span> <span class="n">weights</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;lat&quot;</span><span class="p">)</span>
+<span class="n">sst_mean</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;This is wrong!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;This is wrong!&#39;)
+</pre></div>
+</div>
+<img alt="../_images/03.4_weighted_7_1.png" src="../_images/03.4_weighted_7_1.png" />
+</div>
+</div>
+<p>That would be wrong, however, because the denominator (<code class="docutils literal notranslate"><span class="pre">weights.sum(dim='lat')</span></code>)
+needs to be expanded to include the <code class="docutils literal notranslate"><span class="pre">lon</span></code> dimension and modified to account for
+the missing values (land points).</p>
+</section>
+<section id="the-weighted-method">
+<h2>The <code class="docutils literal notranslate"><span class="pre">weighted</span></code> method<a class="headerlink" href="#the-weighted-method" title="Permalink to this headline">#</a></h2>
+<p>In general, weighted reductions on multidimensional arrays are complicated. To
+make it a bit easier, Xarray provides a mechanism for weighted reductions.</p>
+<p>It does this by creating a special intermediate <code class="docutils literal notranslate"><span class="pre">DataArrayWeighted</span></code> object, to
+which different reduction operations can applied.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sst_weighted</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sst</span><span class="o">.</span><span class="n">weighted</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+<span class="n">sst_weighted</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DataArrayWeighted with weights along dimensions: lat
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+    Xarrays' computation methods (groupby, groupby_bins, rolling, coarsen, weighted) all return special objects that represent the basic underlying computation pattern. For e.g. `sst_weighted` above is a `DatasetWeighted` object that represents the weighting by `weights` of the data in `ds.sst`. It is usually helpful to save and reuse these objects for multiple operations (e.g. a mean and standard deviation calculation).
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sst_weighted</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;lon&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Correct Global Mean SST&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03.4_weighted_11_0.png" src="../_images/03.4_weighted_11_0.png" />
+</div>
+</div>
+<p>A handful of reductions have been implemented: <a class="reference external" href="https://docs.xarray.dev/en/stable/api.html#weighted-objects">mean, sum, std, var</a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./fundamentals"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="03.3_windowed.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Windowed Computations</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="04.0_plotting.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Plotting and Visualization</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By The Xarray Community<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
