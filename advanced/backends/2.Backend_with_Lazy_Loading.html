@@ -628,6 +628,11 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-sample-files">
+   Create sample files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#binarybackendarray">
    BinaryBackendArray
   </a>
@@ -661,6 +666,11 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-sample-files">
+   Create sample files
+  </a>
+ </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#binarybackendarray">
    BinaryBackendArray
@@ -701,7 +711,34 @@ For doing that you need:</p>
 </ul>
 </li>
 </ul>
-<br/><section id="binarybackendarray">
+<br/><section id="create-sample-files">
+<h2>Create sample files<a class="headerlink" href="#create-sample-files" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">dask</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30000000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;foo.bin&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">arr</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30000000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;foo_float.bin&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">arr</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="binarybackendarray">
 <h2>BinaryBackendArray<a class="headerlink" href="#binarybackendarray" title="Permalink to this headline">#</a></h2>
 <p>The BackendArray subclass shall implement the following method and attributes:</p>
 <ul class="simple">
@@ -712,14 +749,7 @@ For doing that you need:</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-
-<span class="kn">import</span> <span class="nn">dask</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-
-
-<span class="k">class</span> <span class="nc">BinaryBackendArray</span><span class="p">(</span><span class="n">xr</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">BackendArray</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BinaryBackendArray</span><span class="p">(</span><span class="n">xr</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">BackendArray</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">filename_or_obj</span><span class="p">,</span>
@@ -1152,8 +1182,8 @@ dl.xr-attrs {
   fill: currentColor;
 }
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;foo&#x27; (x: 30000000)&gt;
-dask.array&lt;open_dataset-ff7e6b3e494f0f392366d0b0c79fbed4foo, shape=(30000000,), dtype=int64, chunksize=(10000,), chunktype=numpy.ndarray&gt;
-Dimensions without coordinates: x</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'foo'</div><ul class='xr-dim-list'><li><span>x</span>: 30000000</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-21c09400-6070-4083-b812-1760492eda7a' class='xr-array-in' type='checkbox' checked><label for='section-21c09400-6070-4083-b812-1760492eda7a' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(10000,), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+dask.array&lt;open_dataset-a1aa1e78caa8e663ba995f5b2f33c120foo, shape=(30000000,), dtype=int64, chunksize=(10000,), chunktype=numpy.ndarray&gt;
+Dimensions without coordinates: x</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'foo'</div><ul class='xr-dim-list'><li><span>x</span>: 30000000</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-5e70d92f-b6fe-49b9-88b8-b16121443735' class='xr-array-in' type='checkbox' checked><label for='section-5e70d92f-b6fe-49b9-88b8-b16121443735' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(10000,), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
     <tr>
         <td>
             <table>
@@ -1228,7 +1258,7 @@ Dimensions without coordinates: x</pre><div class='xr-wrap' style='display:none'
 </svg>
         </td>
     </tr>
-</table></div></div></li><li class='xr-section-item'><input id='section-a590c469-8e85-4b10-a030-d11ee74df586' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-a590c469-8e85-4b10-a030-d11ee74df586' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-8c4a2336-ad0d-410b-8d1f-028f915ac165' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-8c4a2336-ad0d-410b-8d1f-028f915ac165' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+</table></div></div></li><li class='xr-section-item'><input id='section-75f07fad-fd73-4839-b236-d59b94cd272c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-75f07fad-fd73-4839-b236-d59b94cd272c' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-f18aa323-32cd-43cd-954a-70792f2bab6e' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-f18aa323-32cd-43cd-954a-70792f2bab6e' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1589,7 +1619,7 @@ dl.xr-attrs {
   fill: currentColor;
 }
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;foo&#x27; ()&gt;
-dask.array&lt;mean_agg-aggregate, shape=(), dtype=float64, chunksize=(), chunktype=numpy.ndarray&gt;</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'foo'</div></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-efdf597f-69e1-4368-9200-fd81cbb85e41' class='xr-array-in' type='checkbox' checked><label for='section-efdf597f-69e1-4368-9200-fd81cbb85e41' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+dask.array&lt;mean_agg-aggregate, shape=(), dtype=float64, chunksize=(), chunktype=numpy.ndarray&gt;</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'foo'</div></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-67d1f3cb-0ba3-4bb2-ad10-192c1298c299' class='xr-array-in' type='checkbox' checked><label for='section-67d1f3cb-0ba3-4bb2-ad10-192c1298c299' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
     <tr>
         <td>
             <table>
@@ -1630,7 +1660,7 @@ dask.array&lt;mean_agg-aggregate, shape=(), dtype=float64, chunksize=(), chunkty
 
         </td>
     </tr>
-</table></div></div></li><li class='xr-section-item'><input id='section-2ba2c752-bfca-4d8e-a2fa-41f9da8d3f44' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-2ba2c752-bfca-4d8e-a2fa-41f9da8d3f44' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-45c33942-a7db-44bf-8080-c2aa5a96a38e' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-45c33942-a7db-44bf-8080-c2aa5a96a38e' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+</table></div></div></li><li class='xr-section-item'><input id='section-ddcce634-a747-4e37-8f88-f9723e9ced1a' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-ddcce634-a747-4e37-8f88-f9723e9ced1a' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-29149e46-efb3-4621-b84a-d8506e636c14' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-29149e46-efb3-4621-b84a-d8506e636c14' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1992,7 +2022,7 @@ dl.xr-attrs {
 }
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;foo&#x27; (x: 10)&gt;
 dask.array&lt;getitem, shape=(10,), dtype=int64, chunksize=(10,), chunktype=numpy.ndarray&gt;
-Dimensions without coordinates: x</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'foo'</div><ul class='xr-dim-list'><li><span>x</span>: 10</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-0f7569f4-9467-4be8-8435-b6fdc050f5c9' class='xr-array-in' type='checkbox' checked><label for='section-0f7569f4-9467-4be8-8435-b6fdc050f5c9' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(10,), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+Dimensions without coordinates: x</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'foo'</div><ul class='xr-dim-list'><li><span>x</span>: 10</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-f69e3926-e398-47e6-94c8-b405f1dbd6dd' class='xr-array-in' type='checkbox' checked><label for='section-f69e3926-e398-47e6-94c8-b405f1dbd6dd' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(10,), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
     <tr>
         <td>
             <table>
@@ -2049,7 +2079,7 @@ Dimensions without coordinates: x</pre><div class='xr-wrap' style='display:none'
 </svg>
         </td>
     </tr>
-</table></div></div></li><li class='xr-section-item'><input id='section-e35f00c3-1c0d-412a-9403-155cafbf3d2b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-e35f00c3-1c0d-412a-9403-155cafbf3d2b' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-2e301974-0c7a-46c8-9fba-2e907120bf5c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-2e301974-0c7a-46c8-9fba-2e907120bf5c' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+</table></div></div></li><li class='xr-section-item'><input id='section-8094f0e6-3401-4015-913c-e1dfb37a012d' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-8094f0e6-3401-4015-913c-e1dfb37a012d' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-0e2f3343-b457-4184-8481-22c647bcefe9' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-0e2f3343-b457-4184-8481-22c647bcefe9' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2411,7 +2441,7 @@ dl.xr-attrs {
 }
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;foo&#x27; (x: 10)&gt;
 array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-Dimensions without coordinates: x</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'foo'</div><ul class='xr-dim-list'><li><span>x</span>: 10</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-0f9589fc-5356-4732-a09f-0c98bfe69c87' class='xr-array-in' type='checkbox' checked><label for='section-0f9589fc-5356-4732-a09f-0c98bfe69c87' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0 1 2 3 4 5 6 7 8 9</span></div><div class='xr-array-data'><pre>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</pre></div></div></li><li class='xr-section-item'><input id='section-c023e802-8f46-4f92-bf20-cc196c63436a' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-c023e802-8f46-4f92-bf20-cc196c63436a' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-2d251451-4bf5-493c-ac42-b426e8a978c2' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-2d251451-4bf5-493c-ac42-b426e8a978c2' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+Dimensions without coordinates: x</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'foo'</div><ul class='xr-dim-list'><li><span>x</span>: 10</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-8dce6de3-24ca-4dc6-9d95-5cefb7280c63' class='xr-array-in' type='checkbox' checked><label for='section-8dce6de3-24ca-4dc6-9d95-5cefb7280c63' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0 1 2 3 4 5 6 7 8 9</span></div><div class='xr-array-data'><pre>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</pre></div></div></li><li class='xr-section-item'><input id='section-da6d6d38-5391-4fca-a501-acef9ee5dde4' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-da6d6d38-5391-4fca-a501-acef9ee5dde4' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-44aba982-24c2-4118-9fc3-75ed83213131' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-44aba982-24c2-4118-9fc3-75ed83213131' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2773,7 +2803,7 @@ dl.xr-attrs {
 }
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;foo&#x27; (x: 30000000)&gt;
 array([       0,        1,        2, ..., 29999997, 29999998, 29999999])
-Dimensions without coordinates: x</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'foo'</div><ul class='xr-dim-list'><li><span>x</span>: 30000000</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-2f619427-f1f5-44fb-a61c-b7f7c7ffacef' class='xr-array-in' type='checkbox' checked><label for='section-2f619427-f1f5-44fb-a61c-b7f7c7ffacef' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0 1 2 3 4 5 ... 29999994 29999995 29999996 29999997 29999998 29999999</span></div><div class='xr-array-data'><pre>array([       0,        1,        2, ..., 29999997, 29999998, 29999999])</pre></div></div></li><li class='xr-section-item'><input id='section-fc743f01-1d32-431d-9b13-6d6de716f41b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-fc743f01-1d32-431d-9b13-6d6de716f41b' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-dd69c325-af27-4dfe-89d6-77d472b27da4' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-dd69c325-af27-4dfe-89d6-77d472b27da4' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+Dimensions without coordinates: x</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'foo'</div><ul class='xr-dim-list'><li><span>x</span>: 30000000</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-102a9518-cb1b-4f15-9ca7-7ac7b1d16d9c' class='xr-array-in' type='checkbox' checked><label for='section-102a9518-cb1b-4f15-9ca7-7ac7b1d16d9c' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0 1 2 3 4 5 ... 29999994 29999995 29999996 29999997 29999998 29999999</span></div><div class='xr-array-data'><pre>array([       0,        1,        2, ..., 29999997, 29999998, 29999999])</pre></div></div></li><li class='xr-section-item'><input id='section-66fdbbd0-b455-4efd-8417-e7fa2e668e20' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-66fdbbd0-b455-4efd-8417-e7fa2e668e20' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-eaa7c197-d499-4241-a614-876de53db756' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-eaa7c197-d499-4241-a614-876de53db756' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 </section>
 </section>
