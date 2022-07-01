@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>SciPy 2022 Xarray Tutorial</title>
+    <title>SciPy 2022</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Cleaning Real Data" href="cleaning_real_data.html" />
-    <link rel="prev" title="Computation" href="../online-tutorial-series/03_computation.html" />
+    <link rel="next" title="Oceanhackweek 2020" href="../oceanhackweek2020/README.html" />
+    <link rel="prev" title="Binary data with lazy loading" href="../../advanced/backends/2.Backend_with_Lazy_Loading.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -248,6 +248,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../intermediate/xarray_ecosystem.html">
+   A Tour of the Xarray Ecosystem
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../intermediate/hvplot.html">
    Interactive plots using hvplot
   </a>
@@ -293,6 +298,11 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   SciPy 2022
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../oceanhackweek2020/README.html">
    Oceanhackweek 2020
@@ -350,68 +360,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../online-tutorial-series/03_computation.html">
      Computation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
-   SciPy 2022 Xarray Tutorial
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/01_datastructures_and_io">
-     Data Structures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="cleaning_real_data.html">
-     Cleaning Real Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/02.1_working_with_labeled_data">
-     Labeled Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/02.2_manipulating_dimensions">
-     Manipulating Dimensions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/02.3_aligning_data_objects">
-     Data Alignment
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/03.1_computation_with_xarray">
-     Computation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/03.2_groupby_with_xarray">
-     Groupby
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/04.0_plotting.html">
-     Plotting and Visualization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="xarray_ecosystem.html">
-     Xarray Ecosystem
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/fundamentals/06_xarray_and_dask">
-     Xarray and Dask
     </a>
    </li>
   </ul>
@@ -656,7 +604,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>SciPy 2022 Xarray Tutorial</h1>
+                <h1>SciPy 2022</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -686,16 +634,18 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="scipy-2022-xarray-tutorial">
-<h1>SciPy 2022 Xarray Tutorial<a class="headerlink" href="#scipy-2022-xarray-tutorial" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="scipy-2022">
+<h1>SciPy 2022<a class="headerlink" href="#scipy-2022" title="Permalink to this headline">#</a></h1>
 <section id="xarray-friendly-interactive-and-scalable-scientific-data-analysis">
 <h2>Xarray: Friendly, Interactive, and Scalable Scientific Data Analysis<a class="headerlink" href="#xarray-friendly-interactive-and-scalable-scientific-data-analysis" title="Permalink to this headline">#</a></h2>
-<p>To be presented 11 July 2022 by:</p>
+<p>Organized by:</p>
 <ul class="simple">
 <li><p>Scott Henderson (Univ. Washington)</p></li>
+<li><p>Deepak Cherian (National Center for Atmospheric Research)</p></li>
 <li><p>Jessica Scheick (Univ. New Hampshire)</p></li>
-<li><p>Tom Nicholas (Lamont-Doherty)</p></li>
 <li><p>Emma Marshall (Univ. Utah)</p></li>
+<li><p>Anderson Banihirwe (CarbonPlan)</p></li>
+<li><p>Tom Nicholas (Lamont-Doherty Earth Observatory)</p></li>
 </ul>
 <p>This four hour workshop covers fundamental Xarray concepts with increasingly complex real-world data analysis tasks.</p>
 <p>Video Recoding:
@@ -704,45 +654,69 @@ Will be available after the event</p>
 <section id="schedule">
 <h2>Schedule<a class="headerlink" href="#schedule" title="Permalink to this headline">#</a></h2>
 <p><em>These are the rough timings for the tutorial</em>:</p>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Topic</p></th>
-<th class="head"><p>Time (min)</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Introduction</p></td>
-<td><p>20</p></td>
-</tr>
-<tr class="row-odd"><td><p>Data structures</p></td>
-<td><p>30</p></td>
-</tr>
-<tr class="row-even"><td><p>Break</p></td>
-<td><p>10</p></td>
-</tr>
-<tr class="row-odd"><td><p>Labeled data</p></td>
-<td><p>30</p></td>
-</tr>
-<tr class="row-even"><td><p>Computation</p></td>
-<td><p>60</p></td>
-</tr>
-<tr class="row-odd"><td><p>Break</p></td>
-<td><p>10</p></td>
-</tr>
-<tr class="row-even"><td><p>Plotting and visualization</p></td>
-<td><p>30</p></td>
-</tr>
-<tr class="row-odd"><td><p>Xarray ecosystem</p></td>
-<td><p>30</p></td>
-</tr>
-<tr class="row-even"><td><p>Oh the places we’ll go</p></td>
-<td><p>30</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<div class="toctree-wrapper compound">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Introduction (20 min)<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Logistics;</p>
 </div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Introduction to Xarray (30 min)<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><a class="reference internal" href="../../fundamentals/01_datastructures.html"><span class="doc">Data structures</span></a></p>
+<p class="sd-card-text"><a class="reference internal" href="../../fundamentals/01.1_io.html"><span class="doc">Reading and writing files</span></a></p>
+</div>
+</details><p><strong>Break (10 min)</strong></p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Working with Labeled Data (30 min)<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><a class="reference internal" href="../../fundamentals/02.1_working_with_labeled_data.html"><span class="doc">Working with labeled data</span></a></p>
+<p class="sd-card-text"><a class="reference internal" href="../../fundamentals/04.1_basic_plotting.html"><span class="doc">Basic Visualization</span></a></p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Computation (60 min)<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><a class="reference internal" href="../../fundamentals/03.1_computation_with_xarray.html"><span class="doc">Basic Computation</span></a></p>
+<p class="sd-card-text"><a class="reference internal" href="../../fundamentals/02.3_aligning_data_objects.html"><span class="doc">Computing with Multiple Objects</span></a></p>
+<p class="sd-card-text"><a class="reference internal" href="../../fundamentals/03.2_groupby_with_xarray.html"><span class="doc">Grouped Computations</span></a></p>
+</div>
+</details><p><strong>Break</strong></p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Plotting and Visualization (30 min)<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><a class="reference internal" href="../../fundamentals/04.2_faceting.html"><span class="doc">Faceting</span></a></p>
+<p class="sd-card-text"><a class="reference internal" href="../../fundamentals/04.3_geographic_plotting.html"><span class="doc">Geography with Cartopy</span></a></p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Oh the places we’ll go - (60 min)<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><a class="reference internal" href="../../intermediate/xarray_ecosystem.html"><span class="doc">A Tour of the Xarray Ecosystem</span></a></p>
+<p class="sd-card-text">Demo</p>
+</div>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -772,17 +746,17 @@ Will be available after the event</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../online-tutorial-series/03_computation.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../../advanced/backends/2.Backend_with_Lazy_Loading.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Computation</p>
+            <p class="prev-next-title">Binary data with lazy loading</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="cleaning_real_data.html" title="next page">
+    <a class='right-next' id="next-link" href="../oceanhackweek2020/README.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Cleaning Real Data</p>
+        <p class="prev-next-title">Oceanhackweek 2020</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
