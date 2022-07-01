@@ -2,9 +2,10 @@
 
 ## Xarray: Friendly, Interactive, and Scalable Scientific Data Analysis
 
-To be presented 11 July 2022 by:
+Organized by:
 
 - Scott Henderson (Univ. Washington)
+- Deepak Cherian (National Center for Atmospheric Research)
 - Jessica Scheick (Univ. New Hampshire)
 - Emma Marshall (Univ. Utah)
 - Anderson Banihirwe (CarbonPlan)
