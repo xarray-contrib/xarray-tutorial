@@ -28,6 +28,8 @@ Logistics;
 {doc}`../../fundamentals/01_datastructures`
 
 {doc}`../../fundamentals/01.1_io`
+
+{doc}`../../data_cleaning/ice_velocity.ipynb`
 ```
 
 **Break (10 min)**
