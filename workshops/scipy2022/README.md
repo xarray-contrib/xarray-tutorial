@@ -29,7 +29,7 @@ Logistics;
 
 {doc}`../../fundamentals/01.1_io`
 
-{doc}`/home/runner/work/xarray-tutorial/xarray-tutorial/data_cleaning/ice_velocity.ipynb`
+{doc}`/xarray-tutorial/xarray-tutorial/data_cleaning/ice_velocity.ipynb`
 ```
 
 **Break (10 min)**
