@@ -24,7 +24,7 @@ Launch cloud-hosted Jupyter Lab environment:
 _Below are links to sections of this website we'll cover_:
 
 ```{dropdown} Introduction
-{doc}`../../overview/get-started.md`
+{doc}`../../overview/get-started`
 ```
 
 ```{dropdown} Introduction to Xarray
