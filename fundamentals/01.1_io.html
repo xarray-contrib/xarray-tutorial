@@ -726,6 +726,14 @@ takes the path we want to write to:</p>
 </div>
 </div>
 </div>
+<p>The constructor of <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> takes three parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data_vars</span></code>: dict-like mapping names to values. It has the format described in
+<a class="reference external" href="#coordinates">coordinates</a> except we need to use either <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> objects
+or the tuple syntax since we have to provide dimensions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">coords</span></code>: same as for <code class="docutils literal notranslate"><span class="pre">DataArray</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attrs</span></code>: same as for <code class="docutils literal notranslate"><span class="pre">Dataset</span></code></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds1</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
