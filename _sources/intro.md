@@ -35,4 +35,4 @@ Ask questions on the Xarray Discussion Forum
 
 ````
 
-✏️ To cite this material, you can you the recommended [Xarray citation](https://docs.xarray.dev/en/stable/getting-started-guide/faq.html#how-should-i-cite-xarray): {cite:p}`hoyerhamman2017`, {cite:p}`xarray_v202230`.
+✏️ To cite this material, you can use the recommended [Xarray citation](https://docs.xarray.dev/en/stable/getting-started-guide/faq.html#how-should-i-cite-xarray): {cite:p}`hoyerhamman2017`, {cite:p}`xarray_v202230`.
