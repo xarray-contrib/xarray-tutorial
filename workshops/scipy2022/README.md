@@ -16,29 +16,30 @@ This four hour workshop covers fundamental Xarray concepts with increasingly com
 Video Recoding:
 Will be available after the event
 
-## Schedule
+Launch cloud-hosted Jupyter Lab environment:
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/HEAD?labpath=workshops/scipy2022/index.ipynb)
 
-_These are the rough timings for the tutorial_:
+## Topics
 
-```{dropdown} Introduction (20 min)
-Logistics;
+_Below are links to sections of this website we'll cover_:
+
+```{dropdown} Introduction
+{doc}`../../overview/get-started`
 ```
 
-```{dropdown} Introduction to Xarray (30 min)
+```{dropdown} Introduction to Xarray
 {doc}`../../fundamentals/01_datastructures`
 
 {doc}`../../fundamentals/01.1_io`
 ```
 
-**Break (10 min)**
-
-```{dropdown} Working with Labeled Data (30 min)
+```{dropdown} Working with Labeled Data
 {doc}`../../fundamentals/02.1_working_with_labeled_data`
 
-{doc}`../../fundamentals/04.1_basic_plotting`
+
 ```
 
-```{dropdown} Computation (60 min)
+```{dropdown} Computation
 {doc}`../../fundamentals/03.1_computation_with_xarray`
 
 {doc}`../../fundamentals/02.3_aligning_data_objects`
@@ -46,16 +47,15 @@ Logistics;
 {doc}`../../fundamentals/03.2_groupby_with_xarray`
 ```
 
-**Break**
-
-```{dropdown} Plotting and Visualization (30 min)
+```{dropdown} Plotting and Visualization
+{doc}`../../fundamentals/04.1_basic_plotting`
 
 {doc}`../../fundamentals/04.2_faceting`
 
 {doc}`../../fundamentals/04.3_geographic_plotting`
 ```
 
-```{dropdown} Oh the places we'll go - (60 min)
+```{dropdown} Xarray Ecosystem
 {doc}`../../intermediate/xarray_ecosystem`
 
 Demo
