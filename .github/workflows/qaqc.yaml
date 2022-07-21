@@ -40,7 +40,6 @@ jobs:
             yaml.dump(data, f)
 
       - name: Check External Links
-        continue-on-error: true
         if: always()
         run: |
           jupyter-book build ./ --builder linkcheck
