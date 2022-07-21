@@ -725,7 +725,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <a class="reference internal image-reference" href="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png"><img alt="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
+  <a class="reference internal image-reference" href="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png"><img alt="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
 <section class="tex2jax_ignore mathjax_ignore" id="a-gentle-introduction">
 <h1>A gentle introduction<a class="headerlink" href="#a-gentle-introduction" title="Permalink to this headline">#</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">map_blocks</span></code> is inspired by the <code class="docutils literal notranslate"><span class="pre">dask.array</span></code> function of the same name and lets
@@ -1969,7 +1969,7 @@ Data variables:
 <p>Try applying the following function with <code class="docutils literal notranslate"><span class="pre">map_blocks</span></code>. Specify <code class="docutils literal notranslate"><span class="pre">scale</span></code> as an
 argument and <code class="docutils literal notranslate"><span class="pre">offset</span></code> as a kwarg.</p>
 <p>The docstring should help:
-<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.map_blocks.html">https://xarray.pydata.org/en/stable/generated/xarray.map_blocks.html</a></p>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.map_blocks.html">https://docs.xarray.dev/en/stable/generated/xarray.map_blocks.html</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_mean_scaled</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;lat&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">scale</span> <span class="o">+</span> <span class="n">offset</span>
 </pre></div>
@@ -1981,7 +1981,7 @@ argument and <code class="docutils literal notranslate"><span class="pre">offset
 does so by passing a 0-shaped xarray object to the function and examining the
 result. This approach cannot work in all cases For such advanced use cases,
 <code class="docutils literal notranslate"><span class="pre">map_blocks</span></code> allows a <code class="docutils literal notranslate"><span class="pre">template</span></code> kwarg. See
-<a class="reference external" href="https://xarray.pydata.org/en/latest/dask.html#map-blocks">https://xarray.pydata.org/en/latest/dask.html#map-blocks</a> for more details</p>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/dask.html#map-blocks">https://docs.xarray.dev/en/stable/user-guide/dask.html#map-blocks</a> for more details</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>

@@ -1148,16 +1148,16 @@ code. The metadata is stored with the data; not in your head.</p>
 analysis tasks.</p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">rolling</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/computation.html#rolling-window-operations">Operate on rolling windows of your data e.g. running mean</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/computation.html#rolling-window-operations">Operate on rolling windows of your data e.g. running mean</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">coarsen</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/computation.html#coarsen-large-arrays">Downsample your data</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/computation.html#coarsen-large-arrays">Downsample your data</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">groupby</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/groupby.html">Bin data in to groups and reduce</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/groupby.html">Bin data in to groups and reduce</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">groupby_bins</span></code>: GroupBy after discretizing a numeric variable.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">resample</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/time-series.html#resampling-and-grouped-operations">Groupby specialized for time axes. Either downsample or upsample your data.</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/time-series.html#resampling-and-grouped-operations">Groupby specialized for time axes. Either downsample or upsample your data.</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">weighted</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/computation.html#weighted-array-reductions">Weight your data before reducing</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/computation.html#weighted-array-reductions">Weight your data before reducing</a></p></li>
 </ol>
 </section>
 <section id="load-example-dataset">
@@ -3167,19 +3167,19 @@ Attributes:
 <h3>Index space<a class="headerlink" href="#index-space" title="Permalink to this headline">#</a></h3>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">rolling</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/computation.html#rolling-window-operations">Operate on rolling windows of your data e.g. running mean</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/computation.html#rolling-window-operations">Operate on rolling windows of your data e.g. running mean</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">coarsen</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/computation.html#coarsen-large-arrays">Downsample your data</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/computation.html#coarsen-large-arrays">Downsample your data</a></p></li>
 </ol>
 </section>
 <section id="label-space">
 <h3>Label space<a class="headerlink" href="#label-space" title="Permalink to this headline">#</a></h3>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">groupby</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/groupby.html">Bin data in to groups and reduce</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/groupby.html">Bin data in to groups and reduce</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">groupby_bins</span></code>: GroupBy after discretizing a numeric variable.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">resample</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/time-series.html#resampling-and-grouped-operations">Groupby specialized for time axes. Either downsample or upsample your data.</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/time-series.html#resampling-and-grouped-operations">Groupby specialized for time axes. Either downsample or upsample your data.</a></p></li>
 </ol>
 </section>
 </section>
@@ -7115,7 +7115,7 @@ Dimensions without coordinates: year, month</pre><div class='xr-wrap' style='dis
        [13., 14., 15., 16., 17., 18., 19., 20., 21., 22., 23., 24.]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-faa857ae-1579-422a-a764-095d64825657' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-faa857ae-1579-422a-a764-095d64825657' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">coarsen</span></code> pads with NaNs. For more control over paddnig, use
-<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.pad.html">DataArray.pad</a> explicitly.</p>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.pad.html">DataArray.pad</a> explicitly.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
@@ -8433,12 +8433,12 @@ supports many other data types</p></li>
 supports characters, strings etc.</p></li>
 <li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.cut.html">pandas.cut</a>
 for binning</p></li>
-<li><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.isin.html">DataArray.isin</a></p></li>
+<li><p><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.isin.html">DataArray.isin</a></p></li>
 </ol>
 <section id="more-commonly-useful-are-datetime-components">
-<h4>More commonly useful are <a class="reference external" href="https://xarray.pydata.org/en/stable/user-guide/time-series.html#datetime-components">“datetime components”</a><a class="headerlink" href="#more-commonly-useful-are-datetime-components" title="Permalink to this headline">#</a></h4>
+<h4>More commonly useful are <a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/time-series.html#datetime-components">“datetime components”</a><a class="headerlink" href="#more-commonly-useful-are-datetime-components" title="Permalink to this headline">#</a></h4>
 <p>See a full list
-<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.core.accessor_dt.DatetimeAccessor.html?highlight=DatetimeAccessor">here</a></p>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.core.accessor_dt.DatetimeAccessor.html?highlight=DatetimeAccessor">here</a></p>
 <p>Accessed using <code class="docutils literal notranslate"><span class="pre">DataArray.dt.*</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -12398,24 +12398,24 @@ Attributes:
 <p>Xarray provides methods for high-level analysis patterns:</p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">rolling</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/computation.html#rolling-window-operations">Operate on rolling windows of your data e.g. running mean</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/computation.html#rolling-window-operations">Operate on rolling windows of your data e.g. running mean</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">coarsen</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/computation.html#coarsen-large-arrays">Downsample your data</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/computation.html#coarsen-large-arrays">Downsample your data</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">groupby</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/groupby.html">Bin data in to groups and reduce</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/groupby.html">Bin data in to groups and reduce</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">groupby_bins</span></code>: GroupBy after discretizing a numeric variable.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">resample</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/time-series.html#resampling-and-grouped-operations">Groupby specialized for time axes. Either downsample or upsample your data.</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/time-series.html#resampling-and-grouped-operations">Groupby specialized for time axes. Either downsample or upsample your data.</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">weighted</span></code> :
-<a class="reference external" href="https://xarray.pydata.org/en/stable/computation.html#weighted-array-reductions">Weight your data before reducing</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/computation.html#weighted-array-reductions">Weight your data before reducing</a></p></li>
 </ol>
 </section>
 <section id="more-resources">
 <h2>More resources<a class="headerlink" href="#more-resources" title="Permalink to this headline">#</a></h2>
 <ol class="simple">
-<li><p>More tutorials here:<a class="reference external" href="https://xarray-contrib.github.io/xarray-tutorial/">https://xarray-contrib.github.io/xarray-tutorial/</a></p></li>
+<li><p>More tutorials here: <a class="reference external" href="https://tutorial.xarray.dev/">https://tutorial.xarray.dev/</a></p></li>
 <li><p>Answers to common questions on “how to do X” are here:
-<a class="reference external" href="https://xarray.pydata.org/en/stable/howdoi.html">https://xarray.pydata.org/en/stable/howdoi.html</a></p></li>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/howdoi.html">https://docs.xarray.dev/en/stable/howdoi.html</a></p></li>
 </ol>
 </section>
 </section>

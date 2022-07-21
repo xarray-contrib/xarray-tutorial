@@ -813,7 +813,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <a class="reference internal image-reference" href="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png"><img alt="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
+  <a class="reference internal image-reference" href="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png"><img alt="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
 <section class="tex2jax_ignore mathjax_ignore" id="basic-visualization">
 <h1>Basic Visualization<a class="headerlink" href="#basic-visualization" title="Permalink to this headline">#</a></h1>
 <p>At the end of this lesson you will learn:</p>
@@ -1312,11 +1312,11 @@ visualize.</p>
 <li><p>The colorbar has a nice label, again with units.</p></li>
 <li><p>And the title tells us the timestamp of the data presented.</p></li>
 </ol>
-<p><code class="docutils literal notranslate"><span class="pre">plot.pcolormesh</span></code> takes many <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.plot.pcolormesh.html">keyword arguments</a> and is quite sophisticated.</p>
+<p><code class="docutils literal notranslate"><span class="pre">plot.pcolormesh</span></code> takes many <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.plot.pcolormesh.html">keyword arguments</a> and is quite sophisticated.</p>
 <p>Here is a more complicated figure that explicitly sets <code class="docutils literal notranslate"><span class="pre">time</span></code> as the x-axis,
 customizes the colorbar, and overlays two contours at specific levels.</p>
-<p><strong>Tip:</strong> Other options for 2D plots include <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.plot.contour.html">.plot.contour</a>, <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.plot.pcolormesh.html">.plot.contourf</a>,
-<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.plot.imshow.html">.plot.imshow</a></p>
+<p><strong>Tip:</strong> Other options for 2D plots include <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.plot.contour.html">.plot.contour</a>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.plot.pcolormesh.html">.plot.contourf</a>,
+<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.plot.imshow.html">.plot.imshow</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">Tair</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
@@ -1366,7 +1366,7 @@ customizes the colorbar, and overlays two contours at specific levels.</p>
 </section>
 <section id="id2">
 <h3>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
-<p>Now overlay a <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.plot.contour.html">contour plot</a> on top of the previous plot</p>
+<p>Now overlay a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.plot.contour.html">contour plot</a> on top of the previous plot</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">Tair</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span>
@@ -1417,7 +1417,7 @@ underlying <code class="docutils literal notranslate"><span class="pre">matplotl
 <img alt="../_images/04.1_basic_plotting_20_1.png" src="../_images/04.1_basic_plotting_20_1.png" />
 </div>
 </div>
-<p>Again, this is equivalent to the more explicit <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.plot.line.html">plot.line</a></p>
+<p>Again, this is equivalent to the more explicit <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.plot.line.html">plot.line</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">Tair</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
@@ -1455,7 +1455,7 @@ latitudes. We can use the <code class="docutils literal notranslate"><span class
 <section id="customization">
 <h2>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">#</a></h2>
 <p>All of xarray’s plotting functions take an large list kwargs that customize
-behaviour. A full list can be seen <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.plot.pcolormesh.html">here</a>. That
+behaviour. A full list can be seen <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.plot.pcolormesh.html">here</a>. That
 said xarray does not wrap all matplotlib functionality.</p>
 <p>The general strategy for making plots that are more complicated that the
 examples above is</p>
@@ -1469,8 +1469,8 @@ examples above is</p>
 <section id="more-resources">
 <h2>More resources<a class="headerlink" href="#more-resources" title="Permalink to this headline">#</a></h2>
 <ol class="simple">
-<li><p><a class="reference external" href="https://xarray.pydata.org/en/stable/examples/visualization_gallery.html">Xarray’s visualization gallery</a></p></li>
-<li><p><a class="reference external" href="https://xarray.pydata.org/en/stable/plotting.html">Xarray’s plotting documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.xarray.dev/en/stable/examples/visualization_gallery.html">Xarray’s visualization gallery</a></p></li>
+<li><p><a class="reference external" href="https://docs.xarray.dev/en/stable/plotting.html">Xarray’s plotting documentation</a></p></li>
 </ol>
 </section>
 </section>

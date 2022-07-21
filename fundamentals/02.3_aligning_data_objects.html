@@ -783,7 +783,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <a class="reference internal image-reference" href="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png"><img alt="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
+  <a class="reference internal image-reference" href="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png"><img alt="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
 <section class="tex2jax_ignore mathjax_ignore" id="computing-with-multiple-objects">
 <h1>Computing with Multiple Objects<a class="headerlink" href="#computing-with-multiple-objects" title="Permalink to this headline">#</a></h1>
 <p>Learning goals:</p>
@@ -1928,7 +1928,7 @@ The image below illustrates how an operation on arrays with
 different coordinates will result in automatic broadcasting</p>
 <p><img alt="" src="../_images/broadcasting_schematic.png" /></p>
 <p>Credit: Stephan Hoyer –
-<a class="reference external" href="https://docs.google.com/presentation/d/16CMY3g_OYr6fQplUZIDqVtG-SKZqsG8Ckwoj2oOqepU/edit#slide=id.g2b68f9254d_1_154">xarray ECMWF Python workshop</a></p>
+<a class="reference external" href="https://docs.google.com/presentation/d/16CMY3g_OYr6fQplUZIDqVtG-SKZqsG8Ckwoj2oOqepU/">xarray ECMWF Python workshop</a></p>
 <p>Numpy’s broadcasting rules, based on array shape, can sometimes be
 difficult to understand and remember. Xarray does broadcasting by dimension name,
 rather than array shape. This is a huge convenience.</p>
@@ -3035,7 +3035,7 @@ Coordinates:
 <p>We see that the result is a 2D array.</p>
 <p>When subtracting, Xarray first realizes that <code class="docutils literal notranslate"><span class="pre">array1</span></code> is missing the dimension <code class="docutils literal notranslate"><span class="pre">time</span></code> and <code class="docutils literal notranslate"><span class="pre">array2</span></code> is missing the dimension <code class="docutils literal notranslate"><span class="pre">space</span></code>.  Xarray then broadcasts or “expands” both arrays to 2D with dimensions <code class="docutils literal notranslate"><span class="pre">space</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>. Here is an illustration:</p>
 <p><img alt="" src="../_images/broadcasting_schematic.png" /></p>
-<p>While this detail is hidden, we can explicitly broadcast any number of arrays against each other using <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.broadcast.html">xr.broadcast</a></p>
+<p>While this detail is hidden, we can explicitly broadcast any number of arrays against each other using <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.broadcast.html">xr.broadcast</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">array1_broadcasted</span><span class="p">,</span> <span class="n">array2_broadcasted</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">array1</span><span class="p">,</span> <span class="n">array2</span><span class="p">)</span>
@@ -3460,7 +3460,7 @@ Coordinates:
 </div>
 <p>Because xarray knows about dimension names we avoid having to create unnecessary
 size-1 dimensions using <code class="docutils literal notranslate"><span class="pre">np.newaxis</span></code> or <code class="docutils literal notranslate"><span class="pre">.reshape</span></code>. This is yet another example where the <em>metadata</em> (dimension names) reduces the mental overhead associated with coding a calculation</p>
-<p>For more, see the <a class="reference external" href="https://xarray.pydata.org/en/stable/computation.html#broadcasting-by-dimension-name">Xarray documentation</a> and the <a class="reference external" href="https://numpy.org/doc/stable/user/basics.broadcasting.html">numpy documentation</a> on broadcasting.</p>
+<p>For more, see the <a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/computation.html#broadcasting-by-dimension-name">Xarray documentation</a> and the <a class="reference external" href="https://numpy.org/doc/stable/user/basics.broadcasting.html">numpy documentation</a> on broadcasting.</p>
 </section>
 <section id="exercise">
 <h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h3>
@@ -4275,7 +4275,7 @@ Coordinates:
 <p>We see that both arrays only have values in common at <code class="docutils literal notranslate"><span class="pre">x=&quot;b&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">y=[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code>. Before applying an arithmetic operation we must first modify each DataArray so that they have values at the <em>same</em> points. This is “alignment”.</p>
 <section id="controlling-alignment">
 <h3>Controlling alignment<a class="headerlink" href="#controlling-alignment" title="Permalink to this headline">#</a></h3>
-<p>We can explicitly align objects using <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.align.html">xr.align</a>. The key decision to make is how to decide which points must be kept. The other way to think of alignment is that objects must be converted to a common grid prior to any operation combining multiiple objects. This decision is controlled by the <code class="docutils literal notranslate"><span class="pre">&quot;join&quot;</span></code> keyword argument. Xarray provides 5 ways to convert the coordinate labels of multiple Datasets to a common grid. This <a class="reference external" href="https://en.wikipedia.org/wiki/Join_(SQL)">terminology</a> originates in the database community.</p>
+<p>We can explicitly align objects using <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.align.html">xr.align</a>. The key decision to make is how to decide which points must be kept. The other way to think of alignment is that objects must be converted to a common grid prior to any operation combining multiiple objects. This decision is controlled by the <code class="docutils literal notranslate"><span class="pre">&quot;join&quot;</span></code> keyword argument. Xarray provides 5 ways to convert the coordinate labels of multiple Datasets to a common grid. This <a class="reference external" href="https://en.wikipedia.org/wiki/Join_(SQL)">terminology</a> originates in the database community.</p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">join=&quot;inner&quot;</span></code> or reindex to the “intersection set” of coordinate labels</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">join=&quot;outer&quot;</span></code> or reindex to the “union set” of coordinate labels</p></li>

@@ -823,7 +823,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <a class="reference internal image-reference" href="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png"><img alt="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="http://xarray.pydata.org/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
+  <a class="reference internal image-reference" href="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png"><img alt="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
 <section class="tex2jax_ignore mathjax_ignore" id="grouped-computations">
 <h1>Grouped Computations<a class="headerlink" href="#grouped-computations" title="Permalink to this headline">#</a></h1>
 <p>In this lesson, we discuss how to do scientific computations with defined “groups” of data
@@ -855,7 +855,7 @@ including</p>
 <section id="example-dataset">
 <h2>Example Dataset<a class="headerlink" href="#example-dataset" title="Permalink to this headline">#</a></h2>
 <p>First we load a dataset. We will use the
-<a class="reference external" href="https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v5">NOAA Extended Reconstructed Sea Surface Temperature (ERSST) v5</a>
+<a class="reference external" href="https://www.ncei.noaa.gov/products/extended-reconstructed-sst">NOAA Extended Reconstructed Sea Surface Temperature (ERSST) v5</a>
 product, a widely used and trusted gridded compilation of of historical data
 going back to 1854.</p>
 <div class="cell docutils container">
@@ -1729,7 +1729,7 @@ name of a variable in the dataset. Let’s first use a DataArray.</p>
 <p>Just like with
 Pandas, we can use the time index to extract specific components of dates and
 times. Xarray uses a special syntax for this <code class="docutils literal notranslate"><span class="pre">.dt</span></code>, called the
-<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.core.accessor_dt.DatetimeAccessor.html?highlight=DatetimeAccessor">DatetimeAccessor</a>. See the <a class="reference external" href="https://xarray.pydata.org/en/stable/user-guide/time-series.html#datetime-components">documentation</a> for more</p>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.core.accessor_dt.DatetimeAccessor.html?highlight=DatetimeAccessor">DatetimeAccessor</a>. See the <a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/time-series.html#datetime-components">documentation</a> for more</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span>
@@ -2600,7 +2600,7 @@ group. Like in Pandas, these calculations can either be:</p>
 / transformed groups back into a single object.</p>
 <section id="aggregations-or-reductions">
 <h4>Aggregations or Reductions<a class="headerlink" href="#aggregations-or-reductions" title="Permalink to this headline">#</a></h4>
-<p>Most commonly, we want to perform a reduction operation like <code class="docutils literal notranslate"><span class="pre">sum</span></code> or <code class="docutils literal notranslate"><span class="pre">mean</span></code> on our groups. Xarray conveniently provides these reduction methods on Groupby objects for both <a class="reference external" href="https://xarray.pydata.org/en/stable/api.html#groupby-objects">DataArrays and Datasets</a>.</p>
+<p>Most commonly, we want to perform a reduction operation like <code class="docutils literal notranslate"><span class="pre">sum</span></code> or <code class="docutils literal notranslate"><span class="pre">mean</span></code> on our groups. Xarray conveniently provides these reduction methods on Groupby objects for both <a class="reference external" href="https://docs.xarray.dev/en/stable/api.html#groupby-objects">DataArrays and Datasets</a>.</p>
 <p>Here we calculate the monthly mean.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
