@@ -4,7 +4,7 @@ This repository is a great opportunity to start contributing to Xarray.
 
 - Report bugs, request features or submit feedback as a [GitHub Issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues). First check existing issues: https://github.com/xarray-contrib/xarray-tutorial/issues !
 
-- Make fixes, add content or improvements using [GitHub Pull Requests](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests), the sections below go over this process in more detail:
+- Make fixes, add content or improvements using [GitHub Pull Requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests), the sections below go over this process in more detail:
 
 ## Content Guidelines
 
