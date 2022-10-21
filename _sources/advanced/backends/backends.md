@@ -9,7 +9,7 @@ import xarray as xr
 xr.open_dataset("my_file.grib" , engine="cfgrib")
 ```
 
-For each available egine there is an underlying backend, that reads the data and pack them in a dataset.
+For each available engine there is an underlying backend, that reads the data and pack them in a dataset.
 
 Xarray bundles several backends internally for the following formats:
 
