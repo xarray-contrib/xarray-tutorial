@@ -65,7 +65,10 @@ sphinx:
     # maintain old paths and redirect them (so google results dont go to 404)
     # https://github.com/wpilibsuite/sphinxext-rediraffe
     - sphinxext.rediraffe
+    - sphinx_codeautolink
   config:
+    codeautolink_concat_default: True
+
     notfound_context:
       body: "<h1>Whoops! 404 Page Not Found</h1>\n\n<p>Sorry, this page doesn't exist. Many sections of this book have been updated recently.</p><p> Try the search box 🔎 to find what you're looking for!</p>"
     notfound_urls_prefix: /
