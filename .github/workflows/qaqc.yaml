@@ -7,7 +7,7 @@ on:
 
 jobs:
   quality-control:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash -l {0}
@@ -20,7 +20,7 @@ jobs:
       # NOTE: this isn't a comprehensive spellcheck, just common typos
       - name: Spellcheck
         if: always()
-        uses: codespell-project/actions-codespell@master
+        uses: codespell-project/actions-codespell@v1
         with:
           check_filenames: true
           check_hidden: true
