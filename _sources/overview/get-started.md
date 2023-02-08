@@ -15,7 +15,7 @@ Be patient, it can take a few minutes for a server to become available on the Cl
 
 **1. On your computer:** Running tutorials on your computer requires some setup:
 
-We recommend using [`conda-lock`](https://conda-incubator.github.io/conda-lock/) to ensure a fully reproducible Python environment
+We recommend using [`conda-lock`](https://conda.github.io/conda-lock/) to ensure a fully reproducible Python environment
 
 ```
 git clone https://github.com/xarray-contrib/xarray-tutorial.git
