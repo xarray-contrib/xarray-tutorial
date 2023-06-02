@@ -14,7 +14,7 @@ permissions:
 
 # Allow one concurrent deployment
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:
@@ -55,7 +55,7 @@ jobs:
         with:
           name: build
           path: _build/
-          
+
       - name: Publish to GitHub Pages
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
@@ -65,5 +65,3 @@ jobs:
           publish_branch: gh-pages
           cname: tutorial.xarray.dev
           enable_jekyll: false
-
-
