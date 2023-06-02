@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,7 +30,7 @@ jobs:
         with:
           path: _build
           # NOTE: change key to "jupyterbook-DATE" to force rebuilding cache
-          key: jupyterbook-20230112
+          key: jupyterbook-20230602
 
       - name: Install Conda environment with Micromamba
         uses: mamba-org/setup-micromamba@v1
