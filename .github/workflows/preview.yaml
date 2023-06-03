@@ -34,6 +34,6 @@ jobs:
           dist: _build/html
           build: |
             npm install surge
-      
+
       - name: Get the preview_url
         run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
