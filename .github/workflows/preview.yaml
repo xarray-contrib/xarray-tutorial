@@ -13,11 +13,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup JupyterBook Cache
-      uses: actions/cache@v3
-      with:
-        path: _build
-        # NOTE: change key to "jupyterbook-DATE" to force rebuilding cache
-        key: jupyterbook-20230613
+        uses: actions/cache@v3
+        with:
+          path: _build
+          # NOTE: change key to "jupyterbook-DATE" to force rebuilding cache
+          key: jupyterbook-20230613
 
       - name: Install Conda environment with Micromamba
         uses: mamba-org/setup-micromamba@v1
