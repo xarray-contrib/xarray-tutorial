@@ -48,4 +48,8 @@ jobs:
             npm install surge
 
       - name: Get the preview_url
-        run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
+        run: echo "url => https://${{ steps.preview_step.outputs.preview_url }}"
+
+      - name: Generate summary
+        run: |
+          echo "### :rocket: Preview url deployed at https://${{ steps.preview_step.outputs.preview_url }}" >> $GITHUB_STEP_SUMMARY
