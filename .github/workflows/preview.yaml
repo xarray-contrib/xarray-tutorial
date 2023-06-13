@@ -46,10 +46,25 @@ jobs:
           dist: _build/html
           build: |
             npm install surge
+      
+      - name: Format preview url
+        id: format_url
+        run: |
+          echo "url_text=:rocket: Preview deployed at https://${{ steps.preview_step.outputs.preview_url }}" >> $GITHUB_OUTPUT
 
       - name: Get the preview_url
-        run: echo "url => https://${{ steps.preview_step.outputs.preview_url }}"
+        run: echo "${{ steps.format_url.outputs.url_text }}"
 
       - name: Generate summary
         run: |
-          echo "### :rocket: Preview url deployed at https://${{ steps.preview_step.outputs.preview_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "#### ${{ steps.format_url.outputs.url_text }}" >> $GITHUB_STEP_SUMMARY
+      
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '${{ steps.format_url.outputs.url_text }}'
+            })
