@@ -1,36 +1,46 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Faceting</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/announcement.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -38,730 +48,463 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JRQHYVFQR7"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JRQHYVFQR7');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fundamentals/04.2_faceting';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Geography with Cartopy" href="04.3_geographic_plotting.html" />
     <link rel="prev" title="Basic Visualization" href="04.1_basic_plotting.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JRQHYVFQR7"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-JRQHYVFQR7');
-                </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/logo.png" class="logo" alt="logo">
-      
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Overview
- </span>
-</p>
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Overview</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../overview/get-started.html">
-   Get Started
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../overview/xarray-in-45-min.html">
-   Xarray in 45 minutes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../overview/fundamental-path/README.html">
-   Fundamental Learning Path
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/xarray-in-45-min.html">Xarray in 45 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/fundamental-path/README.html">Fundamental Learning Path</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Fundamentals
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="01_data_structures.html">
-   Data Structures
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="01_datastructures.html">
-     Xarray’s Data structures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="01.1_creating_data_structures.html">
-     Creating Data Structures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="01.1_io.html">
-     Reading and writing files
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="02_labeled_data.html">
-   Labeled data
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="02.1_working_with_labeled_data.html">
-     Working with labeled data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="02.2_manipulating_dimensions.html">
-     Manipulating Dimensions (Data Resolution)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="03_computation.html">
-   Computation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03.1_computation_with_xarray.html">
-     Basic Computation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="02.3_aligning_data_objects.html">
-     Computing with Multiple Objects
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03.2_groupby_with_xarray.html">
-     Grouped Computations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03.3_windowed.html">
-     Windowed Computations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03.4_weighted.html">
-     Weighted Reductions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="04.0_plotting.html">
-   Plotting and Visualization
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="04.1_basic_plotting.html">
-     Basic Visualization
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Faceting
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04.3_geographic_plotting.html">
-     Geography with Cartopy
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="01_data_structures.html">Data Structures</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_datastructures.html">Xarray’s Data structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01.1_creating_data_structures.html">Creating Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01.1_io.html">Reading and writing files</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Intermediate
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intermediate/01-high-level-computation-patterns.html">
-   High-level computational patterns
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../intermediate/xarray_and_dask.html">
-   Parallel computing with Dask
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../intermediate/xarray_ecosystem.html">
-   A Tour of the Xarray Ecosystem
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../intermediate/hvplot.html">
-   Interactive plots using hvplot
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../intermediate/cmip6-cloud.html">
-   Accessing remote data stored on the cloud
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../data_cleaning/ice_velocity.html">
-   Re-organize InSAR ice velocity data
-  </a>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_labeled_data.html">Labeled data</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02.1_working_with_labeled_data.html">Working with labeled data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.2_manipulating_dimensions.html">Manipulating Dimensions (Data Resolution)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Advanced
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../advanced/parallel-intro.html">
-   Parallelizing custom functions
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../advanced/apply_ufunc/apply_ufunc.html">
-   apply_ufunc
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../advanced/apply_ufunc/simple_numpy_apply_ufunc.html">
-     A gentle introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../advanced/apply_ufunc/simple_dask_apply_ufunc.html">
-     Handling dask arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../advanced/apply_ufunc/vectorize_1d.html">
-     Applying unvectorized functions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../advanced/map_blocks/map_blocks.html">
-   map_blocks
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../advanced/map_blocks/simple_map_blocks.html">
-     A gentle introduction
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../advanced/backends/backends.html">
-   Creating new backends
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../advanced/backends/1.Backend_without_Lazy_Loading.html">
-     Binary data without lazy loading
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../advanced/backends/2.Backend_with_Lazy_Loading.html">
-     Binary data with lazy loading
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="03_computation.html">Computation</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="03.1_computation_with_xarray.html">Basic Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.3_aligning_data_objects.html">Computing with Multiple Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.2_groupby_with_xarray.html">Grouped Computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.3_windowed.html">Windowed Computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.4_weighted.html">Weighted Reductions</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Workshops
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../workshops/scipy2023/README.html">
-   SciPy 2023
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../workshops/oceanhackweek2020/README.html">
-   Oceanhackweek 2020
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/overview/xarray-in-45-min">
-     Xarray in 45 minutes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../workshops/thinking-like-xarray/README.html">
-   Thinking like Xarray
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/intermediate/01-high-level-computation-patterns">
-     High-level computation patterns
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../workshops/online-tutorial-series/README.html">
-   Xarray Online Tutorial
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../workshops/online-tutorial-series/01_xarray_fundamentals.html">
-     Xarray Fundamentals
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../workshops/online-tutorial-series/02_indexing.html">
-     Indexing and Selecting Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../workshops/online-tutorial-series/03_computation.html">
-     Computation
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="04.0_plotting.html">Plotting and Visualization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="04.1_basic_plotting.html">Basic Visualization</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Faceting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.3_geographic_plotting.html">Geography with Cartopy</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Domain Specific
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://anopheles-genomic-surveillance.github.io/workshop-5/module-1-xarray.html">
-   Genomics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://predictablynoisy.com/posts/2019/2019-10-22-xarray-neuro/">
-   Electrophysiology
-  </a>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Reference
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../reference/resources.html">
-   Keep Exploring!
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../reference/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../reference/bibliography.html">
-   Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../reference/acknowledgements.html">
-   Acknowledgements
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../intermediate/01-high-level-computation-patterns.html">High-level computational patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intermediate/xarray_and_dask.html">Parallel computing with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intermediate/xarray_ecosystem.html">A Tour of the Xarray Ecosystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intermediate/hvplot.html">Interactive plots using hvplot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intermediate/cmip6-cloud.html">Accessing remote data stored on the cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_cleaning/ice_velocity.html">Re-organize InSAR ice velocity data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../advanced/parallel-intro.html">Parallelizing custom functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/apply_ufunc/apply_ufunc.html">apply_ufunc</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/apply_ufunc/simple_numpy_apply_ufunc.html">A gentle introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/apply_ufunc/simple_dask_apply_ufunc.html">Handling dask arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/apply_ufunc/vectorize_1d.html">Applying unvectorized functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/map_blocks/map_blocks.html">map_blocks</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/map_blocks/simple_map_blocks.html">A gentle introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/backends/backends.html">Creating new backends</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/backends/1.Backend_without_Lazy_Loading.html">Binary data without lazy loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/backends/2.Backend_with_Lazy_Loading.html">Binary data with lazy loading</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workshops/scipy2023/README.html">SciPy 2023</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../workshops/oceanhackweek2020/README.html">Oceanhackweek 2020</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference external" href="https://tutorial.xarray.dev/overview/xarray-in-45-min">Xarray in 45 minutes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../workshops/thinking-like-xarray/README.html">Thinking like Xarray</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference external" href="https://tutorial.xarray.dev/intermediate/01-high-level-computation-patterns">High-level computation patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../workshops/online-tutorial-series/README.html">Xarray Online Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workshops/online-tutorial-series/01_xarray_fundamentals.html">Xarray Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workshops/online-tutorial-series/02_indexing.html">Indexing and Selecting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workshops/online-tutorial-series/03_computation.html">Computation</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Domain Specific</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://anopheles-genomic-surveillance.github.io/workshop-5/module-1-xarray.html">Genomics</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://predictablynoisy.com/posts/2019/2019-10-22-xarray-neuro/">Electrophysiology</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/resources.html">Keep Exploring!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/acknowledgements.html">Acknowledgements</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/main?urlpath=lab/tree/fundamentals/04.2_faceting.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
 
 
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
   </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/fundamentals/04.2_faceting.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Ffundamentals/04.2_faceting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/fundamentals/04.2_faceting.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/xarray-contrib/xarray-tutorial"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Ffundamentals/04.2_faceting.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/fundamentals/04.2_faceting.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/fundamentals/04.2_faceting.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#basic-faceting">
-   Basic faceting
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customizing">
-   Customizing
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise">
-     Exercise
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modifying-all-facets">
-   Modifying all facets
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#faceting-multiple-dataarrays">
-   Faceting multiple DataArrays
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Faceting</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#basic-faceting">
-   Basic faceting
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customizing">
-   Customizing
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise">
-     Exercise
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modifying-all-facets">
-   Modifying all facets
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#faceting-multiple-dataarrays">
-   Faceting multiple DataArrays
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Faceting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-faceting">Basic faceting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing">Customizing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-all-facets">Modifying all facets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#faceting-multiple-dataarrays">Faceting multiple DataArrays</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <a class="reference internal image-reference" href="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png"><img alt="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
 <section class="tex2jax_ignore mathjax_ignore" id="faceting">
 <h1>Faceting<a class="headerlink" href="#faceting" title="Permalink to this headline">#</a></h1>
@@ -813,7 +556,7 @@ multiple rows using <code class="docutils literal notranslate"><span class="pre"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04.2_faceting_4_0.png" src="../_images/04.2_faceting_4_0.png" />
+<img alt="../_images/f8bdecf73878fa02d20e371420153f90c0fd6f733646c506cba15532be82ff92.png" src="../_images/f8bdecf73878fa02d20e371420153f90c0fd6f733646c506cba15532be82ff92.png" />
 </div>
 </div>
 </section>
@@ -839,11 +582,11 @@ multiple rows using <code class="docutils literal notranslate"><span class="pre"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04.2_faceting_6_0.png" src="../_images/04.2_faceting_6_0.png" />
+<img alt="../_images/6ef7bdd6a24fe65489deb5042bc54bf658f53be78a61bc16fe336ca47503dc1f.png" src="../_images/6ef7bdd6a24fe65489deb5042bc54bf658f53be78a61bc16fe336ca47503dc1f.png" />
 </div>
 </div>
 <p>The returned FacetGrid object <code class="docutils literal notranslate"><span class="pre">fg</span></code> has many useful properties and methods e.g.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">fg.fig</span></code> provides a handle to the figure</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fg.axes</span></code> is a numpy object array with handles to each individual axes</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fg.set_xlabels</span></code> and <code class="docutils literal notranslate"><span class="pre">fg.set_ylabels</span></code> can be used to change axes labels.</p></li>
@@ -860,7 +603,7 @@ change the x- and y-labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f7517648df0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7fde79ca2510&gt;
 </pre></div>
 </div>
 </div>
@@ -891,10 +634,10 @@ needed</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f7514253b50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7fde78b63b50&gt;
 </pre></div>
 </div>
-<img alt="../_images/04.2_faceting_11_1.png" src="../_images/04.2_faceting_11_1.png" />
+<img alt="../_images/0d66896768bbcf2d8c3994281aa33a6bb49c27ef8888c71669b297c276102805.png" src="../_images/0d66896768bbcf2d8c3994281aa33a6bb49c27ef8888c71669b297c276102805.png" />
 </div>
 </div>
 </section>
@@ -1327,7 +1070,7 @@ Attributes:
     title:        4x daily NMC reanalysis (1948)
     description:  Data is from NMC initialized reanalysis\n(4x/day).  These a...
     platform:     Model
-    references:   http://www.esrl.noaa.gov/psd/data/gridded/data.ncep.reanaly...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>gradient</span>: 2</li><li><span class='xr-has-index'>month</span>: 12</li><li><span class='xr-has-index'>lat</span>: 25</li><li><span class='xr-has-index'>lon</span>: 53</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-2cef22ab-3494-4d57-b29a-5bcd6011c6d7' class='xr-array-in' type='checkbox' checked><label for='section-2cef22ab-3494-4d57-b29a-5bcd6011c6d7' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>5.082e-07 -9.469e-07 -4.035e-06 ... -2.837e-06 -2.738e-06 -3.872e-06</span></div><div class='xr-array-data'><pre>array([[[[ 5.08173684e-07, -9.46942578e-07, -4.03479180e-06, ...,
+    references:   http://www.esrl.noaa.gov/psd/data/gridded/data.ncep.reanaly...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>gradient</span>: 2</li><li><span class='xr-has-index'>month</span>: 12</li><li><span class='xr-has-index'>lat</span>: 25</li><li><span class='xr-has-index'>lon</span>: 53</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-1f2e1357-7507-4ae8-af47-d200ddf7224c' class='xr-array-in' type='checkbox' checked><label for='section-1f2e1357-7507-4ae8-af47-d200ddf7224c' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>5.082e-07 -9.469e-07 -4.035e-06 ... -2.837e-06 -2.738e-06 -3.872e-06</span></div><div class='xr-array-data'><pre>array([[[[ 5.08173684e-07, -9.46942578e-07, -4.03479180e-06, ...,
            1.00858488e-05,  1.81633768e-05,  2.19007525e-05],
          [ 6.02189118e-07, -8.90132014e-07, -4.25928238e-06, ...,
            1.44879168e-05,  3.15986872e-05,  3.92536967e-05],
@@ -1367,23 +1110,23 @@ Attributes:
           -2.17964885e-06, -2.80768063e-06, -3.58095190e-06],
          [-1.57234820e-06, -2.31013792e-06, -2.78555922e-06, ...,
           -2.83686700e-06, -2.73794444e-06, -3.87158479e-06]]]],
-      dtype=float32)</pre></div></div></li><li class='xr-section-item'><input id='section-5120ed87-29e8-4558-bd7b-4799a966eb7b' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5120ed87-29e8-4558-bd7b-4799a966eb7b' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>75.0 72.5 70.0 ... 20.0 17.5 15.0</div><input id='attrs-f9e75992-5bce-411b-8896-40833e0bfd84' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f9e75992-5bce-411b-8896-40833e0bfd84' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a11d929a-1879-40e9-b770-81f9265942f4' class='xr-var-data-in' type='checkbox'><label for='data-a11d929a-1879-40e9-b770-81f9265942f4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([75. , 72.5, 70. , 67.5, 65. , 62.5, 60. , 57.5, 55. , 52.5, 50. , 47.5,
+      dtype=float32)</pre></div></div></li><li class='xr-section-item'><input id='section-f81d1dd8-8248-4558-a073-355a372bf53e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f81d1dd8-8248-4558-a073-355a372bf53e' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>75.0 72.5 70.0 ... 20.0 17.5 15.0</div><input id='attrs-406ddfa0-9aa5-4c18-adbe-df827b7c17bb' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-406ddfa0-9aa5-4c18-adbe-df827b7c17bb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-439563f7-ec15-4200-9ede-8751956e9538' class='xr-var-data-in' type='checkbox'><label for='data-439563f7-ec15-4200-9ede-8751956e9538' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([75. , 72.5, 70. , 67.5, 65. , 62.5, 60. , 57.5, 55. , 52.5, 50. , 47.5,
        45. , 42.5, 40. , 37.5, 35. , 32.5, 30. , 27.5, 25. , 22.5, 20. , 17.5,
-       15. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>200.0 202.5 205.0 ... 327.5 330.0</div><input id='attrs-a57e510a-0ff3-4e37-8bf6-80b78be00c11' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a57e510a-0ff3-4e37-8bf6-80b78be00c11' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-42c2d5cb-1157-45a3-951e-2441ec1bc031' class='xr-var-data-in' type='checkbox'><label for='data-42c2d5cb-1157-45a3-951e-2441ec1bc031' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([200. , 202.5, 205. , 207.5, 210. , 212.5, 215. , 217.5, 220. , 222.5,
+       15. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>200.0 202.5 205.0 ... 327.5 330.0</div><input id='attrs-5392545d-74cf-4bee-8442-fd87ce3d62e0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5392545d-74cf-4bee-8442-fd87ce3d62e0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-25e124d8-7224-4e57-b395-500dcb503dcc' class='xr-var-data-in' type='checkbox'><label for='data-25e124d8-7224-4e57-b395-500dcb503dcc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([200. , 202.5, 205. , 207.5, 210. , 212.5, 215. , 217.5, 220. , 222.5,
        225. , 227.5, 230. , 232.5, 235. , 237.5, 240. , 242.5, 245. , 247.5,
        250. , 252.5, 255. , 257.5, 260. , 262.5, 265. , 267.5, 270. , 272.5,
        275. , 277.5, 280. , 282.5, 285. , 287.5, 290. , 292.5, 295. , 297.5,
        300. , 302.5, 305. , 307.5, 310. , 312.5, 315. , 317.5, 320. , 322.5,
-       325. , 327.5, 330. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>month</span></div><div class='xr-var-dims'>(month)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>1 2 3 4 5 6 7 8 9 10 11 12</div><input id='attrs-70306c1e-bb7f-4975-9347-0a59d103e983' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-70306c1e-bb7f-4975-9347-0a59d103e983' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-72baf14d-4494-4154-8c65-83d2d70d8344' class='xr-var-data-in' type='checkbox'><label for='data-72baf14d-4494-4154-8c65-83d2d70d8344' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>gradient</span></div><div class='xr-var-dims'>(gradient)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>&#x27;dTdx&#x27; &#x27;dTdy&#x27;</div><input id='attrs-8ad9e3fb-ba50-4e85-b64f-9f2cd3f5ddbd' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-8ad9e3fb-ba50-4e85-b64f-9f2cd3f5ddbd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-fa51b349-2093-4a07-809f-c4bb1353f3cb' class='xr-var-data-in' type='checkbox'><label for='data-fa51b349-2093-4a07-809f-c4bb1353f3cb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;dTdx&#x27;, &#x27;dTdy&#x27;], dtype=object)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e0551c1d-1dd2-4dac-a53c-264071a5ab0d' class='xr-section-summary-in' type='checkbox'  ><label for='section-e0551c1d-1dd2-4dac-a53c-264071a5ab0d' class='xr-section-summary' >Indexes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-78bd8537-5b86-4831-bf31-bfc1a807274e' class='xr-index-data-in' type='checkbox'/><label for='index-78bd8537-5b86-4831-bf31-bfc1a807274e' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([75.0, 72.5, 70.0, 67.5, 65.0, 62.5, 60.0, 57.5, 55.0, 52.5, 50.0,
-              47.5, 45.0, 42.5, 40.0, 37.5, 35.0, 32.5, 30.0, 27.5, 25.0, 22.5,
-              20.0, 17.5, 15.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;lat&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-0520a2d7-fb31-4984-a94e-6607d9b3ef1d' class='xr-index-data-in' type='checkbox'/><label for='index-0520a2d7-fb31-4984-a94e-6607d9b3ef1d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([200.0, 202.5, 205.0, 207.5, 210.0, 212.5, 215.0, 217.5, 220.0,
-              222.5, 225.0, 227.5, 230.0, 232.5, 235.0, 237.5, 240.0, 242.5,
-              245.0, 247.5, 250.0, 252.5, 255.0, 257.5, 260.0, 262.5, 265.0,
-              267.5, 270.0, 272.5, 275.0, 277.5, 280.0, 282.5, 285.0, 287.5,
-              290.0, 292.5, 295.0, 297.5, 300.0, 302.5, 305.0, 307.5, 310.0,
-              312.5, 315.0, 317.5, 320.0, 322.5, 325.0, 327.5, 330.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;lon&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>month</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e9dc2587-c9d2-4271-b26a-1af64adb65c5' class='xr-index-data-in' type='checkbox'/><label for='index-e9dc2587-c9d2-4271-b26a-1af64adb65c5' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Int64Index([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], dtype=&#x27;int64&#x27;, name=&#x27;month&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>gradient</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-5dd66ead-ec0c-4090-95dc-3faedbd703dc' class='xr-index-data-in' type='checkbox'/><label for='index-5dd66ead-ec0c-4090-95dc-3faedbd703dc' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;dTdx&#x27;, &#x27;dTdy&#x27;], dtype=&#x27;object&#x27;, name=&#x27;gradient&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-eca40af2-6182-47b9-863d-015c1df58cce' class='xr-section-summary-in' type='checkbox'  checked><label for='section-eca40af2-6182-47b9-863d-015c1df58cce' class='xr-section-summary' >Attributes: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>COARDS</dd><dt><span>title :</span></dt><dd>4x daily NMC reanalysis (1948)</dd><dt><span>description :</span></dt><dd>Data is from NMC initialized reanalysis
+       325. , 327.5, 330. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>month</span></div><div class='xr-var-dims'>(month)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>1 2 3 4 5 6 7 8 9 10 11 12</div><input id='attrs-ab1cd020-ea0a-4243-ba44-bfa978adb9e6' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ab1cd020-ea0a-4243-ba44-bfa978adb9e6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7c32d36a-32f4-4d9b-a1dc-ec73949b40e9' class='xr-var-data-in' type='checkbox'><label for='data-7c32d36a-32f4-4d9b-a1dc-ec73949b40e9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>gradient</span></div><div class='xr-var-dims'>(gradient)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>&#x27;dTdx&#x27; &#x27;dTdy&#x27;</div><input id='attrs-2c8ddf58-6759-466f-8468-bed87e7bb870' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2c8ddf58-6759-466f-8468-bed87e7bb870' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-af9d42b3-ab7d-4fa5-b83f-8eddd905da58' class='xr-var-data-in' type='checkbox'><label for='data-af9d42b3-ab7d-4fa5-b83f-8eddd905da58' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;dTdx&#x27;, &#x27;dTdy&#x27;], dtype=object)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-9fdf6f5a-e7e5-426b-a0a7-a518ba77a57f' class='xr-section-summary-in' type='checkbox'  ><label for='section-9fdf6f5a-e7e5-426b-a0a7-a518ba77a57f' class='xr-section-summary' >Indexes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-270b03d5-8eb0-45bc-befe-a4aea362f98d' class='xr-index-data-in' type='checkbox'/><label for='index-270b03d5-8eb0-45bc-befe-a4aea362f98d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([75.0, 72.5, 70.0, 67.5, 65.0, 62.5, 60.0, 57.5, 55.0, 52.5, 50.0, 47.5,
+       45.0, 42.5, 40.0, 37.5, 35.0, 32.5, 30.0, 27.5, 25.0, 22.5, 20.0, 17.5,
+       15.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-28beb18a-4cb6-493d-8ed0-45e92ae225bd' class='xr-index-data-in' type='checkbox'/><label for='index-28beb18a-4cb6-493d-8ed0-45e92ae225bd' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([200.0, 202.5, 205.0, 207.5, 210.0, 212.5, 215.0, 217.5, 220.0, 222.5,
+       225.0, 227.5, 230.0, 232.5, 235.0, 237.5, 240.0, 242.5, 245.0, 247.5,
+       250.0, 252.5, 255.0, 257.5, 260.0, 262.5, 265.0, 267.5, 270.0, 272.5,
+       275.0, 277.5, 280.0, 282.5, 285.0, 287.5, 290.0, 292.5, 295.0, 297.5,
+       300.0, 302.5, 305.0, 307.5, 310.0, 312.5, 315.0, 317.5, 320.0, 322.5,
+       325.0, 327.5, 330.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>month</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e6f08dc4-9ecc-429d-b533-8f5a044df846' class='xr-index-data-in' type='checkbox'/><label for='index-e6f08dc4-9ecc-429d-b533-8f5a044df846' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], dtype=&#x27;int64&#x27;, name=&#x27;month&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>gradient</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-1efe1e80-5ecd-4299-b823-1c1561b5d7f2' class='xr-index-data-in' type='checkbox'/><label for='index-1efe1e80-5ecd-4299-b823-1c1561b5d7f2' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;dTdx&#x27;, &#x27;dTdy&#x27;], dtype=&#x27;object&#x27;, name=&#x27;gradient&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-bb8e759c-a141-47dc-933b-b0408fdc4f09' class='xr-section-summary-in' type='checkbox'  checked><label for='section-bb8e759c-a141-47dc-933b-b0408fdc4f09' class='xr-section-summary' >Attributes: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>COARDS</dd><dt><span>title :</span></dt><dd>4x daily NMC reanalysis (1948)</dd><dt><span>description :</span></dt><dd>Data is from NMC initialized reanalysis
 (4x/day).  These are the 0.9950 sigma level values.</dd><dt><span>platform :</span></dt><dd>Model</dd><dt><span>references :</span></dt><dd>http://www.esrl.noaa.gov/psd/data/gridded/data.ncep.reanalysis.html</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1405,7 +1148,7 @@ Attributes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04.2_faceting_14_0.png" src="../_images/04.2_faceting_14_0.png" />
+<img alt="../_images/3e47be6f59084bef75797ca978e8ab28b011eaf0d44c86fc3b62a2ada943ffc3.png" src="../_images/3e47be6f59084bef75797ca978e8ab28b011eaf0d44c86fc3b62a2ada943ffc3.png" />
 </div>
 </div>
 </section>
@@ -1423,7 +1166,7 @@ Attributes:
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./fundamentals"
         },
         predefinedOutput: true
@@ -1431,50 +1174,111 @@ Attributes:
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="04.1_basic_plotting.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Basic Visualization</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04.1_basic_plotting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Basic Visualization</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="04.3_geographic_plotting.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="04.3_geographic_plotting.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Geography with Cartopy</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By The Xarray Community<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-faceting">Basic faceting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing">Customizing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-all-facets">Modifying all facets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#faceting-multiple-dataarrays">Faceting multiple DataArrays</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Xarray Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

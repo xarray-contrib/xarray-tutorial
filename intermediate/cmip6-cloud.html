@@ -1,36 +1,46 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Accessing remote data stored on the cloud</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/announcement.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -38,724 +48,464 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JRQHYVFQR7"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JRQHYVFQR7');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intermediate/cmip6-cloud';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Re-organize InSAR ice velocity data" href="../data_cleaning/ice_velocity.html" />
     <link rel="prev" title="Interactive plots using hvplot" href="hvplot.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JRQHYVFQR7"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-JRQHYVFQR7');
-                </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/logo.png" class="logo" alt="logo">
-      
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Overview
- </span>
-</p>
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Overview</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../overview/get-started.html">
-   Get Started
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../overview/xarray-in-45-min.html">
-   Xarray in 45 minutes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../overview/fundamental-path/README.html">
-   Fundamental Learning Path
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/xarray-in-45-min.html">Xarray in 45 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/fundamental-path/README.html">Fundamental Learning Path</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Fundamentals
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../fundamentals/01_data_structures.html">
-   Data Structures
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fundamentals/01_datastructures.html">
-     Xarray’s Data structures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fundamentals/01.1_creating_data_structures.html">
-     Creating Data Structures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fundamentals/01.1_io.html">
-     Reading and writing files
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../fundamentals/02_labeled_data.html">
-   Labeled data
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fundamentals/02.1_working_with_labeled_data.html">
-     Working with labeled data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fundamentals/02.2_manipulating_dimensions.html">
-     Manipulating Dimensions (Data Resolution)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../fundamentals/03_computation.html">
-   Computation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fundamentals/03.1_computation_with_xarray.html">
-     Basic Computation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fundamentals/02.3_aligning_data_objects.html">
-     Computing with Multiple Objects
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fundamentals/03.2_groupby_with_xarray.html">
-     Grouped Computations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fundamentals/03.3_windowed.html">
-     Windowed Computations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fundamentals/03.4_weighted.html">
-     Weighted Reductions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../fundamentals/04.0_plotting.html">
-   Plotting and Visualization
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fundamentals/04.1_basic_plotting.html">
-     Basic Visualization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fundamentals/04.2_faceting.html">
-     Faceting
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fundamentals/04.3_geographic_plotting.html">
-     Geography with Cartopy
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fundamentals/01_data_structures.html">Data Structures</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/01_datastructures.html">Xarray’s Data structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/01.1_creating_data_structures.html">Creating Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/01.1_io.html">Reading and writing files</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Intermediate
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fundamentals/02_labeled_data.html">Labeled data</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/02.1_working_with_labeled_data.html">Working with labeled data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/02.2_manipulating_dimensions.html">Manipulating Dimensions (Data Resolution)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fundamentals/03_computation.html">Computation</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/03.1_computation_with_xarray.html">Basic Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/02.3_aligning_data_objects.html">Computing with Multiple Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/03.2_groupby_with_xarray.html">Grouped Computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/03.3_windowed.html">Windowed Computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/03.4_weighted.html">Weighted Reductions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fundamentals/04.0_plotting.html">Plotting and Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/04.1_basic_plotting.html">Basic Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/04.2_faceting.html">Faceting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/04.3_geographic_plotting.html">Geography with Cartopy</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-high-level-computation-patterns.html">
-   High-level computational patterns
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="xarray_and_dask.html">
-   Parallel computing with Dask
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="xarray_ecosystem.html">
-   A Tour of the Xarray Ecosystem
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hvplot.html">
-   Interactive plots using hvplot
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Accessing remote data stored on the cloud
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../data_cleaning/ice_velocity.html">
-   Re-organize InSAR ice velocity data
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-high-level-computation-patterns.html">High-level computational patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xarray_and_dask.html">Parallel computing with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xarray_ecosystem.html">A Tour of the Xarray Ecosystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hvplot.html">Interactive plots using hvplot</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Accessing remote data stored on the cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_cleaning/ice_velocity.html">Re-organize InSAR ice velocity data</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Advanced
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../advanced/parallel-intro.html">
-   Parallelizing custom functions
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../advanced/apply_ufunc/apply_ufunc.html">
-   apply_ufunc
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../advanced/apply_ufunc/simple_numpy_apply_ufunc.html">
-     A gentle introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../advanced/apply_ufunc/simple_dask_apply_ufunc.html">
-     Handling dask arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../advanced/apply_ufunc/vectorize_1d.html">
-     Applying unvectorized functions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../advanced/map_blocks/map_blocks.html">
-   map_blocks
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../advanced/map_blocks/simple_map_blocks.html">
-     A gentle introduction
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../advanced/backends/backends.html">
-   Creating new backends
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../advanced/backends/1.Backend_without_Lazy_Loading.html">
-     Binary data without lazy loading
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../advanced/backends/2.Backend_with_Lazy_Loading.html">
-     Binary data with lazy loading
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/parallel-intro.html">Parallelizing custom functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/apply_ufunc/apply_ufunc.html">apply_ufunc</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/apply_ufunc/simple_numpy_apply_ufunc.html">A gentle introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/apply_ufunc/simple_dask_apply_ufunc.html">Handling dask arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/apply_ufunc/vectorize_1d.html">Applying unvectorized functions</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Workshops
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../workshops/scipy2023/README.html">
-   SciPy 2023
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../workshops/oceanhackweek2020/README.html">
-   Oceanhackweek 2020
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/overview/xarray-in-45-min">
-     Xarray in 45 minutes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../workshops/thinking-like-xarray/README.html">
-   Thinking like Xarray
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/intermediate/01-high-level-computation-patterns">
-     High-level computation patterns
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../workshops/online-tutorial-series/README.html">
-   Xarray Online Tutorial
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../workshops/online-tutorial-series/01_xarray_fundamentals.html">
-     Xarray Fundamentals
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../workshops/online-tutorial-series/02_indexing.html">
-     Indexing and Selecting Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../workshops/online-tutorial-series/03_computation.html">
-     Computation
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/map_blocks/map_blocks.html">map_blocks</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/map_blocks/simple_map_blocks.html">A gentle introduction</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Domain Specific
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://anopheles-genomic-surveillance.github.io/workshop-5/module-1-xarray.html">
-   Genomics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://predictablynoisy.com/posts/2019/2019-10-22-xarray-neuro/">
-   Electrophysiology
-  </a>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/backends/backends.html">Creating new backends</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/backends/1.Backend_without_Lazy_Loading.html">Binary data without lazy loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/backends/2.Backend_with_Lazy_Loading.html">Binary data with lazy loading</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Reference
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../reference/resources.html">
-   Keep Exploring!
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../reference/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../reference/bibliography.html">
-   Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../reference/acknowledgements.html">
-   Acknowledgements
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../workshops/scipy2023/README.html">SciPy 2023</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../workshops/oceanhackweek2020/README.html">Oceanhackweek 2020</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference external" href="https://tutorial.xarray.dev/overview/xarray-in-45-min">Xarray in 45 minutes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../workshops/thinking-like-xarray/README.html">Thinking like Xarray</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference external" href="https://tutorial.xarray.dev/intermediate/01-high-level-computation-patterns">High-level computation patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../workshops/online-tutorial-series/README.html">Xarray Online Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workshops/online-tutorial-series/01_xarray_fundamentals.html">Xarray Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workshops/online-tutorial-series/02_indexing.html">Indexing and Selecting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workshops/online-tutorial-series/03_computation.html">Computation</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Domain Specific</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://anopheles-genomic-surveillance.github.io/workshop-5/module-1-xarray.html">Genomics</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://predictablynoisy.com/posts/2019/2019-10-22-xarray-neuro/">Electrophysiology</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reference/resources.html">Keep Exploring!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/acknowledgements.html">Acknowledgements</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/main?urlpath=lab/tree/intermediate/cmip6-cloud.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
 
 
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
   </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/intermediate/cmip6-cloud.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Fintermediate/cmip6-cloud.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/intermediate/cmip6-cloud.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/xarray-contrib/xarray-tutorial"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Fintermediate/cmip6-cloud.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/intermediate/cmip6-cloud.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/intermediate/cmip6-cloud.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#finding-cloud-native-data">
-   Finding cloud native data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#getting-cloud-hosted-cmip6-data">
-     Getting cloud hosted CMIP6 data
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reading-from-the-remote-zarr-storage">
-   Reading from the remote Zarr storage
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#selecting-time-slices">
-     Selecting time slices
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Accessing remote data stored on the cloud</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#finding-cloud-native-data">
-   Finding cloud native data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#getting-cloud-hosted-cmip6-data">
-     Getting cloud hosted CMIP6 data
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reading-from-the-remote-zarr-storage">
-   Reading from the remote Zarr storage
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#selecting-time-slices">
-     Selecting time slices
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Accessing remote data stored on the cloud</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-cloud-native-data">Finding cloud native data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-cloud-hosted-cmip6-data">Getting cloud hosted CMIP6 data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-from-the-remote-zarr-storage">Reading from the remote Zarr storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-time-slices">Selecting time slices</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="accessing-remote-data-stored-on-the-cloud">
 <h1>Accessing remote data stored on the cloud<a class="headerlink" href="#accessing-remote-data-stored-on-the-cloud" title="Permalink to this headline">#</a></h1>
 <p>In this tutorial, we’ll cover the following:</p>
@@ -920,7 +670,7 @@ we’re interested in, e.g. sea surface height.</p>
 <p>For the <code class="docutils literal notranslate"><span class="pre">variable_id</span></code>, you can look it up given some keyword at
 <a class="reference external" href="https://docs.google.com/spreadsheets/d/1UUtoz6Ofyjlpx5LdqhKcwHFz2SGoTQV2_yekHyMfL9Y">https://docs.google.com/spreadsheets/d/1UUtoz6Ofyjlpx5LdqhKcwHFz2SGoTQV2_yekHyMfL9Y</a></p>
 <p>For the <code class="docutils literal notranslate"><span class="pre">experiment_id</span></code>, download the spreadsheet from
-<a class="reference external" href="https://github.com/ES-DOC/esdoc-docs/blob/master/cmip6/experiments/spreadsheet/experiments.xlsx">https://github.com/ES-DOC/esdoc-docs/blob/master/cmip6/experiments/spreadsheet/experiments.xlsx</a>,
+<a class="github reference external" href="https://github.com/ES-DOC/esdoc-docs/blob/master/cmip6/experiments/spreadsheet/experiments.xlsx">ES-DOC/esdoc-docs</a>,
 go to the ‘experiment’ tab, and find the one you’re interested in.</p>
 <p>Another good place to find the right model runs is <a class="reference external" href="https://esgf-node.llnl.gov/search/cmip6">https://esgf-node.llnl.gov/search/cmip6</a>
 (once you get your head around the acronyms and short names).</p>
@@ -1569,7 +1319,7 @@ Attributes: (12/49)
     variant_info:           N/A
     variant_label:          r1i1p1f1
     netcdf_tracking_ids:    hdl:21.14100/328fd441-31bb-474f-8fd1-7e3420b72524...
-    version_id:             v20180701</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-f2d76f62-068b-49fe-93d5-a29a64f0d0bc' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-f2d76f62-068b-49fe-93d5-a29a64f0d0bc' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>bnds</span>: 2</li><li><span class='xr-has-index'>y</span>: 576</li><li><span class='xr-has-index'>x</span>: 720</li><li><span>vertex</span>: 4</li><li><span class='xr-has-index'>time</span>: 1032</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-9f1f0fc7-e5aa-424a-9c7e-8cb4030db7ba' class='xr-section-summary-in' type='checkbox'  checked><label for='section-9f1f0fc7-e5aa-424a-9c7e-8cb4030db7ba' class='xr-section-summary' >Coordinates: <span>(9)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>bnds</span></div><div class='xr-var-dims'>(bnds)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.0 2.0</div><input id='attrs-1326f8ba-28dd-429f-91bb-b01e47f772a6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1326f8ba-28dd-429f-91bb-b01e47f772a6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d54b1e4c-94c7-4e27-99f8-995953b767d2' class='xr-var-data-in' type='checkbox'><label for='data-d54b1e4c-94c7-4e27-99f8-995953b767d2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>vertex number</dd></dl></div><div class='xr-var-data'><pre>array([1., 2.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lat</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(576, 720), meta=np.ndarray&gt;</div><input id='attrs-41aa4133-2737-4a85-baea-3ffe04d375b6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-41aa4133-2737-4a85-baea-3ffe04d375b6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1b8906d8-12b8-4583-953c-b380f3d725c8' class='xr-var-data-in' type='checkbox'><label for='data-1b8906d8-12b8-4583-953c-b380f3d725c8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>bounds :</span></dt><dd>lat_bnds</dd><dt><span>cell_methods :</span></dt><dd>y: point x: point</dd><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
+    version_id:             v20180701</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-8a5eeb1d-edac-4e1a-a58e-ec09a970e9fa' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-8a5eeb1d-edac-4e1a-a58e-ec09a970e9fa' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>bnds</span>: 2</li><li><span class='xr-has-index'>y</span>: 576</li><li><span class='xr-has-index'>x</span>: 720</li><li><span>vertex</span>: 4</li><li><span class='xr-has-index'>time</span>: 1032</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-86e35d53-f0cf-49d0-9264-e8180199af94' class='xr-section-summary-in' type='checkbox'  checked><label for='section-86e35d53-f0cf-49d0-9264-e8180199af94' class='xr-section-summary' >Coordinates: <span>(9)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>bnds</span></div><div class='xr-var-dims'>(bnds)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.0 2.0</div><input id='attrs-80055686-3d61-46a9-9d3b-a81f6041aa3e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-80055686-3d61-46a9-9d3b-a81f6041aa3e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-bc08049a-7a48-4728-9c4a-0340d1c51e5e' class='xr-var-data-in' type='checkbox'><label for='data-bc08049a-7a48-4728-9c4a-0340d1c51e5e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>vertex number</dd></dl></div><div class='xr-var-data'><pre>array([1., 2.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lat</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(576, 720), meta=np.ndarray&gt;</div><input id='attrs-5b1ec83c-3be6-4f9c-902f-4d49bbfe31aa' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5b1ec83c-3be6-4f9c-902f-4d49bbfe31aa' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-48154a4d-2528-46e4-a066-4e51348a8dd9' class='xr-var-data-in' type='checkbox'><label for='data-48154a4d-2528-46e4-a066-4e51348a8dd9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>bounds :</span></dt><dd>lat_bnds</dd><dt><span>cell_methods :</span></dt><dd>y: point x: point</dd><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1581,13 +1331,13 @@ Attributes: (12/49)
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 1.58 MiB </td>
                         <td> 1.58 MiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (576, 720) </td>
@@ -1624,7 +1374,7 @@ Attributes: (12/49)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lat_bnds</span></div><div class='xr-var-dims'>(y, x, vertex)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(576, 720, 4), meta=np.ndarray&gt;</div><input id='attrs-ed284964-d9ab-40a9-8029-6bda56d53e19' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ed284964-d9ab-40a9-8029-6bda56d53e19' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-144f86d5-d187-46fd-bf7a-799be6ea8569' class='xr-var-data-in' type='checkbox'><label for='data-144f86d5-d187-46fd-bf7a-799be6ea8569' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>Y</dd><dt><span>long_name :</span></dt><dd>latitude bounds</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lat_bnds</span></div><div class='xr-var-dims'>(y, x, vertex)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(576, 720, 4), meta=np.ndarray&gt;</div><input id='attrs-57cf5405-14c3-4d2b-b6bc-a2a7224e99a3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-57cf5405-14c3-4d2b-b6bc-a2a7224e99a3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-76991901-c8c3-4f6d-9acc-2d59e9ac68c6' class='xr-var-data-in' type='checkbox'><label for='data-76991901-c8c3-4f6d-9acc-2d59e9ac68c6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>Y</dd><dt><span>long_name :</span></dt><dd>latitude bounds</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1636,13 +1386,13 @@ Attributes: (12/49)
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 6.33 MiB </td>
                         <td> 6.33 MiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (576, 720, 4) </td>
@@ -1702,7 +1452,7 @@ Attributes: (12/49)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lon</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(576, 720), meta=np.ndarray&gt;</div><input id='attrs-c0bd04f5-1fe1-43c7-a261-147cf7e09cbd' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c0bd04f5-1fe1-43c7-a261-147cf7e09cbd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d2a91ab6-de6e-40b6-b69e-f51c02d2b770' class='xr-var-data-in' type='checkbox'><label for='data-d2a91ab6-de6e-40b6-b69e-f51c02d2b770' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>bounds :</span></dt><dd>lon_bnds</dd><dt><span>cell_methods :</span></dt><dd>y: point x: point</dd><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lon</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(576, 720), meta=np.ndarray&gt;</div><input id='attrs-63b471cf-6964-4542-9c6e-9541ce2fa95e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-63b471cf-6964-4542-9c6e-9541ce2fa95e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a87a5de5-5cf3-4edb-bb48-1b46b62ed250' class='xr-var-data-in' type='checkbox'><label for='data-a87a5de5-5cf3-4edb-bb48-1b46b62ed250' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>bounds :</span></dt><dd>lon_bnds</dd><dt><span>cell_methods :</span></dt><dd>y: point x: point</dd><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1714,13 +1464,13 @@ Attributes: (12/49)
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 1.58 MiB </td>
                         <td> 1.58 MiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (576, 720) </td>
@@ -1757,7 +1507,7 @@ Attributes: (12/49)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lon_bnds</span></div><div class='xr-var-dims'>(y, x, vertex)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(576, 720, 4), meta=np.ndarray&gt;</div><input id='attrs-17468d8b-544a-47d9-9f39-7ae9d8ca07ad' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-17468d8b-544a-47d9-9f39-7ae9d8ca07ad' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f62b5bbd-0b66-4d28-9ae0-04bf7368c807' class='xr-var-data-in' type='checkbox'><label for='data-f62b5bbd-0b66-4d28-9ae0-04bf7368c807' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>X</dd><dt><span>long_name :</span></dt><dd>longitude bounds</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lon_bnds</span></div><div class='xr-var-dims'>(y, x, vertex)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(576, 720, 4), meta=np.ndarray&gt;</div><input id='attrs-a76392e2-f9ee-45dd-aee1-ff75715218f6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a76392e2-f9ee-45dd-aee1-ff75715218f6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b37c59ef-64b0-42c8-94ab-33940442d451' class='xr-var-data-in' type='checkbox'><label for='data-b37c59ef-64b0-42c8-94ab-33940442d451' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>X</dd><dt><span>long_name :</span></dt><dd>longitude bounds</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1769,13 +1519,13 @@ Attributes: (12/49)
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 6.33 MiB </td>
                         <td> 6.33 MiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (576, 720, 4) </td>
@@ -1835,14 +1585,14 @@ Attributes: (12/49)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>2015-01-16 12:00:00 ... 2100-12-...</div><input id='attrs-b71f6a8d-b814-457d-90ef-caca7ff750b6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b71f6a8d-b814-457d-90ef-caca7ff750b6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-75c20f3c-36dd-484f-9666-ecf5324667e7' class='xr-var-data-in' type='checkbox'><label for='data-75c20f3c-36dd-484f-9666-ecf5324667e7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>T</dd><dt><span>bounds :</span></dt><dd>time_bnds</dd><dt><span>calendar_type :</span></dt><dd>noleap</dd><dt><span>description :</span></dt><dd>Temporal mean</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([cftime.DatetimeNoLeap(2015, 1, 16, 12, 0, 0, 0, has_year_zero=True),
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>2015-01-16 12:00:00 ... 2100-12-...</div><input id='attrs-8c1966fa-5e92-470d-8c25-f21c156f9c6f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8c1966fa-5e92-470d-8c25-f21c156f9c6f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6038a3f2-3605-407d-9734-6cf23e807598' class='xr-var-data-in' type='checkbox'><label for='data-6038a3f2-3605-407d-9734-6cf23e807598' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>T</dd><dt><span>bounds :</span></dt><dd>time_bnds</dd><dt><span>calendar_type :</span></dt><dd>noleap</dd><dt><span>description :</span></dt><dd>Temporal mean</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([cftime.DatetimeNoLeap(2015, 1, 16, 12, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(2015, 2, 15, 0, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(2015, 3, 16, 12, 0, 0, 0, has_year_zero=True),
        ...,
        cftime.DatetimeNoLeap(2100, 10, 16, 12, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(2100, 11, 16, 0, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(2100, 12, 16, 12, 0, 0, 0, has_year_zero=True)],
-      dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>time_bnds</span></div><div class='xr-var-dims'>(time, bnds)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1032, 2), meta=np.ndarray&gt;</div><input id='attrs-fab956b7-35be-44f2-8b68-292a535b6e45' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fab956b7-35be-44f2-8b68-292a535b6e45' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-38e73083-33e2-4692-b0c7-560732230d9c' class='xr-var-data-in' type='checkbox'><label for='data-38e73083-33e2-4692-b0c7-560732230d9c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>time axis boundaries</dd></dl></div><div class='xr-var-data'><table>
+      dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>time_bnds</span></div><div class='xr-var-dims'>(time, bnds)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1032, 2), meta=np.ndarray&gt;</div><input id='attrs-be70d3d9-95d3-4f97-a09a-717af675d41a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-be70d3d9-95d3-4f97-a09a-717af675d41a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9915120b-bea7-4539-973d-6aaad0da976c' class='xr-var-data-in' type='checkbox'><label for='data-9915120b-bea7-4539-973d-6aaad0da976c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>time axis boundaries</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1854,13 +1604,13 @@ Attributes: (12/49)
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 16.12 kiB </td>
                         <td> 16.12 kiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (1032, 2) </td>
@@ -1897,8 +1647,8 @@ Attributes: (12/49)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-299.8 -299.2 ... 59.25 59.75</div><input id='attrs-f204d54d-c4fa-428b-a12d-28e72041514c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f204d54d-c4fa-428b-a12d-28e72041514c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cc6ed7ee-95cc-4a53-9a17-ad37ea0391b7' class='xr-var-data-in' type='checkbox'><label for='data-cc6ed7ee-95cc-4a53-9a17-ad37ea0391b7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>X</dd><dt><span>long_name :</span></dt><dd>x coordinate of projection</dd><dt><span>standard_name :</span></dt><dd>projection_x_coordinate</dd><dt><span>units :</span></dt><dd>degrees</dd></dl></div><div class='xr-var-data'><pre>array([-299.75, -299.25, -298.75, ...,   58.75,   59.25,   59.75])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-77.91 -77.72 ... 89.68 89.89</div><input id='attrs-e2c9e001-bcc0-409f-9e1b-4ed21a6ecd22' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e2c9e001-bcc0-409f-9e1b-4ed21a6ecd22' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0cdbe68b-0c05-4849-be3a-664192f2c63e' class='xr-var-data-in' type='checkbox'><label for='data-0cdbe68b-0c05-4849-be3a-664192f2c63e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>Y</dd><dt><span>long_name :</span></dt><dd>y coordinate of projection</dd><dt><span>standard_name :</span></dt><dd>projection_y_coordinate</dd><dt><span>units :</span></dt><dd>degrees</dd></dl></div><div class='xr-var-data'><pre>array([-77.907938, -77.723813, -77.539688, ...,  89.472   ,  89.6832  ,
-        89.8944  ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-7f8e373f-582e-4390-afd8-dfae2663c2eb' class='xr-section-summary-in' type='checkbox'  checked><label for='section-7f8e373f-582e-4390-afd8-dfae2663c2eb' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>zos</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(61, 576, 720), meta=np.ndarray&gt;</div><input id='attrs-66be9dd6-3729-4891-9f6e-13c3972cf10a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-66be9dd6-3729-4891-9f6e-13c3972cf10a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-fc270fa1-6abe-4717-ba1b-781f71e1ec40' class='xr-var-data-in' type='checkbox'><label for='data-fc270fa1-6abe-4717-ba1b-781f71e1ec40' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cell_measures :</span></dt><dd>area: areacello</dd><dt><span>cell_methods :</span></dt><dd>area: mean where sea time: mean</dd><dt><span>long_name :</span></dt><dd>Sea Surface Height Above Geoid</dd><dt><span>original_name :</span></dt><dd>zos</dd><dt><span>standard_name :</span></dt><dd>sea_surface_height_above_geoid</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-299.8 -299.2 ... 59.25 59.75</div><input id='attrs-c1b0b734-409c-4556-8dfd-0a27c2f8a28e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c1b0b734-409c-4556-8dfd-0a27c2f8a28e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-12e465bc-aa72-46b9-8cf7-93b91ed7438c' class='xr-var-data-in' type='checkbox'><label for='data-12e465bc-aa72-46b9-8cf7-93b91ed7438c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>X</dd><dt><span>long_name :</span></dt><dd>x coordinate of projection</dd><dt><span>standard_name :</span></dt><dd>projection_x_coordinate</dd><dt><span>units :</span></dt><dd>degrees</dd></dl></div><div class='xr-var-data'><pre>array([-299.75, -299.25, -298.75, ...,   58.75,   59.25,   59.75])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-77.91 -77.72 ... 89.68 89.89</div><input id='attrs-35229c47-e138-4b70-89d3-7c8afb262262' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-35229c47-e138-4b70-89d3-7c8afb262262' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-10f8d8f9-30b7-4c24-96fc-3a27ee88977d' class='xr-var-data-in' type='checkbox'><label for='data-10f8d8f9-30b7-4c24-96fc-3a27ee88977d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>Y</dd><dt><span>long_name :</span></dt><dd>y coordinate of projection</dd><dt><span>standard_name :</span></dt><dd>projection_y_coordinate</dd><dt><span>units :</span></dt><dd>degrees</dd></dl></div><div class='xr-var-data'><pre>array([-77.907938, -77.723813, -77.539688, ...,  89.472   ,  89.6832  ,
+        89.8944  ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-25125c64-9b5a-4f34-9185-2db9fad7d8ca' class='xr-section-summary-in' type='checkbox'  checked><label for='section-25125c64-9b5a-4f34-9185-2db9fad7d8ca' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>zos</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(61, 576, 720), meta=np.ndarray&gt;</div><input id='attrs-9b7bddd8-83cc-4d16-9219-54bb1d873ac3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9b7bddd8-83cc-4d16-9219-54bb1d873ac3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-784917c7-dfc8-495a-854c-acb0ed53a363' class='xr-var-data-in' type='checkbox'><label for='data-784917c7-dfc8-495a-854c-acb0ed53a363' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cell_measures :</span></dt><dd>area: areacello</dd><dt><span>cell_methods :</span></dt><dd>area: mean where sea time: mean</dd><dt><span>long_name :</span></dt><dd>Sea Surface Height Above Geoid</dd><dt><span>original_name :</span></dt><dd>zos</dd><dt><span>standard_name :</span></dt><dd>sea_surface_height_above_geoid</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1910,13 +1660,13 @@ Attributes: (12/49)
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 1.59 GiB </td>
                         <td> 96.50 MiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (1032, 576, 720) </td>
@@ -2008,7 +1758,7 @@ Attributes: (12/49)
 </svg>
         </td>
     </tr>
-</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-02c002d1-e699-4348-9c1f-cdd827422111' class='xr-section-summary-in' type='checkbox'  ><label for='section-02c002d1-e699-4348-9c1f-cdd827422111' class='xr-section-summary' >Indexes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>bnds</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-412a86c9-cfae-4569-b76f-2cf6ea547c20' class='xr-index-data-in' type='checkbox'/><label for='index-412a86c9-cfae-4569-b76f-2cf6ea547c20' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([1.0, 2.0], dtype=&#x27;float64&#x27;, name=&#x27;bnds&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-02e303d0-67ec-4642-8231-00643c70fdd5' class='xr-index-data-in' type='checkbox'/><label for='index-02e303d0-67ec-4642-8231-00643c70fdd5' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(CFTimeIndex([2015-01-16 12:00:00, 2015-02-15 00:00:00, 2015-03-16 12:00:00,
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-115dcecb-9a9c-4f94-8b6b-072f2fd1abae' class='xr-section-summary-in' type='checkbox'  ><label for='section-115dcecb-9a9c-4f94-8b6b-072f2fd1abae' class='xr-section-summary' >Indexes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>bnds</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-ea792b26-df24-4b67-bf6a-268c599492e0' class='xr-index-data-in' type='checkbox'/><label for='index-ea792b26-df24-4b67-bf6a-268c599492e0' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([1.0, 2.0], dtype=&#x27;float64&#x27;, name=&#x27;bnds&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-d12e7530-6bf1-463a-a9a9-5a92af4dfec4' class='xr-index-data-in' type='checkbox'/><label for='index-d12e7530-6bf1-463a-a9a9-5a92af4dfec4' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(CFTimeIndex([2015-01-16 12:00:00, 2015-02-15 00:00:00, 2015-03-16 12:00:00,
              2015-04-16 00:00:00, 2015-05-16 12:00:00, 2015-06-16 00:00:00,
              2015-07-16 12:00:00, 2015-08-16 12:00:00, 2015-09-16 00:00:00,
              2015-10-16 12:00:00,
@@ -2017,21 +1767,21 @@ Attributes: (12/49)
              2100-06-16 00:00:00, 2100-07-16 12:00:00, 2100-08-16 12:00:00,
              2100-09-16 00:00:00, 2100-10-16 12:00:00, 2100-11-16 00:00:00,
              2100-12-16 12:00:00],
-            dtype=&#x27;object&#x27;, length=1032, calendar=&#x27;noleap&#x27;, freq=&#x27;None&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-024e7d7b-4dce-43fb-b44b-46f760b1906d' class='xr-index-data-in' type='checkbox'/><label for='index-024e7d7b-4dce-43fb-b44b-46f760b1906d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-299.75, -299.25, -298.75, -298.25, -297.75, -297.25, -296.75,
-              -296.25, -295.75, -295.25,
-              ...
-                55.25,   55.75,   56.25,   56.75,   57.25,   57.75,   58.25,
-                58.75,   59.25,   59.75],
-             dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=720))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-c60884bb-dca7-46f6-b2d6-b981281f2d3b' class='xr-index-data-in' type='checkbox'/><label for='index-c60884bb-dca7-46f6-b2d6-b981281f2d3b' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-77.90793753487047,  -77.7238126046114, -77.53968767435234,
-              -77.35556274409328,  -77.1714378138342, -76.98731288357514,
-              -76.80318795331607, -76.61906302305701, -76.43493809279795,
-              -76.25081316253888,
-              ...
-               87.99359944564549,   88.2047995039986,   88.4159995623517,
-               88.62719962070481,  88.83839967905793,  89.04959973741103,
-               89.26079979576413,  89.47199985411724,  89.68319991247033,
-               89.89439997082347],
-             dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=576))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e384d48a-18fb-47d7-adf5-529a44040750' class='xr-section-summary-in' type='checkbox'  ><label for='section-e384d48a-18fb-47d7-adf5-529a44040750' class='xr-section-summary' >Attributes: <span>(49)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.7 CMIP-6.0 UGRID-1.0</dd><dt><span>activity_id :</span></dt><dd>ScenarioMIP</dd><dt><span>branch_method :</span></dt><dd>standard</dd><dt><span>branch_time_in_child :</span></dt><dd>60225.0</dd><dt><span>branch_time_in_parent :</span></dt><dd>60225.0</dd><dt><span>comment :</span></dt><dd>&lt;null ref&gt;</dd><dt><span>contact :</span></dt><dd>gfdl.climate.model.info@noaa.gov</dd><dt><span>creation_date :</span></dt><dd>2019-06-19T11:11:02Z</dd><dt><span>data_specs_version :</span></dt><dd>01.00.27</dd><dt><span>experiment :</span></dt><dd>update of RCP8.5 based on SSP5</dd><dt><span>experiment_id :</span></dt><dd>ssp585</dd><dt><span>external_variables :</span></dt><dd>areacello</dd><dt><span>forcing_index :</span></dt><dd>1</dd><dt><span>frequency :</span></dt><dd>mon</dd><dt><span>further_info_url :</span></dt><dd>https://furtherinfo.es-doc.org/CMIP6.NOAA-GFDL.GFDL-ESM4.ssp585.none.r1i1p1f1</dd><dt><span>grid :</span></dt><dd>ocean data on native grid tripolar - nominal 0.5 deg latitude/longitude</dd><dt><span>grid_label :</span></dt><dd>gn</dd><dt><span>history :</span></dt><dd>File was processed by fremetar (GFDL analog of CMOR). TripleID: [exper_id_FlJGh4Wo6W,realiz_id_kt2pvOSbWt,run_id_1S546GMKbs]</dd><dt><span>initialization_index :</span></dt><dd>1</dd><dt><span>institution :</span></dt><dd>National Oceanic and Atmospheric Administration, Geophysical Fluid Dynamics Laboratory, Princeton, NJ 08540, USA</dd><dt><span>institution_id :</span></dt><dd>NOAA-GFDL</dd><dt><span>license :</span></dt><dd>CMIP6 model data produced by NOAA-GFDL is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (https://creativecommons.org/licenses/). Consult https://pcmdi.llnl.gov/CMIP6/TermsOfUse for terms of use governing CMIP6 output, including citation requirements and proper acknowledgment. Further information about this data, including some limitations, can be found via the further_info_url (recorded as a global attribute in this file). The data producers and data providers make no warranty, either express or implied, including, but not limited to, warranties of merchantability and fitness for a particular purpose. All liabilities arising from the supply of the information (including any liability arising in negligence) are excluded to the fullest extent permitted by law.</dd><dt><span>mip_era :</span></dt><dd>CMIP6</dd><dt><span>nominal_resolution :</span></dt><dd>50 km</dd><dt><span>parent_activity_id :</span></dt><dd>CMIP</dd><dt><span>parent_experiment_id :</span></dt><dd>historical</dd><dt><span>parent_mip_era :</span></dt><dd>CMIP6</dd><dt><span>parent_source_id :</span></dt><dd>GFDL-ESM4</dd><dt><span>parent_time_units :</span></dt><dd>days since 1850-1-1</dd><dt><span>parent_variant_label :</span></dt><dd>r1i1p1f1</dd><dt><span>physics_index :</span></dt><dd>1</dd><dt><span>product :</span></dt><dd>model-output</dd><dt><span>realization_index :</span></dt><dd>1</dd><dt><span>realm :</span></dt><dd>ocean</dd><dt><span>references :</span></dt><dd>see further_info_url attribute</dd><dt><span>source :</span></dt><dd>GFDL-ESM4 (2018):
+            dtype=&#x27;object&#x27;, length=1032, calendar=&#x27;noleap&#x27;, freq=&#x27;None&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-5b81065f-9c64-4ab7-85ab-14790ffad752' class='xr-index-data-in' type='checkbox'/><label for='index-5b81065f-9c64-4ab7-85ab-14790ffad752' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-299.75, -299.25, -298.75, -298.25, -297.75, -297.25, -296.75, -296.25,
+       -295.75, -295.25,
+       ...
+         55.25,   55.75,   56.25,   56.75,   57.25,   57.75,   58.25,   58.75,
+         59.25,   59.75],
+      dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=720))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-7c866862-9436-4193-a5be-aeac494d0d8c' class='xr-index-data-in' type='checkbox'/><label for='index-7c866862-9436-4193-a5be-aeac494d0d8c' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-77.90793753487047,  -77.7238126046114, -77.53968767435234,
+       -77.35556274409328,  -77.1714378138342, -76.98731288357514,
+       -76.80318795331607, -76.61906302305701, -76.43493809279795,
+       -76.25081316253888,
+       ...
+        87.99359944564549,   88.2047995039986,   88.4159995623517,
+        88.62719962070481,  88.83839967905793,  89.04959973741103,
+        89.26079979576413,  89.47199985411724,  89.68319991247033,
+        89.89439997082347],
+      dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=576))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-5fef396b-f307-46d1-9c8e-8691ce97a39a' class='xr-section-summary-in' type='checkbox'  ><label for='section-5fef396b-f307-46d1-9c8e-8691ce97a39a' class='xr-section-summary' >Attributes: <span>(49)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.7 CMIP-6.0 UGRID-1.0</dd><dt><span>activity_id :</span></dt><dd>ScenarioMIP</dd><dt><span>branch_method :</span></dt><dd>standard</dd><dt><span>branch_time_in_child :</span></dt><dd>60225.0</dd><dt><span>branch_time_in_parent :</span></dt><dd>60225.0</dd><dt><span>comment :</span></dt><dd>&lt;null ref&gt;</dd><dt><span>contact :</span></dt><dd>gfdl.climate.model.info@noaa.gov</dd><dt><span>creation_date :</span></dt><dd>2019-06-19T11:11:02Z</dd><dt><span>data_specs_version :</span></dt><dd>01.00.27</dd><dt><span>experiment :</span></dt><dd>update of RCP8.5 based on SSP5</dd><dt><span>experiment_id :</span></dt><dd>ssp585</dd><dt><span>external_variables :</span></dt><dd>areacello</dd><dt><span>forcing_index :</span></dt><dd>1</dd><dt><span>frequency :</span></dt><dd>mon</dd><dt><span>further_info_url :</span></dt><dd>https://furtherinfo.es-doc.org/CMIP6.NOAA-GFDL.GFDL-ESM4.ssp585.none.r1i1p1f1</dd><dt><span>grid :</span></dt><dd>ocean data on native grid tripolar - nominal 0.5 deg latitude/longitude</dd><dt><span>grid_label :</span></dt><dd>gn</dd><dt><span>history :</span></dt><dd>File was processed by fremetar (GFDL analog of CMOR). TripleID: [exper_id_FlJGh4Wo6W,realiz_id_kt2pvOSbWt,run_id_1S546GMKbs]</dd><dt><span>initialization_index :</span></dt><dd>1</dd><dt><span>institution :</span></dt><dd>National Oceanic and Atmospheric Administration, Geophysical Fluid Dynamics Laboratory, Princeton, NJ 08540, USA</dd><dt><span>institution_id :</span></dt><dd>NOAA-GFDL</dd><dt><span>license :</span></dt><dd>CMIP6 model data produced by NOAA-GFDL is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (https://creativecommons.org/licenses/). Consult https://pcmdi.llnl.gov/CMIP6/TermsOfUse for terms of use governing CMIP6 output, including citation requirements and proper acknowledgment. Further information about this data, including some limitations, can be found via the further_info_url (recorded as a global attribute in this file). The data producers and data providers make no warranty, either express or implied, including, but not limited to, warranties of merchantability and fitness for a particular purpose. All liabilities arising from the supply of the information (including any liability arising in negligence) are excluded to the fullest extent permitted by law.</dd><dt><span>mip_era :</span></dt><dd>CMIP6</dd><dt><span>nominal_resolution :</span></dt><dd>50 km</dd><dt><span>parent_activity_id :</span></dt><dd>CMIP</dd><dt><span>parent_experiment_id :</span></dt><dd>historical</dd><dt><span>parent_mip_era :</span></dt><dd>CMIP6</dd><dt><span>parent_source_id :</span></dt><dd>GFDL-ESM4</dd><dt><span>parent_time_units :</span></dt><dd>days since 1850-1-1</dd><dt><span>parent_variant_label :</span></dt><dd>r1i1p1f1</dd><dt><span>physics_index :</span></dt><dd>1</dd><dt><span>product :</span></dt><dd>model-output</dd><dt><span>realization_index :</span></dt><dd>1</dd><dt><span>realm :</span></dt><dd>ocean</dd><dt><span>references :</span></dt><dd>see further_info_url attribute</dd><dt><span>source :</span></dt><dd>GFDL-ESM4 (2018):
 atmos: GFDL-AM4.1 (Cubed-sphere (c96) - 1 degree nominal horizontal resolution; 360 x 180 longitude/latitude; 49 levels; top level 1 Pa)
 ocean: GFDL-OM4p5 (GFDL-MOM6, tripolar - nominal 0.5 deg; 720 x 576 longitude/latitude; 75 levels; top grid cell 0-2 m)
 seaIce: GFDL-SIM4p5 (GFDL-SIS2.0, tripolar - nominal 0.5 deg; 720 x 576 longitude/latitude; 5 layers; 5 thickness categories)
@@ -2092,10 +1842,10 @@ between 2015-2100 (from one modelled experiment).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fc07149a560&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fe46c4e7f50&gt;
 </pre></div>
 </div>
-<img alt="../_images/cmip6-cloud_25_1.png" src="../_images/cmip6-cloud_25_1.png" />
+<img alt="../_images/d5daad6f9031d5bc813f2ca19c7d9534a1f3ba86fcf402310238afd516d5f791.png" src="../_images/d5daad6f9031d5bc813f2ca19c7d9534a1f3ba86fcf402310238afd516d5f791.png" />
 </div>
 </div>
 <p>Notice the blue parts between -40 and -60 South where sea level has dropped?
@@ -2119,7 +1869,7 @@ of the Northern Hemisphere though, sea level rise has increased between 2015 and
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./intermediate"
         },
         predefinedOutput: true
@@ -2127,50 +1877,112 @@ of the Northern Hemisphere though, sea level rise has increased between 2015 and
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="hvplot.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Interactive plots using hvplot</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="hvplot.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Interactive plots using hvplot</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../data_cleaning/ice_velocity.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../data_cleaning/ice_velocity.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Re-organize InSAR ice velocity data</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By The Xarray Community<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-cloud-native-data">Finding cloud native data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-cloud-hosted-cmip6-data">Getting cloud hosted CMIP6 data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-from-the-remote-zarr-storage">Reading from the remote Zarr storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-time-slices">Selecting time slices</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Xarray Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

@@ -1,36 +1,46 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Handling dask arrays</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/announcement.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -38,726 +48,461 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JRQHYVFQR7"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JRQHYVFQR7');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'advanced/apply_ufunc/simple_dask_apply_ufunc';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Applying unvectorized functions" href="vectorize_1d.html" />
     <link rel="prev" title="A gentle introduction" href="simple_numpy_apply_ufunc.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JRQHYVFQR7"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-JRQHYVFQR7');
-                </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../_static/logo.png" class="logo" alt="logo">
-      
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Overview
- </span>
-</p>
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Overview</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../overview/get-started.html">
-   Get Started
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../overview/xarray-in-45-min.html">
-   Xarray in 45 minutes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../overview/fundamental-path/README.html">
-   Fundamental Learning Path
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/xarray-in-45-min.html">Xarray in 45 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/fundamental-path/README.html">Fundamental Learning Path</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Fundamentals
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fundamentals/01_data_structures.html">
-   Data Structures
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/01_datastructures.html">
-     Xarray’s Data structures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/01.1_creating_data_structures.html">
-     Creating Data Structures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/01.1_io.html">
-     Reading and writing files
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fundamentals/02_labeled_data.html">
-   Labeled data
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/02.1_working_with_labeled_data.html">
-     Working with labeled data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/02.2_manipulating_dimensions.html">
-     Manipulating Dimensions (Data Resolution)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fundamentals/03_computation.html">
-   Computation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/03.1_computation_with_xarray.html">
-     Basic Computation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/02.3_aligning_data_objects.html">
-     Computing with Multiple Objects
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/03.2_groupby_with_xarray.html">
-     Grouped Computations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/03.3_windowed.html">
-     Windowed Computations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/03.4_weighted.html">
-     Weighted Reductions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fundamentals/04.0_plotting.html">
-   Plotting and Visualization
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/04.1_basic_plotting.html">
-     Basic Visualization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/04.2_faceting.html">
-     Faceting
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/04.3_geographic_plotting.html">
-     Geography with Cartopy
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../fundamentals/01_data_structures.html">Data Structures</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/01_datastructures.html">Xarray’s Data structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/01.1_creating_data_structures.html">Creating Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/01.1_io.html">Reading and writing files</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Intermediate
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../fundamentals/02_labeled_data.html">Labeled data</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/02.1_working_with_labeled_data.html">Working with labeled data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/02.2_manipulating_dimensions.html">Manipulating Dimensions (Data Resolution)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../fundamentals/03_computation.html">Computation</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/03.1_computation_with_xarray.html">Basic Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/02.3_aligning_data_objects.html">Computing with Multiple Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/03.2_groupby_with_xarray.html">Grouped Computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/03.3_windowed.html">Windowed Computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/03.4_weighted.html">Weighted Reductions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../fundamentals/04.0_plotting.html">Plotting and Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/04.1_basic_plotting.html">Basic Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/04.2_faceting.html">Faceting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/04.3_geographic_plotting.html">Geography with Cartopy</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../intermediate/01-high-level-computation-patterns.html">
-   High-level computational patterns
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../intermediate/xarray_and_dask.html">
-   Parallel computing with Dask
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../intermediate/xarray_ecosystem.html">
-   A Tour of the Xarray Ecosystem
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../intermediate/hvplot.html">
-   Interactive plots using hvplot
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../intermediate/cmip6-cloud.html">
-   Accessing remote data stored on the cloud
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../data_cleaning/ice_velocity.html">
-   Re-organize InSAR ice velocity data
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../intermediate/01-high-level-computation-patterns.html">High-level computational patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intermediate/xarray_and_dask.html">Parallel computing with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intermediate/xarray_ecosystem.html">A Tour of the Xarray Ecosystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intermediate/hvplot.html">Interactive plots using hvplot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intermediate/cmip6-cloud.html">Accessing remote data stored on the cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_cleaning/ice_velocity.html">Re-organize InSAR ice velocity data</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Advanced
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../parallel-intro.html">
-   Parallelizing custom functions
-  </a>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="apply_ufunc.html">
-   apply_ufunc
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="simple_numpy_apply_ufunc.html">
-     A gentle introduction
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Handling dask arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="vectorize_1d.html">
-     Applying unvectorized functions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../map_blocks/map_blocks.html">
-   map_blocks
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../map_blocks/simple_map_blocks.html">
-     A gentle introduction
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../backends/backends.html">
-   Creating new backends
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../backends/1.Backend_without_Lazy_Loading.html">
-     Binary data without lazy loading
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../backends/2.Backend_with_Lazy_Loading.html">
-     Binary data with lazy loading
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../parallel-intro.html">Parallelizing custom functions</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="apply_ufunc.html">apply_ufunc</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="simple_numpy_apply_ufunc.html">A gentle introduction</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Handling dask arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vectorize_1d.html">Applying unvectorized functions</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Workshops
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../workshops/scipy2023/README.html">
-   SciPy 2023
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../workshops/oceanhackweek2020/README.html">
-   Oceanhackweek 2020
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/overview/xarray-in-45-min">
-     Xarray in 45 minutes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../workshops/thinking-like-xarray/README.html">
-   Thinking like Xarray
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference external" href="https://tutorial.xarray.dev/intermediate/01-high-level-computation-patterns">
-     High-level computation patterns
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../workshops/online-tutorial-series/README.html">
-   Xarray Online Tutorial
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../workshops/online-tutorial-series/01_xarray_fundamentals.html">
-     Xarray Fundamentals
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../workshops/online-tutorial-series/02_indexing.html">
-     Indexing and Selecting Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../workshops/online-tutorial-series/03_computation.html">
-     Computation
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../map_blocks/map_blocks.html">map_blocks</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../map_blocks/simple_map_blocks.html">A gentle introduction</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Domain Specific
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://anopheles-genomic-surveillance.github.io/workshop-5/module-1-xarray.html">
-   Genomics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://predictablynoisy.com/posts/2019/2019-10-22-xarray-neuro/">
-   Electrophysiology
-  </a>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../backends/backends.html">Creating new backends</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../backends/1.Backend_without_Lazy_Loading.html">Binary data without lazy loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../backends/2.Backend_with_Lazy_Loading.html">Binary data with lazy loading</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Reference
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../reference/resources.html">
-   Keep Exploring!
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../reference/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../reference/bibliography.html">
-   Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../reference/acknowledgements.html">
-   Acknowledgements
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../workshops/scipy2023/README.html">SciPy 2023</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../workshops/oceanhackweek2020/README.html">Oceanhackweek 2020</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference external" href="https://tutorial.xarray.dev/overview/xarray-in-45-min">Xarray in 45 minutes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../workshops/thinking-like-xarray/README.html">Thinking like Xarray</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference external" href="https://tutorial.xarray.dev/intermediate/01-high-level-computation-patterns">High-level computation patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../workshops/online-tutorial-series/README.html">Xarray Online Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../workshops/online-tutorial-series/01_xarray_fundamentals.html">Xarray Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workshops/online-tutorial-series/02_indexing.html">Indexing and Selecting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workshops/online-tutorial-series/03_computation.html">Computation</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Domain Specific</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://anopheles-genomic-surveillance.github.io/workshop-5/module-1-xarray.html">Genomics</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://predictablynoisy.com/posts/2019/2019-10-22-xarray-neuro/">Electrophysiology</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../reference/resources.html">Keep Exploring!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/acknowledgements.html">Acknowledgements</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/main?urlpath=lab/tree/advanced/apply_ufunc/simple_dask_apply_ufunc.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
 
 
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
   </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/advanced/apply_ufunc/simple_dask_apply_ufunc.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Fadvanced/apply_ufunc/simple_dask_apply_ufunc.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/advanced/apply_ufunc/simple_dask_apply_ufunc.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/xarray-contrib/xarray-tutorial"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Fadvanced/apply_ufunc/simple_dask_apply_ufunc.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/advanced/apply_ufunc/simple_dask_apply_ufunc.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/advanced/apply_ufunc/simple_dask_apply_ufunc.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setup">
-   Setup
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-simple-example">
-   A simple example
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reductions-and-core-dimensions">
-   Reductions and core dimensions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#automatically-parallelizing-dask-unaware-functions">
-   Automatically parallelizing dask-unaware functions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#more">
-   More
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Handling dask arrays</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setup">
-   Setup
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-simple-example">
-   A simple example
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reductions-and-core-dimensions">
-   Reductions and core dimensions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#automatically-parallelizing-dask-unaware-functions">
-   Automatically parallelizing dask-unaware functions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#more">
-   More
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Handling dask arrays</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">A simple example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reductions-and-core-dimensions">Reductions and core dimensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatically-parallelizing-dask-unaware-functions">Automatically parallelizing dask-unaware functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more">More</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <a class="reference internal image-reference" href="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png"><img alt="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png" class="align-right" src="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png" style="width: 30%;" /></a>
 <section class="tex2jax_ignore mathjax_ignore" id="handling-dask-arrays">
 <h1>Handling dask arrays<a class="headerlink" href="#handling-dask-arrays" title="Permalink to this headline">#</a></h1>
@@ -802,34 +547,34 @@ tool.</p>
     <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px;">Client</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-ef096be6-017b-11ee-8b1d-6045bdc9e3c7</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-3a71f01a-0ad5-11ee-8758-000d3a18b39f</p>
         <table style="width: 100%; text-align: left;">
 
         <tr>
-
+        
             <td style="text-align: left;"><strong>Connection method:</strong> Cluster object</td>
             <td style="text-align: left;"><strong>Cluster type:</strong> distributed.LocalCluster</td>
-
+        
         </tr>
 
-
+        
             <tr>
                 <td style="text-align: left;">
                     <strong>Dashboard: </strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
                 </td>
                 <td style="text-align: left;"></td>
             </tr>
-
+        
 
         </table>
 
-
+        
             <button style="margin-bottom: 12px;" data-commandlinker-command="dask:populate-and-launch-layout" data-commandlinker-args='{"url": "http://127.0.0.1:8787/status" }'>
                 Launch dashboard in JupyterLab
             </button>
+        
 
-
-
+        
             <details>
             <summary style="margin-bottom: 20px;"><h3 style="display: inline;">Cluster Info</h3></summary>
             <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-mod-trusted jp-OutputArea-output">
@@ -837,7 +582,7 @@ tool.</p>
     </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCluster</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">776dc20b</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">ace65b59</p>
         <table style="width: 100%; text-align: left;">
             <tr>
                 <td style="text-align: left;">
@@ -855,13 +600,13 @@ tool.</p>
                     <strong>Total memory:</strong> 6.78 GiB
                 </td>
             </tr>
-
+            
             <tr>
     <td style="text-align: left;"><strong>Status:</strong> running</td>
     <td style="text-align: left;"><strong>Using processes:</strong> True</td>
 </tr>
 
-
+            
         </table>
 
         <details>
@@ -874,11 +619,11 @@ tool.</p>
         <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
         <div style="margin-left: 48px;">
             <h3 style="margin-bottom: 0px;">Scheduler</h3>
-            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-f10f734b-bf32-4b8d-8da2-441b3a7c07ea</p>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-fd192265-ce4a-47aa-872b-6db55c5328d3</p>
             <table style="width: 100%; text-align: left;">
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Comm:</strong> tcp://127.0.0.1:34473
+                        <strong>Comm:</strong> tcp://127.0.0.1:39773
                     </td>
                     <td style="text-align: left;">
                         <strong>Workers:</strong> 2
@@ -909,7 +654,7 @@ tool.</p>
             <h3 style="display: inline;">Workers</h3>
         </summary>
 
-
+        
         <div style="margin-bottom: 20px;">
             <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
             <div style="margin-left: 48px;">
@@ -920,7 +665,7 @@ tool.</p>
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:39313
+                            <strong>Comm: </strong> tcp://127.0.0.1:39739
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -928,7 +673,7 @@ tool.</p>
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:46129/status" target="_blank">http://127.0.0.1:46129/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:43885/status" target="_blank">http://127.0.0.1:43885/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.39 GiB
@@ -936,25 +681,25 @@ tool.</p>
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:33435
+                            <strong>Nanny: </strong> tcp://127.0.0.1:36111
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-uklbt3f8
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-m4z57olz
                         </td>
                     </tr>
 
+                    
 
-
-
+                    
 
                 </table>
             </details>
             </div>
         </div>
-
+        
         <div style="margin-bottom: 20px;">
             <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
             <div style="margin-left: 48px;">
@@ -965,7 +710,7 @@ tool.</p>
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:35229
+                            <strong>Comm: </strong> tcp://127.0.0.1:33071
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -973,7 +718,7 @@ tool.</p>
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:44225/status" target="_blank">http://127.0.0.1:44225/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:44079/status" target="_blank">http://127.0.0.1:44079/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.39 GiB
@@ -981,25 +726,25 @@ tool.</p>
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:43581
+                            <strong>Nanny: </strong> tcp://127.0.0.1:35195
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-worker-space/worker-seudtnw0
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-r3ai9rp_
                         </td>
                     </tr>
 
+                    
 
-
-
+                    
 
                 </table>
             </details>
             </div>
         </div>
-
+        
 
     </details>
 </div>
@@ -1008,7 +753,7 @@ tool.</p>
     </div>
 </div>
             </details>
-
+        
 
     </div>
 </div></div></div>
@@ -1420,17 +1165,17 @@ Attributes:
     title:        4x daily NMC reanalysis (1948)
     description:  Data is from NMC initialized reanalysis\n(4x/day).  These a...
     platform:     Model
-    references:   http://www.esrl.noaa.gov/psd/data/gridded/data.ncep.reanaly...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-9153e0b3-a1e3-42ae-a9d3-676bb9050513' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-9153e0b3-a1e3-42ae-a9d3-676bb9050513' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 25</li><li><span class='xr-has-index'>time</span>: 2920</li><li><span class='xr-has-index'>lon</span>: 53</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-738424c8-a0a4-4eca-901a-e9f10e954996' class='xr-section-summary-in' type='checkbox'  checked><label for='section-738424c8-a0a4-4eca-901a-e9f10e954996' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>75.0 72.5 70.0 ... 20.0 17.5 15.0</div><input id='attrs-0b3ab9b0-576d-47a0-8e5f-de1ae9bb78ba' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0b3ab9b0-576d-47a0-8e5f-de1ae9bb78ba' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-914ffe14-6c89-4d5e-8237-401930903916' class='xr-var-data-in' type='checkbox'><label for='data-914ffe14-6c89-4d5e-8237-401930903916' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([75. , 72.5, 70. , 67.5, 65. , 62.5, 60. , 57.5, 55. , 52.5, 50. , 47.5,
+    references:   http://www.esrl.noaa.gov/psd/data/gridded/data.ncep.reanaly...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-1c71800c-8b28-41f6-bb39-64e8042a2748' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-1c71800c-8b28-41f6-bb39-64e8042a2748' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 25</li><li><span class='xr-has-index'>time</span>: 2920</li><li><span class='xr-has-index'>lon</span>: 53</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-11cd8977-39f6-4b53-99f8-dce44bcee4ff' class='xr-section-summary-in' type='checkbox'  checked><label for='section-11cd8977-39f6-4b53-99f8-dce44bcee4ff' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>75.0 72.5 70.0 ... 20.0 17.5 15.0</div><input id='attrs-73e2e685-7ecd-4e27-af44-a9a064929f54' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-73e2e685-7ecd-4e27-af44-a9a064929f54' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ac5ab459-6899-40bc-9449-ec2c1baaf2cf' class='xr-var-data-in' type='checkbox'><label for='data-ac5ab459-6899-40bc-9449-ec2c1baaf2cf' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([75. , 72.5, 70. , 67.5, 65. , 62.5, 60. , 57.5, 55. , 52.5, 50. , 47.5,
        45. , 42.5, 40. , 37.5, 35. , 32.5, 30. , 27.5, 25. , 22.5, 20. , 17.5,
-       15. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>200.0 202.5 205.0 ... 327.5 330.0</div><input id='attrs-20f5af6d-ae48-4499-a22d-c68288a3761e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-20f5af6d-ae48-4499-a22d-c68288a3761e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7e7e5dd7-6ae8-40ef-88cf-0532fb9721d9' class='xr-var-data-in' type='checkbox'><label for='data-7e7e5dd7-6ae8-40ef-88cf-0532fb9721d9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([200. , 202.5, 205. , 207.5, 210. , 212.5, 215. , 217.5, 220. , 222.5,
+       15. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>200.0 202.5 205.0 ... 327.5 330.0</div><input id='attrs-a0b4ab35-cf21-42c1-a2cd-47c3c393d966' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a0b4ab35-cf21-42c1-a2cd-47c3c393d966' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0a07b8cc-de28-440a-9883-63c326f1be8d' class='xr-var-data-in' type='checkbox'><label for='data-0a07b8cc-de28-440a-9883-63c326f1be8d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([200. , 202.5, 205. , 207.5, 210. , 212.5, 215. , 217.5, 220. , 222.5,
        225. , 227.5, 230. , 232.5, 235. , 237.5, 240. , 242.5, 245. , 247.5,
        250. , 252.5, 255. , 257.5, 260. , 262.5, 265. , 267.5, 270. , 272.5,
        275. , 277.5, 280. , 282.5, 285. , 287.5, 290. , 292.5, 295. , 297.5,
        300. , 302.5, 305. , 307.5, 310. , 312.5, 315. , 317.5, 320. , 322.5,
-       325. , 327.5, 330. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2013-01-01 ... 2014-12-31T18:00:00</div><input id='attrs-d51548fa-aa23-49df-9556-9f43b0f806a1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d51548fa-aa23-49df-9556-9f43b0f806a1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-dffba533-a8ba-4143-8037-b5b5895d4f97' class='xr-var-data-in' type='checkbox'><label for='data-dffba533-a8ba-4143-8037-b5b5895d4f97' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>Time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2013-01-01T00:00:00.000000000&#x27;, &#x27;2013-01-01T06:00:00.000000000&#x27;,
+       325. , 327.5, 330. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2013-01-01 ... 2014-12-31T18:00:00</div><input id='attrs-58e84250-e42a-4c43-a17f-3875a6031746' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-58e84250-e42a-4c43-a17f-3875a6031746' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5c8036a3-b7c3-4936-ba92-f4abbbb81da3' class='xr-var-data-in' type='checkbox'><label for='data-5c8036a3-b7c3-4936-ba92-f4abbbb81da3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>Time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2013-01-01T00:00:00.000000000&#x27;, &#x27;2013-01-01T06:00:00.000000000&#x27;,
        &#x27;2013-01-01T12:00:00.000000000&#x27;, ..., &#x27;2014-12-31T06:00:00.000000000&#x27;,
        &#x27;2014-12-31T12:00:00.000000000&#x27;, &#x27;2014-12-31T18:00:00.000000000&#x27;],
-      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-f086b735-fcbd-4a1b-97c0-c6ab4f8424b7' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f086b735-fcbd-4a1b-97c0-c6ab4f8424b7' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>air</span></div><div class='xr-var-dims'>(time, lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(100, 25, 53), meta=np.ndarray&gt;</div><input id='attrs-6ca7d1ca-f231-47de-b608-c73d5991978c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6ca7d1ca-f231-47de-b608-c73d5991978c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-02c7c1df-7301-4a9c-8cae-9377eda2d982' class='xr-var-data-in' type='checkbox'><label for='data-02c7c1df-7301-4a9c-8cae-9377eda2d982' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>4xDaily Air temperature at sigma level 995</dd><dt><span>units :</span></dt><dd>degK</dd><dt><span>precision :</span></dt><dd>2</dd><dt><span>GRIB_id :</span></dt><dd>11</dd><dt><span>GRIB_name :</span></dt><dd>TMP</dd><dt><span>var_desc :</span></dt><dd>Air temperature</dd><dt><span>dataset :</span></dt><dd>NMC Reanalysis</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Individual Obs</dd><dt><span>parent_stat :</span></dt><dd>Other</dd><dt><span>actual_range :</span></dt><dd>[185.16 322.1 ]</dd></dl></div><div class='xr-var-data'><table>
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c76a0962-765f-452f-8181-e83f9d3a70f3' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c76a0962-765f-452f-8181-e83f9d3a70f3' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>air</span></div><div class='xr-var-dims'>(time, lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(100, 25, 53), meta=np.ndarray&gt;</div><input id='attrs-9ac556d6-444c-4b0a-8d3f-b785425a407a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9ac556d6-444c-4b0a-8d3f-b785425a407a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-469f4d16-63c3-4790-91bc-f5a84b420a36' class='xr-var-data-in' type='checkbox'><label for='data-469f4d16-63c3-4790-91bc-f5a84b420a36' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>4xDaily Air temperature at sigma level 995</dd><dt><span>units :</span></dt><dd>degK</dd><dt><span>precision :</span></dt><dd>2</dd><dt><span>GRIB_id :</span></dt><dd>11</dd><dt><span>GRIB_name :</span></dt><dd>TMP</dd><dt><span>var_desc :</span></dt><dd>Air temperature</dd><dt><span>dataset :</span></dt><dd>NMC Reanalysis</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Individual Obs</dd><dt><span>parent_stat :</span></dt><dd>Other</dd><dt><span>actual_range :</span></dt><dd>[185.16 322.1 ]</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1442,13 +1187,13 @@ Attributes:
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 14.76 MiB </td>
                         <td> 517.58 kiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (2920, 25, 53) </td>
@@ -1544,16 +1289,16 @@ Attributes:
 </svg>
         </td>
     </tr>
-</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-a83c388e-6c02-4fe7-8e3b-3dcda1bbf67c' class='xr-section-summary-in' type='checkbox'  ><label for='section-a83c388e-6c02-4fe7-8e3b-3dcda1bbf67c' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-2a90bcec-101c-4c6a-8504-c97fce307dc7' class='xr-index-data-in' type='checkbox'/><label for='index-2a90bcec-101c-4c6a-8504-c97fce307dc7' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([75.0, 72.5, 70.0, 67.5, 65.0, 62.5, 60.0, 57.5, 55.0, 52.5, 50.0,
-              47.5, 45.0, 42.5, 40.0, 37.5, 35.0, 32.5, 30.0, 27.5, 25.0, 22.5,
-              20.0, 17.5, 15.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;lat&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-edf6536e-a3c9-4515-97ec-bd61542bb50a' class='xr-index-data-in' type='checkbox'/><label for='index-edf6536e-a3c9-4515-97ec-bd61542bb50a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([200.0, 202.5, 205.0, 207.5, 210.0, 212.5, 215.0, 217.5, 220.0,
-              222.5, 225.0, 227.5, 230.0, 232.5, 235.0, 237.5, 240.0, 242.5,
-              245.0, 247.5, 250.0, 252.5, 255.0, 257.5, 260.0, 262.5, 265.0,
-              267.5, 270.0, 272.5, 275.0, 277.5, 280.0, 282.5, 285.0, 287.5,
-              290.0, 292.5, 295.0, 297.5, 300.0, 302.5, 305.0, 307.5, 310.0,
-              312.5, 315.0, 317.5, 320.0, 322.5, 325.0, 327.5, 330.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;lon&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-f7f2de30-8701-44d1-9d7c-7119acc243c2' class='xr-index-data-in' type='checkbox'/><label for='index-f7f2de30-8701-44d1-9d7c-7119acc243c2' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2013-01-01 00:00:00&#x27;, &#x27;2013-01-01 06:00:00&#x27;,
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-83cc339f-522c-4b17-9424-9b31279a1461' class='xr-section-summary-in' type='checkbox'  ><label for='section-83cc339f-522c-4b17-9424-9b31279a1461' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-6c10230d-0f89-4cf2-a692-09954fa1c0d2' class='xr-index-data-in' type='checkbox'/><label for='index-6c10230d-0f89-4cf2-a692-09954fa1c0d2' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([75.0, 72.5, 70.0, 67.5, 65.0, 62.5, 60.0, 57.5, 55.0, 52.5, 50.0, 47.5,
+       45.0, 42.5, 40.0, 37.5, 35.0, 32.5, 30.0, 27.5, 25.0, 22.5, 20.0, 17.5,
+       15.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-eb5d59d9-a30a-4498-99b4-63810ef8ad07' class='xr-index-data-in' type='checkbox'/><label for='index-eb5d59d9-a30a-4498-99b4-63810ef8ad07' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([200.0, 202.5, 205.0, 207.5, 210.0, 212.5, 215.0, 217.5, 220.0, 222.5,
+       225.0, 227.5, 230.0, 232.5, 235.0, 237.5, 240.0, 242.5, 245.0, 247.5,
+       250.0, 252.5, 255.0, 257.5, 260.0, 262.5, 265.0, 267.5, 270.0, 272.5,
+       275.0, 277.5, 280.0, 282.5, 285.0, 287.5, 290.0, 292.5, 295.0, 297.5,
+       300.0, 302.5, 305.0, 307.5, 310.0, 312.5, 315.0, 317.5, 320.0, 322.5,
+       325.0, 327.5, 330.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-16046112-a6b2-4e69-a056-105a9fdabddc' class='xr-index-data-in' type='checkbox'/><label for='index-16046112-a6b2-4e69-a056-105a9fdabddc' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2013-01-01 00:00:00&#x27;, &#x27;2013-01-01 06:00:00&#x27;,
                &#x27;2013-01-01 12:00:00&#x27;, &#x27;2013-01-01 18:00:00&#x27;,
                &#x27;2013-01-02 00:00:00&#x27;, &#x27;2013-01-02 06:00:00&#x27;,
                &#x27;2013-01-02 12:00:00&#x27;, &#x27;2013-01-02 18:00:00&#x27;,
@@ -1564,7 +1309,7 @@ Attributes:
                &#x27;2014-12-30 12:00:00&#x27;, &#x27;2014-12-30 18:00:00&#x27;,
                &#x27;2014-12-31 00:00:00&#x27;, &#x27;2014-12-31 06:00:00&#x27;,
                &#x27;2014-12-31 12:00:00&#x27;, &#x27;2014-12-31 18:00:00&#x27;],
-              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=2920, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-04b02b6e-4937-4bb0-9f83-3debb5297eff' class='xr-section-summary-in' type='checkbox'  checked><label for='section-04b02b6e-4937-4bb0-9f83-3debb5297eff' class='xr-section-summary' >Attributes: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>COARDS</dd><dt><span>title :</span></dt><dd>4x daily NMC reanalysis (1948)</dd><dt><span>description :</span></dt><dd>Data is from NMC initialized reanalysis
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=2920, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-299daecd-d4a8-437c-9de5-f5f3a1782660' class='xr-section-summary-in' type='checkbox'  checked><label for='section-299daecd-d4a8-437c-9de5-f5f3a1782660' class='xr-section-summary' >Attributes: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>COARDS</dd><dt><span>title :</span></dt><dd>4x daily NMC reanalysis (1948)</dd><dt><span>description :</span></dt><dd>Data is from NMC initialized reanalysis
 (4x/day).  These are the 0.9950 sigma level values.</dd><dt><span>platform :</span></dt><dd>Model</dd><dt><span>references :</span></dt><dd>http://www.esrl.noaa.gov/psd/data/gridded/data.ncep.reanalysis.html</dd></dl></div></li></ul></div></div></div></div>
 </div>
 </section>
@@ -1591,49 +1336,49 @@ Attributes:
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
 <span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span><span class="n">squared_error</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">air</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="nn">File /usr/share/miniconda3/envs/xarray-tutorial/lib/python3.10/site-packages/xarray/core/computation.py:1204,</span> in <span class="ni">apply_ufunc</span><span class="nt">(func, input_core_dims, output_core_dims, exclude_dims, vectorize, join, dataset_join, dataset_fill_value, keep_attrs, kwargs, dask, output_dtypes, output_sizes, meta, dask_gufunc_kwargs, *args)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1202</span> <span class="c1"># feed DataArray apply_variable_ufunc through apply_dataarray_vfunc</span>
-<span class="g g-Whitespace">   </span><span class="mi">1203</span> <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">DataArray</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1204</span>     <span class="k">return</span> <span class="n">apply_dataarray_vfunc</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1205</span>         <span class="n">variables_vfunc</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1206</span>         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1207</span>         <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1208</span>         <span class="n">join</span><span class="o">=</span><span class="n">join</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1209</span>         <span class="n">exclude_dims</span><span class="o">=</span><span class="n">exclude_dims</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1210</span>         <span class="n">keep_attrs</span><span class="o">=</span><span class="n">keep_attrs</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1211</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1212</span> <span class="c1"># feed Variables directly through apply_variable_ufunc</span>
-<span class="g g-Whitespace">   </span><span class="mi">1213</span> <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Variable</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">):</span>
+<span class="nn">File ~/micromamba/envs/xarray-tutorial/lib/python3.11/site-packages/xarray/core/computation.py:1197,</span> in <span class="ni">apply_ufunc</span><span class="nt">(func, input_core_dims, output_core_dims, exclude_dims, vectorize, join, dataset_join, dataset_fill_value, keep_attrs, kwargs, dask, output_dtypes, output_sizes, meta, dask_gufunc_kwargs, *args)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1195</span> <span class="c1"># feed DataArray apply_variable_ufunc through apply_dataarray_vfunc</span>
+<span class="g g-Whitespace">   </span><span class="mi">1196</span> <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">DataArray</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1197</span>     <span class="k">return</span> <span class="n">apply_dataarray_vfunc</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1198</span>         <span class="n">variables_vfunc</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1199</span>         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1200</span>         <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1201</span>         <span class="n">join</span><span class="o">=</span><span class="n">join</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1202</span>         <span class="n">exclude_dims</span><span class="o">=</span><span class="n">exclude_dims</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1203</span>         <span class="n">keep_attrs</span><span class="o">=</span><span class="n">keep_attrs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1204</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1205</span> <span class="c1"># feed Variables directly through apply_variable_ufunc</span>
+<span class="g g-Whitespace">   </span><span class="mi">1206</span> <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Variable</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">):</span>
 
-<span class="nn">File /usr/share/miniconda3/envs/xarray-tutorial/lib/python3.10/site-packages/xarray/core/computation.py:315,</span> in <span class="ni">apply_dataarray_vfunc</span><span class="nt">(func, signature, join, exclude_dims, keep_attrs, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span> <span class="n">result_coords</span><span class="p">,</span> <span class="n">result_indexes</span> <span class="o">=</span> <span class="n">build_output_coords_and_indexes</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span>     <span class="n">args</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">exclude_dims</span><span class="p">,</span> <span class="n">combine_attrs</span><span class="o">=</span><span class="n">keep_attrs</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span> <span class="n">data_vars</span> <span class="o">=</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">]</span>
-<span class="ne">--&gt; </span><span class="mi">315</span> <span class="n">result_var</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">data_vars</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="n">out</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataArray</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="n">DataArray</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span> <span class="k">if</span> <span class="n">signature</span><span class="o">.</span><span class="n">num_outputs</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="nn">File ~/micromamba/envs/xarray-tutorial/lib/python3.11/site-packages/xarray/core/computation.py:304,</span> in <span class="ni">apply_dataarray_vfunc</span><span class="nt">(func, signature, join, exclude_dims, keep_attrs, *args)</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span> <span class="n">result_coords</span><span class="p">,</span> <span class="n">result_indexes</span> <span class="o">=</span> <span class="n">build_output_coords_and_indexes</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>     <span class="n">args</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">exclude_dims</span><span class="p">,</span> <span class="n">combine_attrs</span><span class="o">=</span><span class="n">keep_attrs</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span> <span class="n">data_vars</span> <span class="o">=</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">304</span> <span class="n">result_var</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">data_vars</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span> <span class="n">out</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataArray</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="n">DataArray</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span> <span class="k">if</span> <span class="n">signature</span><span class="o">.</span><span class="n">num_outputs</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
 
-<span class="nn">File /usr/share/miniconda3/envs/xarray-tutorial/lib/python3.10/site-packages/xarray/core/computation.py:692,</span> in <span class="ni">apply_variable_ufunc</span><span class="nt">(func, signature, exclude_dims, dask, output_dtypes, vectorize, keep_attrs, dask_gufunc_kwargs, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">690</span> <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">is_duck_dask_array</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="k">for</span> <span class="n">array</span> <span class="ow">in</span> <span class="n">input_data</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">691</span>     <span class="k">if</span> <span class="n">dask</span> <span class="o">==</span> <span class="s2">&quot;forbidden&quot;</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">692</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">693</span>             <span class="s2">&quot;apply_ufunc encountered a dask array on an &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">694</span>             <span class="s2">&quot;argument, but handling for dask arrays has not &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">695</span>             <span class="s2">&quot;been enabled. Either set the ``dask`` argument &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">696</span>             <span class="s2">&quot;or load your data into memory first with &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">697</span>             <span class="s2">&quot;``.load()`` or ``.compute()``&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">698</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">699</span>     <span class="k">elif</span> <span class="n">dask</span> <span class="o">==</span> <span class="s2">&quot;parallelized&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">700</span>         <span class="n">numpy_func</span> <span class="o">=</span> <span class="n">func</span>
+<span class="nn">File ~/micromamba/envs/xarray-tutorial/lib/python3.11/site-packages/xarray/core/computation.py:681,</span> in <span class="ni">apply_variable_ufunc</span><span class="nt">(func, signature, exclude_dims, dask, output_dtypes, vectorize, keep_attrs, dask_gufunc_kwargs, *args)</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span> <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">is_chunked_array</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="k">for</span> <span class="n">array</span> <span class="ow">in</span> <span class="n">input_data</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">680</span>     <span class="k">if</span> <span class="n">dask</span> <span class="o">==</span> <span class="s2">&quot;forbidden&quot;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">681</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">682</span>             <span class="s2">&quot;apply_ufunc encountered a chunked array on an &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">683</span>             <span class="s2">&quot;argument, but handling for chunked arrays has not &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">684</span>             <span class="s2">&quot;been enabled. Either set the ``dask`` argument &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">685</span>             <span class="s2">&quot;or load your data into memory first with &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">686</span>             <span class="s2">&quot;``.load()`` or ``.compute()``&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">687</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">688</span>     <span class="k">elif</span> <span class="n">dask</span> <span class="o">==</span> <span class="s2">&quot;parallelized&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">689</span>         <span class="n">chunkmanager</span> <span class="o">=</span> <span class="n">get_chunked_array_type</span><span class="p">(</span><span class="o">*</span><span class="n">input_data</span><span class="p">)</span>
 
-<span class="ne">ValueError</span>: apply_ufunc encountered a dask array on an argument, but handling for dask arrays has not been enabled. Either set the ``dask`` argument or load your data into memory first with ``.load()`` or ``.compute()``
+<span class="ne">ValueError</span>: apply_ufunc encountered a chunked array on an argument, but handling for chunked arrays has not been enabled. Either set the ``dask`` argument or load your data into memory first with ``.load()`` or ``.compute()``
 </pre></div>
 </div>
 </div>
 </div>
 <p>There are two options for the <code class="docutils literal notranslate"><span class="pre">dask</span></code> kwarg.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dask=&quot;allowed&quot;</span></code> Dask arrays are passed to the user function. This is a good
 choice if your function can handle dask arrays and won’t call compute
 explicitly.</p></li>
@@ -2024,7 +1769,7 @@ dask.array&lt;pow, shape=(2920, 25, 53), dtype=float32, chunksize=(100, 25, 53),
 Coordinates:
   * lat      (lat) float32 75.0 72.5 70.0 67.5 65.0 ... 25.0 22.5 20.0 17.5 15.0
   * lon      (lon) float32 200.0 202.5 205.0 207.5 ... 322.5 325.0 327.5 330.0
-  * time     (time) datetime64[ns] 2013-01-01 ... 2014-12-31T18:00:00</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'air'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 2920</li><li><span class='xr-has-index'>lat</span>: 25</li><li><span class='xr-has-index'>lon</span>: 53</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-43956299-ad1c-48ef-9125-778c9e2e92c1' class='xr-array-in' type='checkbox' checked><label for='section-43956299-ad1c-48ef-9125-778c9e2e92c1' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(100, 25, 53), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+  * time     (time) datetime64[ns] 2013-01-01 ... 2014-12-31T18:00:00</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'air'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 2920</li><li><span class='xr-has-index'>lat</span>: 25</li><li><span class='xr-has-index'>lon</span>: 53</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-dfa6e8ff-e675-448f-b25f-2220dd8e6ba3' class='xr-array-in' type='checkbox' checked><label for='section-dfa6e8ff-e675-448f-b25f-2220dd8e6ba3' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(100, 25, 53), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2036,13 +1781,13 @@ Coordinates:
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 14.76 MiB </td>
                         <td> 517.58 kiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (2920, 25, 53) </td>
@@ -2138,26 +1883,26 @@ Coordinates:
 </svg>
         </td>
     </tr>
-</table></div></div></li><li class='xr-section-item'><input id='section-74087df1-a3f9-48ec-8a85-76309fa61025' class='xr-section-summary-in' type='checkbox'  checked><label for='section-74087df1-a3f9-48ec-8a85-76309fa61025' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>75.0 72.5 70.0 ... 20.0 17.5 15.0</div><input id='attrs-4e9cefdd-e140-4efd-91f0-a858122790d0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4e9cefdd-e140-4efd-91f0-a858122790d0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5c90b449-9d44-45f4-9503-2a38de85a570' class='xr-var-data-in' type='checkbox'><label for='data-5c90b449-9d44-45f4-9503-2a38de85a570' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([75. , 72.5, 70. , 67.5, 65. , 62.5, 60. , 57.5, 55. , 52.5, 50. , 47.5,
+</table></div></div></li><li class='xr-section-item'><input id='section-567d5930-dea7-4d71-a4bb-cc4a389b613c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-567d5930-dea7-4d71-a4bb-cc4a389b613c' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>75.0 72.5 70.0 ... 20.0 17.5 15.0</div><input id='attrs-3c83231f-459d-431a-bf45-35ffdf0e5c1e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3c83231f-459d-431a-bf45-35ffdf0e5c1e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4ef61b5d-24f3-48fd-8461-a35c6ddf480e' class='xr-var-data-in' type='checkbox'><label for='data-4ef61b5d-24f3-48fd-8461-a35c6ddf480e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([75. , 72.5, 70. , 67.5, 65. , 62.5, 60. , 57.5, 55. , 52.5, 50. , 47.5,
        45. , 42.5, 40. , 37.5, 35. , 32.5, 30. , 27.5, 25. , 22.5, 20. , 17.5,
-       15. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>200.0 202.5 205.0 ... 327.5 330.0</div><input id='attrs-f2e4e899-fda6-4c5f-9199-6c576d4ece9a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f2e4e899-fda6-4c5f-9199-6c576d4ece9a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cc994fed-5fee-4c8a-aa59-7d19d5e8282a' class='xr-var-data-in' type='checkbox'><label for='data-cc994fed-5fee-4c8a-aa59-7d19d5e8282a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([200. , 202.5, 205. , 207.5, 210. , 212.5, 215. , 217.5, 220. , 222.5,
+       15. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>200.0 202.5 205.0 ... 327.5 330.0</div><input id='attrs-d090c005-29e6-431a-bf8e-751642155205' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d090c005-29e6-431a-bf8e-751642155205' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a72cc578-68c0-42d1-ba0f-f6467dbda54b' class='xr-var-data-in' type='checkbox'><label for='data-a72cc578-68c0-42d1-ba0f-f6467dbda54b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([200. , 202.5, 205. , 207.5, 210. , 212.5, 215. , 217.5, 220. , 222.5,
        225. , 227.5, 230. , 232.5, 235. , 237.5, 240. , 242.5, 245. , 247.5,
        250. , 252.5, 255. , 257.5, 260. , 262.5, 265. , 267.5, 270. , 272.5,
        275. , 277.5, 280. , 282.5, 285. , 287.5, 290. , 292.5, 295. , 297.5,
        300. , 302.5, 305. , 307.5, 310. , 312.5, 315. , 317.5, 320. , 322.5,
-       325. , 327.5, 330. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2013-01-01 ... 2014-12-31T18:00:00</div><input id='attrs-58981eaa-4fff-4ceb-86db-a5a3f4a03ce1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-58981eaa-4fff-4ceb-86db-a5a3f4a03ce1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9455de18-a84b-4d09-af41-f30280bef077' class='xr-var-data-in' type='checkbox'><label for='data-9455de18-a84b-4d09-af41-f30280bef077' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>Time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2013-01-01T00:00:00.000000000&#x27;, &#x27;2013-01-01T06:00:00.000000000&#x27;,
+       325. , 327.5, 330. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2013-01-01 ... 2014-12-31T18:00:00</div><input id='attrs-612d0aa4-b0c9-402e-a2bf-8280dc3203fd' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-612d0aa4-b0c9-402e-a2bf-8280dc3203fd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5d318926-af50-42e4-b2be-54387e618ad2' class='xr-var-data-in' type='checkbox'><label for='data-5d318926-af50-42e4-b2be-54387e618ad2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>Time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2013-01-01T00:00:00.000000000&#x27;, &#x27;2013-01-01T06:00:00.000000000&#x27;,
        &#x27;2013-01-01T12:00:00.000000000&#x27;, ..., &#x27;2014-12-31T06:00:00.000000000&#x27;,
        &#x27;2014-12-31T12:00:00.000000000&#x27;, &#x27;2014-12-31T18:00:00.000000000&#x27;],
-      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4ff3c3b4-ad78-4b30-969c-0708cb9750c4' class='xr-section-summary-in' type='checkbox'  ><label for='section-4ff3c3b4-ad78-4b30-969c-0708cb9750c4' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-6510c479-ac7f-447c-8680-ef23fed28230' class='xr-index-data-in' type='checkbox'/><label for='index-6510c479-ac7f-447c-8680-ef23fed28230' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([75.0, 72.5, 70.0, 67.5, 65.0, 62.5, 60.0, 57.5, 55.0, 52.5, 50.0,
-              47.5, 45.0, 42.5, 40.0, 37.5, 35.0, 32.5, 30.0, 27.5, 25.0, 22.5,
-              20.0, 17.5, 15.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;lat&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-215076fa-3835-476a-9113-39640c8e3493' class='xr-index-data-in' type='checkbox'/><label for='index-215076fa-3835-476a-9113-39640c8e3493' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([200.0, 202.5, 205.0, 207.5, 210.0, 212.5, 215.0, 217.5, 220.0,
-              222.5, 225.0, 227.5, 230.0, 232.5, 235.0, 237.5, 240.0, 242.5,
-              245.0, 247.5, 250.0, 252.5, 255.0, 257.5, 260.0, 262.5, 265.0,
-              267.5, 270.0, 272.5, 275.0, 277.5, 280.0, 282.5, 285.0, 287.5,
-              290.0, 292.5, 295.0, 297.5, 300.0, 302.5, 305.0, 307.5, 310.0,
-              312.5, 315.0, 317.5, 320.0, 322.5, 325.0, 327.5, 330.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;lon&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-62570339-acae-4be1-827a-a4297493595d' class='xr-index-data-in' type='checkbox'/><label for='index-62570339-acae-4be1-827a-a4297493595d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2013-01-01 00:00:00&#x27;, &#x27;2013-01-01 06:00:00&#x27;,
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-59c9a45c-9777-4bf8-8201-c24e4b392092' class='xr-section-summary-in' type='checkbox'  ><label for='section-59c9a45c-9777-4bf8-8201-c24e4b392092' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-a76983cc-0334-4166-bb3d-467ca42f11b1' class='xr-index-data-in' type='checkbox'/><label for='index-a76983cc-0334-4166-bb3d-467ca42f11b1' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([75.0, 72.5, 70.0, 67.5, 65.0, 62.5, 60.0, 57.5, 55.0, 52.5, 50.0, 47.5,
+       45.0, 42.5, 40.0, 37.5, 35.0, 32.5, 30.0, 27.5, 25.0, 22.5, 20.0, 17.5,
+       15.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-3ec9539d-5aba-4c5a-9311-015492415c28' class='xr-index-data-in' type='checkbox'/><label for='index-3ec9539d-5aba-4c5a-9311-015492415c28' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([200.0, 202.5, 205.0, 207.5, 210.0, 212.5, 215.0, 217.5, 220.0, 222.5,
+       225.0, 227.5, 230.0, 232.5, 235.0, 237.5, 240.0, 242.5, 245.0, 247.5,
+       250.0, 252.5, 255.0, 257.5, 260.0, 262.5, 265.0, 267.5, 270.0, 272.5,
+       275.0, 277.5, 280.0, 282.5, 285.0, 287.5, 290.0, 292.5, 295.0, 297.5,
+       300.0, 302.5, 305.0, 307.5, 310.0, 312.5, 315.0, 317.5, 320.0, 322.5,
+       325.0, 327.5, 330.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-55452351-3733-435b-a991-8a6ab87c3e22' class='xr-index-data-in' type='checkbox'/><label for='index-55452351-3733-435b-a991-8a6ab87c3e22' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2013-01-01 00:00:00&#x27;, &#x27;2013-01-01 06:00:00&#x27;,
                &#x27;2013-01-01 12:00:00&#x27;, &#x27;2013-01-01 18:00:00&#x27;,
                &#x27;2013-01-02 00:00:00&#x27;, &#x27;2013-01-02 06:00:00&#x27;,
                &#x27;2013-01-02 12:00:00&#x27;, &#x27;2013-01-02 18:00:00&#x27;,
@@ -2168,7 +1913,7 @@ Coordinates:
                &#x27;2014-12-30 12:00:00&#x27;, &#x27;2014-12-30 18:00:00&#x27;,
                &#x27;2014-12-31 00:00:00&#x27;, &#x27;2014-12-31 06:00:00&#x27;,
                &#x27;2014-12-31 12:00:00&#x27;, &#x27;2014-12-31 18:00:00&#x27;],
-              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=2920, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-1e4cfab4-93c3-4aca-9b1a-d4dd7ee66751' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-1e4cfab4-93c3-4aca-9b1a-d4dd7ee66751' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=2920, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c7a597f8-e503-4fa4-ae2f-279755c0be18' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-c7a597f8-e503-4fa4-ae2f-279755c0be18' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Let’s again use the wrapper trick to understand what <code class="docutils literal notranslate"><span class="pre">squared_error</span></code> receives.</p>
 <p>We see that it receives a dask array.</p>
@@ -2557,7 +2302,7 @@ dask.array&lt;pow, shape=(2920, 25, 53), dtype=float32, chunksize=(100, 25, 53),
 Coordinates:
   * lat      (lat) float32 75.0 72.5 70.0 67.5 65.0 ... 25.0 22.5 20.0 17.5 15.0
   * lon      (lon) float32 200.0 202.5 205.0 207.5 ... 322.5 325.0 327.5 330.0
-  * time     (time) datetime64[ns] 2013-01-01 ... 2014-12-31T18:00:00</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'air'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 2920</li><li><span class='xr-has-index'>lat</span>: 25</li><li><span class='xr-has-index'>lon</span>: 53</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-18a2777b-d1f2-4a13-a324-01f5b0a819cf' class='xr-array-in' type='checkbox' checked><label for='section-18a2777b-d1f2-4a13-a324-01f5b0a819cf' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(100, 25, 53), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+  * time     (time) datetime64[ns] 2013-01-01 ... 2014-12-31T18:00:00</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'air'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 2920</li><li><span class='xr-has-index'>lat</span>: 25</li><li><span class='xr-has-index'>lon</span>: 53</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-bfb45f12-877e-4b41-a047-bbed640674ab' class='xr-array-in' type='checkbox' checked><label for='section-bfb45f12-877e-4b41-a047-bbed640674ab' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(100, 25, 53), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2569,13 +2314,13 @@ Coordinates:
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 14.76 MiB </td>
                         <td> 517.58 kiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (2920, 25, 53) </td>
@@ -2671,26 +2416,26 @@ Coordinates:
 </svg>
         </td>
     </tr>
-</table></div></div></li><li class='xr-section-item'><input id='section-5fceedb6-72bd-4243-803e-d20cf30eff26' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5fceedb6-72bd-4243-803e-d20cf30eff26' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>75.0 72.5 70.0 ... 20.0 17.5 15.0</div><input id='attrs-e998ea69-a23f-4fb9-a7f7-7b49045ddab0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e998ea69-a23f-4fb9-a7f7-7b49045ddab0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-552a7641-976b-435a-bef4-eeb6f7914cfd' class='xr-var-data-in' type='checkbox'><label for='data-552a7641-976b-435a-bef4-eeb6f7914cfd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([75. , 72.5, 70. , 67.5, 65. , 62.5, 60. , 57.5, 55. , 52.5, 50. , 47.5,
+</table></div></div></li><li class='xr-section-item'><input id='section-f3a04296-8ea6-4936-8c30-3d93a338239c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f3a04296-8ea6-4936-8c30-3d93a338239c' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>75.0 72.5 70.0 ... 20.0 17.5 15.0</div><input id='attrs-1672c36c-5eca-43d9-a8a2-1dde4b5dff47' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1672c36c-5eca-43d9-a8a2-1dde4b5dff47' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-38369ee1-3fc5-4d82-951d-5ec3bc184968' class='xr-var-data-in' type='checkbox'><label for='data-38369ee1-3fc5-4d82-951d-5ec3bc184968' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([75. , 72.5, 70. , 67.5, 65. , 62.5, 60. , 57.5, 55. , 52.5, 50. , 47.5,
        45. , 42.5, 40. , 37.5, 35. , 32.5, 30. , 27.5, 25. , 22.5, 20. , 17.5,
-       15. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>200.0 202.5 205.0 ... 327.5 330.0</div><input id='attrs-3c3e6dd3-ba9e-4b61-be13-6e6d79c011a0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3c3e6dd3-ba9e-4b61-be13-6e6d79c011a0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-60ddf131-6d46-47ef-b298-97703c4336e4' class='xr-var-data-in' type='checkbox'><label for='data-60ddf131-6d46-47ef-b298-97703c4336e4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([200. , 202.5, 205. , 207.5, 210. , 212.5, 215. , 217.5, 220. , 222.5,
+       15. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>200.0 202.5 205.0 ... 327.5 330.0</div><input id='attrs-e4cb1b13-fad7-433c-926a-fbe234f2c29a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e4cb1b13-fad7-433c-926a-fbe234f2c29a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8bc93527-d91a-4af6-b26d-bf6c32f631e2' class='xr-var-data-in' type='checkbox'><label for='data-8bc93527-d91a-4af6-b26d-bf6c32f631e2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([200. , 202.5, 205. , 207.5, 210. , 212.5, 215. , 217.5, 220. , 222.5,
        225. , 227.5, 230. , 232.5, 235. , 237.5, 240. , 242.5, 245. , 247.5,
        250. , 252.5, 255. , 257.5, 260. , 262.5, 265. , 267.5, 270. , 272.5,
        275. , 277.5, 280. , 282.5, 285. , 287.5, 290. , 292.5, 295. , 297.5,
        300. , 302.5, 305. , 307.5, 310. , 312.5, 315. , 317.5, 320. , 322.5,
-       325. , 327.5, 330. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2013-01-01 ... 2014-12-31T18:00:00</div><input id='attrs-a5fdf5d5-4170-48ce-a5dd-462619205cc2' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a5fdf5d5-4170-48ce-a5dd-462619205cc2' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b09133b7-d7f2-4df8-9a16-c45f459d36d0' class='xr-var-data-in' type='checkbox'><label for='data-b09133b7-d7f2-4df8-9a16-c45f459d36d0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>Time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2013-01-01T00:00:00.000000000&#x27;, &#x27;2013-01-01T06:00:00.000000000&#x27;,
+       325. , 327.5, 330. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2013-01-01 ... 2014-12-31T18:00:00</div><input id='attrs-dc1b7a02-2612-439d-9ef5-065ba87d528f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-dc1b7a02-2612-439d-9ef5-065ba87d528f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cec47b28-753d-48d8-a15c-28b46f384c49' class='xr-var-data-in' type='checkbox'><label for='data-cec47b28-753d-48d8-a15c-28b46f384c49' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>Time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2013-01-01T00:00:00.000000000&#x27;, &#x27;2013-01-01T06:00:00.000000000&#x27;,
        &#x27;2013-01-01T12:00:00.000000000&#x27;, ..., &#x27;2014-12-31T06:00:00.000000000&#x27;,
        &#x27;2014-12-31T12:00:00.000000000&#x27;, &#x27;2014-12-31T18:00:00.000000000&#x27;],
-      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-744dfd47-2b18-4fdc-a983-50b20a97b4c3' class='xr-section-summary-in' type='checkbox'  ><label for='section-744dfd47-2b18-4fdc-a983-50b20a97b4c3' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-172f6e13-ffe3-4aa0-b883-c24556ee94cf' class='xr-index-data-in' type='checkbox'/><label for='index-172f6e13-ffe3-4aa0-b883-c24556ee94cf' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([75.0, 72.5, 70.0, 67.5, 65.0, 62.5, 60.0, 57.5, 55.0, 52.5, 50.0,
-              47.5, 45.0, 42.5, 40.0, 37.5, 35.0, 32.5, 30.0, 27.5, 25.0, 22.5,
-              20.0, 17.5, 15.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;lat&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-823ade27-2336-4282-9e8d-5f6d81aa8038' class='xr-index-data-in' type='checkbox'/><label for='index-823ade27-2336-4282-9e8d-5f6d81aa8038' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([200.0, 202.5, 205.0, 207.5, 210.0, 212.5, 215.0, 217.5, 220.0,
-              222.5, 225.0, 227.5, 230.0, 232.5, 235.0, 237.5, 240.0, 242.5,
-              245.0, 247.5, 250.0, 252.5, 255.0, 257.5, 260.0, 262.5, 265.0,
-              267.5, 270.0, 272.5, 275.0, 277.5, 280.0, 282.5, 285.0, 287.5,
-              290.0, 292.5, 295.0, 297.5, 300.0, 302.5, 305.0, 307.5, 310.0,
-              312.5, 315.0, 317.5, 320.0, 322.5, 325.0, 327.5, 330.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;lon&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-2d2727cf-8ce6-439b-bf3c-58d8889d1678' class='xr-index-data-in' type='checkbox'/><label for='index-2d2727cf-8ce6-439b-bf3c-58d8889d1678' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2013-01-01 00:00:00&#x27;, &#x27;2013-01-01 06:00:00&#x27;,
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-6fb30c9c-793e-43e8-af78-3e3c88bf2728' class='xr-section-summary-in' type='checkbox'  ><label for='section-6fb30c9c-793e-43e8-af78-3e3c88bf2728' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-098c9489-ccd9-48da-b118-8095d7ddec3c' class='xr-index-data-in' type='checkbox'/><label for='index-098c9489-ccd9-48da-b118-8095d7ddec3c' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([75.0, 72.5, 70.0, 67.5, 65.0, 62.5, 60.0, 57.5, 55.0, 52.5, 50.0, 47.5,
+       45.0, 42.5, 40.0, 37.5, 35.0, 32.5, 30.0, 27.5, 25.0, 22.5, 20.0, 17.5,
+       15.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-196eca51-b0ca-41c1-8ab5-5569e6c4329d' class='xr-index-data-in' type='checkbox'/><label for='index-196eca51-b0ca-41c1-8ab5-5569e6c4329d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([200.0, 202.5, 205.0, 207.5, 210.0, 212.5, 215.0, 217.5, 220.0, 222.5,
+       225.0, 227.5, 230.0, 232.5, 235.0, 237.5, 240.0, 242.5, 245.0, 247.5,
+       250.0, 252.5, 255.0, 257.5, 260.0, 262.5, 265.0, 267.5, 270.0, 272.5,
+       275.0, 277.5, 280.0, 282.5, 285.0, 287.5, 290.0, 292.5, 295.0, 297.5,
+       300.0, 302.5, 305.0, 307.5, 310.0, 312.5, 315.0, 317.5, 320.0, 322.5,
+       325.0, 327.5, 330.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-af9f53fb-e5f7-412a-8ea9-8fbddf61c4ef' class='xr-index-data-in' type='checkbox'/><label for='index-af9f53fb-e5f7-412a-8ea9-8fbddf61c4ef' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2013-01-01 00:00:00&#x27;, &#x27;2013-01-01 06:00:00&#x27;,
                &#x27;2013-01-01 12:00:00&#x27;, &#x27;2013-01-01 18:00:00&#x27;,
                &#x27;2013-01-02 00:00:00&#x27;, &#x27;2013-01-02 06:00:00&#x27;,
                &#x27;2013-01-02 12:00:00&#x27;, &#x27;2013-01-02 18:00:00&#x27;,
@@ -2701,7 +2446,7 @@ Coordinates:
                &#x27;2014-12-30 12:00:00&#x27;, &#x27;2014-12-30 18:00:00&#x27;,
                &#x27;2014-12-31 00:00:00&#x27;, &#x27;2014-12-31 06:00:00&#x27;,
                &#x27;2014-12-31 12:00:00&#x27;, &#x27;2014-12-31 18:00:00&#x27;],
-              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=2920, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-87c03f3f-844a-4168-b036-c6a1b8c67eac' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-87c03f3f-844a-4168-b036-c6a1b8c67eac' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=2920, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-74f363e3-fc0c-44e2-9f93-5288c51654b1' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-74f363e3-fc0c-44e2-9f93-5288c51654b1' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 </section>
 <section id="reductions-and-core-dimensions">
@@ -3104,7 +2849,7 @@ dl.xr-attrs {
 dask.array&lt;mean_agg-aggregate, shape=(25, 53), dtype=float32, chunksize=(25, 53), chunktype=numpy.ndarray&gt;
 Coordinates:
   * lat      (lat) float32 75.0 72.5 70.0 67.5 65.0 ... 25.0 22.5 20.0 17.5 15.0
-  * lon      (lon) float32 200.0 202.5 205.0 207.5 ... 322.5 325.0 327.5 330.0</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'air'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 25</li><li><span class='xr-has-index'>lon</span>: 53</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-a7f1b856-3541-437b-ab92-8e3637156a36' class='xr-array-in' type='checkbox' checked><label for='section-a7f1b856-3541-437b-ab92-8e3637156a36' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(25, 53), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+  * lon      (lon) float32 200.0 202.5 205.0 207.5 ... 322.5 325.0 327.5 330.0</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'air'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 25</li><li><span class='xr-has-index'>lon</span>: 53</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-59f40ae6-33ce-43bc-85f1-7fae295dfb68' class='xr-array-in' type='checkbox' checked><label for='section-59f40ae6-33ce-43bc-85f1-7fae295dfb68' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(25, 53), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3116,13 +2861,13 @@ Coordinates:
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 5.18 kiB </td>
                         <td> 5.18 kiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (25, 53) </td>
@@ -3159,23 +2904,23 @@ Coordinates:
 </svg>
         </td>
     </tr>
-</table></div></div></li><li class='xr-section-item'><input id='section-f4fc0a86-4f34-411a-9415-f9949488af78' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f4fc0a86-4f34-411a-9415-f9949488af78' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>75.0 72.5 70.0 ... 20.0 17.5 15.0</div><input id='attrs-bb0b9dc9-0ae6-499a-813e-6e9c69bfe468' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-bb0b9dc9-0ae6-499a-813e-6e9c69bfe468' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-59844793-eb16-41c5-9ce2-82959ee61877' class='xr-var-data-in' type='checkbox'><label for='data-59844793-eb16-41c5-9ce2-82959ee61877' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([75. , 72.5, 70. , 67.5, 65. , 62.5, 60. , 57.5, 55. , 52.5, 50. , 47.5,
+</table></div></div></li><li class='xr-section-item'><input id='section-daaa830d-c563-4ec8-be88-998e98055302' class='xr-section-summary-in' type='checkbox'  checked><label for='section-daaa830d-c563-4ec8-be88-998e98055302' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>75.0 72.5 70.0 ... 20.0 17.5 15.0</div><input id='attrs-f4ba5bbe-b41b-4bbc-871c-bdd5c7c11acc' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f4ba5bbe-b41b-4bbc-871c-bdd5c7c11acc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-dd093488-efcf-4559-bff3-7e4f723e038e' class='xr-var-data-in' type='checkbox'><label for='data-dd093488-efcf-4559-bff3-7e4f723e038e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([75. , 72.5, 70. , 67.5, 65. , 62.5, 60. , 57.5, 55. , 52.5, 50. , 47.5,
        45. , 42.5, 40. , 37.5, 35. , 32.5, 30. , 27.5, 25. , 22.5, 20. , 17.5,
-       15. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>200.0 202.5 205.0 ... 327.5 330.0</div><input id='attrs-a8748eb1-df81-43c5-a1e5-75fe38bbb372' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a8748eb1-df81-43c5-a1e5-75fe38bbb372' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-04537997-910d-4f1c-ae8d-4bba6ffb3e59' class='xr-var-data-in' type='checkbox'><label for='data-04537997-910d-4f1c-ae8d-4bba6ffb3e59' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([200. , 202.5, 205. , 207.5, 210. , 212.5, 215. , 217.5, 220. , 222.5,
+       15. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>200.0 202.5 205.0 ... 327.5 330.0</div><input id='attrs-2260e26f-ddce-4cf1-bbd1-898298f559f3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2260e26f-ddce-4cf1-bbd1-898298f559f3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0432826d-4b72-4066-919f-85be4d3e9297' class='xr-var-data-in' type='checkbox'><label for='data-0432826d-4b72-4066-919f-85be4d3e9297' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([200. , 202.5, 205. , 207.5, 210. , 212.5, 215. , 217.5, 220. , 222.5,
        225. , 227.5, 230. , 232.5, 235. , 237.5, 240. , 242.5, 245. , 247.5,
        250. , 252.5, 255. , 257.5, 260. , 262.5, 265. , 267.5, 270. , 272.5,
        275. , 277.5, 280. , 282.5, 285. , 287.5, 290. , 292.5, 295. , 297.5,
        300. , 302.5, 305. , 307.5, 310. , 312.5, 315. , 317.5, 320. , 322.5,
-       325. , 327.5, 330. ], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-22b1fc89-6699-45f7-b6dd-9b55602f924f' class='xr-section-summary-in' type='checkbox'  ><label for='section-22b1fc89-6699-45f7-b6dd-9b55602f924f' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-ebb1067f-fa4d-43f6-a501-5ee3ecb81ce5' class='xr-index-data-in' type='checkbox'/><label for='index-ebb1067f-fa4d-43f6-a501-5ee3ecb81ce5' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([75.0, 72.5, 70.0, 67.5, 65.0, 62.5, 60.0, 57.5, 55.0, 52.5, 50.0,
-              47.5, 45.0, 42.5, 40.0, 37.5, 35.0, 32.5, 30.0, 27.5, 25.0, 22.5,
-              20.0, 17.5, 15.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;lat&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e0108b5f-6a19-4ce6-86d5-2c5310091905' class='xr-index-data-in' type='checkbox'/><label for='index-e0108b5f-6a19-4ce6-86d5-2c5310091905' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([200.0, 202.5, 205.0, 207.5, 210.0, 212.5, 215.0, 217.5, 220.0,
-              222.5, 225.0, 227.5, 230.0, 232.5, 235.0, 237.5, 240.0, 242.5,
-              245.0, 247.5, 250.0, 252.5, 255.0, 257.5, 260.0, 262.5, 265.0,
-              267.5, 270.0, 272.5, 275.0, 277.5, 280.0, 282.5, 285.0, 287.5,
-              290.0, 292.5, 295.0, 297.5, 300.0, 302.5, 305.0, 307.5, 310.0,
-              312.5, 315.0, 317.5, 320.0, 322.5, 325.0, 327.5, 330.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;lon&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c0c2237b-f5db-4635-829c-1685109434df' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-c0c2237b-f5db-4635-829c-1685109434df' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+       325. , 327.5, 330. ], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-98495dd5-4364-4e1c-80ed-515d66d116dc' class='xr-section-summary-in' type='checkbox'  ><label for='section-98495dd5-4364-4e1c-80ed-515d66d116dc' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-d1dd13ec-ca1e-4ddb-9f4a-37f4e34b1482' class='xr-index-data-in' type='checkbox'/><label for='index-d1dd13ec-ca1e-4ddb-9f4a-37f4e34b1482' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([75.0, 72.5, 70.0, 67.5, 65.0, 62.5, 60.0, 57.5, 55.0, 52.5, 50.0, 47.5,
+       45.0, 42.5, 40.0, 37.5, 35.0, 32.5, 30.0, 27.5, 25.0, 22.5, 20.0, 17.5,
+       15.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-739b06dc-4e9a-437c-95de-1225cd1dad18' class='xr-index-data-in' type='checkbox'/><label for='index-739b06dc-4e9a-437c-95de-1225cd1dad18' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([200.0, 202.5, 205.0, 207.5, 210.0, 212.5, 215.0, 217.5, 220.0, 222.5,
+       225.0, 227.5, 230.0, 232.5, 235.0, 237.5, 240.0, 242.5, 245.0, 247.5,
+       250.0, 252.5, 255.0, 257.5, 260.0, 262.5, 265.0, 267.5, 270.0, 272.5,
+       275.0, 277.5, 280.0, 282.5, 285.0, 287.5, 290.0, 292.5, 295.0, 297.5,
+       300.0, 302.5, 305.0, 307.5, 310.0, 312.5, 315.0, 317.5, 320.0, 322.5,
+       325.0, 327.5, 330.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-8eb1bedb-580c-49e1-8573-2e1e49b44f85' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-8eb1bedb-580c-49e1-8573-2e1e49b44f85' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Again, this identical to the built-in <code class="docutils literal notranslate"><span class="pre">mean</span></code></p>
 <div class="cell docutils container">
@@ -3212,7 +2957,7 @@ This is undesirable behaviour</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/xarray-tutorial/lib/python3.10/site-packages/dask/array/core.py:1711: FutureWarning: The `numpy.trapz` function is not implemented by Dask array. You may want to use the da.map_blocks function or something similar to silence this warning. Your code may stop working in a future release.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/micromamba/envs/xarray-tutorial/lib/python3.11/site-packages/dask/array/core.py:1713: FutureWarning: The `numpy.trapz` function is not implemented by Dask array. You may want to use the da.map_blocks function or something similar to silence this warning. Your code may stop working in a future release.
   warnings.warn(
 </pre></div>
 </div>
@@ -3615,12 +3360,12 @@ Coordinates:
   * lat      (lat) float32 75.0 72.5 70.0 67.5 65.0 ... 25.0 22.5 20.0 17.5 15.0
   * time     (time) datetime64[ns] 2013-01-01 ... 2014-12-31T18:00:00
 Data variables:
-    air      (time, lat) float32 dask.array&lt;chunksize=(100, 25), meta=np.ndarray&gt;</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-933fd2a9-ddb6-4a68-ac11-fe54ad6b858b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-933fd2a9-ddb6-4a68-ac11-fe54ad6b858b' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 2920</li><li><span class='xr-has-index'>lat</span>: 25</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-f8080d90-cb47-4d70-b6d9-eda445240a30' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f8080d90-cb47-4d70-b6d9-eda445240a30' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>75.0 72.5 70.0 ... 20.0 17.5 15.0</div><input id='attrs-9b05cf22-4082-40a1-9f54-5e73119c53fd' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9b05cf22-4082-40a1-9f54-5e73119c53fd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ca41c0df-f723-46c6-a2f0-53f03bdf9cd1' class='xr-var-data-in' type='checkbox'><label for='data-ca41c0df-f723-46c6-a2f0-53f03bdf9cd1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([75. , 72.5, 70. , 67.5, 65. , 62.5, 60. , 57.5, 55. , 52.5, 50. , 47.5,
+    air      (time, lat) float32 dask.array&lt;chunksize=(100, 25), meta=np.ndarray&gt;</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-06261ff2-e7a7-40fc-8b0f-d6cb2caac6a1' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-06261ff2-e7a7-40fc-8b0f-d6cb2caac6a1' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 2920</li><li><span class='xr-has-index'>lat</span>: 25</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-fc3a75e7-9333-47bf-965a-fddd87edc989' class='xr-section-summary-in' type='checkbox'  checked><label for='section-fc3a75e7-9333-47bf-965a-fddd87edc989' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>75.0 72.5 70.0 ... 20.0 17.5 15.0</div><input id='attrs-14656fd6-2c90-4700-9fd8-3473c8bcf8f4' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-14656fd6-2c90-4700-9fd8-3473c8bcf8f4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-921cd0e1-065d-4c9b-b1da-aa470434410b' class='xr-var-data-in' type='checkbox'><label for='data-921cd0e1-065d-4c9b-b1da-aa470434410b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([75. , 72.5, 70. , 67.5, 65. , 62.5, 60. , 57.5, 55. , 52.5, 50. , 47.5,
        45. , 42.5, 40. , 37.5, 35. , 32.5, 30. , 27.5, 25. , 22.5, 20. , 17.5,
-       15. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2013-01-01 ... 2014-12-31T18:00:00</div><input id='attrs-5f9470a2-d06c-4a46-8b84-010ed45c03d5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5f9470a2-d06c-4a46-8b84-010ed45c03d5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7209888b-3b46-44ec-a616-971b300d260a' class='xr-var-data-in' type='checkbox'><label for='data-7209888b-3b46-44ec-a616-971b300d260a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>Time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2013-01-01T00:00:00.000000000&#x27;, &#x27;2013-01-01T06:00:00.000000000&#x27;,
+       15. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2013-01-01 ... 2014-12-31T18:00:00</div><input id='attrs-d2aa81c2-12af-4a96-be0f-3dc4aeb5896f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d2aa81c2-12af-4a96-be0f-3dc4aeb5896f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5d9ecabe-d110-44ab-bf30-317fcd6d73c6' class='xr-var-data-in' type='checkbox'><label for='data-5d9ecabe-d110-44ab-bf30-317fcd6d73c6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>Time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2013-01-01T00:00:00.000000000&#x27;, &#x27;2013-01-01T06:00:00.000000000&#x27;,
        &#x27;2013-01-01T12:00:00.000000000&#x27;, ..., &#x27;2014-12-31T06:00:00.000000000&#x27;,
        &#x27;2014-12-31T12:00:00.000000000&#x27;, &#x27;2014-12-31T18:00:00.000000000&#x27;],
-      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-adaf2ca5-067d-4864-b8ae-efaeb76f44ee' class='xr-section-summary-in' type='checkbox'  checked><label for='section-adaf2ca5-067d-4864-b8ae-efaeb76f44ee' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>air</span></div><div class='xr-var-dims'>(time, lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(100, 25), meta=np.ndarray&gt;</div><input id='attrs-6a411705-6059-4ac9-9fe4-c1489c659723' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-6a411705-6059-4ac9-9fe4-c1489c659723' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-dadaedc6-3d64-4594-9611-21109bb4a729' class='xr-var-data-in' type='checkbox'><label for='data-dadaedc6-3d64-4594-9611-21109bb4a729' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-0607d299-07f8-44a6-bfcb-68e9e339a4ee' class='xr-section-summary-in' type='checkbox'  checked><label for='section-0607d299-07f8-44a6-bfcb-68e9e339a4ee' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>air</span></div><div class='xr-var-dims'>(time, lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(100, 25), meta=np.ndarray&gt;</div><input id='attrs-fe5f9b15-535e-41d6-b45a-e1701f0ea4b0' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-fe5f9b15-535e-41d6-b45a-e1701f0ea4b0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c91bcdf5-f804-423e-892f-edac30e6a467' class='xr-var-data-in' type='checkbox'><label for='data-c91bcdf5-f804-423e-892f-edac30e6a467' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3632,13 +3377,13 @@ Data variables:
                     </tr>
                 </thead>
                 <tbody>
-
+                    
                     <tr>
                         <th> Bytes </th>
                         <td> 285.16 kiB </td>
                         <td> 9.77 kiB </td>
                     </tr>
-
+                    
                     <tr>
                         <th> Shape </th>
                         <td> (2920, 25) </td>
@@ -3693,10 +3438,10 @@ Data variables:
 </svg>
         </td>
     </tr>
-</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-6eb498f0-e6ae-41db-8768-2718bc917cdd' class='xr-section-summary-in' type='checkbox'  ><label for='section-6eb498f0-e6ae-41db-8768-2718bc917cdd' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e5206f2d-d290-4698-8790-cdac2b37475b' class='xr-index-data-in' type='checkbox'/><label for='index-e5206f2d-d290-4698-8790-cdac2b37475b' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([75.0, 72.5, 70.0, 67.5, 65.0, 62.5, 60.0, 57.5, 55.0, 52.5, 50.0,
-              47.5, 45.0, 42.5, 40.0, 37.5, 35.0, 32.5, 30.0, 27.5, 25.0, 22.5,
-              20.0, 17.5, 15.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;lat&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-4bcbd433-3b8a-456e-b801-baf602e8f105' class='xr-index-data-in' type='checkbox'/><label for='index-4bcbd433-3b8a-456e-b801-baf602e8f105' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2013-01-01 00:00:00&#x27;, &#x27;2013-01-01 06:00:00&#x27;,
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-ea1451e8-a03f-471a-bc12-563a87d9f75c' class='xr-section-summary-in' type='checkbox'  ><label for='section-ea1451e8-a03f-471a-bc12-563a87d9f75c' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-576b44e7-b089-4b80-8945-42214d18dafa' class='xr-index-data-in' type='checkbox'/><label for='index-576b44e7-b089-4b80-8945-42214d18dafa' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([75.0, 72.5, 70.0, 67.5, 65.0, 62.5, 60.0, 57.5, 55.0, 52.5, 50.0, 47.5,
+       45.0, 42.5, 40.0, 37.5, 35.0, 32.5, 30.0, 27.5, 25.0, 22.5, 20.0, 17.5,
+       15.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-a2dc0c66-544c-4b34-81b1-f45653c151a5' class='xr-index-data-in' type='checkbox'/><label for='index-a2dc0c66-544c-4b34-81b1-f45653c151a5' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2013-01-01 00:00:00&#x27;, &#x27;2013-01-01 06:00:00&#x27;,
                &#x27;2013-01-01 12:00:00&#x27;, &#x27;2013-01-01 18:00:00&#x27;,
                &#x27;2013-01-02 00:00:00&#x27;, &#x27;2013-01-02 06:00:00&#x27;,
                &#x27;2013-01-02 12:00:00&#x27;, &#x27;2013-01-02 18:00:00&#x27;,
@@ -3707,7 +3452,7 @@ Data variables:
                &#x27;2014-12-30 12:00:00&#x27;, &#x27;2014-12-30 18:00:00&#x27;,
                &#x27;2014-12-31 00:00:00&#x27;, &#x27;2014-12-31 06:00:00&#x27;,
                &#x27;2014-12-31 12:00:00&#x27;, &#x27;2014-12-31 18:00:00&#x27;],
-              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=2920, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-7c153886-faf7-4c95-a1f3-357a9edd4f2d' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-7c153886-faf7-4c95-a1f3-357a9edd4f2d' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=2920, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a276bd01-3c8e-4b0d-b34b-901a3f72f3f2' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-a276bd01-3c8e-4b0d-b34b-901a3f72f3f2' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3719,7 +3464,7 @@ Data variables:
 </section>
 <section id="more">
 <h2>More<a class="headerlink" href="#more" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><a class="reference external" href="https://docs.xarray.dev/en/stable/examples/apply_ufunc_vectorize_1d.html">https://docs.xarray.dev/en/stable/examples/apply_ufunc_vectorize_1d.html</a></p></li>
 <li><p><a class="reference external" href="https://docs.dask.org/en/latest/array-best-practices.html">https://docs.dask.org/en/latest/array-best-practices.html</a></p></li>
 </ol>
@@ -3738,7 +3483,7 @@ Data variables:
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./advanced/apply_ufunc"
         },
         predefinedOutput: true
@@ -3746,50 +3491,109 @@ Data variables:
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="simple_numpy_apply_ufunc.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">A gentle introduction</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="simple_numpy_apply_ufunc.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">A gentle introduction</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="vectorize_1d.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="vectorize_1d.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Applying unvectorized functions</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By The Xarray Community<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">A simple example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reductions-and-core-dimensions">Reductions and core dimensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatically-parallelizing-dask-unaware-functions">Automatically parallelizing dask-unaware functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more">More</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Xarray Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
