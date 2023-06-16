@@ -10,15 +10,15 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  PREVIEW_URL: 'https://{{ github.repository_owner }}-{{ github.event.repository.name }}-{{ github.job }}-pr-{{ github.event.number }}.surge.sh'
-  PRODUCTION_URL: 'https://tutorial.xarray.dev/'
+  PREVIEW_URL: 'https://{{ github.repository_owner }}-{{ github.event.repository.name }}-preview-pr-{{ github.event.number }}.surge.sh'
 
 jobs:
   preview:
+    if: github.ref != 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
-      name: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
-      url: ${{ github.ref == 'refs/heads/main' && env.PRODUCTION_URL || env.PREVIEW_URL }}
+      name: 'preview'
+      url: ${{ env.PREVIEW_URL }}
 
     steps:
       - name: Checkout repository
