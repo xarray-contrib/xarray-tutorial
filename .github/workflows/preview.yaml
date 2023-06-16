@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  PREVIEW_URL: 'https://github.com/{{ github.repository }}-{{ github.job }}-pr-{{ github.event.number }}.surge.sh'
+  PREVIEW_URL: 'https://{{ github.repository_owner }}-{{ github.event.repository.name }}-{{ github.job }}-pr-{{ github.event.number }}.surge.sh'
   PRODUCTION_URL: 'https://tutorial.xarray.dev/'
 
 jobs:
