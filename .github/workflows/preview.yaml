@@ -5,9 +5,21 @@ on: [pull_request]
 permissions:
   pull-requests: write # allow surge-preview to create/update PR comments
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PREVIEW_URL: 'https://github.com/{{ github.repository }}-{{ github.job }}-pr-{{ github.event.number }}.surge.sh'
+  PRODUCTION_URL: 'https://tutorial.xarray.dev/'
+
 jobs:
   preview:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
+      url: ${{ github.ref == 'refs/heads/main' && env.PRODUCTION_URL || env.PREVIEW_URL }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
