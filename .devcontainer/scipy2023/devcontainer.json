@@ -3,8 +3,8 @@
         "dockerfile": "../Dockerfile",
         "context": "../../conda"
     },
-    "postCreateCommand": {
-        "juperlab": "cp .devcontainer/scipy2023/jupyter_lab_config.py /home/jovyan/.jupyter/jupyter_lab_config.py && jupyter lab"
+    "postStartCommand": {
+        "juperlab": "mkdir /home/jovyan/.jupyter && cp .devcontainer/scipy2023/jupyter_lab_config.py /home/jovyan/.jupyter/jupyter_lab_config.py && jupyter lab"
     },
     "hostRequirements": {
         "cpus": 2
