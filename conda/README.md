@@ -19,7 +19,7 @@ conda-lock lock --mamba -f environment-unpinned.yml -p osx-64 -p linux-64 -p win
 ## Render a mybinder.org compatible environment.yml (linux-64)
 
 ```
-conda-lock render -k env
+conda-lock render -k env -p linux-64
 mv conda-linux-64.lock.yml environment.yml
 ```
 
