@@ -461,7 +461,7 @@ c = get_config()  #noqa
 
 ## The default URL to redirect to from `/`
 #  Default: '/lab'
-# c.LabApp.default_url = '/lab'
+c.LabApp.default_url = '/lab/tree/workshops/scipy2023/index.ipynb'
 
 ## Whether to start the app in dev mode. Uses the unpublished local
 #          JavaScript packages in the `dev_mode` folder.  In this case JupyterLab will
