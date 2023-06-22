@@ -12,4 +12,13 @@ Organized by:
 - Anderson Banihirwe (CarbonPlan)
 - Don Setiawan (Univ. Washington)
 
+## Instructions
+
+See instructions to set up the environment for running the tutorial material [here](get-started).
+
+For the live tutorial, we will be using the SciPy 2023 Nebari JupyterHub. Instructions for the live
+tutorial will be added soon.
+
+## Outline
+
 **🏗️ Outline coming soon! Please check back later**
