@@ -27,7 +27,7 @@ in the [`conda-lock.yml`](../../conda/conda-lock.yml) file.
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/xarray-contrib/xarray-tutorial/tree/main?devcontainer_path=.devcontainer%2Fscipy2023%2Fdevcontainer.json)
 
 ☝️ Click the button above to launch the github codespaces.
-Once it's launched, a terminal will open and it will execute `jupyter lab` automatically. 
+Once it's launched, a terminal will open and it will execute `jupyter lab` automatically.
 Once you see a url to click, simply `cmd + click` the given url.
 This will open up another tab in your browser, leading to a Jupyter Lab Interface.
 
