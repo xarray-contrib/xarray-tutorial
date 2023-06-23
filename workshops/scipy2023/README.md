@@ -22,7 +22,7 @@ tutorial will be added soon.
 ## Github Codespaces
 
 This tutorial is available to run within github codespaces with the conda environment specification
-in the [`conda-lock.yml`](../../conda/conda-lock.yml) file. 
+in the [`conda-lock.yml`](../../conda/conda-lock.yml) file.
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/xarray-contrib/xarray-tutorial/tree/main?devcontainer_path=.devcontainer%2Fscipy2023%2Fdevcontainer.json)
 

@@ -1,25 +1,20 @@
 {
-    "build": {
-        "dockerfile": "../Dockerfile",
-        "context": "../../conda"
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": "../../conda"
+  },
+  "postCreateCommand": {
+    "juperlab": "mkdir /home/jovyan/.jupyter && cp .devcontainer/scipy2023/jupyter_lab_config.py /home/jovyan/.jupyter/jupyter_lab_config.py"
+  },
+  "hostRequirements": {
+    "cpus": 2
+  },
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["workshops/scipy2023/README.md"]
     },
-    "postCreateCommand": {
-        "juperlab": "mkdir /home/jovyan/.jupyter && cp .devcontainer/scipy2023/jupyter_lab_config.py /home/jovyan/.jupyter/jupyter_lab_config.py"
-    },
-    "hostRequirements": {
-        "cpus": 2
-    },
-    "customizations": {
-        "codespaces": {
-            "openFiles": [
-                "workshops/scipy2023/README.md"
-            ]
-        },
-        "vscode": {
-            "extensions": [
-                "ms-toolsai.jupyter",
-                "ms-python.python"
-            ]
-        }
+    "vscode": {
+      "extensions": ["ms-toolsai.jupyter", "ms-python.python"]
     }
+  }
 }
