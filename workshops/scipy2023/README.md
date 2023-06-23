@@ -34,8 +34,8 @@ GitHub currently gives every user [120 vCPU hours per month for free](https://do
 
 Once your codespace is launched, the following happens:
 
-- [Visual Studio Code](https://code.visualstudio.com/) Interface will open up within your browser. 
-- A built in terminal will open and it will execute `jupyter lab` automatically. 
+- [Visual Studio Code](https://code.visualstudio.com/) Interface will open up within your browser.
+- A built in terminal will open and it will execute `jupyter lab` automatically.
 - Once you see a url to click within the terminal, simply `cmd + click` the given url.
 - This will open up another tab in your browser, leading to a [Jupyter Lab](https://jupyterlab.readthedocs.io/en/latest/) Interface.
 
