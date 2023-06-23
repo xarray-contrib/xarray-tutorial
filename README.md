@@ -16,13 +16,14 @@ All notebooks can be run via the Mybinder.org 'Launch Binder' badge at the top o
 
 #### Locally
 
-You can also run these notebooks on your own computer! We recommend using [`conda-lock`](https://conda-incubator.github.io/conda-lock/) to ensure a fully reproducible Python environment:
+You can also run these notebooks on your own computer! We recommend using [`micromamba`](https://mamba.readthedocs.io/en/latest/installation.html#micromamba) or [`conda-lock`](https://conda-incubator.github.io/conda-lock/) to ensure a fully reproducible Python environment:
 
 ```bash
 git clone https://github.com/xarray-contrib/xarray-tutorial.git
 cd xarray-tutorial
 
 conda-lock install conda/conda-lock.yml --name xarray-tutorial
+# Or `micromamba create -n xarray-tutorial -f conda-lock.yml`
 # Or latest package versions: `mamba env create -f conda/environment-unpinned.yml`
 
 conda activate xarray-tutorial
