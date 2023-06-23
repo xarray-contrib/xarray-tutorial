@@ -5,9 +5,21 @@ on: [pull_request]
 permissions:
   pull-requests: write # allow surge-preview to create/update PR comments
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PREVIEW_URL: 'https://{{ github.repository_owner }}-{{ github.event.repository.name }}-preview-pr-{{ github.event.number }}.surge.sh'
+
 jobs:
   preview:
+    if: github.ref != 'refs/heads/main'
     runs-on: ubuntu-latest
+    environment:
+      name: 'preview'
+      url: ${{ env.PREVIEW_URL }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
