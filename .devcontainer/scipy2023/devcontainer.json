@@ -4,7 +4,8 @@
     "context": "../../conda"
   },
   "postCreateCommand": {
-    "jupyterlab": "mkdir /home/jovyan/.jupyter && cp .devcontainer/scipy2023/jupyter_lab_config.py /home/jovyan/.jupyter/jupyter_lab_config.py"
+    "jupyterlab": "mkdir /home/jovyan/.jupyter && cp ${localWorkspaceFolder}/jupyter_lab_config.py /home/jovyan/.jupyter/jupyter_lab_config.py",
+    "vscode": "mkdir ${containerWorkspaceFolder}/.vscode && cp ${localWorkspaceFolder}/tasks.json ${containerWorkspaceFolder}/.vscode/tasks.json"
   },
   "hostRequirements": {
     "cpus": 2
