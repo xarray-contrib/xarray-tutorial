@@ -30,7 +30,7 @@ This tutorial is available to run within [Github Codespaces](https://github.com/
 A codespace is a development environment that's hosted in the cloud.
 You can choose from a selection of virtual machine types: 2 cores - 4 GB RAM - 32 GB storage, and 4 cores - 8 GB RAM - 32GB storage.
 Additionally, you are able to chose from various Dev container configuration, for this specific workshop, please ensure that `Scipy2023` is selected.
-GitHub currently gives every user [120 vCPU hours per month for free](https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#monthly-included-storage-and-core-hours-for-personal-accounts), beyond that you must pay. **So be sure to explicitly stop or shut down your codespace when you are done by going to this page (https://github.com/codespaces/).**
+GitHub currently gives every user [120 vCPU hours per month for free](https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#monthly-included-storage-and-core-hours-for-personal-accounts), beyond that you must pay. **So be sure to explicitly stop or shut down your codespace when you are done by going to this page (https://github.com/codespaces).**
 
 Once your codespace is launched, the following happens:
 
