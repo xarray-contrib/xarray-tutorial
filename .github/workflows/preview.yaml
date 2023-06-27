@@ -5,6 +5,10 @@ on: [pull_request]
 permissions:
   pull-requests: write # allow surge-preview to create/update PR comments
 
+concurrency:
+  group: 'preview'
+  cancel-in-progress: true
+
 jobs:
   preview:
     runs-on: ubuntu-latest
@@ -17,7 +21,7 @@ jobs:
         with:
           path: _build
           # NOTE: change key to "jupyterbook-DATE" to force rebuilding cache
-          key: jupyterbook-20230613
+          key: jupyterbook-20230626
 
       - name: Install Conda environment with Micromamba
         uses: mamba-org/setup-micromamba@v1

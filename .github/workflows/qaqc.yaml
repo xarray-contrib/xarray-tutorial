@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: 'qaqc'
+  cancel-in-progress: true
+
 jobs:
   quality-control:
     runs-on: ubuntu-latest
@@ -45,6 +49,7 @@ jobs:
             yaml.dump(data, f)
 
       - name: Check External Links
+        timeout-minutes: 5
         if: always()
         run: |
           jupyter-book build ./ --builder linkcheck
