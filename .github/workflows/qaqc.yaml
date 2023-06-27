@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: 'qaqc'
+  cancel-in-progress: true
+
 jobs:
   quality-control:
     runs-on: ubuntu-latest
