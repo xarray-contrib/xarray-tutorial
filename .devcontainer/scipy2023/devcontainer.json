@@ -1,0 +1,21 @@
+{
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": "../../conda"
+  },
+  "postCreateCommand": {
+    "jupyterlab": "mkdir /home/jovyan/.jupyter && cp ${containerWorkspaceFolder}/.devcontainer/scipy2023/jupyter_lab_config.py /home/jovyan/.jupyter/jupyter_lab_config.py",
+    "vscode": "mkdir ${containerWorkspaceFolder}/.vscode && cp ${containerWorkspaceFolder}/.devcontainer/scipy2023/tasks.json ${containerWorkspaceFolder}/.vscode/tasks.json"
+  },
+  "hostRequirements": {
+    "cpus": 2
+  },
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["workshops/scipy2023/README.md"]
+    },
+    "vscode": {
+      "extensions": ["ms-toolsai.jupyter", "ms-python.python"]
+    }
+  }
+}
