@@ -1,5 +1,7 @@
 <img src="https://docs.xarray.dev/en/stable/_static/dataset-diagram-logo.png" align="right" width="30%">
 
+(get-started)=
+
 # Get Started
 
 Most of the tutorial content here is written as Jupyter Notebooks that mix
