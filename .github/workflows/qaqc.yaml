@@ -45,6 +45,7 @@ jobs:
             yaml.dump(data, f)
 
       - name: Check External Links
+        timeout-minutes: 5
         if: always()
         run: |
           jupyter-book build ./ --builder linkcheck
