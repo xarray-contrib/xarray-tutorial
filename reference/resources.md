@@ -17,7 +17,7 @@ provide a sampling of what Xarray can be used for.
 
 ## Satellite Data
 
-1. [Landsat-8 on AWS](https://aws-uswest2-binder.pangeo.io/v2/gh/pangeo-data/landsat-8-tutorial-gallery/master/?urlpath=git-pull?repo=https://github.com/pangeo-data/landsat-8-tutorial-gallery%26amp%3Burlpath=lab/tree/landsat-8-tutorial-gallery/landsat8.ipynb%3Fautodecode)
+1. [Planetary Computer Examples](https://github.com/microsoft/PlanetaryComputerExamples)
 
 ## Bayesian Statistical Modeling
 

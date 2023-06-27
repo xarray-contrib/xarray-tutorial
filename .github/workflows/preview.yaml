@@ -1,26 +1,17 @@
-name: CI
+name: PR Preview
 
-on:
-  push:
-    branches: main
-  pull_request:
-    branches: main
+on: [pull_request]
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  pull-requests: write # allow surge-preview to create/update PR comments
 
-# Allow one concurrent deployment
 concurrency:
-  group: 'pages'
+  group: 'preview'
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  preview:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -41,7 +32,7 @@ jobs:
 
       - name: Build JupyterBook
         # NOTE: login shell activates conda environment
-        shell: bash -el {0}
+        shell: bash -l {0}
         run: |
           jupyter-book build ./ --warningiserror --keep-going
 
@@ -50,19 +41,24 @@ jobs:
         run: |
           if (test -a _build/html/reports/*log); then cat _build/html/reports/*log ; fi
 
-      - name: Save Build
-        if: always()
-        uses: actions/upload-artifact@v3
+      - name: Publish to Surge
+        id: preview_step
+        uses: afc163/surge-preview@v1
         with:
-          name: build
-          path: _build/
-
-      - name: Publish to GitHub Pages
-        if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
+          surge_token: ${{ secrets.SURGE_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: _build/html
-          publish_branch: gh-pages
-          cname: tutorial.xarray.dev
-          enable_jekyll: false
+          dist: _build/html
+          build: |
+            npm install surge
+
+      - name: Format preview url
+        id: format_url
+        run: |
+          echo "url_text=:rocket: Preview deployed at https://${{ steps.preview_step.outputs.preview_url }}" >> $GITHUB_OUTPUT
+
+      - name: Get the preview_url
+        run: echo "${{ steps.format_url.outputs.url_text }}"
+
+      - name: Generate summary
+        run: |
+          echo "#### ${{ steps.format_url.outputs.url_text }}" >> $GITHUB_STEP_SUMMARY

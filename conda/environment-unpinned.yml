@@ -2,23 +2,26 @@ name: xarray-tutorial
 channels:
   - conda-forge
 dependencies:
-  - python=3.10
+  - python=3.11
   # for building website:
-  - jupyter-book=0.13
+  - jupyter-book
   - pre-commit
   # for user interface
   - dask-labextension
-  - jupyterlab>=3
+  - jupyterlab
+  - jupyterlab-myst
   - jupyter-resource-usage
   # for default notebook kernel:
   - cartopy
   - cf_xarray
   - dask
+  - datashader
   - distributed
   - gcsfs
-  - geoviews
+  - geoviews-core
   - gsw
   - hvplot
+  - ipython
   - matplotlib-base
   - netcdf4
   - pint-xarray
@@ -28,8 +31,9 @@ dependencies:
   - pooch
   - rioxarray
   - scipy
+  - sphinx-codeautolink
+  - sphinx-exercise
+  - sphinx-notfound-page
+  - sphinxext-rediraffe
   - xarray
   - zarr
-  - pip:
-      - sphinx-notfound-page
-      - sphinxext-rediraffe
