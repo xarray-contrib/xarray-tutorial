@@ -6,11 +6,10 @@ need not be explored in any particular sequence, instead they are meant to
 provide a sampling of what Xarray can be used for.
 
 ```{seealso}
-The [Xarray blog](https://xarray.dev/blog) has a number of user stories showcasing Xarray in many scientfic domaains.
-```
-
-```{seealso}
-[Project Pythia Foundations](https://foundations.projectpythia.org/) is a great collection of material on Xarray and related packages.
+1. The [Xarray blog](https://xarray.dev/blog) has a number of user stories showcasing Xarray in
+many scientific domains.
+2. [Project Pythia Foundations](https://foundations.projectpythia.org/) is a great collection of
+material on Xarray and related packages.
 ```
 
 ## Weather and Climate
