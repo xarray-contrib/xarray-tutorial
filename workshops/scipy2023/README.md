@@ -19,7 +19,7 @@ See instructions to set up the environment for running the tutorial material [he
 For the live tutorial, we will be using the SciPy 2023 Nebari JupyterHub. Instructions for the live
 tutorial will be added soon.
 
-## Github Codespaces
+### Github Codespaces
 
 This tutorial is available to run within [Github Codespaces](https://github.com/features/codespaces) - "a development environment that's hosted in the cloud" - with the conda environment specification in the [`conda-lock.yml`](../../conda/conda-lock.yml) file.
 
@@ -41,4 +41,28 @@ Once your codespace is launched, the following happens:
 
 ## Outline
 
-**🏗️ Outline coming soon! Please check back later**
+```{dropdown} Introduction
+{doc}`../../overview/get-started`
+```
+
+```{dropdown} Indexing
+
+```
+
+```{dropdown} Computational Patterns
+{doc}`../../intermediate/01-high-level-computation-patterns`
+```
+
+```{dropdown} Wrapping other arrays
+
+```
+
+```{dropdown} Wrapping custom computation
+{doc}`../../advanced/apply_ufunc/simple_numpy_apply_ufunc`
+
+{doc}`../../advanced/apply_ufunc/core-dimensions`
+
+{doc}`../../advanced/apply_ufunc/complex-output-numpy`
+
+{doc}`Explore the remaining material <../../advanced/apply_ufunc/apply_ufunc>`
+```
