@@ -1,0 +1,2362 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Creating custom accessors</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/announcement.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JRQHYVFQR7"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JRQHYVFQR7');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'advanced/accessors/01_accessor_examples';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SciPy 2023" href="../../workshops/scipy2023/README.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="accessors.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../overview/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/xarray-in-45-min.html">Xarray in 45 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/fundamental-path/README.html">Fundamental Learning Path</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../fundamentals/01_data_structures.html">Data Structures</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/01_datastructures.html">Xarray’s Data structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/01.1_creating_data_structures.html">Creating Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/01.1_io.html">Reading and writing files</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../fundamentals/02_labeled_data.html">Labeled data</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/02.1_working_with_labeled_data.html">Working with labeled data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/02.2_manipulating_dimensions.html">Manipulating Dimensions (Data Resolution)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../fundamentals/03_computation.html">Computation</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/03.1_computation_with_xarray.html">Basic Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/02.3_aligning_data_objects.html">Computing with Multiple Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/03.2_groupby_with_xarray.html">Grouped Computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/03.3_windowed.html">Windowed Computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/03.4_weighted.html">Weighted Reductions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../fundamentals/04.0_plotting.html">Plotting and Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/04.1_basic_plotting.html">Basic Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/04.2_faceting.html">Faceting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/04.3_geographic_plotting.html">Geography with Cartopy</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../intermediate/01-high-level-computation-patterns.html">High-level computational patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intermediate/xarray_and_dask.html">Parallel computing with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intermediate/xarray_ecosystem.html">A Tour of Xarray Customizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intermediate/hvplot.html">Interactive plots using hvplot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intermediate/cmip6-cloud.html">Accessing remote data stored on the cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_cleaning/ice_velocity.html">Re-organize InSAR ice velocity data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../parallel-intro.html">Parallelizing custom functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../apply_ufunc/apply_ufunc.html">apply_ufunc</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../apply_ufunc/simple_numpy_apply_ufunc.html">A gentle introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../apply_ufunc/core-dimensions.html">Core dimensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../apply_ufunc/complex-output-numpy.html">Handling complex output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../apply_ufunc/automatic-vectorizing-numpy.html">Automatic Vectorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../apply_ufunc/dask_apply_ufunc.html">Handling dask arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../apply_ufunc/numba-vectorization.html">Fast vectorization with Numba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../apply_ufunc/example-interp.html">np.interp : An end-to-end example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../map_blocks/map_blocks.html">map_blocks</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../map_blocks/simple_map_blocks.html">A gentle introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../backends/backends.html">Creating new backends</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../backends/1.Backend_without_Lazy_Loading.html">Binary data without lazy loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../backends/2.Backend_with_Lazy_Loading.html">Binary data with lazy loading</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Creating custom accessors</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../workshops/scipy2023/README.html">SciPy 2023</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../workshops/oceanhackweek2020/README.html">Oceanhackweek 2020</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference external" href="https://tutorial.xarray.dev/overview/xarray-in-45-min">Xarray in 45 minutes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../workshops/thinking-like-xarray/README.html">Thinking like Xarray</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference external" href="https://tutorial.xarray.dev/intermediate/01-high-level-computation-patterns">High-level computation patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../workshops/online-tutorial-series/README.html">Xarray Online Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../workshops/online-tutorial-series/01_xarray_fundamentals.html">Xarray Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workshops/online-tutorial-series/02_indexing.html">Indexing and Selecting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workshops/online-tutorial-series/03_computation.html">Computation</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Domain Specific</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://anopheles-genomic-surveillance.github.io/workshop-5/module-1-xarray.html">Genomics</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://predictablynoisy.com/posts/2019/2019-10-22-xarray-neuro/">Electrophysiology</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../reference/resources.html">Keep Exploring!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/main?urlpath=lab/tree/advanced/accessors/01_accessor_examples.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/advanced/accessors/01_accessor_examples.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Fadvanced/accessors/01_accessor_examples.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/advanced/accessors/01_accessor_examples.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Creating custom accessors</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-create-a-custom-accessor">Why create a custom accessor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#easy-steps-to-create-your-own-accessor">Easy steps to create your own accessor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-accessing-scipy-functionality">Example 1: accessing scipy functionality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-creating-your-own-workflows">Example 2: creating your own workflows</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-creating-your-own-workflows-with-locally-stored-corrections">Example 3: creating your own workflows with locally stored corrections</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="creating-custom-accessors">
+<h1>Creating custom accessors<a class="headerlink" href="#creating-custom-accessors" title="Permalink to this headline">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>An accessor is a way of attaching a custom function to xarray objects so that it can be called as if it were a method while retaining a clear separation between the “core” xarray API and custom API. It enables you to easily <em>extend</em> (which is why you’ll sometimes see it referred to as an extension) and customize xarray’s functionality while limiting naming conflicts and minimizing the chances of your code breaking with xarray upgrades.</p>
+<p>If you’ve used <a class="reference external" href="https://corteva.github.io/rioxarray/stable/">rioxarray</a> (e.g. <code class="docutils literal notranslate"><span class="pre">da.rio.crs</span></code>) or <a class="reference external" href="https://hvplot.holoviz.org/">hvplot</a> (e.g. <code class="docutils literal notranslate"><span class="pre">ds.hvplot()</span></code>), you may have already used an xarray accessor without knowing it!</p>
+<p>The <a class="reference external" href="https://docs.xarray.dev/en/stable/internals/extending-xarray.html">Xarray documentation</a> has some more technical details, and this tutorial provides example custom accessors and their uses.</p>
+</section>
+<section id="why-create-a-custom-accessor">
+<h2>Why create a custom accessor<a class="headerlink" href="#why-create-a-custom-accessor" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>You can easily create a custom suite of tools that work on Xarray objects</p></li>
+<li><p>It keeps your workflows cleaner and simpler</p></li>
+<li><p>Your project-specific code is easy to share</p></li>
+<li><p>It’s easy to implement: you don’t need to integrate any code into Xarray</p></li>
+<li><p>It makes it easier to perform checks and write code documentation because you only have to create them once!</p></li>
+</ul>
+</section>
+<section id="easy-steps-to-create-your-own-accessor">
+<h2>Easy steps to create your own accessor<a class="headerlink" href="#easy-steps-to-create-your-own-accessor" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>Create your custom class, including the mandatory <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method</p></li>
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">xr.register_dataarray_accessor()</span></code> or <code class="docutils literal notranslate"><span class="pre">xr.register_dataset_accessor()</span></code></p></li>
+<li><p>Use your custom functions</p></li>
+</ol>
+</section>
+<section id="example-1-accessing-scipy-functionality">
+<h2>Example 1: accessing scipy functionality<a class="headerlink" href="#example-1-accessing-scipy-functionality" title="Permalink to this headline">#</a></h2>
+<p>For example, imagine you’re a statistician who regularly uses a special <code class="docutils literal notranslate"><span class="pre">skewness</span></code> function which acts on dataarrays but is only of interest to people in your specific field.</p>
+<p>You can create a method which applies this skewness function to an xarray object and then register the method under a custom <code class="docutils literal notranslate"><span class="pre">stats</span></code> accessor like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">skew</span>
+
+<span class="n">xr</span><span class="o">.</span><span class="n">set_options</span><span class="p">(</span><span class="n">display_expand_attrs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">display_expand_coords</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+<span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataarray_accessor</span><span class="p">(</span><span class="s2">&quot;stats&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">StatsAccessor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">da</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_da</span> <span class="o">=</span> <span class="n">da</span>
+
+    <span class="k">def</span> <span class="nf">skewness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_da</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">skew</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can conveniently access this functionality via the <code class="docutils literal notranslate"><span class="pre">stats</span></code> accessor</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">tutorial</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;air_temperature&quot;</span><span class="p">)</span>
+<span class="n">ds</span><span class="p">[</span><span class="s2">&quot;skewair&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;air&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">skewness</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+Dimensions:  (lat: 25, time: 2920, lon: 53)
+Coordinates: (3)
+Data variables:
+    air      (time, lat, lon) float32 241.2 242.5 243.5 ... 296.5 296.2 295.7
+    skewair  (lat, lon) float32 -0.2931 -0.2827 -0.2719 ... -0.1893 -0.1869
+Attributes: (5)</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-bb3dbd27-3731-46e4-a71b-97fb0287f23b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-bb3dbd27-3731-46e4-a71b-97fb0287f23b' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 25</li><li><span class='xr-has-index'>time</span>: 2920</li><li><span class='xr-has-index'>lon</span>: 53</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-1a032c18-fe67-4487-b992-d112c7d4e15c' class='xr-section-summary-in' type='checkbox'  ><label for='section-1a032c18-fe67-4487-b992-d112c7d4e15c' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>75.0 72.5 70.0 ... 20.0 17.5 15.0</div><input id='attrs-de2140c0-6cf6-437c-9de3-56720bc75120' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-de2140c0-6cf6-437c-9de3-56720bc75120' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1dd3c0cf-8648-4e83-8748-1a1369122225' class='xr-var-data-in' type='checkbox'><label for='data-1dd3c0cf-8648-4e83-8748-1a1369122225' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([75. , 72.5, 70. , 67.5, 65. , 62.5, 60. , 57.5, 55. , 52.5, 50. , 47.5,
+       45. , 42.5, 40. , 37.5, 35. , 32.5, 30. , 27.5, 25. , 22.5, 20. , 17.5,
+       15. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>200.0 202.5 205.0 ... 327.5 330.0</div><input id='attrs-f78ea1e5-3045-4154-b1fb-a44699d7cc5a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f78ea1e5-3045-4154-b1fb-a44699d7cc5a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1bcce45a-0179-465f-8c7f-aa02499e92e3' class='xr-var-data-in' type='checkbox'><label for='data-1bcce45a-0179-465f-8c7f-aa02499e92e3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([200. , 202.5, 205. , 207.5, 210. , 212.5, 215. , 217.5, 220. , 222.5,
+       225. , 227.5, 230. , 232.5, 235. , 237.5, 240. , 242.5, 245. , 247.5,
+       250. , 252.5, 255. , 257.5, 260. , 262.5, 265. , 267.5, 270. , 272.5,
+       275. , 277.5, 280. , 282.5, 285. , 287.5, 290. , 292.5, 295. , 297.5,
+       300. , 302.5, 305. , 307.5, 310. , 312.5, 315. , 317.5, 320. , 322.5,
+       325. , 327.5, 330. ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2013-01-01 ... 2014-12-31T18:00:00</div><input id='attrs-9bceb487-258d-4a78-8bd4-547eb82e1f08' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9bceb487-258d-4a78-8bd4-547eb82e1f08' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-94b0e61c-c468-49d1-881d-d6c1c8b17e10' class='xr-var-data-in' type='checkbox'><label for='data-94b0e61c-c468-49d1-881d-d6c1c8b17e10' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>Time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2013-01-01T00:00:00.000000000&#x27;, &#x27;2013-01-01T06:00:00.000000000&#x27;,
+       &#x27;2013-01-01T12:00:00.000000000&#x27;, ..., &#x27;2014-12-31T06:00:00.000000000&#x27;,
+       &#x27;2014-12-31T12:00:00.000000000&#x27;, &#x27;2014-12-31T18:00:00.000000000&#x27;],
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-db41c9d0-475a-45de-a6dd-59543053b093' class='xr-section-summary-in' type='checkbox'  checked><label for='section-db41c9d0-475a-45de-a6dd-59543053b093' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>air</span></div><div class='xr-var-dims'>(time, lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>241.2 242.5 243.5 ... 296.2 295.7</div><input id='attrs-193bdcbf-4cd3-47a5-b595-57e1daf0a9cc' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-193bdcbf-4cd3-47a5-b595-57e1daf0a9cc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5dd7b352-88e3-4093-996a-0f6f91cd4a6d' class='xr-var-data-in' type='checkbox'><label for='data-5dd7b352-88e3-4093-996a-0f6f91cd4a6d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>4xDaily Air temperature at sigma level 995</dd><dt><span>units :</span></dt><dd>degK</dd><dt><span>precision :</span></dt><dd>2</dd><dt><span>GRIB_id :</span></dt><dd>11</dd><dt><span>GRIB_name :</span></dt><dd>TMP</dd><dt><span>var_desc :</span></dt><dd>Air temperature</dd><dt><span>dataset :</span></dt><dd>NMC Reanalysis</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Individual Obs</dd><dt><span>parent_stat :</span></dt><dd>Other</dd><dt><span>actual_range :</span></dt><dd>[185.16 322.1 ]</dd></dl></div><div class='xr-var-data'><pre>array([[[241.2    , 242.5    , 243.5    , ..., 232.79999, 235.5    ,
+         238.59999],
+        [243.79999, 244.5    , 244.7    , ..., 232.79999, 235.29999,
+         239.29999],
+        [250.     , 249.79999, 248.89   , ..., 233.2    , 236.39   ,
+         241.7    ],
+        ...,
+        [296.6    , 296.19998, 296.4    , ..., 295.4    , 295.1    ,
+         294.69998],
+        [295.9    , 296.19998, 296.79   , ..., 295.9    , 295.9    ,
+         295.19998],
+        [296.29   , 296.79   , 297.1    , ..., 296.9    , 296.79   ,
+         296.6    ]],
+
+       [[242.09999, 242.7    , 243.09999, ..., 232.     , 233.59999,
+         235.79999],
+        [243.59999, 244.09999, 244.2    , ..., 231.     , 232.5    ,
+         235.7    ],
+        [253.2    , 252.89   , 252.09999, ..., 230.79999, 233.39   ,
+         238.5    ],
+...
+        [293.69   , 293.88998, 295.38998, ..., 295.09   , 294.69   ,
+         294.29   ],
+        [296.29   , 297.19   , 297.59   , ..., 295.29   , 295.09   ,
+         294.38998],
+        [297.79   , 298.38998, 298.49   , ..., 295.69   , 295.49   ,
+         295.19   ]],
+
+       [[245.09   , 244.29   , 243.29   , ..., 241.68999, 241.48999,
+         241.79   ],
+        [249.89   , 249.29   , 248.39   , ..., 239.59   , 240.29   ,
+         241.68999],
+        [262.99   , 262.19   , 261.38998, ..., 239.89   , 242.59   ,
+         246.29   ],
+        ...,
+        [293.79   , 293.69   , 295.09   , ..., 295.29   , 295.09   ,
+         294.69   ],
+        [296.09   , 296.88998, 297.19   , ..., 295.69   , 295.69   ,
+         295.19   ],
+        [297.69   , 298.09   , 298.09   , ..., 296.49   , 296.19   ,
+         295.69   ]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>skewair</span></div><div class='xr-var-dims'>(lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-0.2931 -0.2827 ... -0.1893 -0.1869</div><input id='attrs-2b2e717c-972c-44ec-a965-90b8a798d94b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2b2e717c-972c-44ec-a965-90b8a798d94b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d4666762-c457-4cc9-8483-95842b22d1ca' class='xr-var-data-in' type='checkbox'><label for='data-d4666762-c457-4cc9-8483-95842b22d1ca' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[-0.2931476 , -0.28266272, -0.27186424, ...,  0.17988075,
+         0.19492772,  0.18501303],
+       [-0.43506402, -0.41124222, -0.39784586, ...,  0.20494738,
+         0.15140375,  0.07443903],
+       [-0.30432302, -0.19778357, -0.13770214, ...,  0.11313064,
+         0.02852027, -0.08154588],
+       ...,
+       [-0.29081866, -0.23612754, -0.18897656, ..., -0.11635074,
+        -0.11660241, -0.12638316],
+       [-0.16570069, -0.15133129, -0.14611374, ..., -0.14533104,
+        -0.16578567, -0.1651542 ],
+       [-0.1693059 , -0.1888289 , -0.19077516, ..., -0.11210649,
+        -0.18933235, -0.18690756]], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-0a03d82c-84fb-4da8-9c45-e7f6fd7c5bc1' class='xr-section-summary-in' type='checkbox'  ><label for='section-0a03d82c-84fb-4da8-9c45-e7f6fd7c5bc1' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-ee79f90f-e7c8-4cb6-8584-8a8cfbf81d99' class='xr-index-data-in' type='checkbox'/><label for='index-ee79f90f-e7c8-4cb6-8584-8a8cfbf81d99' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([75.0, 72.5, 70.0, 67.5, 65.0, 62.5, 60.0, 57.5, 55.0, 52.5, 50.0, 47.5,
+       45.0, 42.5, 40.0, 37.5, 35.0, 32.5, 30.0, 27.5, 25.0, 22.5, 20.0, 17.5,
+       15.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-0ba67139-9820-4f8a-9409-2802c35c09bb' class='xr-index-data-in' type='checkbox'/><label for='index-0ba67139-9820-4f8a-9409-2802c35c09bb' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([200.0, 202.5, 205.0, 207.5, 210.0, 212.5, 215.0, 217.5, 220.0, 222.5,
+       225.0, 227.5, 230.0, 232.5, 235.0, 237.5, 240.0, 242.5, 245.0, 247.5,
+       250.0, 252.5, 255.0, 257.5, 260.0, 262.5, 265.0, 267.5, 270.0, 272.5,
+       275.0, 277.5, 280.0, 282.5, 285.0, 287.5, 290.0, 292.5, 295.0, 297.5,
+       300.0, 302.5, 305.0, 307.5, 310.0, 312.5, 315.0, 317.5, 320.0, 322.5,
+       325.0, 327.5, 330.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-7f844c04-8bb7-45ad-92b9-899b73eb5ccb' class='xr-index-data-in' type='checkbox'/><label for='index-7f844c04-8bb7-45ad-92b9-899b73eb5ccb' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2013-01-01 00:00:00&#x27;, &#x27;2013-01-01 06:00:00&#x27;,
+               &#x27;2013-01-01 12:00:00&#x27;, &#x27;2013-01-01 18:00:00&#x27;,
+               &#x27;2013-01-02 00:00:00&#x27;, &#x27;2013-01-02 06:00:00&#x27;,
+               &#x27;2013-01-02 12:00:00&#x27;, &#x27;2013-01-02 18:00:00&#x27;,
+               &#x27;2013-01-03 00:00:00&#x27;, &#x27;2013-01-03 06:00:00&#x27;,
+               ...
+               &#x27;2014-12-29 12:00:00&#x27;, &#x27;2014-12-29 18:00:00&#x27;,
+               &#x27;2014-12-30 00:00:00&#x27;, &#x27;2014-12-30 06:00:00&#x27;,
+               &#x27;2014-12-30 12:00:00&#x27;, &#x27;2014-12-30 18:00:00&#x27;,
+               &#x27;2014-12-31 00:00:00&#x27;, &#x27;2014-12-31 06:00:00&#x27;,
+               &#x27;2014-12-31 12:00:00&#x27;, &#x27;2014-12-31 18:00:00&#x27;],
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=2920, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4213875c-3e12-44ae-b4f3-80ceaaccc456' class='xr-section-summary-in' type='checkbox'  ><label for='section-4213875c-3e12-44ae-b4f3-80ceaaccc456' class='xr-section-summary' >Attributes: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>COARDS</dd><dt><span>title :</span></dt><dd>4x daily NMC reanalysis (1948)</dd><dt><span>description :</span></dt><dd>Data is from NMC initialized reanalysis
+(4x/day).  These are the 0.9950 sigma level values.</dd><dt><span>platform :</span></dt><dd>Model</dd><dt><span>references :</span></dt><dd>http://www.esrl.noaa.gov/psd/data/gridded/data.ncep.reanalysis.html</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<p>Notice how the presence of <code class="docutils literal notranslate"><span class="pre">.stats</span></code> clearly differentiates our new “accessor method” from core xarray methods.</p>
+</section>
+<section id="example-2-creating-your-own-workflows">
+<h2>Example 2: creating your own workflows<a class="headerlink" href="#example-2-creating-your-own-workflows" title="Permalink to this headline">#</a></h2>
+<p>Perhaps you find yourself running similar code for multiple xarray objects or across related projects. By packing your code into an extension, it makes it easy to repeat the same operation while reducing the likelihood of [human introduced] errors.</p>
+<p>Here we wrap the reorganization of InSAR ice velocity data illustrated in <a class="reference external" href="https://tutorial.xarray.dev/data_cleaning/ice_velocity.html?highlight=ice_velocity">this tutorial</a> into a custom Xarray extension that makes it easy to re-apply each time you begin working with a new InSAR velocity dataset. Please see the linked tutorial for details on the data, applications, and each step in this process.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+
+<span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataset_accessor</span><span class="p">(</span><span class="s2">&quot;insar_vel&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">InsarReorg</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An extension for an XArray dataset that will prepare InSAR data for analysis.</span>
+
+<span class="sd">    Re-organize the data from its native structure to have x and y velocity and error along a time dimension.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ----------------------------------------------------------------------</span>
+    <span class="c1"># Constructors</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xrds</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span> <span class="o">=</span> <span class="n">xrds</span>
+
+    <span class="c1"># ----------------------------------------------------------------------</span>
+    <span class="c1"># Methods</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">req_vars</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Make sure the xarray dataset has the correct dimensions and variables.</span>
+
+<span class="sd">        Running this function will check that my dataset has all the needed dimensions and variables</span>
+<span class="sd">        for a given function, saving time and headache later if they were missing and the computation fails</span>
+<span class="sd">        partway through.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        req_dim : list of str</span>
+<span class="sd">            List of all required dimension names</span>
+<span class="sd">        req_vars : list of str</span>
+<span class="sd">            List of all required variable  names</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">req_dim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="n">dim</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">req_dim</span><span class="p">]):</span>
+                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Required dimensions are missing&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">req_vars</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="n">var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span><span class="o">.</span><span class="n">variables</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">req_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">()]):</span>
+                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Required variables are missing&quot;</span><span class="p">)</span>
+        <span class="c1"># print(&quot;successfully validated your dataset&quot;)</span>
+
+    <span class="c1"># ----------------------------------------------------------------------</span>
+    <span class="c1"># Functions</span>
+
+    <span class="k">def</span> <span class="nf">change_vars_to_coords</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">req_dim</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ny&#39;</span><span class="p">,</span> <span class="s1">&#39;nx&#39;</span><span class="p">],</span>
+        <span class="n">req_vars</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;xaxis&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;nx&#39;</span><span class="p">],</span> <span class="s1">&#39;yaxis&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ny&#39;</span><span class="p">]},</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Turn the xaxis and y axis variables into coordinates.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        req_dim : list of str</span>
+<span class="sd">            List of all required dimension names.</span>
+<span class="sd">        req_vars : list of str</span>
+<span class="sd">            List of all required variable  names</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req_dim</span><span class="p">,</span> <span class="n">req_vars</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span><span class="o">.</span><span class="n">swap_dims</span><span class="p">({</span><span class="s1">&#39;ny&#39;</span><span class="p">:</span> <span class="s1">&#39;yaxis&#39;</span><span class="p">,</span> <span class="s1">&#39;nx&#39;</span><span class="p">:</span> <span class="s1">&#39;xaxis&#39;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;xaxis&#39;</span><span class="p">:</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;yaxis&#39;</span><span class="p">:</span> <span class="s1">&#39;y&#39;</span><span class="p">})</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span>
+
+    <span class="k">def</span> <span class="nf">reorg_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reorganize the data by time for each of the desired end variables (here vx, vy, err)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">reorged</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">reorg_var</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;vx&#39;</span><span class="p">,</span> <span class="s1">&#39;vy&#39;</span><span class="p">,</span> <span class="s1">&#39;err&#39;</span><span class="p">]:</span>
+            <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reorg_var_time</span><span class="p">(</span><span class="n">reorg_var</span><span class="p">)</span>
+            <span class="n">reorged</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+
+        <span class="n">reorged_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">reorged</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">reorged_ds</span>
+
+    <span class="k">def</span> <span class="nf">reorg_var_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reorg_var</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Repeat the process for a given variable.</span>
+
+<span class="sd">        Figure out which of the original variables are time steps for this variable and turn each one into a dataarray.</span>
+<span class="sd">        Add a time dimension and update the variable name for each dataarray.</span>
+<span class="sd">        Combine the modified data arrays back into a single dataset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># create storage list for reorganizing</span>
+        <span class="n">var_ls</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span><span class="p">)</span>
+        <span class="n">to_reorg</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">var_ls</span> <span class="k">if</span> <span class="n">reorg_var</span> <span class="ow">in</span> <span class="n">var</span><span class="p">]</span>
+
+        <span class="c1"># list the arrays from the original dataset that correspond to the variable</span>
+        <span class="n">das_to_reorg</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">to_reorg</span><span class="p">]</span>
+
+        <span class="c1"># add the time dimension</span>
+        <span class="n">das_to_reorg</span> <span class="o">=</span> <span class="p">[</span><span class="n">das_to_reorg</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">das_to_reorg</span><span class="p">))]</span>
+
+        <span class="c1"># update variable name to remove time</span>
+        <span class="n">das_to_reorg</span> <span class="o">=</span> <span class="p">[</span><span class="n">das_to_reorg</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">reorg_var</span><span class="p">)</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">das_to_reorg</span><span class="p">))]</span>
+
+        <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">das_to_reorg</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">tutorial</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;ASE_ice_velocity.nc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">insar_vel</span><span class="o">.</span><span class="n">change_vars_to_coords</span><span class="p">()</span>
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+Dimensions:  (y: 800, x: 500)
+Coordinates: (2)
+Data variables: (12/30)
+    vx1996   (y, x) float32 ...
+    vy1996   (y, x) float32 ...
+    err1996  (y, x) float32 ...
+    vx2000   (y, x) float32 ...
+    vy2000   (y, x) float32 ...
+    err2000  (y, x) float32 ...
+    ...       ...
+    vx2011   (y, x) float32 ...
+    vy2011   (y, x) float32 ...
+    err2011  (y, x) float32 ...
+    vx2012   (y, x) float32 ...
+    vy2012   (y, x) float32 ...
+    err2012  (y, x) float32 ...
+Attributes: (21)</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-afc7b068-2bab-46d2-aada-241a26ef9bad' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-afc7b068-2bab-46d2-aada-241a26ef9bad' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>y</span>: 800</li><li><span class='xr-has-index'>x</span>: 500</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-6e1b5b14-06a7-4052-8c65-f0854fd35ca1' class='xr-section-summary-in' type='checkbox'  ><label for='section-6e1b5b14-06a7-4052-8c65-f0854fd35ca1' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-1.581e+06 ... -1.357e+06</div><input id='attrs-750123c3-a706-4574-92e9-8c39615bdce3' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-750123c3-a706-4574-92e9-8c39615bdce3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9c4d33b9-45e6-4f5b-b95b-faae9833276b' class='xr-var-data-in' type='checkbox'><label for='data-9c4d33b9-45e6-4f5b-b95b-faae9833276b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-1581400., -1580950., -1580500., ..., -1357750., -1357300., -1356850.],
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-7.032e+05 ... -3.437e+05</div><input id='attrs-c50bf397-ec8a-49f8-94b8-3bd8696c4533' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-c50bf397-ec8a-49f8-94b8-3bd8696c4533' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-701606b9-7fac-41a9-ae45-a0633348a3a0' class='xr-var-data-in' type='checkbox'><label for='data-701606b9-7fac-41a9-ae45-a0633348a3a0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-703250., -702800., -702350., ..., -344600., -344150., -343700.],
+      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-765d4a0c-2aa8-46c7-a06e-ebe6b8b9fb66' class='xr-section-summary-in' type='checkbox'  ><label for='section-765d4a0c-2aa8-46c7-a06e-ebe6b8b9fb66' class='xr-section-summary' >Data variables: <span>(30)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>vx1996</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-cd72a272-4264-4b14-991f-b254d0128870' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-cd72a272-4264-4b14-991f-b254d0128870' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8c792a01-8c3c-4270-ac47-2a4c3e3b1f51' class='xr-var-data-in' type='checkbox'><label for='data-8c792a01-8c3c-4270-ac47-2a4c3e3b1f51' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in x direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vy1996</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-295e1093-5b6c-4c57-8be5-e4f6926a581c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-295e1093-5b6c-4c57-8be5-e4f6926a581c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f20b665a-9f0c-4bc7-9cad-5e93974a257f' class='xr-var-data-in' type='checkbox'><label for='data-f20b665a-9f0c-4bc7-9cad-5e93974a257f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in y direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>err1996</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-ae62b28d-23cf-451a-af0f-b9815ae75825' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ae62b28d-23cf-451a-af0f-b9815ae75825' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ef8ec437-05b1-4eac-87c6-75032feab794' class='xr-var-data-in' type='checkbox'><label for='data-ef8ec437-05b1-4eac-87c6-75032feab794' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Uncertainty estimation</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vx2000</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-f3ad62cd-fbbc-43fa-9147-eb5957b146e0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f3ad62cd-fbbc-43fa-9147-eb5957b146e0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-66b08c3e-d161-4cc6-b8ae-03144daee9d6' class='xr-var-data-in' type='checkbox'><label for='data-66b08c3e-d161-4cc6-b8ae-03144daee9d6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in x direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vy2000</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-a1cd7406-b4e8-47c2-a186-dba44a6c50b3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a1cd7406-b4e8-47c2-a186-dba44a6c50b3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4cd54103-cffa-4c13-bfa1-8913df22c4c9' class='xr-var-data-in' type='checkbox'><label for='data-4cd54103-cffa-4c13-bfa1-8913df22c4c9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in y direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>err2000</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-a3e35c6d-3f51-4a6b-b83e-df55a226a07f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a3e35c6d-3f51-4a6b-b83e-df55a226a07f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8b17a781-a632-42ed-97de-5df5b9c90731' class='xr-var-data-in' type='checkbox'><label for='data-8b17a781-a632-42ed-97de-5df5b9c90731' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Uncertainty estimation</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vx2002</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-9bbbcd5a-9c8d-4122-a383-83fc54bdedc7' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9bbbcd5a-9c8d-4122-a383-83fc54bdedc7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f22a55a0-9981-4d5c-95c4-e9fdcaf3ac27' class='xr-var-data-in' type='checkbox'><label for='data-f22a55a0-9981-4d5c-95c4-e9fdcaf3ac27' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in x direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vy2002</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-c2685189-3dc9-4323-b066-07f53b7b2b71' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c2685189-3dc9-4323-b066-07f53b7b2b71' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-94710aa1-ce8e-4475-b7d9-bc7c29a5ef59' class='xr-var-data-in' type='checkbox'><label for='data-94710aa1-ce8e-4475-b7d9-bc7c29a5ef59' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in y direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>err2002</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-2fc0c91f-a5e2-41e9-9769-8c660a64cdc5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2fc0c91f-a5e2-41e9-9769-8c660a64cdc5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d5ec6a85-b83e-465a-bae0-41accf8e3c5c' class='xr-var-data-in' type='checkbox'><label for='data-d5ec6a85-b83e-465a-bae0-41accf8e3c5c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Uncertainty estimation</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vx2006</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-f18f37ab-d0dc-47ed-8c41-422a12ce482e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f18f37ab-d0dc-47ed-8c41-422a12ce482e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4d21effe-a774-49e0-bdb6-2f0b4e0cd3de' class='xr-var-data-in' type='checkbox'><label for='data-4d21effe-a774-49e0-bdb6-2f0b4e0cd3de' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in x direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vy2006</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-2bbbcc52-62bc-4b29-a0e4-3ca5b75df937' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2bbbcc52-62bc-4b29-a0e4-3ca5b75df937' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-77ea5dd0-75e0-42f8-9d5f-1787a4ba26e2' class='xr-var-data-in' type='checkbox'><label for='data-77ea5dd0-75e0-42f8-9d5f-1787a4ba26e2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in y direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>err2006</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-f3eaebb7-88aa-42ef-92f4-100fbe8865db' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f3eaebb7-88aa-42ef-92f4-100fbe8865db' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-68c1f16c-a4f2-4be0-96c6-5e98ba4c6aba' class='xr-var-data-in' type='checkbox'><label for='data-68c1f16c-a4f2-4be0-96c6-5e98ba4c6aba' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Uncertainty estimation</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vx2007</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-080ce891-306b-48ef-a612-c3c1b51fc131' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-080ce891-306b-48ef-a612-c3c1b51fc131' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-48730ad0-f18f-4a02-a9ed-84694f4e3aea' class='xr-var-data-in' type='checkbox'><label for='data-48730ad0-f18f-4a02-a9ed-84694f4e3aea' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in x direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vy2007</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-4a6e5220-8e3c-4e77-8056-00a2696bbf9a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4a6e5220-8e3c-4e77-8056-00a2696bbf9a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-031dc20c-70a5-4d9a-936e-155c99bbac49' class='xr-var-data-in' type='checkbox'><label for='data-031dc20c-70a5-4d9a-936e-155c99bbac49' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in y direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>err2007</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-405990c4-828d-421a-a55e-5a329dcf6775' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-405990c4-828d-421a-a55e-5a329dcf6775' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f15ae186-3f7e-4235-a5a8-c12c708fe2ac' class='xr-var-data-in' type='checkbox'><label for='data-f15ae186-3f7e-4235-a5a8-c12c708fe2ac' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Uncertainty estimation</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vx2008</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-df43e57d-9d68-474b-a7bd-5bcc7510a8c4' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-df43e57d-9d68-474b-a7bd-5bcc7510a8c4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b3d95439-647a-4c7c-979d-530d9fd4bff0' class='xr-var-data-in' type='checkbox'><label for='data-b3d95439-647a-4c7c-979d-530d9fd4bff0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in x direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vy2008</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-ac0a5077-44a4-4d49-903b-d4b0955e275b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ac0a5077-44a4-4d49-903b-d4b0955e275b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b7e6c55b-fbe0-4a2f-add4-444199181268' class='xr-var-data-in' type='checkbox'><label for='data-b7e6c55b-fbe0-4a2f-add4-444199181268' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in y direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>err2008</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-280e3dd3-d8fb-42d3-814b-89900e587996' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-280e3dd3-d8fb-42d3-814b-89900e587996' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e13cc8c8-ec15-42b4-8bbe-6e40dec1b211' class='xr-var-data-in' type='checkbox'><label for='data-e13cc8c8-ec15-42b4-8bbe-6e40dec1b211' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Uncertainty estimation</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vx2009</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-d948d142-3f86-4fc0-85ba-7e1094cc7393' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d948d142-3f86-4fc0-85ba-7e1094cc7393' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c104e84b-32bd-43ec-9630-5151d4eac106' class='xr-var-data-in' type='checkbox'><label for='data-c104e84b-32bd-43ec-9630-5151d4eac106' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in x direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vy2009</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-6a83e6ae-5872-4ffd-89a2-b8a0c6d7d323' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6a83e6ae-5872-4ffd-89a2-b8a0c6d7d323' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e41509cc-681f-429f-8359-bda77f449c7d' class='xr-var-data-in' type='checkbox'><label for='data-e41509cc-681f-429f-8359-bda77f449c7d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in y direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>err2009</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-0c81961f-b2eb-44c9-9b33-7a0a5b063d24' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0c81961f-b2eb-44c9-9b33-7a0a5b063d24' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-65cb4499-ca39-4cca-90e1-290e5990e158' class='xr-var-data-in' type='checkbox'><label for='data-65cb4499-ca39-4cca-90e1-290e5990e158' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Uncertainty estimation</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vx2010</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-c6b099fc-c549-4968-9efd-4c2c192e667e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c6b099fc-c549-4968-9efd-4c2c192e667e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-126f2aa6-1215-4bd6-8414-41608c941b12' class='xr-var-data-in' type='checkbox'><label for='data-126f2aa6-1215-4bd6-8414-41608c941b12' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in x direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vy2010</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-6d06dbc5-3ec4-445b-900b-61728be58bad' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6d06dbc5-3ec4-445b-900b-61728be58bad' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-33b5b17a-4e4a-472a-b674-942ec3d43e9b' class='xr-var-data-in' type='checkbox'><label for='data-33b5b17a-4e4a-472a-b674-942ec3d43e9b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in y direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>err2010</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-7103d8bd-464e-4482-aa56-cde290397e50' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7103d8bd-464e-4482-aa56-cde290397e50' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7c42b0c7-3640-4194-ba76-9e29f7e50910' class='xr-var-data-in' type='checkbox'><label for='data-7c42b0c7-3640-4194-ba76-9e29f7e50910' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Uncertainty estimation</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vx2011</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-3e4f81ac-9616-4586-a310-a35c10d80225' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3e4f81ac-9616-4586-a310-a35c10d80225' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d0db7568-16cb-44e9-b709-1879e704f5e3' class='xr-var-data-in' type='checkbox'><label for='data-d0db7568-16cb-44e9-b709-1879e704f5e3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in x direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vy2011</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-38fbe33e-9dfb-4d08-9116-426722844416' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-38fbe33e-9dfb-4d08-9116-426722844416' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c37daf38-7398-4ab0-bd2d-3bac473c065b' class='xr-var-data-in' type='checkbox'><label for='data-c37daf38-7398-4ab0-bd2d-3bac473c065b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in y direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>err2011</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-43a6dc0a-31d4-4e92-b238-b93790404cd7' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-43a6dc0a-31d4-4e92-b238-b93790404cd7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b4c03b17-1996-4f51-b5c0-db4559c73161' class='xr-var-data-in' type='checkbox'><label for='data-b4c03b17-1996-4f51-b5c0-db4559c73161' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Uncertainty estimation</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vx2012</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-96d36ed1-2f2e-488f-84e6-2e09e800a082' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-96d36ed1-2f2e-488f-84e6-2e09e800a082' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-01d9c065-3125-4cde-9776-ac409bc379c2' class='xr-var-data-in' type='checkbox'><label for='data-01d9c065-3125-4cde-9776-ac409bc379c2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in x direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vy2012</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-a6120511-dc08-4be4-8c5d-e89eb0c26163' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a6120511-dc08-4be4-8c5d-e89eb0c26163' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-30a6a332-1f8e-43ec-b902-73a3192fd906' class='xr-var-data-in' type='checkbox'><label for='data-30a6a332-1f8e-43ec-b902-73a3192fd906' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in y direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>err2012</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-50bb2d7f-7915-497e-8a88-4fea922f8184' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-50bb2d7f-7915-497e-8a88-4fea922f8184' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5f1c13e6-211e-47b7-87b5-4df102641242' class='xr-var-data-in' type='checkbox'><label for='data-5f1c13e6-211e-47b7-87b5-4df102641242' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Uncertainty estimation</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>[400000 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-1c3edab7-1884-4238-a01a-403ab88547df' class='xr-section-summary-in' type='checkbox'  ><label for='section-1c3edab7-1884-4238-a01a-403ab88547df' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-09425c38-132d-43f6-9685-445f1894fcdc' class='xr-index-data-in' type='checkbox'/><label for='index-09425c38-132d-43f6-9685-445f1894fcdc' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-1581400.0, -1580950.0, -1580500.0, -1580050.0, -1579600.0, -1579150.0,
+       -1578700.0, -1578250.0, -1577800.0, -1577350.0,
+       ...
+       -1360900.0, -1360450.0, -1360000.0, -1359550.0, -1359100.0, -1358650.0,
+       -1358200.0, -1357750.0, -1357300.0, -1356850.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;x&#x27;, length=500))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-f7d6df5a-0836-4603-a8df-b3f31de322f3' class='xr-index-data-in' type='checkbox'/><label for='index-f7d6df5a-0836-4603-a8df-b3f31de322f3' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-703250.0, -702800.0, -702350.0, -701900.0, -701450.0, -701000.0,
+       -700550.0, -700100.0, -699650.0, -699200.0,
+       ...
+       -347750.0, -347300.0, -346850.0, -346400.0, -345950.0, -345500.0,
+       -345050.0, -344600.0, -344150.0, -343700.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;y&#x27;, length=800))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-7c073f6a-84ba-49b7-8f85-ae0539ca4671' class='xr-section-summary-in' type='checkbox'  ><label for='section-7c073f6a-84ba-49b7-8f85-ae0539ca4671' class='xr-section-summary' >Attributes: <span>(21)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Title :</span></dt><dd>ASE Time Series - Ice Velocity</dd><dt><span>Version :</span></dt><dd>1.0.0 (18Oct2013)</dd><dt><span>nx :</span></dt><dd>1707</dd><dt><span>ny :</span></dt><dd>2268</dd><dt><span>Projection :</span></dt><dd>         Polar Stereographic South</dd><dt><span>Ellipsoid :</span></dt><dd>          WGS-84</dd><dt><span>Longitude_of_origin :</span></dt><dd>0  degrees</dd><dt><span>Latitude_of_origin :</span></dt><dd>-90 degrees</dd><dt><span>Secant_latitude :</span></dt><dd>    -71 degrees</dd><dt><span>xmin :</span></dt><dd>      -1806625.0 m</dd><dt><span>ymax :</span></dt><dd>        227125.0 m</dd><dt><span>spacing :</span></dt><dd>          450.00 m</dd><dt><span>Creation_Time :</span></dt><dd>Sat Oct 19 10:49:00 2013</dd><dt><span>Summary_1 :</span></dt><dd>    This data set, part of the NASA Making Earth System Data Records for Use in Research Environments (MEaSUREs) Program, provides high-resolution, digital mosaics of ice motion in the Amundsen Sea Embayment (ASE) and West Antarctica, including Pine Island, Thwaites, Haynes, Pope, Smith, and Kohler glaciers. The mosaics were assembled from interferometric synthetic-aperture radar (InSAR) data acquired in 1996, 2000, 2002, and 2006-2012 by various satellites.</dd><dt><span>Notes_1 :</span></dt><dd>      The generation of this data set and its scientific interpretation are discussed in the following citation. We kindly request that you acknowledge the use of this data set by referencing the following citation:</dd><dt><span>Reference :</span></dt><dd>    Mouginot J., B. Scheuchl and E. Rignot (2012), Mapping of Ice Motion in Antarctica Using Synthetic-Aperture Radar Data, Remote Sensing, doi 10.3390/rs4092753</dd><dt><span>Notes_2 :</span></dt><dd>      Please also include the following data set reference, which identifies where to access these data.</dd><dt><span>Data_citation :</span></dt><dd>NSIDC Citation Rignot, E., J. Mouginot, and B. Scheuchl. 2013. MEaSUREs InSAR-based Ice Velocity of the Amundsen Sea Embayment, [indicate subset used]. Boulder, Colorado USA: NASA DAAC at the National Snow and Ice Data Center. Accessed on [date]. http://nsidc.org/data/nsidc-0545.html</dd><dt><span>More_information :</span></dt><dd>http://nsidc.org/data/nsidc-0545.html</dd><dt><span>Notes_3 :</span></dt><dd>         Data were processed at the Department of Earth System Science, University of California, Irvine. Final version completed on Sept 18, 2012.</dd><dt><span>Description :</span></dt><dd>Created a spatial subset of original dataset. Selected 500,1000 along x-dimension and 200,1000 along y-dimension</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">insar_vel</span><span class="o">.</span><span class="n">reorg_dataset</span><span class="p">()</span>
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+Dimensions:  (x: 500, y: 800, time: 10)
+Coordinates: (2)
+Dimensions without coordinates: time
+Data variables:
+    vx       (time, y, x) float32 nan nan nan nan nan ... nan nan nan nan nan
+    vy       (time, y, x) float32 nan nan nan nan nan ... nan nan nan nan nan
+    err      (time, y, x) float32 nan nan nan nan nan ... nan nan nan nan nan
+Attributes: (2)</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-c48fa0df-30bf-41ba-b53d-9c2a349d73db' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-c48fa0df-30bf-41ba-b53d-9c2a349d73db' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>x</span>: 500</li><li><span class='xr-has-index'>y</span>: 800</li><li><span>time</span>: 10</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-52614c94-0922-4ba4-9136-a6b43889561a' class='xr-section-summary-in' type='checkbox'  ><label for='section-52614c94-0922-4ba4-9136-a6b43889561a' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-1.581e+06 ... -1.357e+06</div><input id='attrs-0e41a961-f1b5-4e35-91b3-545540be4f38' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-0e41a961-f1b5-4e35-91b3-545540be4f38' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ec5d3196-24ad-4466-8689-6ba6af31f40b' class='xr-var-data-in' type='checkbox'><label for='data-ec5d3196-24ad-4466-8689-6ba6af31f40b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-1581400., -1580950., -1580500., ..., -1357750., -1357300., -1356850.],
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-7.032e+05 ... -3.437e+05</div><input id='attrs-657d04c8-da08-40ca-8bbb-da6313f0746c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-657d04c8-da08-40ca-8bbb-da6313f0746c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8f0106dd-3b19-4168-b9d0-debbf7742fb9' class='xr-var-data-in' type='checkbox'><label for='data-8f0106dd-3b19-4168-b9d0-debbf7742fb9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-703250., -702800., -702350., ..., -344600., -344150., -343700.],
+      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-3f137bfa-9eea-4ca7-9ee2-446c8c1eae82' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3f137bfa-9eea-4ca7-9ee2-446c8c1eae82' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>vx</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-694ffbb9-848c-4ad5-b237-c4f9630e78e7' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-694ffbb9-848c-4ad5-b237-c4f9630e78e7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cda9ce41-a095-4ad1-8775-8ee794bd7646' class='xr-var-data-in' type='checkbox'><label for='data-cda9ce41-a095-4ad1-8775-8ee794bd7646' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in x direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>array([[[         nan,          nan,          nan, ...,          nan,
+                  nan,          nan],
+        [         nan,          nan,          nan, ...,          nan,
+                  nan,          nan],
+        [         nan,          nan,          nan, ...,          nan,
+                  nan,          nan],
+        ...,
+        [  9.245862  ,  18.962032  ,  10.641378  , ..., -55.529568  ,
+         -55.257446  , -55.041527  ],
+        [  8.298822  ,  15.363108  ,   0.68973774, ..., -55.069824  ,
+         -54.748978  , -54.98798   ],
+        [  9.707195  ,  10.79028   ,  -6.217383  , ..., -54.61062   ,
+         -55.119358  , -54.695946  ]],
+
+       [[         nan,          nan,          nan, ...,          nan,
+                  nan,          nan],
+        [         nan,          nan,          nan, ...,          nan,
+                  nan,          nan],
+        [         nan,          nan,          nan, ...,          nan,
+                  nan,          nan],
+...
+        [-62.01851   ,  17.688725  ,   9.304073  , ...,          nan,
+                  nan,          nan],
+        [-71.63986   ,  18.476013  ,  11.763421  , ...,          nan,
+                  nan,          nan],
+        [-69.4639    , -15.999552  ,   2.3954556 , ...,          nan,
+                  nan,          nan]],
+
+       [[         nan,          nan,          nan, ...,          nan,
+                  nan,          nan],
+        [         nan,          nan,          nan, ...,          nan,
+                  nan,          nan],
+        [         nan,          nan,          nan, ...,          nan,
+                  nan,          nan],
+        ...,
+        [         nan,          nan,          nan, ...,          nan,
+                  nan,          nan],
+        [         nan,          nan,          nan, ...,          nan,
+                  nan,          nan],
+        [         nan,          nan,          nan, ...,          nan,
+                  nan,          nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vy</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-00f2e9b4-07f4-44ac-bd79-32303379882e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-00f2e9b4-07f4-44ac-bd79-32303379882e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-84c8db52-a443-40c5-a677-1dece87bccc9' class='xr-var-data-in' type='checkbox'><label for='data-84c8db52-a443-40c5-a677-1dece87bccc9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in y direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>array([[[        nan,         nan,         nan, ...,         nan,
+                 nan,         nan],
+        [        nan,         nan,         nan, ...,         nan,
+                 nan,         nan],
+        [        nan,         nan,         nan, ...,         nan,
+                 nan,         nan],
+        ...,
+        [ -2.5973659,  19.61968  , 112.79682  , ..., -59.8788   ,
+         -59.823605 , -60.030643 ],
+        [ -2.479643 ,  39.13751  , 126.281235 , ..., -59.822342 ,
+         -59.616657 , -59.840645 ],
+        [ -2.6464138,  56.779583 , 178.12027  , ..., -60.14886  ,
+         -61.05642  , -60.416237 ]],
+
+       [[        nan,         nan,         nan, ...,         nan,
+                 nan,         nan],
+        [        nan,         nan,         nan, ...,         nan,
+                 nan,         nan],
+        [        nan,         nan,         nan, ...,         nan,
+                 nan,         nan],
+...
+        [135.70012  , 147.55652  , 187.32913  , ...,         nan,
+                 nan,         nan],
+        [142.75775  , 166.97348  , 207.43451  , ...,         nan,
+                 nan,         nan],
+        [143.83646  , 238.20383  , 244.74113  , ...,         nan,
+                 nan,         nan]],
+
+       [[        nan,         nan,         nan, ...,         nan,
+                 nan,         nan],
+        [        nan,         nan,         nan, ...,         nan,
+                 nan,         nan],
+        [        nan,         nan,         nan, ...,         nan,
+                 nan,         nan],
+        ...,
+        [        nan,         nan,         nan, ...,         nan,
+                 nan,         nan],
+        [        nan,         nan,         nan, ...,         nan,
+                 nan,         nan],
+        [        nan,         nan,         nan, ...,         nan,
+                 nan,         nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>err</span></div><div class='xr-var-dims'>(time, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-7b954b84-1389-46fd-830c-bb9d91c1e78e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7b954b84-1389-46fd-830c-bb9d91c1e78e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2aebc41b-24b1-4d5b-91d9-ab723b4bf4a6' class='xr-var-data-in' type='checkbox'><label for='data-2aebc41b-24b1-4d5b-91d9-ab723b4bf4a6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Uncertainty estimation</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div><div class='xr-var-data'><pre>array([[[      nan,       nan,       nan, ...,       nan,       nan,
+               nan],
+        [      nan,       nan,       nan, ...,       nan,       nan,
+               nan],
+        [      nan,       nan,       nan, ...,       nan,       nan,
+               nan],
+        ...,
+        [3.       , 3.       , 3.       , ..., 1.7320508, 1.7320508,
+         1.7320508],
+        [3.       , 3.       , 3.       , ..., 1.7320508, 1.7320508,
+         1.7320508],
+        [3.       , 3.       , 2.1213202, ..., 1.7320508, 1.7320508,
+         1.7320508]],
+
+       [[      nan,       nan,       nan, ...,       nan,       nan,
+               nan],
+        [      nan,       nan,       nan, ...,       nan,       nan,
+               nan],
+        [      nan,       nan,       nan, ...,       nan,       nan,
+               nan],
+...
+        [4.2426405, 3.       , 3.       , ...,       nan,       nan,
+               nan],
+        [4.2426405, 3.       , 3.       , ...,       nan,       nan,
+               nan],
+        [4.2426405, 3.       , 3.       , ...,       nan,       nan,
+               nan]],
+
+       [[      nan,       nan,       nan, ...,       nan,       nan,
+               nan],
+        [      nan,       nan,       nan, ...,       nan,       nan,
+               nan],
+        [      nan,       nan,       nan, ...,       nan,       nan,
+               nan],
+        ...,
+        [      nan,       nan,       nan, ...,       nan,       nan,
+               nan],
+        [      nan,       nan,       nan, ...,       nan,       nan,
+               nan],
+        [      nan,       nan,       nan, ...,       nan,       nan,
+               nan]]], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d93a1d1e-5b0c-4f74-b103-9649e17c2b95' class='xr-section-summary-in' type='checkbox'  ><label for='section-d93a1d1e-5b0c-4f74-b103-9649e17c2b95' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-3350d375-34e6-4c59-b127-dde721676cbf' class='xr-index-data-in' type='checkbox'/><label for='index-3350d375-34e6-4c59-b127-dde721676cbf' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-1581400.0, -1580950.0, -1580500.0, -1580050.0, -1579600.0, -1579150.0,
+       -1578700.0, -1578250.0, -1577800.0, -1577350.0,
+       ...
+       -1360900.0, -1360450.0, -1360000.0, -1359550.0, -1359100.0, -1358650.0,
+       -1358200.0, -1357750.0, -1357300.0, -1356850.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;x&#x27;, length=500))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-4b3d2389-5b6d-46bc-9657-65a714f94dfe' class='xr-index-data-in' type='checkbox'/><label for='index-4b3d2389-5b6d-46bc-9657-65a714f94dfe' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-703250.0, -702800.0, -702350.0, -701900.0, -701450.0, -701000.0,
+       -700550.0, -700100.0, -699650.0, -699200.0,
+       ...
+       -347750.0, -347300.0, -346850.0, -346400.0, -345950.0, -345500.0,
+       -345050.0, -344600.0, -344150.0, -343700.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;y&#x27;, length=800))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-22fdb584-1ed0-4784-9544-cc43c36bbba8' class='xr-section-summary-in' type='checkbox'  ><label for='section-22fdb584-1ed0-4784-9544-cc43c36bbba8' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Content :</span></dt><dd>Ice velocity in x direction</dd><dt><span>Units :</span></dt><dd>  meter/year</dd></dl></div></li></ul></div></div></div></div>
+</div>
+</section>
+<section id="example-3-creating-your-own-workflows-with-locally-stored-corrections">
+<h2>Example 3: creating your own workflows with locally stored corrections<a class="headerlink" href="#example-3-creating-your-own-workflows-with-locally-stored-corrections" title="Permalink to this headline">#</a></h2>
+<p>Consider someone who frequently converts their elevations to be relative to the geoid (rather than the ellipsoid) using a custom, local conversion (otherwise, we’d recommend using an established conversion library like <a class="reference external" href="https://pypi.org/project/pyproj/">pyproj</a> to switch between datums).</p>
+<p>An accessor provides an elegant way to build (once) and apply (as often as needed!) this custom conversion on top of the existing xarray ecosystem without the need to copy-paste the code into the start of each project. By standardizing our approach and adding a few sanity checks within the accessor, we also eliminate the risk of accidentally applying the correction multiple times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+
+<span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataset_accessor</span><span class="p">(</span><span class="s2">&quot;geoidxr&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">GeoidXR</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An extension for an XArray dataset that will calculate geoidal elevations from a local source file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ----------------------------------------------------------------------</span>
+    <span class="c1"># Constructors</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">xrds</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span> <span class="o">=</span> <span class="n">xrds</span>
+        <span class="c1"># Running this function on init will check that my dataset has all the needed dimensions and variables</span>
+        <span class="c1"># as specific to my workflow, saving time and headache later if they were missing and the computation fails</span>
+        <span class="c1"># partway through.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">req_dim</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;dtime&#39;</span><span class="p">],</span> <span class="n">req_vars</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;elevation&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;dtime&#39;</span><span class="p">]}</span>
+        <span class="p">)</span>
+
+    <span class="c1"># ----------------------------------------------------------------------</span>
+    <span class="c1"># Methods</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">req_vars</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Make sure the xarray dataset has the correct dimensions and variables</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        req_dim : list of str</span>
+<span class="sd">            List of all required dimension names</span>
+<span class="sd">        req_vars : list of str</span>
+<span class="sd">            List of all required variable  names</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">req_dim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="n">dim</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">req_dim</span><span class="p">]):</span>
+                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Required dimensions are missing&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">req_vars</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="n">var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span><span class="o">.</span><span class="n">variables</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">req_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">()]):</span>
+                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Required variables are missing&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Notice that &#39;geoid&#39; has been added to the req_vars list</span>
+    <span class="k">def</span> <span class="nf">to_geoid</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">req_dim</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dtime&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span>
+        <span class="n">req_vars</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;elevation&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;dtime&#39;</span><span class="p">,</span> <span class="s1">&#39;geoid&#39;</span><span class="p">]},</span>
+        <span class="n">source</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get geoid layer from your local file, which is provided to the function as &quot;source&quot;,</span>
+<span class="sd">        and apply the offset to all elevation values.</span>
+<span class="sd">        Adds &#39;geoid_offset&#39; keyword to &quot;offsets&quot; attribute so you know the geoid offset was applied.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        req_dim : list of str</span>
+<span class="sd">            List of all required dimension names.</span>
+<span class="sd">        req_vars : list of str</span>
+<span class="sd">            List of all required variable  names</span>
+<span class="sd">        source : str</span>
+<span class="sd">            Full path to your source file containing geoid offsets</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># check to make sure you haven&#39;t already run this function (and are thus applying the offset twice)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;offset_names&#39;</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="s1">&#39;geoid_offset&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">values</span><span class="p">,</span> <span class="s2">&quot;You&#39;ve already applied the geoid offset!&quot;</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="n">values</span><span class="p">])</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;geoid_offset&#39;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;geoid_offset&#39;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req_dim</span><span class="p">,</span> <span class="n">req_vars</span><span class="p">)</span>
+
+        <span class="c1"># read in your geoid values</span>
+        <span class="c1"># WARNING: this implementation assumes your geoid values are in the same CRS and grid as the data you are applying</span>
+        <span class="c1"># them to. If not, you will need to reproject and/or resample them to match the data to which you are applying them.</span>
+        <span class="c1"># That step is not included here to emphasize the accessor aspect of the workflow.</span>
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">source</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+            <span class="n">geoid</span> <span class="o">=</span> <span class="n">src</span><span class="p">[</span><span class="s1">&#39;geoid_varname&#39;</span><span class="p">]</span>
+
+        <span class="c1"># As noted above, this step will fail or produce unreliable results if your data is not properly gridded</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span><span class="p">[</span><span class="s1">&#39;elevation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span><span class="o">.</span><span class="n">elevation</span> <span class="o">-</span> <span class="n">geoid</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;offset_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, each time we want to convert our ellipsoid data to the geoid, we only have to run one line of code, and it will also perform a multitude of checks for us to make sure we’re performing exactly the operation we expect. Imagine the possibilities (and decrease in frustration)!</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">geoidxr</span><span class="o">.</span><span class="n">to_geoid</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;/Path/to/Custom/source/file.nc&#39;</span><span class="p">)</span>
+<span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">File ~/micromamba/envs/xarray-tutorial/lib/python3.11/site-packages/xarray/core/extensions.py:38,</span> in <span class="ni">_CachedAccessor.__get__</span><span class="nt">(self, obj, cls)</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">38</span>     <span class="n">accessor_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_accessor</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span>     <span class="c1"># __getattr__ on data object will swallow any AttributeErrors</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="c1"># raised when initializing the accessor, so we need to raise as</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="c1"># something else (GH933):</span>
+
+<span class="nn">Cell In[7], line 22,</span> in <span class="ni">GeoidXR.__init__</span><span class="nt">(self, xrds)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1"># Running this function on init will check that my dataset has all the needed dimensions and variables</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="c1"># as specific to my workflow, saving time and headache later if they were missing and the computation fails</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="c1"># partway through.</span>
+<span class="ne">---&gt; </span><span class="mi">22</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">req_dim</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;dtime&#39;</span><span class="p">],</span> <span class="n">req_vars</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;elevation&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;dtime&#39;</span><span class="p">]}</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="p">)</span>
+
+<span class="nn">Cell In[7], line 47,</span> in <span class="ni">GeoidXR._validate</span><span class="nt">(self, req_dim, req_vars)</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span> <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="n">var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xrds</span><span class="o">.</span><span class="n">variables</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">req_vars</span><span class="o">.</span><span class="n">keys</span><span class="p">()]):</span>
+<span class="ne">---&gt; </span><span class="mi">47</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Required variables are missing&quot;</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: Required variables are missing
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">geoidxr</span><span class="o">.</span><span class="n">to_geoid</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;/Path/to/Custom/source/file.nc&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">ds</span>
+
+<span class="nn">File ~/micromamba/envs/xarray-tutorial/lib/python3.11/site-packages/xarray/core/extensions.py:43,</span> in <span class="ni">_CachedAccessor.__get__</span><span class="nt">(self, obj, cls)</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span>     <span class="n">accessor_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_accessor</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span>     <span class="c1"># __getattr__ on data object will swallow any AttributeErrors</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="c1"># raised when initializing the accessor, so we need to raise as</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="c1"># something else (GH933):</span>
+<span class="ne">---&gt; </span><span class="mi">43</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;error initializing </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">!r}</span><span class="s2"> accessor.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">45</span> <span class="n">cache</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">accessor_obj</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span> <span class="k">return</span> <span class="n">accessor_obj</span>
+
+<span class="ne">RuntimeError</span>: error initializing &#39;geoidxr&#39; accessor.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./advanced/accessors"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="accessors.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../workshops/scipy2023/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SciPy 2023</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-create-a-custom-accessor">Why create a custom accessor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#easy-steps-to-create-your-own-accessor">Easy steps to create your own accessor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-accessing-scipy-functionality">Example 1: accessing scipy functionality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-creating-your-own-workflows">Example 2: creating your own workflows</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-creating-your-own-workflows-with-locally-stored-corrections">Example 3: creating your own workflows with locally stored corrections</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Xarray Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -194,7 +194,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../intermediate/01-high-level-computation-patterns.html">High-level computational patterns</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intermediate/xarray_and_dask.html">Parallel computing with Dask</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../intermediate/xarray_ecosystem.html">A Tour of the Xarray Ecosystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intermediate/xarray_ecosystem.html">A Tour of Xarray Customizations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intermediate/hvplot.html">Interactive plots using hvplot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intermediate/cmip6-cloud.html">Accessing remote data stored on the cloud</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Re-organize InSAR ice velocity data</a></li>
@@ -221,6 +221,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../advanced/backends/2.Backend_with_Lazy_Loading.html">Binary data with lazy loading</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/accessors/01_accessor_examples.html">Creating custom accessors</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
 <ul class="nav bd-sidenav">
@@ -500,6 +501,10 @@ document.write(`
 <p>The dataset we will use contains InSAR-derived ice velocity for 10 years over the Amundsen Sea Embayment in Antarctica. The data is downloaded from: <a class="reference external" href="https://nsidc.org/data/NSIDC-0545/versions/1">https://nsidc.org/data/NSIDC-0545/versions/1</a> but this example uses only a subset of the full dataset.</p>
 <p>Downloaded data is <code class="docutils literal notranslate"><span class="pre">.hdr</span></code> and <code class="docutils literal notranslate"><span class="pre">.dat</span></code> files for each year, and a <code class="docutils literal notranslate"><span class="pre">.nc</span></code> for all of the years together.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">.nc</span></code> object is a dataset with dimensions x,y and data vars for each year. So for each year there are <code class="docutils literal notranslate"><span class="pre">vx</span></code>,<code class="docutils literal notranslate"><span class="pre">vy</span></code>,<code class="docutils literal notranslate"><span class="pre">err</span></code> vars. We’d like to re-organize this so that there are 3 variables (<code class="docutils literal notranslate"><span class="pre">vx</span></code>, <code class="docutils literal notranslate"><span class="pre">vy</span></code> and <code class="docutils literal notranslate"><span class="pre">err</span></code>) that exist along a time dimension.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These steps were turned into a accessor/extension example, which can be viewed <a class="reference internal" href="../advanced/accessors/01_accessor_examples.html"><span class="doc std std-doc">here</span></a>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
