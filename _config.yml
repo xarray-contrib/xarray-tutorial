@@ -18,7 +18,8 @@ parse:
   # https://jupyterbook.org/content/content-blocks.html?highlight=myst%20substitution#define-substitutions-for-your-whole-book
   # https://jupyterbook.org/content/content-blocks.html#using-substitutions-in-links
   myst_substitutions:
-    xarray_docs: https://xarray.dev
+    xarray_homepage: https://xarray.dev
+    xarray_docs: https://docs.xarray.dev
     xarray_repo: https://github.com/pydata/xarray
     xarray_forum: https://github.com/pydata/xarray/discussions
   myst_enable_extensions:
@@ -66,6 +67,7 @@ sphinx:
     # https://github.com/wpilibsuite/sphinxext-rediraffe
     - sphinxext.rediraffe
   config:
+    language: en # accessibility
     # application/vnd.holoviews_load.v0+json, application/vnd.holoviews_exec.v0+json
     suppress_warnings: ['mystnb.unknown_mime_type']
     notfound_context:
