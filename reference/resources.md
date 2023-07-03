@@ -38,4 +38,4 @@ material on Xarray and related packages.
 
 ## Electrophysiology
 
-1.  ["Analyzing intracranial electrophysiology data with xarray"](https://chrisholdgraf.com/blog/2019/2019-10-22-xarray-neuro/19-10-22-xarray-neuro/)
+1.  ["Analyzing intracranial electrophysiology data with xarray"](https://chrisholdgraf.com/blog/2019/2019-10-22-xarray-neuro/)
