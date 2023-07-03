@@ -35,7 +35,7 @@ cd xarray-tutorial
 
 You'll need `conda` or `mamba`, which can be installed from https://github.com/conda-forge/miniforge
 
-We also use [conda-lock](https://conda-incubator.github.io/conda-lock/) to ensure we have reproducible environments across different operating systems
+We also use [conda-lock](https://conda.github.io/conda-lock/) to ensure we have reproducible environments across different operating systems
 
 We also use [pre-commit hooks](https://pre-commit.com) to run styling and other checks before committing code.
 
