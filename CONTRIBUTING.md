@@ -1,4 +1,4 @@
-# Contributing
+# Contributing Guide
 
 This tutorial repository is a great opportunity to start contributing to Xarray.
 
