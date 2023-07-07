@@ -20,13 +20,13 @@ For the live tutorial, we will be using the SciPy 2023 Nebari JupyterHub at [sci
 
 You can follow [this participants' guide to register and sign-in to Nebari](https://docs.google.com/document/d/1vnWhNyUBRpILb2MAHQfTmZQY3pCIaCmroV9ke49nQlE/edit), and:
 
-* Use this link to clone the tutorial materials:
+- Use this link to clone the tutorial materials:
 
 ```
 https://github.com/xarray-contrib/xarray-tutorial.git
 ```
 
-* Select `global-global-xarray` environment for the notebooks when prompted.
+- Select `global-global-xarray` environment for the notebooks when prompted.
 
 ### Github Codespaces
 
