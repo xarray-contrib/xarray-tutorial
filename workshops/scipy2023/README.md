@@ -14,7 +14,7 @@ Organized by:
 
 ## Instructions
 
-See instructions to set up the environment for running the tutorial material [here](get-started).
+### Nebari
 
 For the live tutorial, we will be using the SciPy 2023 Nebari JupyterHub at [scipy.quansight.dev](https://scipy.quansight.dev/)
 
@@ -27,6 +27,10 @@ https://github.com/xarray-contrib/xarray-tutorial.git
 ```
 
 - Select `global-global-xarray` environment for the notebooks when prompted.
+
+### Running Locally
+
+See instructions to set up the environment for running the tutorial material [here](get-started).
 
 ### Github Codespaces
 
