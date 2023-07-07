@@ -35,4 +35,16 @@ Ask questions on the Xarray Discussion Forum
 
 ````
 
+## Citation
+
 ✏️ To cite this material, you can use the recommended [Xarray citation](https://docs.xarray.dev/en/stable/getting-started-guide/faq.html#how-should-i-cite-xarray): {cite:p}`hoyerhamman2017`, {cite:p}`xarray_v202230`.
+
+## Acknowledgements
+
+This website is the result of many contributions from the Xarray community! We're very grateful for everyone's volunteered effort as well as [sponsored development](https://xarray.dev/#sponsors). Funding for SciPy 2022, SciPy 2023 tutorial material development specifically was supported by NASA's Open Source Tools, Frameworks, and Libraries Program (award 80NSSC22K0345).
+
+## Bibliography
+
+```{bibliography}
+:style: plain
+```
