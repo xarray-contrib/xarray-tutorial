@@ -34,6 +34,11 @@ jupyter lab
 
 Contributions are welcome and greatly appreciated! See our [CONTRIBUTING.md](./CONTRIBUTING.md) document.
 
+Thanks to our contributors so far!
+
+[![Contributors](https://contrib.rocks/image?repo=xarray-contrib/xarray-tutorial)](https://github.com/xarray-contrib/xarray-tutorial/graphs/contributors)
+
+
 ## Acknowledgements
 
 This website is the result of many contributions from the Xarray community! We're very grateful for everyone's volunteered effort as well as [sponsored development](https://xarray.dev/#sponsors). Funding for SciPy 2022, SciPy 2023 tutorial materialdevelopment specifically was supported by NASA's Open Source Tools, Frameworks, and Libraries Program (award 80NSSC22K0345).
