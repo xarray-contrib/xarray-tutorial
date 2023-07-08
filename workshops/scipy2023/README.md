@@ -61,6 +61,7 @@ Once your codespace is launched, the following happens:
 ```{dropdown} Indexing
 -{doc}`../../fundamentals/02.1_indexing_Basic`
 -{doc}`../../intermediate/02.2_indexing_Advanced`
+-{doc}`../../intermediate/02.3_indexing_BooleanMasking`
 
 ```
 
