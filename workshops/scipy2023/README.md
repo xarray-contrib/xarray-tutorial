@@ -66,8 +66,8 @@ Once your codespace is launched, the following happens:
 {doc}`../../intermediate/01-high-level-computation-patterns`
 ```
 
-```{dropdown} Wrapping other arrays
-
+```{dropdown} Wrapping other arrays: dask
+{doc}`../../intermediate/xarray_and_dask`
 ```
 
 ```{dropdown} Wrapping custom computation
