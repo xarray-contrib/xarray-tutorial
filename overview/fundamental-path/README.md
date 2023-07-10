@@ -1,4 +1,4 @@
-# Fundamental Learning Path
+# Fundamentals Learning Path
 
 This syllabus comes from Scipy 2022 tutorial workshop.
 This path covers fundamental Xarray concepts with
@@ -31,9 +31,7 @@ _Below are links to sections of this website that are part of this journey_:
 ```
 
 ```{dropdown} Working with Labeled Data
-{doc}`../../fundamentals/02.1_working_with_labeled_data`
-
-
+{doc}`../../fundamentals/02.1_indexing_Basic`
 ```
 
 ```{dropdown} Computation

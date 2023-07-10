@@ -6,7 +6,9 @@ parts:
     chapters:
       - file: overview/get-started.md
       - file: overview/xarray-in-45-min
-      - file: overview/fundamental-path/README.md
+      - file: overview/learning-paths.md
+        sections:
+          - file: overview/fundamental-path/README.md
 
   - caption: Fundamentals
     chapters:
@@ -17,7 +19,7 @@ parts:
           - file: fundamentals/01.1_io
       - file: fundamentals/02_labeled_data.md
         sections:
-          - file: fundamentals/02.1_working_with_labeled_data
+          - file: fundamentals/02.1_indexing_Basic.ipynb
           - file: fundamentals/02.2_manipulating_dimensions
       - file: fundamentals/03_computation.md
         sections:
@@ -35,11 +37,17 @@ parts:
   - caption: Intermediate
     chapters:
       - file: intermediate/01-high-level-computation-patterns
+      - file: intermediate/indexing/indexing
+        sections:
+          - file: intermediate/indexing/advanced-indexing.ipynb
+          - file: intermediate/indexing/boolean-masking-indexing.ipynb
       - file: intermediate/xarray_and_dask
       - file: intermediate/xarray_ecosystem
       - file: intermediate/hvplot
       - file: intermediate/cmip6-cloud
-      - file: data_cleaning/ice_velocity.ipynb
+      - file: data_cleaning/data_cleaning.md
+        sections:
+          - file: data_cleaning/ice_velocity
 
   - caption: Advanced
     chapters:
@@ -81,16 +89,8 @@ parts:
           - file: workshops/online-tutorial-series/02_indexing
           - file: workshops/online-tutorial-series/03_computation
 
-  - caption: Domain Specific
-    chapters:
-      - url: https://anopheles-genomic-surveillance.github.io/workshop-5/module-1-xarray.html
-        title: Genomics
-      - url: https://predictablynoisy.com/posts/2019/2019-10-22-xarray-neuro/
-        title: Electrophysiology
-
   - caption: Reference
     chapters:
+      - file: CONTRIBUTING
       - file: reference/resources
       - file: reference/glossary
-      - file: reference/bibliography
-      - file: reference/acknowledgements

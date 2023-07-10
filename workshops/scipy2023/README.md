@@ -63,15 +63,19 @@ Once your codespace is launched, the following happens:
 ```
 
 ```{dropdown} Indexing
+-{doc}`../../fundamentals/02.1_indexing_Basic`
 
+-{doc}`../../intermediate/indexing/boolean-masking-indexing`
+
+-{doc}`../../intermediate/indexing/advanced-indexing`
 ```
 
 ```{dropdown} Computational Patterns
 {doc}`../../intermediate/01-high-level-computation-patterns`
 ```
 
-```{dropdown} Wrapping other arrays
-
+```{dropdown} Wrapping other arrays: dask
+{doc}`../../intermediate/xarray_and_dask`
 ```
 
 ```{dropdown} Wrapping custom computation
