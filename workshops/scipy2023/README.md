@@ -63,7 +63,7 @@ Once your codespace is launched, the following happens:
 ```
 
 ```{dropdown} Indexing
--{doc}`../../intermediate/indexing/advanced-indexing`
+{doc}`../../intermediate/indexing/advanced-indexing`
 ```
 
 ```{dropdown} Computational Patterns
