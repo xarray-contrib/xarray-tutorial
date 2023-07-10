@@ -16,7 +16,7 @@ All notebooks can be run via the Mybinder.org 'Launch Binder' badge at the top o
 
 #### Github Codespaces
 
-This tutorial is available to run within [Github Codespaces](https://github.com/features/codespaces) - "a development environment that's hosted in the cloud" - with the conda environment specification in the [`conda-lock.yml`](../../conda/conda-lock.yml) file.
+This tutorial is available to run within [Github Codespaces](https://github.com/features/codespaces) - "a development environment that's hosted in the cloud" - with the conda environment specification in the [`conda-lock.yml`](conda/conda-lock.yml) file.
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/xarray-contrib/xarray-tutorial/tree/main)
 
