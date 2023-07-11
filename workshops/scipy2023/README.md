@@ -24,8 +24,6 @@ You can follow [this participants' guide to register and sign-in to Nebari](http
 
 Once you see the Jupyterlab interface spun up, do the following:
 
-- Choose the "Medium instance for Xarray" option.
-
 - Open a Terminal
 
 - Clone the tutorial materials:
