@@ -18,7 +18,11 @@ Organized by:
 
 For the live tutorial, we will be using the SciPy 2023 Nebari JupyterHub at [scipy.quansight.dev](https://scipy.quansight.dev/)
 
-You can follow [this participants' guide to register and sign-in to Nebari](https://docs.google.com/document/d/1vnWhNyUBRpILb2MAHQfTmZQY3pCIaCmroV9ke49nQlE/edit), and:
+You can follow [this participants' guide to register and sign-in to Nebari](https://docs.google.com/document/d/1vnWhNyUBRpILb2MAHQfTmZQY3pCIaCmroV9ke49nQlE/edit).
+
+**NOTE: When you're in `Server Options` page, select the `Medium Instance for xarray` for the machine instance for this tutorial.**
+
+Once you see the Jupyterlab interface spun up, do the following:
 
 - Open a Terminal
 
@@ -63,7 +67,11 @@ Once your codespace is launched, the following happens:
 ```
 
 ```{dropdown} Indexing
+{doc}`../../fundamentals/02.1_indexing_Basic`
+
 {doc}`../../intermediate/indexing/advanced-indexing`
+
+{doc}`../../intermediate/indexing/boolean-masking-indexing`
 ```
 
 ```{dropdown} Computational Patterns
