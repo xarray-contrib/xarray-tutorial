@@ -1382,7 +1382,7 @@ Attributes:
 choice if your function can handle dask arrays and won’t compute the result unless
 explicitly requested.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dask=&quot;parallelized&quot;</span></code>. This applies the user function over blocks of the dask
-array using <code class="docutils literal notranslate"><span class="pre">dask.array.blockwise</span></code>. This is useful when your function cannot
+array using <code class="docutils literal notranslate"><span class="pre">dask.array.apply_gufunc</span></code>. This is useful when your function cannot
 handle dask arrays natively (e.g. scipy API).</p></li>
 </ol>
 <div class="cell tag_raises-exception docutils container">
