@@ -45,7 +45,11 @@ Once your codespace is launched, the following happens:
 ```
 
 ```{dropdown} Indexing
+{doc}`../../fundamentals/02.1_indexing_Basic`
+
 {doc}`../../intermediate/indexing/advanced-indexing`
+
+{doc}`../../intermediate/indexing/boolean-masking-indexing`
 ```
 
 ```{dropdown} Computational Patterns

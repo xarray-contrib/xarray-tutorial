@@ -6,7 +6,7 @@ permissions:
   pull-requests: write # allow surge-preview to create/update PR comments
 
 concurrency:
-  group: 'preview'
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
