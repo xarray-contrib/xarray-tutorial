@@ -14,28 +14,6 @@ Organized by:
 
 ## Instructions
 
-### Nebari
-
-For the live tutorial, we will be using the SciPy 2023 Nebari JupyterHub at [scipy.quansight.dev](https://scipy.quansight.dev/)
-
-You can follow [this participants' guide to register and sign-in to Nebari](https://docs.google.com/document/d/1vnWhNyUBRpILb2MAHQfTmZQY3pCIaCmroV9ke49nQlE/edit).
-
-**NOTE: When you're in `Server Options` page, select the `Medium Instance for xarray` for the machine instance for this tutorial.**
-
-Once you see the Jupyterlab interface spun up, do the following:
-
-- Open a Terminal
-
-- Clone the tutorial materials:
-
-```
-git clone https://github.com/xarray-contrib/xarray-tutorial.git
-```
-
-- Navigate to `xarray-tutorial/workshops/scipy2023/index.ipynb`
-
-- Select `global-global-xarray` environment for the notebooks when prompted.
-
 ### Running Locally
 
 See instructions to set up the environment for running the tutorial material [here](get-started).
