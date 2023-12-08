@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Thinking like Xarray</title>
+    <title>Data Tidying</title>
   
   
   
@@ -69,11 +69,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'workshops/thinking-like-xarray/README';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intermediate/data_cleaning/05.1_intro';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Xarray Online Tutorial" href="../online-tutorial-series/README.html" />
-    <link rel="prev" title="Oceanhackweek 2020" href="../oceanhackweek2020/README.html" />
+    <link rel="next" title="Examples" href="05.2_examples.html" />
+    <link rel="prev" title="Accessing remote data stored on the cloud" href="../cmip6-cloud.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -195,22 +195,22 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../intermediate/01-high-level-computation-patterns.html">Computational Patterns</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../intermediate/indexing/indexing.html">Indexing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../intermediate/indexing/advanced-indexing.html">Advanced Indexing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../intermediate/indexing/boolean-masking-indexing.html">Boolean Indexing &amp; Masking</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-high-level-computation-patterns.html">Computational Patterns</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../indexing/indexing.html">Indexing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/advanced-indexing.html">Advanced Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/boolean-masking-indexing.html">Boolean Indexing &amp; Masking</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../intermediate/xarray_and_dask.html">Parallel computing with Dask</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../intermediate/xarray_ecosystem.html">A Tour of Xarray Customizations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../intermediate/hvplot.html">Interactive plots using hvplot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../intermediate/cmip6-cloud.html">Accessing remote data stored on the cloud</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../intermediate/data_cleaning/05.1_intro.html">Data Tidying</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../intermediate/data_cleaning/05.2_examples.html">Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../intermediate/data_cleaning/05.3_ice_velocity.html">Re-organize InSAR ice velocity data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../intermediate/data_cleaning/05.4_contributing.html">Contributing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../intermediate/data_cleaning/05.5_scipy_talk.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xarray_and_dask.html">Parallel computing with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xarray_ecosystem.html">A Tour of Xarray Customizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hvplot.html">Interactive plots using hvplot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cmip6-cloud.html">Accessing remote data stored on the cloud</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Data Tidying</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="05.2_examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.3_ice_velocity.html">Re-organize InSAR ice velocity data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.4_contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.5_scipy_talk.html">Presentations</a></li>
 </ul>
 </li>
 </ul>
@@ -239,20 +239,20 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/accessors/01_accessor_examples.html">Creating custom accessors</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../scipy2023/README.html">SciPy 2023</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../oceanhackweek2020/README.html">Oceanhackweek 2020</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../workshops/scipy2023/README.html">SciPy 2023</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../workshops/oceanhackweek2020/README.html">Oceanhackweek 2020</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference external" href="https://tutorial.xarray.dev/overview/xarray-in-45-min">Xarray in 45 minutes</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Thinking like Xarray</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../workshops/thinking-like-xarray/README.html">Thinking like Xarray</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference external" href="https://tutorial.xarray.dev/intermediate/01-high-level-computation-patterns">High-level computation patterns</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../online-tutorial-series/README.html">Xarray Online Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../online-tutorial-series/01_xarray_fundamentals.html">Xarray Fundamentals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../online-tutorial-series/02_indexing.html">Indexing and Selecting Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../online-tutorial-series/03_computation.html">Computation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../workshops/online-tutorial-series/README.html">Xarray Online Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../workshops/online-tutorial-series/01_xarray_fundamentals.html">Xarray Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workshops/online-tutorial-series/02_indexing.html">Indexing and Selecting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workshops/online-tutorial-series/03_computation.html">Computation</a></li>
 </ul>
 </li>
 </ul>
@@ -332,7 +332,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/workshops/thinking-like-xarray/README.md" target="_blank"
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial/edit/main/intermediate/data_cleaning/05.1_intro.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -349,7 +349,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Fworkshops/thinking-like-xarray/README.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/xarray-contrib/xarray-tutorial/issues/new?title=Issue%20on%20page%20%2Fintermediate/data_cleaning/05.1_intro.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -379,7 +379,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/workshops/thinking-like-xarray/README.md" target="_blank"
+      <li><a href="../../_sources/intermediate/data_cleaning/05.1_intro.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -448,7 +448,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -459,11 +461,29 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Thinking like Xarray</h1>
+    <h1>Data Tidying</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-brief-primer-on-tidy-data">A brief primer on tidy data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tidy-data-principles-for-tabular-datasets">Tidy data principles for tabular datasets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imagining-a-tidy-data-framework-for-gridded-datasets">Imagining a ‘tidy data’ framework for gridded datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-use-case-manipulating-individual-observations-to-an-x-y-time-datacube">Common use-case: Manipulating individual observations to an x-y-time datacube</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tidy-data-principles-for-xarray-data-structures">Tidy data principles for Xarray data structures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-guidelines-and-rules-of-thumb">Other guidelines and rules of thumb</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">Contributing</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -473,12 +493,88 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="thinking-like-xarray">
-<h1>Thinking like Xarray<a class="headerlink" href="#thinking-like-xarray" title="Permalink to this headline">#</a></h1>
-<p>Presented March 2022 for the <a class="reference external" href="https://ncar.github.io/esds/posts/2022/Thinking-with-Xarray/">NCAR Python Seminar Series</a> by Deepak Cheerian</p>
-<p>This 60-minute, intermediate-level lesson covers common high-level computing patterns. The version of the notebook here includes material inserted during the presentation.</p>
-<p>Video Recording:
-<a class="reference external" href="https://www.youtube.com/watch?v=TSw3GF_d2y8&amp;amp;list=PLNemzZpJM7lUu_iGP_lA2m7SeSUwKSIvR">https://www.youtube.com/watch?v=TSw3GF_d2y8&amp;list=PLNemzZpJM7lUu_iGP_lA2m7SeSUwKSIvR</a></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="data-tidying">
+<h1>Data Tidying<a class="headerlink" href="#data-tidying" title="Permalink to this headline">#</a></h1>
+<p>Array data that are represented by Xarray objects are often multivariate, multi-dimensional, and very complex. Part of the beauty of Xarray is that it is adaptable and scalable to represent a large number of data structures. However, this can also introduce difficulty (especially for learning users) in arriving at a workable structure that will best suit one’s analytical needs.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Look for examples <a class="reference internal" href="05.2_examples.html"><span class="doc std std-doc">here</span></a></p>
+</div>
+<p>This project is motivated by community sentiment and experiences that often, the hardest part of learning and teaching Xarray is teaching users how best to use Xarray conceptually. We hope to leverage the experiences of Xarray and geospatial data users to arrive at a unifying definition of ‘tidy’ data in this context and best practices for ‘tidying’ geospatial raster data represented by Xarray objects.</p>
+<p>This page discusses common data ‘tidying’ steps and presents principles to keep in mind when organizing data in Xarray. We also point out helpful extensions to simplify and automate this process for specific dataset types like satellite imagery.</p>
+<p>A great first step is familiarizing yourself with the <a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/terminology.html">terminology</a> used in the Xarray ecosystem.</p>
+<section id="a-brief-primer-on-tidy-data">
+<h2>A brief primer on tidy data<a class="headerlink" href="#a-brief-primer-on-tidy-data" title="Permalink to this headline">#</a></h2>
+<p>Tidy data was developed by Hadley Wickham for tabular datasets in the R programming language. Many resources comprehensively explain this concept and the ecosystem of tools built upon it. Below is a very brief explanation:</p>
+<p><strong>Data tidying</strong> is the process of structuring datasets to facilitate analysis. Wickham writes: “…tidy datasets are all alike, but every messy dataset is messy in its own way. Tidy datasets provide a standardized way to link the structure of a dataset (its physical layout) with its semantics (its meaning)” (Wickham, 2014).</p>
+<section id="tidy-data-principles-for-tabular-datasets">
+<h3>Tidy data principles for tabular datasets<a class="headerlink" href="#tidy-data-principles-for-tabular-datasets" title="Permalink to this headline">#</a></h3>
+<p>The concept of <a class="reference external" href="https://vita.had.co.nz/papers/tidy-data.pdf">tidy data</a> was developed by Hadley Wickham in the R programming language, and is a set of principles to guide facilitating tabular data for analysis.</p>
+<p>{attribution=”Wickham, 2014”}</p>
+<blockquote>
+<div><p>“Tidy datasets are all alike, but every messy dataset is messy in its own way.”</p>
+</div></blockquote>
+<p>Wickham defines three core principles of tidy data for tabular principles. They are:</p>
+<ol class="arabic simple">
+<li><p>Each variable forms an observation</p></li>
+<li><p>Each observation forms a row</p></li>
+<li><p>Each type of observational unit forms a table</p></li>
+</ol>
+</section>
+</section>
+<section id="imagining-a-tidy-data-framework-for-gridded-datasets">
+<h2>Imagining a ‘tidy data’ framework for gridded datasets<a class="headerlink" href="#imagining-a-tidy-data-framework-for-gridded-datasets" title="Permalink to this headline">#</a></h2>
+<section id="common-use-case-manipulating-individual-observations-to-an-x-y-time-datacube">
+<h3>Common use-case: Manipulating individual observations to an x-y-time datacube<a class="headerlink" href="#common-use-case-manipulating-individual-observations-to-an-x-y-time-datacube" title="Permalink to this headline">#</a></h3>
+<p>Data downloaded or accessed from DAACs and other providers is often (for good reason) separated into temporal observations or spatial subsets. This minimizes the services that must be provided for different datasets and allows the user to access just the material that they need. However, most workflows will involve some sort of spatial and/or temporal investigation of an observable, which will usually require the analyst to arrange individual files into spatial mosaics and/or temporal cubes. In addition to being a source of duplicated effort and work, these steps also introduce decision-points that can be stumbling blocks for newer users. We hope a tidy framework for xarray will streamline the process of preparing data for analysis by providing specific expectations of what ‘tidied’ datasets look like as well as common patterns and tools to use to arrive at a tidy state.</p>
+</section>
+</section>
+<section id="tidy-data-principles-for-xarray-data-structures">
+<h2>Tidy data principles for Xarray data structures<a class="headerlink" href="#tidy-data-principles-for-xarray-data-structures" title="Permalink to this headline">#</a></h2>
+<p>These are guidelines to keep in mind while you are organizing your data. For detailed definitions of the terms mentioned below (and more), check out Xarray’s <a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/terminology.html">Terminology page</a>.</p>
+<p><strong>1. Dimensions</strong></p>
+<ul class="simple">
+<li><p>Minimize the number of dimensional coordinates</p></li>
+</ul>
+<p><strong>2. Coordinates</strong></p>
+<ul class="simple">
+<li><p>Non-dimensional coordinates can be numerous. Each should exist along one or multiple dimensions</p></li>
+</ul>
+<p><strong>3. Data Variables</strong></p>
+<ul class="simple">
+<li><p>Data variables should be observables rather than contextual. Each should exist along one or multiple dimensions.</p></li>
+</ul>
+<p><strong>4. Contextual information (metadata)</strong></p>
+<ul class="simple">
+<li><p>Metadata should only be stored as an attribute if it is static along the dimensions to which it is applied.</p></li>
+<li><p>If metadata is dynamic, it should be stored as a coordinate variable.</p></li>
+<li><p>Metadata <code class="docutils literal notranslate"><span class="pre">attrs</span></code> should be added such that dataset is self-describing (following CF-conventions)</p></li>
+</ul>
+<p><strong>5. Variable, attribute naming</strong></p>
+<ul class="simple">
+<li><p><strong>Wherever possible, use cf-conventions for naming</strong></p></li>
+<li><p>Variable names should be descriptive</p></li>
+<li><p>Variable names should not contain information that belongs in a dimension or coordinate (ie. information stored in a variable name should be reduced to only the observable the variable describes.</p></li>
+</ul>
+<p><strong>6. Make us of &amp; work within the framework of other tools</strong></p>
+<ul class="simple">
+<li><p>Specification systems such as <a class="reference external" href="https://cfconventions.org/">CF</a> and <a class="reference external" href="https://stacspec.org/en">STAC</a>, and related tools such as <a class="reference external" href="https://www.opendatacube.org/">Open Data Cube</a>, <a class="reference external" href="https://pystac.readthedocs.io/en/stable/">PySTAC</a>, <a class="reference external" href="https://cf-xarray.readthedocs.io/en/latest/">cf_xarray</a>,<a class="reference external" href="https://stackstac.readthedocs.io/en/latest/">stackstac</a> and more make tidying possible and smoother, especially with large, cloud-optimized datasets.</p></li>
+<li></li>
+</ul>
+</section>
+<section id="other-guidelines-and-rules-of-thumb">
+<h2>Other guidelines and rules of thumb<a class="headerlink" href="#other-guidelines-and-rules-of-thumb" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Avoid storing important data in filenames</p></li>
+<li><p>Non-descriptive variable names can create + perpetuate confusion</p></li>
+<li><p>Missing coordinate information makes datasets harder to use</p></li>
+<li><p>Elements of a dataset’s ‘shape’/structure can sometimes be embedded in variable names; this will complicate subsequent analysis</p></li>
+</ul>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">#</a></h2>
+<p>We would love your help and engagement on this project! If you have a dataset that you’ve worked with that felt particularly messy, or one with steps you find yourself thinking back to as you work with new datasets, consider submitting it as an example! If you have input on tidy principles, please feel free to raise an issue.</p>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -496,7 +592,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./workshops/thinking-like-xarray"
+            path: "./intermediate/data_cleaning"
         },
         predefinedOutput: true
     }
@@ -515,20 +611,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../oceanhackweek2020/README.html"
+       href="../cmip6-cloud.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Oceanhackweek 2020</p>
+        <p class="prev-next-title">Accessing remote data stored on the cloud</p>
       </div>
     </a>
     <a class="right-next"
-       href="../online-tutorial-series/README.html"
+       href="05.2_examples.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Xarray Online Tutorial</p>
+        <p class="prev-next-title">Examples</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -541,6 +637,30 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-brief-primer-on-tidy-data">A brief primer on tidy data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tidy-data-principles-for-tabular-datasets">Tidy data principles for tabular datasets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imagining-a-tidy-data-framework-for-gridded-datasets">Imagining a ‘tidy data’ framework for gridded datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-use-case-manipulating-individual-observations-to-an-x-y-time-datacube">Common use-case: Manipulating individual observations to an x-y-time datacube</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tidy-data-principles-for-xarray-data-structures">Tidy data principles for Xarray data structures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-guidelines-and-rules-of-thumb">Other guidelines and rules of thumb</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">Contributing</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
