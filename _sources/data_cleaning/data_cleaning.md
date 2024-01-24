@@ -1,5 +1,0 @@
-# Data Tidying
-
-```{tableofcontents}
-
-```
