@@ -13,7 +13,7 @@ repos:
       - id: double-quote-string-fixer
 
   - repo: https://github.com/psf/black
-    rev: 23.10.1
+    rev: 24.1.1
     hooks:
       - id: black
       - id: black-jupyter
@@ -24,22 +24,22 @@ repos:
       - id: blackdoc
 
   - repo: https://github.com/PyCQA/flake8
-    rev: 6.1.0
+    rev: 7.0.0
     hooks:
       - id: flake8
 
   - repo: https://github.com/PyCQA/isort
-    rev: 5.12.0
+    rev: 5.13.2
     hooks:
       - id: isort
 
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.3
+    rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
 
   - repo: https://github.com/kynan/nbstripout
-    rev: 0.6.1
+    rev: 0.7.1
     hooks:
       - id: nbstripout
         args: [--extra-keys=metadata.kernelspec metadata.language_info.version]
