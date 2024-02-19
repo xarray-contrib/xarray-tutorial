@@ -1389,7 +1389,7 @@ Dimensions without coordinates: lat_interp</pre><div class='xr-wrap' style='disp
 </div>
 <div class="exercise admonition" id="newdim">
 
-<p class="admonition-title"><span class="caption-number">Exercise 23 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 25 </span></p>
 <section id="exercise-content">
 <p>Apply the following function using <code class="docutils literal notranslate"><span class="pre">apply_ufunc</span></code>. It adds a new dimension to the input array, let’s call it <code class="docutils literal notranslate"><span class="pre">newdim</span></code>. Specify the new dimension using <code class="docutils literal notranslate"><span class="pre">output_core_dims</span></code>. Do you need any <code class="docutils literal notranslate"><span class="pre">input_core_dims</span></code>?</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_new_dim</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
@@ -1400,7 +1400,7 @@ Dimensions without coordinates: lat_interp</pre><div class='xr-wrap' style='disp
 </div>
 <div class="solution dropdown admonition" id="advanced/apply_ufunc/complex-output-numpy-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#newdim"> Exercise 23</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#newdim"> Exercise 25</a></p>
 <section id="solution-content">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_new_dim</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
@@ -2681,7 +2681,7 @@ Coordinates:
 </div>
 <div class="exercise admonition" id="generalize">
 
-<p class="admonition-title"><span class="caption-number">Exercise 24 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 26 </span></p>
 <section id="exercise-content">
 <p>We presented the concept of “core dimensions” as the “smallest unit of data the function could handle.” Do you understand how the above use of <code class="docutils literal notranslate"><span class="pre">apply_ufunc</span></code> generalizes to an array with more than one dimension?</p>
 <p>Try applying the minmax function to a 3d air temperature dataset</p>
@@ -2693,7 +2693,7 @@ Coordinates:
 </div>
 <div class="solution dropdown admonition" id="advanced/apply_ufunc/complex-output-numpy-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#generalize"> Exercise 24</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#generalize"> Exercise 26</a></p>
 <section id="solution-content">
 <p>We want to use <code class="docutils literal notranslate"><span class="pre">minmax</span></code> to compute the minimum and maximum along the “lat” dimension always, regardless of how many dimensions are on the input. So we specify <code class="docutils literal notranslate"><span class="pre">input_core_dims=[[&quot;lat&quot;]]</span></code>. The output does not contain the “lat” dimension, but we expect two returned variables. So we pass an empty list <code class="docutils literal notranslate"><span class="pre">[]</span></code> for each returned array, so <code class="docutils literal notranslate"><span class="pre">output_core_dims=[[],</span> <span class="pre">[]]</span></code> just as before.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">minda</span><span class="p">,</span> <span class="n">maxda</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>

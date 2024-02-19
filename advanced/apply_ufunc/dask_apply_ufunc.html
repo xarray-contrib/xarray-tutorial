@@ -2708,7 +2708,7 @@ Coordinates:
 <p>Such functions involve the concept of “core dimensions”. This concept is independent of the underlying array type, and is a property of the applied function. See the <a class="reference internal" href="core-dimensions.html"><span class="doc std std-doc">core dimensions with NumPy</span></a> tutorial for more.</p>
 <div class="exercise admonition" id="daskmean">
 
-<p class="admonition-title"><span class="caption-number">Exercise 26 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 28 </span></p>
 <section id="exercise-content">
 <p>Use <code class="docutils literal notranslate"><span class="pre">dask.array.mean</span></code> as an example of a function that can handle dask
 arrays and uses an <code class="docutils literal notranslate"><span class="pre">axis</span></code> kwarg.</p>
@@ -2716,7 +2716,7 @@ arrays and uses an <code class="docutils literal notranslate"><span class="pre">
 </div>
 <div class="solution dropdown admonition" id="advanced/apply_ufunc/dask_apply_ufunc-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#daskmean"> Exercise 26</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#daskmean"> Exercise 28</a></p>
 <section id="solution-content">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_mean</span><span class="p">(</span><span class="n">da</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
@@ -3905,14 +3905,14 @@ Do you understand why <code class="docutils literal notranslate"><span class="pr
 </div>
 <div class="exercise admonition" id="rechunk">
 
-<p class="admonition-title"><span class="caption-number">Exercise 27 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 29 </span></p>
 <section id="exercise-content">
 <p>Apply the integrate function to <code class="docutils literal notranslate"><span class="pre">ds</span></code> after rechunking to have a different chunksize along <code class="docutils literal notranslate"><span class="pre">lon</span></code> using <code class="docutils literal notranslate"><span class="pre">ds.chunk(lon=4)</span></code> (for example). What happens?</p>
 </section>
 </div>
 <div class="solution dropdown admonition" id="advanced/apply_ufunc/dask_apply_ufunc-solution-3">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#rechunk"> Exercise 27</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#rechunk"> Exercise 29</a></p>
 <section id="solution-content">
 <p><code class="docutils literal notranslate"><span class="pre">apply_ufunc</span></code> complains that it cannot automatically parallelize because the dataset <code class="docutils literal notranslate"><span class="pre">ds</span></code> is now chunked along the core dimension <code class="docutils literal notranslate"><span class="pre">lon</span></code>. You should see the following error:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ValueError: dimension lon on 0th function argument to apply_ufunc with dask=&#39;parallelized&#39; 
