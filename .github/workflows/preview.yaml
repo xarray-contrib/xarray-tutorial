@@ -50,7 +50,8 @@ jobs:
           failOnError: true
           dist: _build/html
           build: |
-            npm install surge
+            npm install
+            npm run build
 
       - name: Format preview url
         id: format_url
