@@ -47,6 +47,7 @@ jobs:
         with:
           surge_token: ${{ secrets.SURGE_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          failOnError: true
           dist: _build/html
           build: |
             npm install surge
