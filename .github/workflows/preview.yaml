@@ -43,11 +43,6 @@ jobs:
         run: |
           if (test -a _build/html/reports/*log); then cat _build/html/reports/*log ; fi
 
-      - name: Format preview url
-        id: format_url
-        run: |
-          echo "url_text=:rocket: Preview deployed at  >> $GITHUB_OUTPUT
-
       - name: Install Surge.sh
         uses: actions/setup-node@v4
 
