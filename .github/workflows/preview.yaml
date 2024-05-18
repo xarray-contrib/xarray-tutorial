@@ -11,6 +11,8 @@ concurrency:
 
 jobs:
   preview:
+    env:
+      PREVIEW_URL: https://{{repository.owner}}-{{repository.name}}-{{job.name}}-pr-{{pr.number}}.surge.sh
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -41,26 +43,18 @@ jobs:
         run: |
           if (test -a _build/html/reports/*log); then cat _build/html/reports/*log ; fi
 
-      - name: Publish to Surge
-        id: preview_step
-        uses: afc163/surge-preview@v1
-        with:
-          surge_token: ${{ secrets.SURGE_TOKEN }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          failOnError: true
-          dist: _build/html
-          build: |
-            npm install
-            npm run build
-
       - name: Format preview url
         id: format_url
         run: |
-          echo "url_text=:rocket: Preview deployed at https://${{ steps.preview_step.outputs.preview_url }}" >> $GITHUB_OUTPUT
+          echo "url_text=:rocket: Preview deployed at  >> $GITHUB_OUTPUT
 
-      - name: Get the preview_url
-        run: echo "${{ steps.format_url.outputs.url_text }}"
+      - name: Install Surge.sh
+        uses: actions/setup-node@v4
 
-      - name: Generate summary
+      - run: npm install -g surge
+
+      - run: surge ./_build/html {{env.PREVIEW_URL}} --token ${{ secrets.SURGE_TOKEN }}
+
+      - name: Add URL to Summary
         run: |
-          echo "#### ${{ steps.format_url.outputs.url_text }}" >> $GITHUB_STEP_SUMMARY
+          echo "#### :rocket: Preview deployed at {{env.PREVIEW_URL}}" >> $GITHUB_STEP_SUMMARY
