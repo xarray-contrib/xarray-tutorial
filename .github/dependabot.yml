@@ -1,10 +1,11 @@
+# Regularly update Docker tags and Actions steps
 version: 2
 updates:
   - package-ecosystem: "docker"
     directory: "/.devcontainer"
     schedule:
       interval: "daily"
-  - package-ecosystem: "github-actions" 
-    directory: "/.github" 
+  - package-ecosystem: "github-actions"
+    directory: "/.github"
     schedule:
       interval: "monthly"
