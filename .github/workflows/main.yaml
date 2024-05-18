@@ -23,14 +23,14 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup JupyterBook Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: _build
           # NOTE: change key to "jupyterbook-DATE" to force rebuilding cache
-          key: jupyterbook-20230707
+          key: jupyterbook-20240517
 
       - name: Install Conda environment with Micromamba
         uses: mamba-org/setup-micromamba@v1
@@ -52,14 +52,14 @@ jobs:
 
       - name: Save Build
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build
           path: _build/
 
       - name: Publish to GitHub Pages
         if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: _build/html
