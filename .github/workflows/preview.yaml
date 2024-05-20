@@ -48,7 +48,9 @@ jobs:
 
       - run: npm install -g surge
 
-      - run: surge ./_build/html {{env.PREVIEW_URL}} --token ${{ secrets.SURGE_TOKEN }}
+      - run: surge ./_build/html {{env.PREVIEW_URL}} --token $SURGE_TOKEN
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
       - name: Add URL to Summary
         run: |
