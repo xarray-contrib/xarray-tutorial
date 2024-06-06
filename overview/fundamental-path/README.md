@@ -1,4 +1,6 @@
-# Fundamentals Learning Path
+(fundamental-path)=
+
+# Fundamental Path
 
 This syllabus comes from Scipy 2022 tutorial workshop.
 This path covers fundamental Xarray concepts with
