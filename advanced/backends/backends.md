@@ -2,7 +2,51 @@
 
 ## Introduction
 
-You can [read different type of files](https://docs.xarray.dev/en/stable/user-guide/io.html)) in `xr.open_dataset` by specifying the engine to be used:
+
+```mermaid
+---
+title: "Xarray Engines: Opening Your Data with xr.open_dataset()"
+---
+
+
+flowchart TD
+    built-in-eng([Is your data stored in one of these formats?
+        netCDF4
+        netCDF3
+        Zarr
+        DAP
+        ])
+
+    built-in("`You're in luck! Xarray bundles a backend for this format.
+        Open data using *xr.open_dataset()* as normal.`")
+
+    installed-eng(["`One of these formats?
+        GRIB (**cfgrib**)
+        TileDB (**tiledb**)
+        GeoTIFF, JPEG-2000, ESRI-hdf (**rioxarray**, via GDAL)
+        Sentinel-1 SAFE (**xarray-sentinel**)
+        `"])
+
+    installed("`Install the package indicated in parentheses 
+        to your Python environment. Restart the kernel
+        and use *xr.open_dataset(files, engine='rioxarray')*`")
+
+    other("`You can't use *open_dataset()* with an engine.
+        This page shows how to open your data with Xarray.`")
+
+    built-in-eng -->|Yes| built-in
+    built-in-eng -->|No| installed-eng
+
+    installed-eng -->|Yes| installed
+    installed-eng -->|No| other
+
+    click built-in-eng "https://tutorial.xarray.dev/advanced/backends/backends.html"
+    click installed-eng "https://tutorial.xarray.dev/advanced/backends/backends.html#why-using-the-xarray-backend-api"
+
+```
+
+
+You can [read different type of files](https://docs.xarray.dev/en/stable/user-guide/io.html) in `xr.open_dataset` by specifying the engine to be used:
 
 ```python
 import xarray as xr
