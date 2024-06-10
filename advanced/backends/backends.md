@@ -2,7 +2,6 @@
 
 ## Introduction
 
-
 ```mermaid
 ---
 title: "Xarray Engines: Opening Your Data with xr.open_dataset()"
@@ -27,7 +26,7 @@ flowchart TD
         Sentinel-1 SAFE (**xarray-sentinel**)
         `"])
 
-    installed("`Install the package indicated in parentheses 
+    installed("`Install the package indicated in parentheses
         to your Python environment. Restart the kernel
         and use *xr.open_dataset(files, engine='rioxarray')*`")
 
@@ -44,7 +43,6 @@ flowchart TD
     click installed-eng "https://tutorial.xarray.dev/advanced/backends/backends.html#why-using-the-xarray-backend-api"
 
 ```
-
 
 You can [read different type of files](https://docs.xarray.dev/en/stable/user-guide/io.html) in `xr.open_dataset` by specifying the engine to be used:
 
