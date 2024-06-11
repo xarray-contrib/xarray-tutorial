@@ -25,25 +25,25 @@ title: "Xarray Engines: Opening Your Data with xr.open_dataset()"
 
 
 flowchart TD
-    built-in-eng([Is your data stored in one of these formats?
+    built-in-eng[Is your data stored in one of these formats?
         netCDF4 (**netcdf4**)
         netCDF3 (**scipy**)
         Zarr (**zarr**)
         DODS/OPeNDAP (**pydap**)
         HDF5 (**h5netcdf**)
-        ])
+        ]
 
     built-in("`You're in luck! Xarray bundles a backend for this format.
         Open data using *xr.open_dataset()*. We recommend
         always setting the engine you want to use.`")
 
-    installed-eng(["`One of these formats (this list is not inclusive)?
+    installed-eng["`One of these formats (this list is not inclusive)?
         GRIB (**cfgrib**)
         TileDB (**tiledb**)
         GeoTIFF, JPEG-2000, ESRI-hdf (**rioxarray**, via GDAL)
         Sentinel-1 SAFE (**xarray-sentinel**)
         ...
-        `"])
+        `"]
 
     installed("`Install the package indicated in parentheses
         to your Python environment. Restart the kernel
@@ -64,6 +64,18 @@ flowchart TD
     click installed-eng "https://corteva.github.io/rioxarray/stable/getting_started/getting_started.html#rioxarray"
     click other "https://docs.xarray.dev/en/stable/internals/how-to-add-new-backend.html"
 
+<<<<<<< HEAD
+=======
+    classDef quesNodefmt fill:#9DEEF4,stroke:#206C89
+    class built-in-eng,installed-eng quesNodefmt
+
+    classDef ansNodefmt fill:#FFAA05,stroke:#E37F17
+    class built-in,installed,other ansNodefmt
+
+    linkStyle default font-size:20pt,color:#206C89
+
+    
+>>>>>>> add some color styling
 ```
 
 ## Why use the Xarray backend API?
