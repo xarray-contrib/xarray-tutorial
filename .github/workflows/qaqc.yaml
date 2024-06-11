@@ -5,26 +5,35 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   quality-control:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: bash -l {0}
+        shell: bash -el {0}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: ./.github/actions/setupconda
+      - name: Install Conda environment with Micromamba
+        uses: mamba-org/setup-micromamba@v1
+        with:
+          environment-file: conda/conda-lock.yml
+          environment-name: xarray-tutorial
+          cache-environment: true
 
       # NOTE: this isn't a comprehensive spellcheck, just common typos
       - name: Spellcheck
         if: always()
-        uses: codespell-project/actions-codespell@v1
+        uses: codespell-project/actions-codespell@v2
         with:
           check_filenames: true
           check_hidden: true
-          skip: '.git,*.js,qaqc.yml'
+          skip: ".git,*.js,qaqc.yml"
           ignore_words_list: hist,nd
 
       # borrowed from https://github.com/ProjectPythia/pythia-foundations/blob/main/.github/workflows/link-checker.yaml
@@ -40,6 +49,7 @@ jobs:
             yaml.dump(data, f)
 
       - name: Check External Links
+        timeout-minutes: 5
         if: always()
         run: |
           jupyter-book build ./ --builder linkcheck

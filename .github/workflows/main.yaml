@@ -6,9 +6,16 @@ on:
   pull_request:
     branches: main
 
-# Required to publish to gh-pages branch
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
@@ -23,13 +30,18 @@ jobs:
         with:
           path: _build
           # NOTE: change key to "jupyterbook-DATE" to force rebuilding cache
-          key: jupyterbook-20230112
+          key: jupyterbook-20230707
 
-      - uses: ./.github/actions/setupconda
+      - name: Install Conda environment with Micromamba
+        uses: mamba-org/setup-micromamba@v1
+        with:
+          environment-file: conda/conda-lock.yml
+          environment-name: xarray-tutorial
+          cache-environment: true
 
       - name: Build JupyterBook
         # NOTE: login shell activates conda environment
-        shell: bash -l {0}
+        shell: bash -el {0}
         run: |
           jupyter-book build ./ --warningiserror --keep-going
 
@@ -37,6 +49,13 @@ jobs:
         if: always()
         run: |
           if (test -a _build/html/reports/*log); then cat _build/html/reports/*log ; fi
+
+      - name: Save Build
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: _build/
 
       - name: Publish to GitHub Pages
         if: github.ref == 'refs/heads/main'
@@ -47,10 +66,3 @@ jobs:
           publish_branch: gh-pages
           cname: tutorial.xarray.dev
           enable_jekyll: false
-
-      - name: Save Build
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: _build/

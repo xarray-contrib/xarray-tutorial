@@ -6,6 +6,10 @@ parts:
     chapters:
       - file: overview/get-started.md
       - file: overview/xarray-in-45-min
+      - file: overview/learning-paths.md
+        sections:
+          - file: overview/fundamental-path/README.md
+          - file: overview/intermediate-path/README.md
 
   - caption: Fundamentals
     chapters:
@@ -16,7 +20,7 @@ parts:
           - file: fundamentals/01.1_io
       - file: fundamentals/02_labeled_data.md
         sections:
-          - file: fundamentals/02.1_working_with_labeled_data
+          - file: fundamentals/02.1_indexing_Basic.ipynb
           - file: fundamentals/02.2_manipulating_dimensions
       - file: fundamentals/03_computation.md
         sections:
@@ -34,11 +38,20 @@ parts:
   - caption: Intermediate
     chapters:
       - file: intermediate/01-high-level-computation-patterns
+      - file: intermediate/indexing/indexing
+        sections:
+          - file: intermediate/indexing/advanced-indexing.ipynb
+          - file: intermediate/indexing/boolean-masking-indexing.ipynb
       - file: intermediate/xarray_and_dask
       - file: intermediate/xarray_ecosystem
       - file: intermediate/hvplot
       - file: intermediate/cmip6-cloud
-      - file: data_cleaning/ice_velocity.ipynb
+      - file: intermediate/data_cleaning/05.1_intro.md
+        sections:
+          - file: intermediate/data_cleaning/05.2_examples.md
+          - file: intermediate/data_cleaning/05.3_ice_velocity
+          - file: intermediate/data_cleaning/05.4_contributing.md
+          - file: intermediate/data_cleaning/05.5_scipy_talk.md
 
   - caption: Advanced
     chapters:
@@ -46,8 +59,12 @@ parts:
       - file: advanced/apply_ufunc/apply_ufunc.md
         sections:
           - file: advanced/apply_ufunc/simple_numpy_apply_ufunc
-          - file: advanced/apply_ufunc/simple_dask_apply_ufunc
-          - file: advanced/apply_ufunc/vectorize_1d
+          - file: advanced/apply_ufunc/core-dimensions
+          - file: advanced/apply_ufunc/complex-output-numpy
+          - file: advanced/apply_ufunc/automatic-vectorizing-numpy
+          - file: advanced/apply_ufunc/dask_apply_ufunc
+          - file: advanced/apply_ufunc/numba-vectorization
+          - file: advanced/apply_ufunc/example-interp
       - file: advanced/map_blocks/map_blocks.md
         sections:
           - file: advanced/map_blocks/simple_map_blocks
@@ -55,10 +72,13 @@ parts:
         sections:
           - file: advanced/backends/1.Backend_without_Lazy_Loading.ipynb
           - file: advanced/backends/2.Backend_with_Lazy_Loading.ipynb
+      - file: advanced/accessors/accessors.md
+        sections:
+          - file: advanced/accessors/01_accessor_examples.ipynb
 
   - caption: Workshops
     chapters:
-      - file: workshops/scipy2022/README
+      - file: workshops/scipy2023/README
       - file: workshops/oceanhackweek2020/README
         sections:
           - url: https://tutorial.xarray.dev/overview/xarray-in-45-min
@@ -73,16 +93,8 @@ parts:
           - file: workshops/online-tutorial-series/02_indexing
           - file: workshops/online-tutorial-series/03_computation
 
-  - caption: Domain Specific
-    chapters:
-      - url: https://anopheles-genomic-surveillance.github.io/workshop-5/module-1-xarray.html
-        title: Genomics
-      - url: https://predictablynoisy.com/posts/2019/2019-10-22-xarray-neuro/
-        title: Electrophysiology
-
   - caption: Reference
     chapters:
+      - file: CONTRIBUTING
       - file: reference/resources
       - file: reference/glossary
-      - file: reference/bibliography
-      - file: reference/acknowledgements

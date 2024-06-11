@@ -1,8 +1,12 @@
-# SciPy 2022
+(fundamental-path)=
 
-## Xarray: Friendly, Interactive, and Scalable Scientific Data Analysis
+# Fundamental Path
 
-Organized by:
+This syllabus comes from Scipy 2022 tutorial workshop.
+This path covers fundamental Xarray concepts with
+increasingly complex real-world data analysis tasks.
+
+The tutorial was organized by:
 
 - Scott Henderson (Univ. Washington)
 - Deepak Cherian (National Center for Atmospheric Research)
@@ -11,17 +15,12 @@ Organized by:
 - Anderson Banihirwe (CarbonPlan)
 - Tom Nicholas (Lamont-Doherty Earth Observatory)
 
-This four hour workshop covers fundamental Xarray concepts with increasingly complex real-world data analysis tasks.
-
-Video Recoding:
-Will be available after the event
-
 Launch cloud-hosted Jupyter Lab environment:
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/HEAD?labpath=workshops/scipy2022/index.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/HEAD?labpath=overview/fundamental-path/index.ipynb)
 
 ## Topics
 
-_Below are links to sections of this website we'll cover_:
+_Below are links to sections of this website that are part of this journey_:
 
 ```{dropdown} Introduction
 {doc}`../../overview/get-started`
@@ -34,9 +33,7 @@ _Below are links to sections of this website we'll cover_:
 ```
 
 ```{dropdown} Working with Labeled Data
-{doc}`../../fundamentals/02.1_working_with_labeled_data`
-
-
+{doc}`../../fundamentals/02.1_indexing_Basic`
 ```
 
 ```{dropdown} Computation
@@ -57,6 +54,4 @@ _Below are links to sections of this website we'll cover_:
 
 ```{dropdown} Xarray Ecosystem
 {doc}`../../intermediate/xarray_ecosystem`
-
-Demo
 ```
