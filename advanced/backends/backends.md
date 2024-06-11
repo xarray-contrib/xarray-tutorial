@@ -18,7 +18,6 @@ This diagram aims to help you determine - based on the format of the file you'd 
 which type of backend you're using and how to use it.
 The rectangular boxes are clickable with more information.
 
-
 ```mermaid
 ---
 title: "Xarray Engines: Opening Your Data with xr.open_dataset()"
@@ -64,7 +63,7 @@ flowchart TD
     click built-in-eng "https://docs.xarray.dev/en/stable/getting-started-guide/faq.html#how-do-i-open-format-x-file-as-an-xarray-dataset"
     click installed-eng "https://corteva.github.io/rioxarray/stable/getting_started/getting_started.html#rioxarray"
     click other "https://docs.xarray.dev/en/stable/internals/how-to-add-new-backend.html"
-    
+
 ```
 
 ## Why use the Xarray backend API?
@@ -72,7 +71,6 @@ flowchart TD
 - Your users don't need to learn a new interface; they can use `xr.open_dataset` with the `engine` kwarg.
 - With little extra effort you can have lazy loading with Dask. Simply implement a function for reading blocks and Xarray will manage lazy loading with Dask for you.
 - It's easy to implement: using the backend API (introduced in v0.18.0), you don't need to integrate any code in Xarray.
-
 
 ## More Information
 
