@@ -64,8 +64,6 @@ flowchart TD
     click installed-eng "https://corteva.github.io/rioxarray/stable/getting_started/getting_started.html#rioxarray"
     click other "https://docs.xarray.dev/en/stable/internals/how-to-add-new-backend.html"
 
-<<<<<<< HEAD
-=======
     classDef quesNodefmt fill:#9DEEF4,stroke:#206C89
     class built-in-eng,installed-eng quesNodefmt
 
@@ -74,8 +72,6 @@ flowchart TD
 
     linkStyle default font-size:20pt,color:#206C89
 
-    
->>>>>>> add some color styling
 ```
 
 ## Why use the Xarray backend API?
