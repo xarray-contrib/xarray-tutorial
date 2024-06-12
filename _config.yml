@@ -63,8 +63,6 @@ bibtex_bibfiles:
 # Advanced configuration
 sphinx:
   extra_extensions:
-    # required for mermaid
-    - myst_parser
     # 404 not found page
     - notfound.extension
     # maintain old paths and redirect them (so google results dont go to 404)
@@ -72,6 +70,8 @@ sphinx:
     - sphinxext.rediraffe
     - sphinx_exercise
     - sphinxcontrib.mermaid
+    # required for mermaid
+    - myst_parser
   config:
     language: en # accessibility
     # application/vnd.holoviews_load.v0+json, application/vnd.holoviews_exec.v0+json
