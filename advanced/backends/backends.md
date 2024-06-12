@@ -93,9 +93,9 @@ Follow the tutorials on creating a new backend for binary files.
 ### Links to internal backends
 
 - [netcdf4](https://pypi.org/project/netCDF4/) - netCDF4
-- [scipy]() - netCDF3
+- [scipy]https://scipy.org/) - netCDF3
 - [zarr](https://pypi.org/project/zarr/) - Zarr
-- [pydap](https://www.pydap.org/) - Data Access Protocol (DAP/DODS/OPeNDAP)
+- [pydap](https://pydap.github.io/pydap/) - Data Access Protocol (DAP/DODS/OPeNDAP)
 
 ### Links to external backends (not comprehensive)
 
