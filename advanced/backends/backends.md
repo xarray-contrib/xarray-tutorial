@@ -18,7 +18,7 @@ This diagram aims to help you determine - based on the format of the file you'd 
 which type of backend you're using and how to use it.
 The rectangular boxes are clickable with more information.
 
-```mermaid
+```{mermaid}
 ---
 title: "Xarray Engines: Opening Your Data with xr.open_dataset()"
 ---
