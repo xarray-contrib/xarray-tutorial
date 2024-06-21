@@ -1,9 +1,7 @@
-name: CI
+name: Deploy Website to GitHub Pages
 
 on:
   push:
-    branches: main
-  pull_request:
     branches: main
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -18,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -50,19 +48,31 @@ jobs:
         run: |
           if (test -a _build/html/reports/*log); then cat _build/html/reports/*log ; fi
 
-      - name: Save Build
+      - name: Save Build Folder
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: build
           path: _build/
 
-      - name: Publish to GitHub Pages
-        if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: _build/html
-          publish_branch: gh-pages
-          cname: tutorial.xarray.dev
-          enable_jekyll: false
+          path: _build/html
+
+  # Publish Website to GitHub Pages if built successfully
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
