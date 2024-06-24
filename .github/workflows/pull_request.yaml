@@ -3,8 +3,8 @@ name: Pull Request Build
 on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
-  paths-ignore:
-    - ".devcontainer/**"
+    paths-ignore:
+      - ".devcontainer/**"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
