@@ -3,6 +3,8 @@ name: Pull Request Build
 on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
+  paths-ignore:
+    - ".devcontainer/**"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -50,4 +52,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: html
-          path: book/_build/html
+          path: _build/html
