@@ -1,0 +1,53 @@
+name: Pull Request Build
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - name: Checkout repository
+        if: github.event.action != 'closed'
+        uses: actions/checkout@v4
+
+      - name: Setup JupyterBook Cache
+        if: github.event.action != 'closed'
+        uses: actions/cache@v4
+        with:
+          path: _build
+          # NOTE: change key to "jupyterbook-DATE" to force rebuilding cache
+          key: jupyterbook-20240517
+
+      - name: Install Conda environment with Micromamba
+        if: github.event.action != 'closed'
+        uses: mamba-org/setup-micromamba@v1
+        with:
+          environment-file: conda/conda-lock.yml
+          environment-name: xarray-tutorial
+          cache-environment: true
+
+      - name: Build JupyterBook
+        if: github.event.action != 'closed'
+        run: |
+          jupyter-book build ./ --warningiserror --keep-going
+
+      - name: Dump Build Logs
+        if: github.event.action != 'closed'
+        run: |
+          if (test -a _build/html/reports/*log); then cat _build/html/reports/*log ; fi
+
+      - name: Upload artifact
+        if: github.event.action != 'closed'
+        uses: actions/upload-artifact@v4
+        with:
+          name: html
+          path: book/_build/html
