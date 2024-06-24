@@ -26,14 +26,15 @@ Live walk-throughs of this material and more on Xarray's YouTube Channel
 ```
 
 ```{grid-item-card}
-:link: https://github.com/pydata/xarray/discussions
+:link: https://docs.xarray.dev/en/latest/help-diagram.html
 :class-header: bg-light
 Get involved 🙋
 ^^^
-Ask questions on the Xarray Discussion Forum
+Ask questions and participate in the Xarray community!
 ```
 
 ````
+
 
 ## Citation
 
