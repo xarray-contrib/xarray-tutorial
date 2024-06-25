@@ -1,7 +1,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 title: ""
 author: The Xarray Community
-copyright: "2023"
+copyright: "2024"
 logo: images/logo.png
 only_build_toc_files: true
 
@@ -14,6 +14,7 @@ html:
   use_issues_button: true
   use_repository_button: true
   google_analytics_id: G-JRQHYVFQR7
+  extra_footer: '<p>Xarray is a fiscally sponsored project of <a href="https://numfocus.org">NumFOCUS</a>, a nonprofit dedicated to supporting the open-source scientific computing community.<br> Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>.</p> Content licensed under the terms of the <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0 License</a>.'
 
 parse:
   # https://jupyterbook.org/content/content-blocks.html?highlight=myst%20substitution#define-substitutions-for-your-whole-book
@@ -67,7 +68,6 @@ sphinx:
     # maintain old paths and redirect them (so google results dont go to 404)
     # https://github.com/wpilibsuite/sphinxext-rediraffe
     - sphinxext.rediraffe
-    - sphinx_exercise
   config:
     language: en # accessibility
     # application/vnd.holoviews_load.v0+json, application/vnd.holoviews_exec.v0+json
@@ -75,7 +75,6 @@ sphinx:
     notfound_context:
       body: "<h1>Whoops! 404 Page Not Found</h1>\n\n<p>Sorry, this page doesn't exist. Many sections of this book have been updated recently.</p><p> Try the search box 🔎 to find what you're looking for!</p>"
     notfound_urls_prefix: /
-
     rediraffe_redirects:
       scipy-tutorial/00_overview.ipynb: overview/get-started.md
       workshops/scipy2022/README.md: overview/fundamental-path/README.md
