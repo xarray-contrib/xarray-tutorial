@@ -2,9 +2,9 @@ name: xarray-tutorial
 channels:
   - conda-forge
 dependencies:
-  - python=3.11
+  - python
   # for building website:
-  - jupyter-book<1
+  - jupyter-book
   - pre-commit
   # for user interface
   - dask-labextension
@@ -24,6 +24,7 @@ dependencies:
   - ipython
   - matplotlib-base
   - netcdf4
+  - numpy<2
   - pint-xarray
   - pip
   - pydap
@@ -32,11 +33,7 @@ dependencies:
   - rioxarray
   - scipy
   - sphinx-codeautolink
-  - sphinx-exercise
   - sphinx-notfound-page
   - sphinxext-rediraffe
   - xarray
   - zarr
-  - pip:
-    - myst-parser
-    - sphinxcontrib-mermaid
