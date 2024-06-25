@@ -1,31 +1,28 @@
-name: Deploy Website to GitHub Pages
+name: Pull Request Build
 
 on:
-  push:
-    branches: main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
     paths-ignore:
       - ".devcontainer/**"
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
-# Allow one concurrent deployment
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  preview:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
       - name: Checkout repository
+        if: github.event.action != 'closed'
         uses: actions/checkout@v4
 
       - name: Setup JupyterBook Cache
+        if: github.event.action != 'closed'
         uses: actions/cache@v4
         with:
           path: _build
@@ -33,6 +30,7 @@ jobs:
           key: jupyterbook-20240517
 
       - name: Install Conda environment with Micromamba
+        if: github.event.action != 'closed'
         uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: conda/conda-lock.yml
@@ -40,41 +38,18 @@ jobs:
           cache-environment: true
 
       - name: Build JupyterBook
-        # NOTE: login shell activates conda environment
-        shell: bash -el {0}
+        if: github.event.action != 'closed'
         run: |
           jupyter-book build ./ --warningiserror --keep-going
 
       - name: Dump Build Logs
-        if: always()
+        if: github.event.action != 'closed'
         run: |
           if (test -a _build/html/reports/*log); then cat _build/html/reports/*log ; fi
 
-      - name: Save Build Folder
-        if: always()
+      - name: Upload artifact
+        if: github.event.action != 'closed'
         uses: actions/upload-artifact@v4
         with:
-          name: build
-          path: _build/
-
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
+          name: html
           path: _build/html
-
-  # Publish Website to GitHub Pages if built successfully
-  deploy:
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
