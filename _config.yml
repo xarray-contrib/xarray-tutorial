@@ -68,10 +68,13 @@ sphinx:
     # maintain old paths and redirect them (so google results dont go to 404)
     # https://github.com/wpilibsuite/sphinxext-rediraffe
     - sphinxext.rediraffe
+    - sphinx_codeautolink
+
   config:
     language: en # accessibility
     # application/vnd.holoviews_load.v0+json, application/vnd.holoviews_exec.v0+json
     suppress_warnings: ["mystnb.unknown_mime_type", "misc.highlighting_failure"]
+    codeautolink_concat_default: True
     notfound_context:
       body: "<h1>Whoops! 404 Page Not Found</h1>\n\n<p>Sorry, this page doesn't exist. Many sections of this book have been updated recently.</p><p> Try the search box 🔎 to find what you're looking for!</p>"
     notfound_urls_prefix: /
@@ -81,3 +84,26 @@ sphinx:
       fundamentals/02.1_working_with_labeled_data.ipynb: fundamentals/02.1_indexing_Basic.ipynb
 
     bibtex_reference_style: author_year # or label, super, \supercite
+
+    intersphinx_mapping:
+      xarray:
+        - https://docs.xarray.dev/en/latest/
+        - null
+      numpy:
+        - https://numpy.org/doc/stable
+        - null
+      scipy:
+        - https://docs.scipy.org/doc/scipy
+        - null
+      matplotlib:
+        - https://matplotlib.org/stable/
+        - null
+      dask:
+        - https://docs.dask.org/en/latest
+        - null
+      python:
+        - https://docs.python.org/3/
+        - null
+      pandas:
+        - https://pandas.pydata.org/pandas-docs/stable
+        - null
