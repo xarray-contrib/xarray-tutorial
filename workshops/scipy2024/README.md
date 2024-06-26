@@ -2,55 +2,6 @@
 
 ## Xarray: Friendly, Interactive, and Scalable Scientific Data Analysis
 
-Organized by:
-
-- Scott Henderson (Univ. Washington)
-- Jessica Scheick (Univ. New Hampshire)
-- Negin Sobhani (National Center for Atmospheric Research)
-- Tom Nicholas [C]worthy
-- Max Jones (CarbonPlan)
-- Wietze Suijker (Space Intelligence)
-
-## Learning Goals
-
-- Learn how to leverage Xarray’s powerful backend and extension capabilities to customize workflows and open a variety of scientific datasets
-- Effectively use Xarray’s multidimensional indexing operations
-- Understand how Xarray can wrap other array types in the scientific Python ecosystem
-- Understand how to apply custom functions to Xarray data structures
-- Orient yourself to Xarray resources to continue on your Xarray journey!
-
-## Outline
-
-These are links to rendered webpages if you'd just like to read. Further down this page is an 'Instructions' section that explains how to spin up an interactive computing environment.
-
-```{dropdown} Introduction
-{doc}`../../overview/get-started`
-
-{doc}`../../fundamentals/02.1_indexing_Basic`
-
-TODO: Domain-agnositic data model, backends/engines
-```
-
-```{dropdown} Indexing and Computation
-{doc}`../../intermediate/indexing/advanced-indexing`
-
-{doc}`../../intermediate/01-high-level-computation-patterns`
-
-{doc}`../../intermediate/xarray_and_dask`
-```
-
-```{dropdown} Extending & Customizing Xarray
-{doc}`../../advanced/01_accessor_examples.ipynb`
-
-{doc}`../../advanced/1.Backend_without_Lazy_Loading.ipynb
-```
-
-```{dropdown} Synthesis
-TODO: A Guided 'bring-your-own data exercise
-```
-
-## Instructions
-
 ### Running Locally
 
 See instructions to set up the environment for running the tutorial material [here](get-started).
@@ -59,7 +10,7 @@ See instructions to set up the environment for running the tutorial material [he
 
 This tutorial is available to run within [Github Codespaces](https://github.com/features/codespaces) - "a development environment that's hosted in the cloud" - with the conda environment specification in the [`conda-lock.yml`](../../conda/conda-lock.yml) file.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/xarray-contrib/xarray-tutorial/tree/main?devcontainer_path=.devcontainer%2Fscipy2023%2Fdevcontainer.json)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/xarray-contrib/xarray-tutorial/tree/main?devcontainer_path=.devcontainer%2Fscipy2024%2Fdevcontainer.json)
 
 ☝️ Click the button above to go to options window to launch a Github codespace.
 
