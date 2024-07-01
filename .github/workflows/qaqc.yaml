@@ -54,4 +54,5 @@ jobs:
         timeout-minutes: 5
         if: always()
         run: |
+          jupyter-book clean ./
           jupyter-book build ./ --builder linkcheck
