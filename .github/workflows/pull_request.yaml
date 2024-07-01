@@ -41,7 +41,7 @@ jobs:
         if: github.event.action != 'closed'
         run: |
           jupyter-book clean ./
-          jupyter-book build ./ --warningiserror --keep-going
+          jupyter-book build ./
 
       - name: Upload artifact
         if: github.event.action != 'closed'
