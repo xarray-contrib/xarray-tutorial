@@ -1,4 +1,4 @@
-# Thinking like Xarray
+# Thinking like Xarray 2022
 
 Presented March 2022 for the [NCAR Python Seminar Series](https://ncar.github.io/esds/posts/2022/Thinking-with-Xarray/) by Deepak Cheerian
 
