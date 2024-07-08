@@ -9,14 +9,14 @@ However, real-world datasets are usually more than just raw numbers; they have
 labels which encode information about how the array values map to locations in
 space, time, etc.
 
-The N-dimensional nature of xarray’s data structures makes it suitable for
+The N-dimensional nature of Xarray’s data structures makes it suitable for
 dealing with multi-dimensional scientific data, and its use of dimension names
 instead of axis labels (`dim='time'` instead of `axis=0`) makes such arrays much
-more manageable than the raw numpy ndarray: with xarray, you don’t need to keep
+more manageable than the raw NumPy ndarray: with Xarray, you don’t need to keep
 track of the order of an array’s dimensions or insert dummy dimensions of size 1
 to align arrays (e.g., using np.newaxis).
 
-The immediate payoff of using xarray is that you’ll write less code. The
+The immediate payoff of using Xarray is that you’ll write less code. The
 long-term payoff is that you’ll understand what you were thinking when you come
 back to look at it weeks or months later.
 
