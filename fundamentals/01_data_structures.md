@@ -54,7 +54,7 @@ powerful and concise interface. For example:
 
 Although the Xarray library was originally developed with Earth Science datasets in mind, the datastructures work well across many other domains! For example, below is a side-by-side view of a data schematic on the left and Xarray Dataset representation on the right taken from a mosquito genetics analysis:
 
-<img src="https://vobs-resources.cog.sanger.ac.uk/training/img/workshop-4/mosquito-genotype-array.png" align="center" width="80%">
+![malaria_dataset](../images/malaria_dataset.png)
 
 The data can be stored as a 3-dimensional array, where one dimension of the array corresponds to positions (**variants**) within a reference genome, another dimension corresponds to the individual mosquitoes that were sequenced (**samples**), and a third dimension corresponds to the number of genomes within each individual (**ploidy**)."
 
