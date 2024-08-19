@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - ".devcontainer/**"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -17,7 +19,7 @@ jobs:
         shell: bash -el {0}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install Conda environment with Micromamba
         uses: mamba-org/setup-micromamba@v1
@@ -33,7 +35,7 @@ jobs:
         with:
           check_filenames: true
           check_hidden: true
-          skip: '.git,*.js,qaqc.yml'
+          skip: ".git,*.js,qaqc.yml"
           ignore_words_list: hist,nd
 
       # borrowed from https://github.com/ProjectPythia/pythia-foundations/blob/main/.github/workflows/link-checker.yaml

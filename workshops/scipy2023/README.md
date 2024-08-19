@@ -14,6 +14,10 @@ Organized by:
 
 ## Instructions
 
+:::{note}
+You can access a recording of this tutorial [here](https://www.youtube.com/watch?v=L4FXcIOMlsY)
+:::
+
 ### Running Locally
 
 See instructions to set up the environment for running the tutorial material [here](get-started).
