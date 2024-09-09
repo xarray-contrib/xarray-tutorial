@@ -38,6 +38,7 @@ Follow the tutorials on creating a new backend for binary files.
 - [scipy](https://scipy.org/) - netCDF3
 - [zarr](https://pypi.org/project/zarr/) - Zarr
 - [pydap](https://pydap.github.io/pydap/) - Data Access Protocol (DAP/DODS/OPeNDAP)
+- [h5netcdf](https://h5netcdf.org/) - hdf5
 
 ### Links to external backends (not comprehensive)
 
