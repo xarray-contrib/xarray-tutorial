@@ -1,4 +1,4 @@
-# Xarray Online Tutorial
+# Xarray Online Tutorial 2020
 
 Presented October 6 2020 by:
 
