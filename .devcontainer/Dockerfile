@@ -1,1 +1,1 @@
-FROM pangeo/base-image:2024.09.11
+FROM pangeo/base-image:2024.10.01
