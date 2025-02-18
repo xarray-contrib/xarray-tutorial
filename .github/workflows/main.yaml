@@ -43,12 +43,8 @@ jobs:
         # NOTE: login shell activates conda environment
         shell: bash -el {0}
         run: |
-          jupyter-book build ./ --warningiserror --keep-going
-
-      - name: Dump Build Logs
-        if: always()
-        run: |
-          if (test -a _build/html/reports/*log); then cat _build/html/reports/*log ; fi
+          jupyter-book clean ./
+          jupyter-book build ./
 
       - name: Save Build Folder
         if: always()

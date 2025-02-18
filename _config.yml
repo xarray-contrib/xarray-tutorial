@@ -77,6 +77,28 @@ sphinx:
     # application/vnd.holoviews_load.v0+json, application/vnd.holoviews_exec.v0+json
     suppress_warnings: ["mystnb.unknown_mime_type", "misc.highlighting_failure"]
     codeautolink_concat_default: True
+    codeautolink_warn_on_missing_inventory: True
+    codeautolink_warn_on_failed_resolve: True
+    codeautolink_inventory_map: {
+        # unfortunately mapping the top level doesn't work, need all methods
+        #"xarray.core.dataarray.DataArray": "xarray.DataArray",
+        "xarray.core.accessor_dt.DatetimeAccessor": "xarray.DataArray.dt",
+        "xarray.core.dataarray.DataArray.coarsen": "xarray.DataArray.coarsen",
+        "xarray.core.dataarray.DataArray.groupby": "xarray.DataArray.groupby",
+        "xarray.core.dataarray.DataArray.groupby_bins": "xarray.DataArray.groupby_bins",
+        "xarray.core.dataarray.DataArray.isel": "xarray.DataArray.isel",
+        #"xarray.core.dataarray.DataArray.plot": "xarray.DataArray.plot",
+        "xarray.plot.accessor.DataArrayPlotAccessor": "xarray.DataArray.plot",
+        "xarray.core.dataarray.DataArray.redindex": "xarray.DataArray.reindex",
+        "xarray.core.dataarray.DataArray.reduce": "xarray.DataArray.reduce",
+        "xarray.core.dataarray.DataArray.resample": "xarray.DataArray.resample",
+        "xarray.core.dataarray.DataArray.rolling": "xarray.DataArray.rolling",
+        "xarray.core.dataarray.DataArray.sel": "xarray.DataArray.sel",
+        "xarray.core.dataarray.DataArray.weighted": "xarray.DataArray.weighted",
+        #"Same for dataset :(
+        "xarray.core.dataset.Dataset.groupby": "xarray.Dataset.groupby",
+        "xarray.core.dataset.Dataset.isel": "xarray.Dataset.sel",
+      }
     notfound_context:
       body: "<h1>Whoops! 404 Page Not Found</h1>\n\n<p>Sorry, this page doesn't exist. Many sections of this book have been updated recently.</p><p> Try the search box 🔎 to find what you're looking for!</p>"
     notfound_urls_prefix: /
