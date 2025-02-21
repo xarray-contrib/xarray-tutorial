@@ -85,13 +85,13 @@ Follow the link reported in a terminal to open a pull request!
 
 [`pixi`](https://pixi.sh) can be used to create and update a multi-platform lockfile, so a reproducible set of package versions is installed across different operating systems.
 
-Dependencies (with optional pins) are specfied in the `pyproject.toml` file, and specific locked versions for all platforms are kept in `pixi.lock`.
+Dependencies (with optional pins) are specified in the `pyproject.toml` file, and specific locked versions for all platforms are kept in `pixi.lock`.
 
 Install environment from the lockfile
 
 ```
 pixi install
-pixi shell # activate environment, "exit" to deativate
+pixi shell # activate environment, "exit" to deactivate
 ```
 
 Upgrade all packages to latest versions:
