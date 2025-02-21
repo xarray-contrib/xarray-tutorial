@@ -1,4 +1,92 @@
+[project]
+name = "coincident"
+description = "Xarray Tutorial Website"
+readme = "README.md"
+license.file = "LICENSE"
+requires-python = ">=3.10"
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering",
+  "Typing :: Typed",
+]
+
+[dependencies]
+jupyter-book = "*"
+pre-commit = "*"
+dask-labextension = "*"
+jupyterlab = "*"
+jupyter_bokeh = "*"
+jupyterlab-myst = "*"
+jupyter-resource-usage = "*"
+cartopy = "*"
+cf_xarray = "*"
+dask = "*"
+datashader = "*"
+distributed = "*"
+gcsfs = "*"
+geoviews-core = "*"
+gsw = "*"
+hvplot = "*"
+h5netcdf = "*"
+ipython = "*"
+matplotlib-base = "*"
+netcdf4 = "*"
+numpy = "*"
+pint-xarray = "*"
+pydap = "*"
+python-graphviz = "*"
+pooch = "*"
+rioxarray = "*"
+scipy = "*"
+sphinx-codeautolink = "*"
+sphinxcontrib-mermaid = "*"
+sphinx-notfound-page = "*"
+sphinxext-rediraffe = "*"
+s3fs = "*"
+xarray = "*"
+zarr = "*"
+
+
 [tool.black]
 line-length = 100
 target-version = ['py38']
 skip-string-normalization = true
+
+[tool.flake8]
+#exclude =
+ignore = "E203,E266,E501,W503,E722,E402,C901"
+max-line-length = 100
+max-complexity = 18
+select = "B,C,E,F,W,T4,B9"
+
+[tool.isort]
+#known_first_party=
+#known_third_party=
+multi_line_output=3
+include_trailing_comma=true
+force_grid_wrap=0
+combine_as_imports=true
+line_length=100
+#skip=
+
+[tool.pixi.project]
+name = "xarray-tutorial"
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "linux-64", "win-64"]
+
+[tool.pixi.pypi-dependencies]
+
+[tool.pixi.tasks]
+
+[tool.pixi.dependencies]
+pre-commit = ">=4.1.0,<5"
