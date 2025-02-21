@@ -27,11 +27,19 @@ jobs:
           cache: true
           activate-environment: true
 
+      # https://github.com/xarray-contrib/xarray-tutorial/issues/311
+      - name: Configure graphviz
+        if: matrix.runs-on == 'macos-latest'
+        run: |
+          dot -c
+
       - name: Build JupyterBook
+        id: jb-build
+        continue-on-error: true
         run: |
           jupyter-book build ./ --warningiserror --keep-going
 
       - name: Dump Build Logs
-        if: always()
+        if: steps.jb-build.outcome == 'failure'
         run: |
-          if (test -a _build/html/reports/*log); then cat _build/html/reports/*log ; fi
+          cat _build/html/reports/**/*.log

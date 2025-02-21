@@ -1,6 +1,7 @@
 name: QualityContol
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
@@ -46,8 +47,10 @@ jobs:
           with open('./_config.yml', 'w') as f:
             yaml.dump(data, f)
 
+      # Checking links is flaky, so continue-on-error: true
       - name: Check External Links
         timeout-minutes: 5
+        continue-on-error: true
         if: always()
         run: |
           jupyter-book build ./ --builder linkcheck
