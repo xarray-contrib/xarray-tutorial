@@ -57,6 +57,7 @@ platforms = ["osx-arm64", "linux-64", "win-64"]
 tutorial = "jupyter lab --LabApp.default_url='/lab/tree/overview/xarray-in-45-min.ipynb'"
 build = "jupyter-book build ./ --warningiserror --keep-going"
 precommit = "pre-commit run --all"
+checklinks = "jupyter-book build ./ --builder linkcheck"
 
 [tool.pixi.dependencies]
 jupyter-book = ">=1.0.3,<2"
