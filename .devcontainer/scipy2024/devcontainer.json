@@ -1,8 +1,5 @@
 {
-  "build": {
-    "dockerfile": "../Dockerfile",
-    "context": "../../conda"
-  },
+  "image": "quay.io/pangeo/pangeo-notebook:2024.07.08",
   "postCreateCommand": {
     "jupyterlab": "mkdir /home/jovyan/.jupyter && cp ${containerWorkspaceFolder}/.devcontainer/scipy2024/jupyter_lab_config.py /home/jovyan/.jupyter/jupyter_lab_config.py",
     "vscode": "mkdir ${containerWorkspaceFolder}/.vscode && cp ${containerWorkspaceFolder}/.devcontainer/scipy2024/tasks.json ${containerWorkspaceFolder}/.vscode/tasks.json"

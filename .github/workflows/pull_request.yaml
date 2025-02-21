@@ -13,9 +13,6 @@ concurrency:
 jobs:
   preview:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -el {0}
     steps:
       - name: Checkout repository
         if: github.event.action != 'closed'
@@ -29,13 +26,11 @@ jobs:
           # NOTE: change key to "jupyterbook-DATE" to force rebuilding cache
           key: jupyterbook-20240517
 
-      - name: Install Conda environment with Micromamba
-        if: github.event.action != 'closed'
-        uses: mamba-org/setup-micromamba@v1
+      - uses: prefix-dev/setup-pixi@v0.8.2
         with:
-          environment-file: conda/conda-lock.yml
-          environment-name: xarray-tutorial
-          cache-environment: true
+          manifest-path: pyproject.toml
+          cache: true
+          activate-environment: true
 
       - name: Build JupyterBook
         if: github.event.action != 'closed'
