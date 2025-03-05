@@ -30,18 +30,15 @@ jobs:
         with:
           path: _build
           # NOTE: change key to "jupyterbook-DATE" to force rebuilding cache
-          key: jupyterbook-20240517
+          key: jupyterbook-20250221
 
-      - name: Install Conda environment with Micromamba
-        uses: mamba-org/setup-micromamba@v1
+      - uses: prefix-dev/setup-pixi@v0.8.2
         with:
-          environment-file: conda/conda-lock.yml
-          environment-name: xarray-tutorial
-          cache-environment: true
+          manifest-path: pyproject.toml
+          cache: true
+          activate-environment: true
 
       - name: Build JupyterBook
-        # NOTE: login shell activates conda environment
-        shell: bash -el {0}
         run: |
           jupyter-book build ./ --warningiserror --keep-going
 

@@ -1,0 +1,45 @@
+name: Rebuild Entire Jupyter Book on all Platforms
+
+on:
+  workflow_dispatch:
+
+# Allow one concurrent deployment
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build on ${{ matrix.runs-on }}
+    runs-on: ${{ matrix.runs-on }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: prefix-dev/setup-pixi@v0.8.2
+        with:
+          manifest-path: pyproject.toml
+          cache: true
+          activate-environment: true
+
+      # https://github.com/xarray-contrib/xarray-tutorial/issues/311
+      - name: Configure graphviz
+        if: matrix.runs-on == 'macos-latest'
+        run: |
+          dot -c
+
+      - name: Build JupyterBook
+        id: jb-build
+        continue-on-error: true
+        run: |
+          jupyter-book build ./ --warningiserror --keep-going
+
+      - name: Dump Build Logs
+        if: steps.jb-build.outcome == 'failure'
+        run: |
+          cat _build/html/reports/**/*.log

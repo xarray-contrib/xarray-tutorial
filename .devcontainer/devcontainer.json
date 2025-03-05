@@ -1,8 +1,5 @@
 {
-  "build": {
-    "dockerfile": "./Dockerfile",
-    "context": "../conda"
-  },
+  "image": "quay.io/pangeo/pangeo-notebook:latest",
   "postCreateCommand": {
     "vscode": "mkdir ${containerWorkspaceFolder}/.vscode && cp ${containerWorkspaceFolder}/.devcontainer/tasks.json ${containerWorkspaceFolder}/.vscode/tasks.json"
   },

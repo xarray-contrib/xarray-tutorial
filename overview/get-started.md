@@ -43,15 +43,18 @@ GitHub currently gives every user [120 vCPU hours per month for free](https://do
 
 Running tutorials on your computer requires some setup:
 
-We recommend using [`conda-lock`](https://conda.github.io/conda-lock/) to ensure a fully reproducible Python environment
+We recommend using [`pixi`](https://pixi.sh/latest/) to ensure a fully reproducible Python environment
 
 ```
 git clone https://github.com/xarray-contrib/xarray-tutorial.git
 cd xarray-tutorial
+pixi run tutorial
+```
 
-conda-lock install conda/conda-lock.yml --name xarray-tutorial
-# Or latest package versions: `mamba env create -f conda/environment-unpinned.yml`
+If you prefer to use conda/mamba:
 
+```
+mamba env create -f .binder/environment.yml -n xarray-tutorial
 conda activate xarray-tutorial
 jupyter lab
 ```

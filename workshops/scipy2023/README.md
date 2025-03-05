@@ -24,7 +24,7 @@ See instructions to set up the environment for running the tutorial material [he
 
 ### Github Codespaces
 
-This tutorial is available to run within [Github Codespaces](https://github.com/features/codespaces) - "a development environment that's hosted in the cloud" - with the conda environment specification in the [`conda-lock.yml`](../../conda/conda-lock.yml) file.
+This tutorial is available to run within [Github Codespaces](https://github.com/features/codespaces) - "a development environment that's hosted in the cloud"
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/xarray-contrib/xarray-tutorial/tree/main?devcontainer_path=.devcontainer%2Fscipy2023%2Fdevcontainer.json)
 
