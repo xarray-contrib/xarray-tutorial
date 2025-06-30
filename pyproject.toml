@@ -58,6 +58,10 @@ tutorial = "jupyter lab --LabApp.default_url='/lab/tree/overview/xarray-in-45-mi
 build = "jupyter-book build ./ --warningiserror --keep-going"
 precommit = "pre-commit run --all"
 checklinks = "jupyter-book build ./ --builder linkcheck"
+clear-cache = "jupyter-book clean ."
+# To clear a specific notebook pass ID number: jcache cache -p _build/.jupyter_cache remove 28
+# To clear all cached notebooks: jupyter-book clean . --all"
+list-cache = "jcache cache -p _build/.jupyter_cache list"
 
 [tool.pixi.dependencies]
 jupyter-book = ">=1.0.4.post1,<2"
