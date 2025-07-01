@@ -49,4 +49,5 @@ jobs:
         continue-on-error: true
         if: always()
         run: |
+          jupyter-book clean ./
           jupyter-book build ./ --builder linkcheck
