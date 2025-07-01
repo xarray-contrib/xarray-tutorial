@@ -21,11 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - uses: prefix-dev/setup-pixi@v0.8.2
-        with:
-          manifest-path: pyproject.toml
-          cache: true
-          activate-environment: true
+      - uses: ./.github/actions/setup-pixi
 
       # https://github.com/xarray-contrib/xarray-tutorial/issues/311
       - name: Configure graphviz
