@@ -1,4 +1,102 @@
+[project]
+name = "coincident"
+description = "Xarray Tutorial Website"
+readme = "README.md"
+license.file = "LICENSE"
+requires-python = ">=3.10"
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering",
+  "Typing :: Typed",
+]
+
 [tool.black]
 line-length = 100
 target-version = ['py38']
 skip-string-normalization = true
+
+[tool.flake8]
+#exclude =
+ignore = "E203,E266,E501,W503,E722,E402,C901"
+max-line-length = 100
+max-complexity = 18
+select = "B,C,E,F,W,T4,B9"
+
+[tool.isort]
+#known_first_party=
+#known_third_party=
+multi_line_output=3
+include_trailing_comma=true
+force_grid_wrap=0
+combine_as_imports=true
+line_length=100
+#skip=
+
+[tool.codespell]
+ignore-words-list="nd"
+skip="pixi.lock,.pixi,qaqc.yaml"
+
+[tool.pixi.project]
+name = "xarray-tutorial"
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "linux-64", "win-64"]
+
+[tool.pixi.pypi-dependencies]
+
+[tool.pixi.tasks]
+tutorial = "jupyter lab --LabApp.default_url='/lab/tree/overview/xarray-in-45-min.ipynb'"
+build = "jupyter-book build ./ --warningiserror --keep-going"
+precommit = "pre-commit run --all"
+checklinks = "jupyter-book build ./ --builder linkcheck"
+clear-cache = "jupyter-book clean ."
+# To clear a specific notebook pass ID number: jcache cache -p _build/.jupyter_cache remove 28
+# To clear all cached notebooks: jupyter-book clean . --all"
+list-cache = "jcache cache -p _build/.jupyter_cache list"
+
+[tool.pixi.dependencies]
+jupyter-book = ">=1.0.4.post1,<2"
+pre-commit = ">=4.2.0,<5"
+dask-labextension = ">=7.0.0,<8"
+jupyterlab = ">=4.4.4,<5"
+jupyter_bokeh = ">=4.0.5,<5"
+jupyterlab-myst = ">=2.4.2,<3"
+jupyter-resource-usage = ">=1.1.1,<2"
+cartopy = ">=0.24.0,<0.25"
+cf_xarray = ">=0.10.6,<0.11"
+dask = ">=2025.5.1,<2026"
+datashader = ">=0.18.1,<0.19"
+distributed = ">=2025.5.1,<2026"
+gcsfs = ">=2025.5.1,<2026"
+geoviews-core = ">=1.14.0,<2"
+gsw = ">=3.6.19,<4"
+hvplot = ">=0.11.3,<0.12"
+h5netcdf = ">=1.6.2,<2"
+ipykernel = ">=6.29.5,<7"
+matplotlib-base = ">=3.10.3,<4"
+netcdf4 = ">=1.7.2,<2"
+numpy = ">=2.2.6,<3"
+pint-xarray = ">=0.5.0,<0.6"
+pydap = ">=3.5.5,<4"
+python-graphviz = ">=0.21,<0.22"
+pooch = ">=1.8.2,<2"
+rioxarray = ">=0.19.0,<0.20"
+scipy = ">=1.16.0,<2"
+sphinx-codeautolink = ">=0.17.4,<0.18"
+sphinxcontrib-mermaid = ">=1.0.0,<2"
+sphinx-notfound-page = ">=1.1.0,<2"
+sphinxext-rediraffe = ">=0.2.7,<0.3"
+s3fs = ">=2025.5.1,<2026"
+xarray = ">=2025.6.1,<2026"
+zarr = ">=3.0.8,<4"
+flox = ">=0.10.4,<0.11"
+numbagg = ">=0.9.0,<0.10"
