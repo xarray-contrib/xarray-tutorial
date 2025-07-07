@@ -1,0 +1,42 @@
+// https://pixi.sh/latest/integration/editor/vscode/#devcontainer-extension
+{
+  "name": "scipy2025-xarray-tutorial",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "../../"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "ms-toolsai.jupyter",
+        "ms-python.python",
+        "executablebookproject.myst-highlight"
+      ]
+    }
+  },
+  "features": {
+    // ensure GitHub Codespace 'Open with JupyterLab' works
+    // TODO: figure out why it doesn't work w/ jupyterlab in the pixi environment
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12",
+      "installTools": false,
+      // NOTE: not working, so install with pip in postCreateCommand
+      // "toolsToInstall":"jupyterlab_myst,pixi-kernel",
+      "installJupyterlab": true
+    }
+  },
+  "mounts": [
+    "source=${localWorkspaceFolderBasename}-pixi,target=${containerWorkspaceFolder}/.pixi,type=volume"
+  ],
+  // These should execute in order below
+  "onCreateCommand": {
+    "configure_jupyterlab": "pip install jupyterlab_myst pixi-kernel"
+  },
+  "postCreateCommand": {
+    "set_pixi_permissions": "sudo chown vscode .pixi"
+  },
+  "postStartCommand": {
+    "configure_jupyterlab": "pixi install"
+  }
+}

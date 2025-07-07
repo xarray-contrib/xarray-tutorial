@@ -1,8 +1,8 @@
 # Xarray Tutorial
 
-[![CI](https://github.com/xarray-contrib/xarray-tutorial/workflows/CI/badge.svg?branch=main)](https://github.com/xarray-contrib/xarray-tutorial/actions?query=branch%3Amain)
+[![Deploy Website to GitHub Pages](https://github.com/xarray-contrib/xarray-tutorial/actions/workflows/main.yaml/badge.svg)](https://github.com/xarray-contrib/xarray-tutorial/actions/workflows/main.yaml)
 [![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](https://tutorial.xarray.dev)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/HEAD?labpath=workshops/scipy2024/index.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xarray-contrib/xarray-tutorial/HEAD?labpath=overview/xarray-in-45-min.ipynb)
 
 This is the repository for a Jupyter Book website with tutorial material for [Xarray](https://github.com/pydata/xarray), _an open source project and Python package that makes working with labelled multi-dimensional arrays simple, efficient, and fun!_
 
