@@ -29,9 +29,14 @@
   "mounts": [
     "source=${localWorkspaceFolderBasename}-pixi,target=${containerWorkspaceFolder}/.pixi,type=volume"
   ],
+  // These should execute in order below
+  "onCreateCommand": {
+    "configure_jupyterlab": "pip install jupyterlab_myst pixi-kernel"
+  },
   "postCreateCommand": {
-    "configure_jupyterlab": "pip install jupyterlab_myst pixi-kernel",
-    "set_pixi_permissions": "sudo chown vscode .pixi",
-    "install_pixi_environment": "pixi install"
+    "set_pixi_permissions": "sudo chown vscode .pixi"
+  },
+  "postStartCommand": {
+    "configure_jupyterlab": "pixi install"
   }
 }
