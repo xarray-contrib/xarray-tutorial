@@ -6,7 +6,8 @@ You can [read different types of files](https://docs.xarray.dev/en/stable/user-g
 
 ```python
 import xarray as xr
-xr.open_dataset("my_file.grib" , engine="cfgrib")
+
+xr.open_dataset("my_file.grib", engine="cfgrib")
 ```
 
 Navigating Xarray backends can be confusing,
