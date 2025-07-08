@@ -11,7 +11,6 @@
 ```{grid-item-card}
 :link: overview/get-started
 :link-type: doc
-:class-header: bg-light
 Get started! 🚀
 ^^^
 Learn how to navigate the tutorials and run code examples interactively
@@ -19,15 +18,13 @@ Learn how to navigate the tutorials and run code examples interactively
 
 ```{grid-item-card}
 :link: https://www.youtube.com/channel/UCBlxVSA6xQXeb-i4GgTlO7g
-:class-header: bg-light
 Watch videos 🎬
 ^^^
 Live walk-throughs of this material and more on Xarray's YouTube Channel
 ```
 
 ```{grid-item-card}
-:link: https://docs.xarray.dev/en/latest/help-diagram.html
-:class-header: bg-light
+:link: https://docs.xarray.dev/en/stable/get-help/help-diagram.html#help-flowchart
 Get involved 🙋
 ^^^
 Ask questions and participate in the Xarray community!
@@ -37,7 +34,7 @@ Ask questions and participate in the Xarray community!
 
 ## Citation
 
-✏️ To cite this material, you can use the recommended [Xarray citation](https://docs.xarray.dev/en/stable/getting-started-guide/faq.html#how-should-i-cite-xarray): {cite:p}`hoyerhamman2017`, {cite:p}`xarray_v202230`.
+✏️ To cite this material, you can use the recommended [Xarray citation](https://docs.xarray.dev/en/stable/get-help/faq.html#how-should-i-cite-xarray): {cite:p}`hoyerhamman2017`, {cite:p}`xarray_v202230`.
 
 ## Acknowledgements
 
