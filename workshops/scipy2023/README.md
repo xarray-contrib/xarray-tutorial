@@ -57,7 +57,7 @@ Once your codespace is launched, the following happens:
 ```
 
 ```{dropdown} Computational Patterns
-{doc}`../../intermediate/01-high-level-computation-patterns`
+{doc}`../../intermediate/computation/01-high-level-computation-patterns`
 ```
 
 ```{dropdown} Wrapping other arrays: dask
