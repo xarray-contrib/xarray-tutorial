@@ -1,6 +1,7 @@
 name: QualityContol
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
@@ -14,19 +15,11 @@ concurrency:
 jobs:
   quality-control:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -el {0}
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Conda environment with Micromamba
-        uses: mamba-org/setup-micromamba@v1
-        with:
-          environment-file: conda/conda-lock.yml
-          environment-name: xarray-tutorial
-          cache-environment: true
+      - uses: ./.github/actions/setup-pixi
 
       # NOTE: this isn't a comprehensive spellcheck, just common typos
       - name: Spellcheck
@@ -50,8 +43,10 @@ jobs:
           with open('./_config.yml', 'w') as f:
             yaml.dump(data, f)
 
+      # Checking links is flaky, so continue-on-error: true
       - name: Check External Links
         timeout-minutes: 5
+        continue-on-error: true
         if: always()
         run: |
           jupyter-book build ./ --builder linkcheck

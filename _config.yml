@@ -1,21 +1,23 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 title: ""
 author: The Xarray Community
-copyright: "2024"
+copyright: "2025"
 logo: images/logo.png
 only_build_toc_files: true
+exclude_patterns: [.github, .pixi]
 
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
   # NOTE: this announcement shows up on all pages
-  announcement: '<a href="https://forms.gle/KEq7WviCdz9xTaJX6">The Xarray 2024 User Survey is live. Please take ~5 minutes to fill it out and help us improve Xarray.</a>'
-  #announcement: 'ℹ️ SciPy 2024 Tutorial Attendees. <a href="https://tutorial.xarray.dev/workshops/scipy2024/README.html">Click here </a>.'
+  #announcement: '<a href="https://forms.gle/KEq7WviCdz9xTaJX6">The Xarray 2024 User Survey is live. Please take ~5 minutes to fill it out and help us improve Xarray.</a>'
+  announcement: 'ℹ️ SciPy 2025 Tutorial Attendees. <a href="https://tutorial.xarray.dev/workshops/scipy2025/index.html">Click here! </a>.'
   home_page_in_navbar: false
   use_edit_page_button: true
   use_issues_button: true
   use_repository_button: true
-  google_analytics_id: G-JRQHYVFQR7
   extra_footer: '<p>Xarray is a fiscally sponsored project of <a href="https://numfocus.org">NumFOCUS</a>, a nonprofit dedicated to supporting the open-source scientific computing community.<br> Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>.</p> Content licensed under the terms of the <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0 License</a>.'
+  analytics:
+    google_analytics_id: G-JRQHYVFQR7
 
 parse:
   # https://jupyterbook.org/content/content-blocks.html?highlight=myst%20substitution#define-substitutions-for-your-whole-book
@@ -89,23 +91,23 @@ sphinx:
 
     intersphinx_mapping:
       xarray:
-        - https://docs.xarray.dev/en/latest/
+        - https://docs.xarray.dev/en/stable
         - null
       numpy:
         - https://numpy.org/doc/stable
         - null
+      pandas:
+        - https://pandas.pydata.org/docs
+        - null
       scipy:
         - https://docs.scipy.org/doc/scipy
         - null
-      matplotlib:
-        - https://matplotlib.org/stable/
+      python:
+        - https://docs.python.org/3
         - null
       dask:
-        - https://docs.dask.org/en/latest
+        - https://docs.dask.org/en/stable
         - null
-      python:
-        - https://docs.python.org/3/
-        - null
-      pandas:
-        - https://pandas.pydata.org/pandas-docs/stable
+      matplotlib:
+        - https://matplotlib.org/stable
         - null

@@ -22,7 +22,9 @@ guidelines:
 1. Be concise and limited to one or two topics, such that a reader can get through the example within a few minutes of reading
 1. Be of general relevance to Xarray users, and so not too specific on a particular problem or use case.
 
-## Fork this repository
+## Contribution process
+
+### Fork this repository
 
 We recommend first forking this repository and creating a local copy:
 
@@ -31,24 +33,28 @@ git clone https://github.com/YOURACCOUNT/xarray-tutorial.git
 cd xarray-tutorial
 ```
 
-## Create a Python environment
+### Create a Python environment
 
-You'll need `conda` or `mamba`, which can be installed from https://github.com/conda-forge/miniforge
-
-We also use [conda-lock](https://conda.github.io/conda-lock/) to ensure we have reproducible environments across different operating systems
+You'll need `pixi` or `conda` or `mamba`, which can be installed from https://github.com/conda-forge/miniforge
 
 We also use [pre-commit hooks](https://pre-commit.com) to run styling and other checks before committing code.
 
+#### Using pixi (recommended)
+
 ```
-conda-lock install -f conda/conda-lock.yml
-# Or latest package versions: `mamba env create -f conda/environment-unpinned.yml`
+pixi install
+pixi shell  # exit
+```
 
-conda activate xarray-tutorial
+#### Using conda
 
+```
+mamba env create -f .binder/environment.yml -n xarray-tutorial
+conda activate xarray-tutorial  # conda deactivate
 pre-commit install
 ```
 
-## Add content
+### Add content
 
 Develop your new content on a branch. See [JupyterBook Docs](https://jupyterbook.org/en/stable/intro.html) for guides on adding `.md`, `.ipynb` and other content.
 
@@ -58,18 +64,45 @@ git add .
 git commit -m "added pages x,y and improved z"
 ```
 
-## Preview your changes
+### Preview your changes
 
 Running jupyterbook will execute notebooks and render HTML pages for the website. Be sure to fix any execution errors and preview the website in your web browser to make sure everything looks good!
 
 ```
-jb build .
+jupyter-book build ./ --warningiserror --keep-going
+# Or "pixi run build"
 ```
 
-## Open a pull request
+### Open a pull request
 
 ```
 git push
 ```
 
 Follow the link reported in a terminal to open a pull request!
+
+## Instructions for environment management
+
+[`pixi`](https://pixi.sh) can be used to create and update a multi-platform lockfile, so a reproducible set of package versions is installed across different operating systems.
+
+Dependencies (with optional pins) are specified in the `pyproject.toml` file, and specific locked versions for all platforms are kept in `pixi.lock`.
+
+Install environment from the lockfile
+
+```
+pixi install
+pixi shell # activate environment, "exit" to deactivate
+```
+
+Upgrade all packages to latest versions:
+
+```
+pixi upgrade
+```
+
+## Render conda/mamba environment files
+
+```
+pixi project export conda-environment -p linux-64 .binder/environment.yml
+pixi project export conda-explicit-spec -p linux-64 /tmp
+```
