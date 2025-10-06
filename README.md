@@ -43,6 +43,24 @@ cd xarray-tutorial
 pixi run tutorial
 ```
 
+### Building the Documentation Locally
+
+To build and serve the tutorial website locally as a development server:
+
+1. Build the Jupyter Book:
+```bash
+pixi run build
+```
+
+2. Serve the built site locally:
+```bash
+pixi run python -m http.server --directory _build/html
+```
+
+Then visit http://localhost:8000 in your browser.
+
+Note: The `build` command does not have live rebuilding. You'll need to re-run `pixi run build` after making changes to see updates.
+
 ## Contributing
 
 Contributions are welcome and greatly appreciated! See our [CONTRIBUTING.md](./CONTRIBUTING.md) document.
