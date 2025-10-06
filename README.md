@@ -48,11 +48,13 @@ pixi run tutorial
 To build and serve the tutorial website locally as a development server:
 
 1. Build the Jupyter Book:
+
 ```bash
 pixi run build
 ```
 
 2. Serve the built site locally:
+
 ```bash
 pixi run python -m http.server --directory _build/html
 ```
