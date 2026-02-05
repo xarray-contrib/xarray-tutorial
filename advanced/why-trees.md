@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-# Why KD-Trees?
+# Tree-Based Indexing
 
 Imagine you have measurements at irregular locations and want to find the **nearest** data point to your query location.
 
