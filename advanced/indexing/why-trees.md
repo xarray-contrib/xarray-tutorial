@@ -14,6 +14,10 @@ kernelspec:
 
 # Tree-Based Indexing
 
+```{seealso}
+[NDPointIndex](https://xarray-indexes.readthedocs.io/blocks/ndpoint.html) — use KD-trees and Ball trees with xarray's indexing system for efficient nearest-neighbor lookups on real datasets.
+```
+
 Imagine you have measurements at irregular locations and want to find the **nearest** data point to your query location.
 
 **In this notebook you'll learn:**
