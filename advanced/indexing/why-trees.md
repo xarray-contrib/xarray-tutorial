@@ -498,7 +498,7 @@ km_to_a = 2.0 * km_per_deg_lon
 km_to_b = 0.5 * km_per_deg_lat
 
 # Create figure
-fig = plt.figure(figsize=(14, 10))
+fig = plt.figure(figsize=(14, 10), constrained_layout=True)
 
 # === Top: Circle diagram showing arc vs chord ===
 ax_circle = fig.add_subplot(211)
@@ -600,7 +600,7 @@ ax_real.plot([0, 0], [0, km_to_b], color='orange', lw=2.5, alpha=0.7)
 
 circle_ball = plt.Circle((km_to_a, 0), 6, fill=False, color='black', lw=3, linestyle='--', zorder=15)
 ax_real.add_patch(circle_ball)
-ax_real.annotate('Ball tree picks A\n(smaller in km)', (km_to_a + 8, 8), fontsize=12, fontweight='bold')
+ax_real.annotate('Ball tree picks A\n(smaller in km)', (5, 55), fontsize=12, fontweight='bold')
 
 ax_real.set_xlabel('East-West distance (km)', fontsize=13)
 ax_real.set_ylabel('North-South distance (km)', fontsize=13)
@@ -614,7 +614,6 @@ ax_real.grid(True, alpha=0.3)
 ax_real.annotate(f'{km_to_a:.0f} km', (km_to_a/2, -6), ha='center', fontsize=14, color='green', fontweight='bold')
 ax_real.annotate(f'{km_to_b:.0f} km', (-7, km_to_b/2), ha='center', fontsize=14, color='orange', fontweight='bold', rotation=90)
 
-plt.tight_layout()
 plt.show()
 
 print(f"At {lat}°N: 1° longitude = {km_per_deg_lon:.0f} km, 1° latitude = {km_per_deg_lat} km")
