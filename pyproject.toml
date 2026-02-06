@@ -46,7 +46,7 @@ line_length=100
 ignore-words-list="nd"
 skip="pixi.lock,.pixi,qaqc.yaml"
 
-[tool.pixi.project]
+[tool.pixi.workspace]
 name = "xarray-tutorial"
 channels = ["conda-forge"]
 platforms = ["osx-arm64", "linux-64", "win-64"]
@@ -61,6 +61,7 @@ checklinks = "jupyter-book build ./ --builder linkcheck"
 clear-cache = "jupyter-book clean ."
 # To clear a specific notebook pass ID number: jcache cache -p _build/.jupyter_cache remove 28
 # To clear all cached notebooks: jupyter-book clean . --all"
+watch = { cmd = "jupyter-book config sphinx ./ && sphinx-autobuild ./ _build/html -b html --re-ignore '_build/.*'", description = "Build and serve with live reload" }
 list-cache = "jcache cache -p _build/.jupyter_cache list"
 
 [tool.pixi.dependencies]
@@ -90,10 +91,12 @@ pydap = ">=3.5.5,<4"
 python-graphviz = ">=0.21,<0.22"
 pooch = ">=1.8.2,<2"
 rioxarray = ">=0.19.0,<0.20"
+scikit-learn = ">=1.6.0,<2"
 scipy = ">=1.16.0,<2"
 sphinx-codeautolink = ">=0.17.4,<0.18"
 sphinxcontrib-mermaid = ">=1.0.0,<2"
 sphinx-notfound-page = ">=1.1.0,<2"
+sphinx-autobuild = ">=2024.10.3,<2026"
 sphinxext-rediraffe = ">=0.2.7,<0.3"
 s3fs = ">=2025.5.1,<2026"
 xarray = ">=2025.7.0,<2026"
@@ -101,3 +104,4 @@ zarr = ">=3.0.10,<4"
 flox = ">=0.10.4,<0.11"
 numbagg = ">=0.9.0,<0.10"
 rich = ">=14.0.0,<15"
+jupyterlab_vim = ">=4.1.4,<5"
