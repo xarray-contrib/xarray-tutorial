@@ -61,6 +61,7 @@ checklinks = "jupyter-book build ./ --builder linkcheck"
 clear-cache = "jupyter-book clean ."
 # To clear a specific notebook pass ID number: jcache cache -p _build/.jupyter_cache remove 28
 # To clear all cached notebooks: jupyter-book clean . --all"
+watch = { cmd = "jupyter-book config sphinx ./ && sphinx-autobuild ./ _build/html -b html --re-ignore '_build/.*'", description = "Build and serve with live reload" }
 list-cache = "jcache cache -p _build/.jupyter_cache list"
 
 [tool.pixi.dependencies]
@@ -95,6 +96,7 @@ scipy = ">=1.16.0,<2"
 sphinx-codeautolink = ">=0.17.4,<0.18"
 sphinxcontrib-mermaid = ">=1.0.0,<2"
 sphinx-notfound-page = ">=1.1.0,<2"
+sphinx-autobuild = ">=2024.10.3,<2026"
 sphinxext-rediraffe = ">=0.2.7,<0.3"
 s3fs = ">=2025.5.1,<2026"
 xarray = ">=2025.7.0,<2026"
