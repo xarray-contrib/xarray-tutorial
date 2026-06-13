@@ -4,11 +4,12 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 import numpy as np
+import pandas as pd
 import xarray as xr
 
 if TYPE_CHECKING:
     import os
-    from typing import Any, Protocol
+    from typing import Any, Literal, Protocol
 
     import numpy.typing as npt
 
@@ -68,7 +69,11 @@ class ImageIOBackendArray(xr.backends.BackendArray):
 
 class ImageIOBackend(xr.backends.BackendEntrypoint):
     def open_dataset(
-        self, filename_or_obj: FilenameOrObjectType, *, drop_variables: bool | None = None
+        self,
+        filename_or_obj: FilenameOrObjectType,
+        *,
+        drop_variables: bool | None = None,
+        mode: Literal['grayscale', 'color'] = 'color',
     ) -> xr.Dataset:
         import imageio.v3 as iio
 
@@ -76,13 +81,21 @@ class ImageIOBackend(xr.backends.BackendEntrypoint):
             properties = f.properties()
             metadata = f.metadata()
 
-            dims = ['n_images', 'height', 'width', 'color']
+            dims = ['time', 'height', 'width', 'color']
 
             background = metadata['background']
             duration = metadata['duration']
+            loop = metadata['loop']
 
             shape = properties.shape
             dtype = properties.dtype
+
+        if isinstance(duration, (int, float)):
+            time_values = np.timedelta64(duration, 'ms') * np.arange(shape[0])
+        else:
+            time_values = np.array(duration, dtype='timedelta64[ms]')
+
+        time = xr.indexes.PandasIndex(pd.Index(time_values), dim='time')
 
         backend_array = ImageIOBackendArray(
             filename_or_obj=filename_or_obj,
@@ -95,8 +108,12 @@ class ImageIOBackend(xr.backends.BackendEntrypoint):
         var = xr.Variable(
             dims=dims,
             data=data,
-            attrs={'duration': duration, 'background': background},
-            encoding={'preferred_chunks': dict(zip(dims, (1, *shape[1:])))},
+            attrs={'loop': loop},
+            encoding={
+                'preferred_chunks': dict(zip(dims, (1, *shape[1:]))),
+                'fill_value': background,
+            },
         )
+        coords = xr.Coordinates.from_xindex(time).assign(color=['red', 'green', 'blue'])
 
-        return xr.Dataset({'data': var}, coords={'color': ['red', 'green', 'blue']})
+        return xr.Dataset({'data': var}, coords=coords)
