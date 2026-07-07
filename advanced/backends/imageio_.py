@@ -45,13 +45,13 @@ class ImageIOBackendArray(xr.backends.BackendArray):
     def basic_indexing(self, key: tuple[IndexerType]) -> npt.NDArray:
         import imageio.v3 as iio
 
-        with self.lock, iio.imopen(self.filename_or_obj, io_mode='r') as f:
+        with self.lock, iio.imopen(self.filename_or_obj, io_mode="r") as f:
             if key == (slice(None),) * len(self.shape):
                 return f.read()
 
             first_indexer = key[0]
             if isinstance(first_indexer, int):
-                data = f.read(index=first_indexer, mode='P', writable=True)
+                data = f.read(index=first_indexer, mode="P", writable=True)
 
                 remaining_indexers = key[1:]
             else:
@@ -60,7 +60,7 @@ class ImageIOBackendArray(xr.backends.BackendArray):
                 else:
                     indices = first_indexer
 
-                data = np.concatenate([f.read(index=index, mode='P') for index in indices], axis=0)
+                data = np.concatenate([f.read(index=index, mode="P") for index in indices], axis=0)
 
                 remaining_indexers = (..., *key[1:])
 
@@ -73,29 +73,29 @@ class ImageIOBackend(xr.backends.BackendEntrypoint):
         filename_or_obj: FilenameOrObjectType,
         *,
         drop_variables: bool | None = None,
-        mode: Literal['grayscale', 'color'] = 'color',
+        mode: Literal["grayscale", "color"] = "color",
     ) -> xr.Dataset:
         import imageio.v3 as iio
 
-        with iio.imopen(filename_or_obj, io_mode='r') as f:
+        with iio.imopen(filename_or_obj, io_mode="r") as f:
             properties = f.properties()
             metadata = f.metadata()
 
-            dims = ['time', 'height', 'width', 'color']
+            dims = ["time", "height", "width", "color"]
 
-            background = metadata['background']
-            duration = metadata['duration']
-            loop = metadata['loop']
+            background = metadata["background"]
+            duration = metadata["duration"]
+            loop = metadata["loop"]
 
             shape = properties.shape
             dtype = properties.dtype
 
         if isinstance(duration, (int, float)):
-            time_values = np.timedelta64(duration, 'ms') * np.arange(shape[0])
+            time_values = np.timedelta64(duration, "ms") * np.arange(shape[0])
         else:
-            time_values = np.array(duration, dtype='timedelta64[ms]')
+            time_values = np.array(duration, dtype="timedelta64[ms]")
 
-        time = xr.indexes.PandasIndex(pd.Index(time_values), dim='time')
+        time = xr.indexes.PandasIndex(pd.Index(time_values), dim="time")
 
         backend_array = ImageIOBackendArray(
             filename_or_obj=filename_or_obj,
@@ -108,12 +108,12 @@ class ImageIOBackend(xr.backends.BackendEntrypoint):
         var = xr.Variable(
             dims=dims,
             data=data,
-            attrs={'loop': loop},
+            attrs={"loop": loop},
             encoding={
-                'preferred_chunks': dict(zip(dims, (1, *shape[1:]))),
-                'fill_value': background,
+                "preferred_chunks": dict(zip(dims, (1, *shape[1:]))),
+                "fill_value": background,
             },
         )
-        coords = xr.Coordinates.from_xindex(time).assign(color=['red', 'green', 'blue'])
+        coords = xr.Coordinates.from_xindex(time).assign(color=["red", "green", "blue"])
 
-        return xr.Dataset({'data': var}, coords=coords)
+        return xr.Dataset({"data": var}, coords=coords)
