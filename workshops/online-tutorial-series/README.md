@@ -14,9 +14,10 @@ https://www.youtube.com/watch?v=a339Q5F48UQ&list=PLNemzZpJM7lUu_iGP_lA2m7SeSUwKS
 ## Schedule
 
 _These are the rough timings for the tutorial_:
-| Topic | Time (min) |
-| - | - |
-| Xarray fundamentals | 30 |
-| Indexing | 15 |
-| Break | 5 |
-| Computation & visualization | 40 |
+
+| Topic                       | Time (min) |
+| --------------------------- | ---------- |
+| Xarray fundamentals         | 30         |
+| Indexing                    | 15         |
+| Break                       | 5          |
+| Computation & visualization | 40         |
