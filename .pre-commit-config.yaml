@@ -11,15 +11,14 @@ repos:
       - id: check-json
         exclude: ^.devcontainer/
       - id: check-yaml
-      - id: double-quote-string-fixer
 
   - repo: https://github.com/codespell-project/codespell
-    rev: "v2.4.1"
+    rev: v2.4.2
     hooks:
       - id: codespell
 
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 26.1.0
+    rev: 26.5.1
     hooks:
       - id: black
       - id: black-jupyter
@@ -28,21 +27,29 @@ repos:
     rev: v0.4.6
     hooks:
       - id: blackdoc
+        additional_dependencies: ['black==26.5.1']
+      - id: blackdoc-autoupdate-black
 
-  - repo: https://github.com/PyCQA/flake8
-    rev: 7.3.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.20
     hooks:
-      - id: flake8
+      - id: ruff-check
+        args: ['--fix', '--show-fixes']
 
-  - repo: https://github.com/PyCQA/isort
-    rev: 8.0.1
-    hooks:
-      - id: isort
-
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v4.0.0-alpha.8
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: v3.9.4
     hooks:
       - id: prettier
+        args: ['--cache-location=.prettier_cache/cache']
+        exclude: 'pixi.lock'
+
+  - repo: https://github.com/ComPWA/taplo-pre-commit
+    rev: v0.9.3
+    hooks:
+      - id: taplo-format
+        args: ['--option', 'array_auto_collapse=false']
+      - id: taplo-lint
+        args: ['--no-schema']
 
   - repo: https://github.com/kynan/nbstripout
     rev: 0.9.1
