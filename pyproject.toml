@@ -50,7 +50,7 @@ fixable = ["I"]
 
 [tool.codespell]
 ignore-words-list = "nd"
-skip = "pixi.lock,.pixi,qaqc.yaml,intermediate/indexing/why-an-index.ipynb"
+skip = "pixi.lock,.pixi,qaqc.yaml,why-an-index.ipynb"
 
 [tool.pixi.workspace]
 name = "xarray-tutorial"
@@ -113,3 +113,15 @@ rich = ">=15.0.0,<16"
 imageio = ">=2.37.0,<3"
 intake = "<2"
 intake-xarray = "<2"
+
+[tool.pixi.feature.qaqc.dependencies]
+python = ">=3.14"
+
+[tool.pixi.feature.qaqc.pypi-dependencies]
+codespell = ">=2.4.3"
+
+[tool.pixi.feature.qaqc.tasks]
+codespell = { cmd = "codespell", description = "Run codespell" } # this isn't a comprehensive spellcheck, just common typos
+
+[tool.pixi.environments]
+qaqc = { features = ["qaqc"], no-default-feature = true }
