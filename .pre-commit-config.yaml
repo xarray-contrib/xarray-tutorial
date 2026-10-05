@@ -13,12 +13,12 @@ repos:
       - id: check-yaml
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.2
+    rev: v2.4.3
     hooks:
       - id: codespell
 
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 26.5.1
+    rev: 26.10.0
     hooks:
       - id: black
       - id: black-jupyter
@@ -31,13 +31,13 @@ repos:
       - id: blackdoc-autoupdate-black
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.20
+    rev: v0.16.10
     hooks:
       - id: ruff-check
         args: ['--fix', '--show-fixes']
 
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: v3.9.4
+    rev: v3.9.9
     hooks:
       - id: prettier
         args: ['--cache-location=.prettier_cache/cache']
